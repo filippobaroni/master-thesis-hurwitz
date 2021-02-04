@@ -1,5 +1,6 @@
 #include <atomic>
 #include <chrono>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <iterator>
@@ -22,6 +23,8 @@
 constexpr int THREADS = 4;
 constexpr long long RAM = 2048 * (1LL << 20);
 
+std::ofstream debug;
+
 
 namespace timer {
     btree::btree_map<std::string, decltype(std::chrono::steady_clock::now())> begin_time;
@@ -32,7 +35,7 @@ namespace timer {
         return std::chrono::duration<double>(std::chrono::steady_clock::now() - begin_time[s]).count();
     }
     void end(const std::string& s) {
-        std::cerr << s << ": " << elapsed(s) << "s\n";
+        debug << s << ": " << elapsed(s) << "s\n";
     }
 }
 
@@ -130,7 +133,7 @@ auto exceptional_partitions(uint32_t d) {
         inv_perm[perm[i]] = i;
     }
     
-    std::cerr << "Partitions: " << P.size() << std::endl;
+    debug << "Partitions: " << P.size() << std::endl;
     
     timer::start("r and s");
     auto r_and_s = compute_r_and_s<I, T>(d);
@@ -139,10 +142,10 @@ auto exceptional_partitions(uint32_t d) {
         RAM_USED += sizeof(I) + (sizeof(I) + sizeof(T)) * s.size();
     }
     timer::end("r and s");
-    std::cerr << "Secondary partitions: " << r_and_s.size() << std::endl;
+    debug << "Secondary partitions: " << r_and_s.size() << std::endl;
     
     const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t((RAM - RAM_USED) / (THREADS * sizeof(I) * pow(P.size(), n - 1))));
-    std::cerr << "Chunk size: " << CHUNK_SIZE << std::endl;
+    debug << "Chunk size: " << CHUNK_SIZE << std::endl;
     
     timer::start("exceptional partitions");
     for(int t = 0; t < THREADS; ++t) {
@@ -231,6 +234,8 @@ auto exceptional_partitions(uint32_t d) {
 
 int main(int argc, char** argv) {
     using imodd = imod<1000000007>;
+    
+    debug.open("debug.txt");
     
     assert(argc == 2);
     int d = atoi(argv[1]);
