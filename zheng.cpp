@@ -1,6 +1,8 @@
 #include <atomic>
 #include <chrono>
+#include <iomanip>
 #include <iostream>
+#include <iterator>
 #include <mutex>
 #include <thread>
 #include <random>
@@ -45,76 +47,65 @@ std::ostream& print_partition(std::ostream& out, const std::vector<T>& p) {
 }
 
 template<typename I, typename T>
-class R_and_S {
-    T d;
-    decltype(partitions_table<T>(d)) p_table;
-    decltype(conjugacy_classes<I, T>(p_table)) conj;
-    decltype(multiplication_table(p_table)) mult;
-    decltype(character_tables<I>(p_table)) ch;
-    std::vector<std::vector<std::vector<I>>> scoeff;
-    std::vector<I> R;
-public:
-    R_and_S(T d_) : d(d_),
-        p_table(partitions_table<T>(d)),
-        conj(conjugacy_classes<I, T>(p_table)),
-        mult(multiplication_table(p_table)),
-        ch(character_tables<I>(p_table)),
-        scoeff(d + 1) {
-            std::vector<I> factorial(d + 1), factorial_inv(d + 1);
-            factorial[0] = factorial_inv[0] = 1;
-            for(uint32_t j = 1; j <= uint32_t(d); ++j) {
-                factorial[j] = factorial[j - 1] * I(j);
-                factorial_inv[j] = factorial_inv[j - 1] / I(j);
-            }
-            for(T i = 0; i <= d; ++i) {
-                scoeff[i].resize(ch[i].size());
-                for(uint32_t j = 0; j < ch[i].size(); ++j) {
-                    scoeff[i][j].resize(ch[i][j].size());
-                    for(uint32_t k = 0; k < ch[i][j].size(); ++k) {
-                        scoeff[i][j][k] = ch[i][j][k] * conj[i][k] / ch[i][j][0];
-                    }
-                }
-            }
-            iterate_on_secondary_partitions(p_table, d, [&](auto omega) {
-                uint32_t k = omega.size();
-                // Compute r(omega)
-                I r = (k % 2) ? (1) : (-1);
-                r *= factorial[k - 1];
-                btree::btree_map<std::tuple<T, uint32_t>, uint32_t> multiplicities;
-                for(const auto& [i, j] : omega) {
-                    ++multiplicities[{i, j}];
-                }
-                for(const auto& [i, j] : multiplicities) {
-                    r *= factorial_inv[j];
-                }
-                for(const auto& [i, j] : omega) {
-                    I x = ch[i][j][0] * factorial_inv[i];
-                    r *= x * x;
-                }
-                R.push_back(r);
-            });
+auto compute_r_and_s(T d) {
+    auto p_table = partitions_table<T>(d);
+    auto conj = conjugacy_classes<I, T>(p_table);
+    auto mult = multiplication_table(p_table);
+    auto ch = character_tables<I>(p_table);
+    std::vector<std::vector<std::vector<I>>> scoeff(d + 1);
+    std::vector<I> factorial(d + 1), factorial_inv(d + 1);
+    factorial[0] = factorial_inv[0] = 1;
+    for(uint32_t j = 1; j <= uint32_t(d); ++j) {
+        factorial[j] = factorial[j - 1] * I(j);
+        factorial_inv[j] = factorial_inv[j - 1] / I(j);
     }
-    template<typename F>
-    void iterate(F f) {
-        auto it = R.begin();
-        iterate_on_secondary_partitions(p_table, d, [&](auto omega) {
-            multivariate_polynomial<I, T> s = { 0, {{1, 0}} };
-            for(const auto& [i, j] : omega) {
-                decltype(s) p = { i, {} };
-                std::get<1>(p).reserve(p_table[i].size());
-                for(uint32_t nu = 0; nu < p_table[i].size(); ++nu) {
-                    std::get<1>(p).emplace_back(scoeff[i][j][nu], nu);
-                }
-                s = mult_two_polynomials(mult, s, p);
+    for(T i = 0; i <= d; ++i) {
+        scoeff[i].resize(ch[i].size());
+        for(uint32_t j = 0; j < ch[i].size(); ++j) {
+            scoeff[i][j].resize(ch[i][j].size());
+            for(uint32_t k = 0; k < ch[i][j].size(); ++k) {
+                scoeff[i][j][k] = ch[i][j][k] * conj[i][k] / ch[i][j][0];
             }
-            std::get<1>(s).erase(std::get<1>(s).begin());
-            std::get<1>(s).shrink_to_fit();
-            f(*it, std::get<1>(s));
-            ++it;
-        });
+        }
     }
-};
-
+    std::vector<std::tuple<I, std::vector<std::tuple<I, uint32_t>>>> r_and_s;
+    std::vector<std::vector<std::tuple<I, std::vector<std::tuple<I, uint32_t>>>>> r_and_s_partial(THREADS);
+    parallel_iterate_on_secondary_partitions(THREADS, p_table, d, [&](int t, auto omega) {
+        uint32_t k = omega.size();
+        // Compute r(omega)
+        I r = (k % 2) ? (1) : (-1);
+        r *= factorial[k - 1];
+        btree::btree_map<std::tuple<T, uint32_t>, uint32_t> multiplicities;
+        for(const auto& [i, j] : omega) {
+            ++multiplicities[{i, j}];
+        }
+        for(const auto& [i, j] : multiplicities) {
+            r *= factorial_inv[j];
+        }
+        for(const auto& [i, j] : omega) {
+            I x = ch[i][j][0] * factorial_inv[i];
+            r *= x * x;
+        }
+        // Compute s(omega)
+        multivariate_polynomial<I, T> s = { 0, {{1, 0}} };
+        for(const auto& [i, j] : omega) {
+            decltype(s) p = { i, {} };
+            std::get<1>(p).reserve(p_table[i].size());
+            for(uint32_t nu = 0; nu < p_table[i].size(); ++nu) {
+                std::get<1>(p).emplace_back(scoeff[i][j][nu], nu);
+            }
+            s = mult_two_polynomials(mult, s, p);
+        }
+        std::get<1>(s).erase(std::get<1>(s).begin());
+        std::get<1>(s).shrink_to_fit();
+        // Append
+        r_and_s_partial[t].emplace_back(r, std::move(std::get<1>(s)));
+    });
+    for(auto& part : r_and_s_partial) {
+        r_and_s.insert(r_and_s.end(), std::make_move_iterator(part.begin()), std::make_move_iterator(part.end()));
+    }
+    return r_and_s;
+}
 
 template<typename I, typename T, uint32_t n>
 auto exceptional_partitions(uint32_t d) {
@@ -126,13 +117,12 @@ auto exceptional_partitions(uint32_t d) {
     auto hurwitz = [&](int sum_len) {
         return (sum_len + n * d) % 2 == 0 and (int(n) - 2) * int(d) + 2 >= sum_len;
     };
-    auto RS = R_and_S<I, T>(d);
-
+    
+    uint32_t first_p = 0;
     std::vector<std::thread> threads;
     std::mutex mutex;
     std::vector<std::array<uint32_t, n>> exceptional;
     const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t(RAM / (THREADS * sizeof(I) * pow(P.size(), n - 1))));
-    uint32_t first_p = 1, completed = 0;
     
     std::vector<uint32_t> perm(P.size()), inv_perm(P.size());
     std::iota(perm.begin(), perm.end(), 0);
@@ -144,7 +134,12 @@ auto exceptional_partitions(uint32_t d) {
     std::cerr << "Partitions: " << P.size() << std::endl;
     std::cerr << "Chunk size: " << CHUNK_SIZE << std::endl;
     
-    timer::start("compute");
+    timer::start("r and s");
+    auto r_and_s = compute_r_and_s<I, T>(d);
+    timer::end("r and s");
+    std::cerr << "Secondary partitions: " << r_and_s.size() << std::endl;
+    
+    timer::start("exceptional partitions");
     for(int t = 0; t < THREADS; ++t) {
         threads.emplace_back([&, t]() {
             while(true) {
@@ -158,8 +153,9 @@ auto exceptional_partitions(uint32_t d) {
                     }
                 }
                 ndvector<n, I> myres(std::tuple_cat(std::tuple(CHUNK_SIZE), make_ntuple<n - 1, size_t>(P.size())));
-                std::vector<bool> visited(CHUNK_SIZE);
-                RS.iterate([&](I r, const auto& s) {
+                //RS.iterate([&](I r, const auto& s) {
+                uint32_t idx = 0;
+                for(const auto& [r, s] : r_and_s) {
                     std::array<uint32_t, n> p;
                     uint32_t sum_len = 0;
                     for(uint32_t i0 = 0; i0 < s.size(); ++i0) {
@@ -167,12 +163,6 @@ auto exceptional_partitions(uint32_t d) {
                             continue;
                         }
                         p[0] = perm[std::get<1>(s[i0])] - myp;
-                        if(not visited[p[0]]) {
-                            visited[p[0]] = true;
-                            std::scoped_lock lock(mutex);
-                            ++completed;
-                            std::cerr << "[" << ((t < 10) ? (" ") : ("")) << t << "]   "  << completed << " / " << P.size() << "    in " << timer::elapsed("compute") << "s" << std::endl;
-                        }
                         sum_len = PS[std::get<1>(s[i0])];
                         std::y_combinator([&](auto rec, uint32_t k, uint32_t j, I c) -> void {
                             for(uint32_t i = j; i < s.size(); ++i) {
@@ -189,7 +179,13 @@ auto exceptional_partitions(uint32_t d) {
                             }
                         })(1, i0, r * std::get<0>(s[i0]));
                     }
-                });
+                    ++idx;
+                    if(r_and_s.size() < 100 or idx % (r_and_s.size() / 100) == 0) {
+                        std::scoped_lock lock(mutex);
+                        std::cerr << "[" << std::setw(2) << t << "]   "  << std::setw(3) << (100 * idx / r_and_s.size()) << std::setw(0) << "%    in " << timer::elapsed("exceptional partitions") << "s" << std::endl;
+                    }
+                }
+                //});
                 {
                     decltype(exceptional) myexc;
                     std::array<uint32_t, n> p;
@@ -224,6 +220,7 @@ auto exceptional_partitions(uint32_t d) {
         t.join();
     }
     std::sort(exceptional.begin(), exceptional.end());
+    timer::end("exceptional partitions");
     return exceptional;
 }
 
@@ -238,9 +235,7 @@ int main(int argc, char** argv) {
     
     //std::cerr << r_and_s.size() << std::endl;
     
-    timer::start("exceptional partitions");
     auto E = exceptional_partitions<imodd, uint8_t, 3>(d);
-    timer::end("exceptional partitions");
     
     for(const auto& e : E) {
         for(auto i : e) {

@@ -1,8 +1,10 @@
 #pragma once
 
 #include <algorithm>
+#include <atomic>
 #include <cmath>
 #include <numeric>
+#include <thread>
 #include <tuple>
 #include <vector>
 
@@ -91,6 +93,44 @@ void iterate_on_secondary_partitions(const std::vector<partitions<T>>& p_table, 
                 omega.pop_back();
             }
         })(0, -1, 0);
+    }
+}
+
+template<typename T, typename F>
+void parallel_iterate_on_secondary_partitions(const int thread_num, const std::vector<partitions<T>>& p_table, T d, F f) {
+    const auto& ps = p_table[d];
+    std::atomic<uint32_t> idx = 0;
+    std::vector<std::thread> threads;
+    for(int t = 0; t < thread_num; ++t) {
+        threads.emplace_back([&, t]() {
+            while(true) {
+                uint32_t myidx = ++idx;
+                if(myidx >= ps.size()) {
+                    return;
+                }
+                const auto& p = ps[myidx];
+                secondary_partition<T> omega;
+                std::y_combinator([&](auto self, uint32_t i, T pr_d, uint32_t pr_j) -> void {
+                    if(i == p.size()) {
+                        f(t, omega);
+                        return;
+                    }
+                    const auto& ps1 = p_table[p[i]];
+                    uint32_t j = 0;
+                    if(pr_d == p[i]) {
+                        j = pr_j;
+                    }
+                    for(; j < ps1.size(); ++j) {
+                        omega.emplace_back(p[i], j);
+                        self(i + 1, p[i], j);
+                        omega.pop_back();
+                    }
+                })(0, -1, 0);
+            }
+        });
+    }
+    for(auto& t : threads) {
+        t.join();
     }
 }
 
