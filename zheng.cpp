@@ -122,7 +122,6 @@ auto exceptional_partitions(uint32_t d) {
     std::vector<std::thread> threads;
     std::mutex mutex;
     std::vector<std::array<uint32_t, n>> exceptional;
-    const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t(RAM / (THREADS * sizeof(I) * pow(P.size(), n - 1))));
     
     std::vector<uint32_t> perm(P.size()), inv_perm(P.size());
     std::iota(perm.begin(), perm.end(), 0);
@@ -132,12 +131,18 @@ auto exceptional_partitions(uint32_t d) {
     }
     
     std::cerr << "Partitions: " << P.size() << std::endl;
-    std::cerr << "Chunk size: " << CHUNK_SIZE << std::endl;
     
     timer::start("r and s");
     auto r_and_s = compute_r_and_s<I, T>(d);
+    long long RAM_USED = 0;
+    for(const auto& [r, s] : r_and_s) {
+        RAM_USED += sizeof(I) + (sizeof(I) + sizeof(T)) * s.size();
+    }
     timer::end("r and s");
     std::cerr << "Secondary partitions: " << r_and_s.size() << std::endl;
+    
+    const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t((RAM - RAM_USED) / (THREADS * sizeof(I) * pow(P.size(), n - 1))));
+    std::cerr << "Chunk size: " << CHUNK_SIZE << std::endl;
     
     timer::start("exceptional partitions");
     for(int t = 0; t < THREADS; ++t) {
