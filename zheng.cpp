@@ -20,8 +20,8 @@
 #include "imod.hpp"
 #include "ndvector.hpp"
 
-constexpr int THREADS = 4;
-constexpr long long RAM = 2048 * (1LL << 20);
+constexpr int THREADS = 48;
+constexpr long long RAM = 240 * (1LL << 30);
 
 std::ofstream debug;
 
@@ -121,7 +121,7 @@ auto exceptional_partitions(uint32_t d) {
         return (sum_len + n * d) % 2 == 0 and (int(n) - 2) * int(d) + 2 >= sum_len;
     };
     
-    uint32_t first_p = 0;
+    uint32_t first_p = 1;
     std::vector<std::thread> threads;
     std::mutex mutex;
     std::vector<std::array<uint32_t, n>> exceptional;
@@ -144,7 +144,7 @@ auto exceptional_partitions(uint32_t d) {
     timer::end("r and s");
     debug << "Secondary partitions: " << r_and_s.size() << std::endl;
     
-    const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t((RAM - RAM_USED) / (THREADS * sizeof(I) * pow(P.size(), n - 1))));
+    const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t((RAM - RAM_USED) / (4 * THREADS * sizeof(I) * pow(P.size(), n - 1))));
     debug << "Chunk size: " << CHUNK_SIZE << std::endl;
     
     timer::start("exceptional partitions");
