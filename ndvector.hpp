@@ -1,6 +1,7 @@
 #pragma once
 
 #include <tuple>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -40,7 +41,7 @@ public:
     decltype(auto) operator [] (const size_t& w) {
         return std::vector<ndvector<d - 1, T>>::operator [] (w);
     }
-    template<typename SZ>
+    template<typename SZ, typename = std::enable_if_t<not std::is_integral_v<SZ>>>
     decltype(auto) operator [] (const SZ& w) {
         return (std::vector<ndvector<d - 1, T>>::operator [] (std::get<0>(w)))[tuple_tail(w)];
     }
@@ -53,7 +54,7 @@ public:
     decltype(auto) operator [] (const size_t& w) {
         return std::vector<T>::operator [] (w);
     }
-    template<typename SZ>
+    template<typename SZ, typename = std::enable_if_t<not std::is_integral_v<SZ>>>
     decltype(auto) operator [] (const SZ& w) {
         return std::vector<T>::operator [] (std::get<0>(w));
     }
