@@ -39,7 +39,6 @@ namespace timer {
     }
 }
 
-
 template<typename T>
 std::ostream& print_partition(std::ostream& out, const std::vector<T>& p) {
     out << "[ ";
@@ -47,6 +46,19 @@ std::ostream& print_partition(std::ostream& out, const std::vector<T>& p) {
         out << int(x) << " ";
     }
     return out << "]";
+}
+
+uint64_t get_used_RAM() { // in Mb
+    std::ifstream proc("/proc/self/status");
+    while(true) {
+        std::string s;
+        proc >> s;
+        if(s == "VmRSS:") {
+            uint64_t ram;
+            proc >> ram;
+            return ram / 1024;
+        }
+    }
 }
 
 template<typename I, typename T>
@@ -147,6 +159,8 @@ struct _exceptional_partitions_impl {
         
         const uint32_t CHUNK_SIZE = std::min(uint32_t(P.size() - 1) / THREADS + 1, uint32_t((RAM - RAM_USED) / (4 * THREADS * sizeof(I) * pow(P.size(), n - 1))));
         debug << "Chunk size: " << CHUNK_SIZE << std::endl;
+        
+        debug << "RAM usage: " << get_used_RAM() << std::endl;
         
         timer::start("exceptional partitions");
         for(int t = 0; t < THREADS; ++t) {
@@ -256,6 +270,8 @@ struct _exceptional_partitions_impl<I, T, 3> {
         debug << "Secondary partitions: " << r_and_s.size() << std::endl;
         
         debug << "Chunk size: " << 1 << std::endl;
+        
+        debug << "RAM usage: " << get_used_RAM() << std::endl;
         
         timer::start("exceptional partitions");
         for(int t = 0; t < THREADS; ++t) {
