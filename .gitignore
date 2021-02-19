@@ -2,7 +2,8 @@
 debug.txt
 
 # Binaries
-zheng
+find_exceptional
+check_exceptional
 
 # Prerequisites
 *.d
