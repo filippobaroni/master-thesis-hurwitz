@@ -26,6 +26,7 @@
 template<typename I, typename T, uint32_t n>
 struct _check_exceptional_data_impl {
     auto operator () (const uint32_t d, const std::vector<std::array<uint32_t, n>>& data) {
+        abort();
         return data;
     }
 };
@@ -34,7 +35,7 @@ struct _check_exceptional_data_impl<I, T, 3> {
     auto operator () (const uint32_t d, const std::vector<std::array<uint32_t, 3>>& data) {
         auto P = partitions_table<T>(d)[d];
         
-        std::atomic<uint32_t> idx = 1;
+        std::atomic<uint32_t> idx = 0;
         std::vector<std::thread> threads;
         std::mutex mutex;
         std::vector<std::array<uint32_t, 3>> exceptional;
@@ -136,7 +137,7 @@ int main(int argc, char** argv) {
     
     auto E = check_exceptional_data<imodd, uint8_t, n>(d, data);
     
-    for(const auto& e : data) {
+    for(const auto& e : E) {
         for(auto i : e) {
             print_partition(std::cout, p_table[d][i]) << " ";
         }
