@@ -1,3 +1,6 @@
 [submodule "cpp-btree"]
 	path = cpp-btree
 	url = https://github.com/algorithm-ninja/cpp-btree.git
+[submodule "c++/cpp-btree"]
+	path = c++/cpp-btree
+	url = https://github.com/algorithm-ninja/cpp-btree.git
