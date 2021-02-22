@@ -105,7 +105,7 @@ Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. Since the orange disk h
 \begin{center}
 \includegraphics[width=.9\textwidth]{move1}
 \end{center}
-After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
 \end{proof}
 
 \begin{combinatorialmove}\label{move:s2-23-22}
@@ -133,7 +133,7 @@ Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. We perform the followin
 \begin{center}
 \includegraphics[width=.9\textwidth]{move2}
 \end{center}
-After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
 \end{proof}
 
 \begin{combinatorialmove}\label{move:113}
@@ -153,7 +153,7 @@ Then
 is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
 \end{combinatorialmove}
 \begin{proof}
-Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. Since $[1,1,1,1,1]\subs\pi_1'$, we can assume without loss of generality that there are at least three black vertices labeled $1$ touching the pink disk. Then we can follow the strategy presented in the proof of \cref{move:s1-3} (with $x_1=x_2=x_3=1$) to obtain a new \dessin{} $\Gamma$ which realizes $\mathcal{D}$.
+Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. Since $[1,1,1,1,1]\subs\pi_1'$, we can assume without loss of generality that there are at least three black vertices labeled $1$ touching the pink disk. Then we can follow the strategy presented in the proof of \cref{move:s1-3} (with $x_1=x_2=x_3=1$) to obtain a new \dessin{} $\Gamma$ which realizes the candidate datum $\mathcal{D}$.
 \end{proof}
 
 \begin{combinatorialmove}\label{move:4-2}
@@ -180,22 +180,64 @@ Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. There are two cases.
 \begin{enumerate}
 \item Attach a tube to $\Sigma_{g-1}$ with one endpoint in the orange disk and the other in the pink one.
 \item Add one black vertex and one white vertex as shown in the picture.
-\item Perform the joining operation along the red edges.
+\item Perform the joining operation along the red edges, replacing the black vertices labeled $x_1$, $x_2$ and $2$ with a vertex of degree $x$.
 \end{enumerate}
 \begin{center}
 \includegraphics[width=.9\textwidth]{move4-1}
 \end{center}
-After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
 \paragraph{Case 2:} both the vertices labeled $x_1$ and $x_2$ touch (say) the pink disk. Fix an edge $e$ of $\Gamma'$ that lies on the boundary of both disks. We perform the following operations.
 \begin{enumerate}
 \item Add one black vertex and one white vertex on $e$ as shown in the picture.
 \item Attach a tube to $\Sigma_{g-1}$ with both endpoints in the pink disk.
-\item Perform the joining operation along the red edges.
+\item Perform the joining operation along the red edges, replacing the black vertices labeled $x_1$, $x_2$ and $2$ with a vertex of degree $x$.
 \end{enumerate}
 \begin{center}
 \includegraphics[width=.9\textwidth]{move4-2}
 \end{center}
-After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
+\end{proof}
+
+\begin{combinatorialmove}\label{move:33-22}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $3\le s\le d-3$;
+\item $g\ge 1$;
+\item $[x,y]\subs\pi_1$ for some $x\ge 3$, $y\ge 3$;
+\item $[2,2]\subs\pi_2$.
+\end{enumerate}
+Consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2],&&\pi_2'=\pi_2\setminus[2,2].
+\end{align*}
+Then
+\[
+\mathcal{D}'=\datum{\Sigma_{g-1},d-4}{\pi_1',\pi_2',[s-2,d-s-2]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
+\end{combinatorialmove}
+\begin{proof}
+Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. There are two cases.
+\paragraph{Case 1:} the vertex labeled $x-2$ touches the orange disk and the vertex labeled $y-2$ touches the pink disk (or vice versa). Then we perform the following operations.
+\begin{enumerate}
+\item Attach a tube to $\Sigma_{g-1}$ with one endpoint in the orange disk and the other in the pink one.
+\item Add two black vertices and two white vertices as shown in the picture.
+\item Perform the joining operation along the red edges, replacing the black vertices labeled $x-2$, $2$ with a vertex of degree $x$, and the black vertices labeled $y-2$, $2$, with a vertex of degree $y$.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.9\textwidth]{move5-1}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
+\paragraph{Case 2:} both the vertices labeled $x-2$ and $y-2$ touch (say) the pink disk. Fix an edge $e$ of $\Gamma'$ that lies on the boundary of both disks. We perform the following operations.
+\begin{enumerate}
+\item Add two black vertex and two white vertex on $e$ as shown in the picture.
+\item Attach a tube to $\Sigma_{g-1}$ with both endpoints in the pink disk.
+\item Perform the joining operation along the red edges, replacing the black vertices labeled $x-2$, $2$ with a vertex of degree $x$, and the black vertices labeled $y-2$, $2$, with a vertex of degree $y$.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.9\textwidth]{move5-2}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
 \end{proof}
 
 \begin{combinatorialmove}\label{move:4-3}
@@ -204,7 +246,7 @@ Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate 
 \item $2\le s\le d-2$;
 \item $g\ge 1$;
 \item there is an element $x\in\pi_1$ such that $x\ge 4$;
-\item there is an element $y\in\pi_2$ such that $x\ge 3$.
+\item there is an element $y\in\pi_2$ such that $y\ge 3$.
 \end{enumerate}
 Consider the partitions
 \begin{align*}
@@ -213,25 +255,6 @@ Consider the partitions
 Then
 \[
 \mathcal{D'}=\datum{\Sigma_{g-1},d-2}{\pi_1',\pi_2',[s-1,d-s-1]}
-\]
-is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
-\end{combinatorialmove}
-
-\begin{combinatorialmove}\label{move:33-22}
-Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
-\begin{enumerate}
-\item $3\le s\le d-3$;
-\item $g\ge 1$;
-\item $[x,x]\subs\pi_1$ for some $x\ge 3$;
-\item $[2,2]\subs\pi_2$.
-\end{enumerate}
-Consider the partitions
-\begin{align*}
-\pi_1'=\pi_1\setminus[x,x]\cup[x-2,x-2],&&\pi_2'=\pi_2\setminus[2,2].
-\end{align*}
-Then
-\[
-\mathcal{D}'=\datum{\Sigma_{g-1},d-4}{\pi_1',\pi_2',[s-2,d-s-2]}
 \]
 is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
 \end{combinatorialmove}
@@ -452,7 +475,7 @@ which is realizable by \cref{th:exceptional-n3-g0} unless one of the following h
 Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
 \begin{enumerate}
 \item $g\ge 2$;
-\item $\pi_1=\rho_1\cup[3,\ldots,3]$ for some $\rho_1\subs[1,2]$.
+\item $\pi_1=\rho_1\cup[3,\ldots,3]$ for some $\rho_1\subs[1,2]$;
 \item $\pi_2=\rho_2\cup[3,\ldots,3]$ for some $\rho_2\subs[1,2]$.
 \end{enumerate}
 Then $\mathcal{D}$ is realizable.
