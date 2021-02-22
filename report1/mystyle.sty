@@ -1,0 +1,76 @@
+\ProvidesPackage{mystyle}
+
+\usepackage{geometry}
+\usepackage{microtype}
+
+% List packages
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate,1]{label={(\arabic*)}}
+
+% Math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% References
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+\usepackage{crossreftools}
+\def\cref{\crthypercref}
+%\usepackage{theoremref}
+
+% Theorem environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{fact*}{Fact}
+\newtheorem{combinatorialmove}{Combinatorial move}
+
+% Graphics
+\usepackage{graphicx}
+\graphicspath{{./pictures/}}
+
+% Set theory
+\newcommand*{\subs}{\subseteq}
+\newcommand*{\sups}{\supseteq}
+\renewcommand*{\setminus}{\smallsetminus}
+\newcommand*{\card}[1]{\left|#1\right|}
+
+% Maps
+\newcommand*{\umap}[2]{#1\mathchoice{\longrightarrow}{\to}{\to}{\to}#2}
+\newcommand*{\map}[3]{#1\colon#2\mathchoice{\longrightarrow}{\to}{\to}{\to}#3}
+\newcommand*{\Map}[5]{%
+\begin{equation*}
+\begin{array}{@{}r@{{}\mathrel{}}c@{{}\mathrel{}}c@{{}\mathrel{}}c}
+#1:&#2&\longrightarrow&#3\\
+&#4&\longmapsto&#5
+\end{array}
+\end{equation*}
+}
+\newcommand*{\uMap}[4]{%
+\begin{align*}
+#1&\longrightarrow#2\\
+#3&\longmapsto#4
+\end{align*}
+}
+
+% Hurwitz
+\newcommand*{\datum}[2]{\left(#1;#2\right)}
+\newcommand*{\cmove}{\implies}
+\def\dessin{\emph{dessin d'enfant}}
+\def\dessins{\emph{dessins d'enfant}}
+\def\Dessin{\emph{Dessin d'enfant}}
+\def\Dessins{\emph{Dessins d'enfant}}

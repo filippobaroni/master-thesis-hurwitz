@@ -1,0 +1,519 @@
+\documentclass{article}
+
+\usepackage{mystyle}
+
+\begin{document}
+\section{Notation}
+\begin{definition}
+Let $d$ be a positive integer. A \emph{partition} of $d$ is an unordered multiset of positive integers $[x_1,\ldots,x_n]$ such that $x_1+\ldots+x_n=d$.
+\end{definition}
+\begin{definition}
+A \emph{combinatorial datum} is a tuple
+\[
+\mathcal{D}=\datum{\widetilde\Sigma,\Sigma,d}{\pi_1,\ldots,\pi_n},
+\]
+where $\Sigma$, $\widetilde\Sigma$ are closed surfaces, $d$ is a positive integer and $\pi_1,\ldots,\pi_n$ are partitions of $d$. The datum $\mathcal{D}$ is \emph{proper} if none of the partitions $\pi_1,\ldots,\pi_n$ is equal to $[1,\ldots,1]$, \emph{improper} otherwise.
+\end{definition}
+
+A few remarks about combinatorial data.
+\begin{itemize}
+\item A combinatorial datum is only defined up to permutation of its partitions. In other words, if two data have the same partitions but in a different order, they are considered equal.
+\item When $\Sigma$ is the $2$-sphere, we will sometimes shorten the notation for a combinatorial datum by omitting it:
+\[
+\mathcal{D}=\datum{\widetilde\Sigma,d}{\pi_1,\ldots,\pi_n}.
+\]
+\end{itemize}
+
+\begin{definition}
+A combinatorial datum
+\[
+\mathcal{D}=\datum{\widetilde\Sigma,\Sigma,d}{\pi_1,\ldots,\pi_n}
+\]
+is a \emph{candidate datum} if it satisfies the \emph{Riemann-Hurwitz} condition
+\[
+\chi(\widetilde\Sigma)-\left(\card{\pi_1}+\ldots+\card{\pi_n}\right)=d\cdot(\chi(\Sigma)-n).
+\]
+\end{definition}
+
+Let $\Sigma_g$ denote the closed orientable surface of genus $g$. From now on, we will almost always deal with combinatorial data of the form
+\[
+\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}.
+\]
+In this setting, the Riemann-Hurwitz condition becomes
+\begin{equation}\label{eq:rh-n3}
+\card{\pi_1}+\card{\pi_2}=d-2g.
+\end{equation}
+
+\begin{definition}
+A candidate datum $\mathcal{D}$ is \emph{realizable} if it is the combinatorial datum of a branched covering, and is \emph{exceptional} otherwise.
+\end{definition}
+
+\section{Combinatorial moves}
+
+\begin{definition}
+A \emph{combinatorial move} is a pair of candidate data $\mathcal{D}$, $\mathcal{D}'$ such that $\mathcal{D}$ is realizable provided that $\mathcal{D}'$ is realizable. We use the notation $\mathcal{D}\cmove\mathcal{D}'$ to denote the existence of a combinatorial move between $\mathcal{D}$ and $\mathcal{D}'$.
+\end{definition}
+
+This section is devoted to listing several combinatorial moves, which will be used in the next section to classify the realizable candidate data of the form
+\[
+\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}.
+\]
+We will make extensive use of the following.
+
+\begin{fact*}
+A candidate datum $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,\pi_3}$ is realizable if and only if it admits a \dessin{}, i.e. a graph $\Gamma$ embedded in $\Sigma_g$ with the following properties.
+\begin{enumerate}
+\item The vertices of $\Gamma$ are colored with two colors, say black and white; each edge of $\Gamma$ has endpoints of different colors.
+\item There are $\card{\pi_1}$ black vertices and $\card{\pi_2}$ white vertices in $\Gamma$; $\pi_1$ is the multiset of the degrees of black vertices; similarly, $\pi_2$ is the multiset of the degrees of white vertices.
+\item The complement $\Sigma_g\setminus\Gamma$ is the disjoint union of $\card{\pi_3}$ open disks; $\pi_3$ is the multiset of the combinatorial perimeters\footnote{The \emph{combinatorial perimeter} of a disk $D$ in the complement $\Sigma_g\setminus\Gamma$ is the number of edges of $\Gamma$ that make up the perimeter of $D$; edges that are traversed twice are counted accordingly.} of these disks divided by $2$.
+\end{enumerate}
+\end{fact*}
+
+Before we start describing the combinatorial moves, let us introduce  procedure that we will employ several times in this section. Consider an uncolored graph $\Gamma$ embedded in a surface $\Sigma$, and fix an edge $e$ with endpoints $x$, $y$. The operation of \emph{joining} $x$ and $y$ along $e$ consists in shrinking $e$ to a single point; $x$ and $y$ are merged into a single vertex $z$, whose degree is $\deg{z}=\deg{x}+\deg{y}-2$.
+
+\begin{center}
+\includegraphics[width=.75\textwidth]{join}
+\end{center}
+
+Joining $x$ and $y$ leaves the complement $\Sigma\setminus\Gamma$ topologically unchanged. From a combinatorial point of view, if $\Sigma\setminus\Gamma$ was a disjoint union of open disks, then the same holds after joining; the combinatorial perimeter of the two regions touching $e$ decreases by 1 (if the two regions are the same, then it decreases by 2), while the perimeter of the other regions does not change.
+
+We are now ready to introduce the combinatorial moves. Given a candidate datum $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ and a \dessin{} for $\mathcal{D}$, we will conventionally use the color black for the vertices assigned to the partition $\pi_1$, and the color white for the other vertices. Moreover, the disk with perimeter $2s$ will be colored orange, and the disk with perimeter $2(d-s)$ will be colored pink.
+
+\begin{combinatorialmove}\label{move:s1-3}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[1,d-1]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $g\ge 1$;
+\item there is an element $x\in\pi_1$ such that $x\ge 3$.
+\end{enumerate}
+Let $x_1$, $x_2$, $x_3$ be positive integers whose sum equals $x$, and consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[x]\cup[x_1,x_2,x_3],&&\pi_2'=\pi_2.
+\end{align*}
+Then
+\[
+\mathcal{D'}=\datum{\Sigma_{g-1},d}{\pi_1',\pi_2',[1,d-1]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
+\end{combinatorialmove}
+\begin{proof}
+Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. Since the orange disk has perimeter $2$, every vertex of $\Gamma'$ must touch the pink disk. We perform the following operations.
+\begin{enumerate}
+\item Attach a tube to $\Sigma_{g-1}$ with both endpoints in the pink disk (effectively increasing the genus by $1$).
+\item Connect the black vertices of $\Gamma'$ labeled $x_1$, $x_2$, $x_3$ to a dummy black vertex $v$ as shown in the picture.
+\item Join $x_1$, $x_2$, $x_3$ and $v$ along the drawn edges.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.9\textwidth]{move1}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+\end{proof}
+
+\begin{combinatorialmove}\label{move:s2-23-22}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[2,d-2]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $[x,y]\subs\pi_1$ for some $x\ge 2$, $y\ge 3$;
+\item $[2,2]\subs\pi_2$.
+\end{enumerate}
+Consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[x,y]\cup[x+y-4],&&\pi_2'=\pi_2\setminus[2,2].
+\end{align*}
+Then
+\[
+\mathcal{D'}=\datum{\Sigma_g,d-4}{\pi_1',\pi_2',[d-4]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$. In particular, $\mathcal{D}$ is always realizable.
+\end{combinatorialmove}
+\begin{proof}
+Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. We perform the following operations.
+\begin{enumerate}
+\item Take the black vertex of $\Gamma'$ labeled $x+y-4$ and split it into two vertices with degrees $x-2$ and $y-2$.
+\item Add two white vertices as shown in the picture.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.9\textwidth]{move2}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+\end{proof}
+
+\begin{combinatorialmove}\label{move:113}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $g\ge 1$;
+\item $[1,1,3]\subs\pi_1$.
+\end{enumerate}
+Consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[3]\cup[1,1,1],&&\pi_2'=\pi_2.
+\end{align*}
+Then
+\[
+\mathcal{D'}=\datum{\Sigma_{g-1},d}{\pi_1',\pi_2',[s,d-s]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
+\end{combinatorialmove}
+\begin{proof}
+Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. Since $[1,1,1,1,1]\subs\pi_1'$, we can assume without loss of generality that there are at least three black vertices labeled $1$ touching the pink disk. Then we can follow the strategy presented in the proof of \cref{move:s1-3} (with $x_1=x_2=x_3=1$) to obtain a new \dessin{} $\Gamma$ which realizes $\mathcal{D}$.
+\end{proof}
+
+\begin{combinatorialmove}\label{move:4-2}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $2\le s\le d-2$;
+\item $g\ge 1$;
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item $2\in\pi_2$.
+\end{enumerate}
+Let $x_1$, $x_2$ be positive integers whose sum equals $x-2$, and consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[x]\cup[x_1,x_2],&&\pi_2'=\pi_2\setminus[2].
+\end{align*}
+Then
+\[
+\mathcal{D'}=\datum{\Sigma_{g-1},d-2}{\pi_1',\pi_2',[s-1,d-s-1]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
+\end{combinatorialmove}
+\begin{proof}
+Consider a \dessin{} $\Gamma'$ realizing $\mathcal{D}'$. There are two cases.
+\paragraph{Case 1:} the vertex labeled $x_1$ touches the orange disk and the vertex labeled $x_2$ touches the pink disk (or vice versa). Then we perform the following operations.
+\begin{enumerate}
+\item Attach a tube to $\Sigma_{g-1}$ with one endpoint in the orange disk and the other in the pink one.
+\item Add one black vertex and one white vertex as shown in the picture.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.9\textwidth]{move4-1}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+\paragraph{Case 2:} both the vertices labeled $x_1$ and $x_2$ touch (say) the pink disk. Fix an edge $e$ of $\Gamma'$ that lies on the boundary of both disks. We perform the following operations.
+\begin{enumerate}
+\item Add one black vertex and one white vertex on $e$ as shown in the picture.
+\item Attach a tube to $\Sigma_{g-1}$ with both endpoints in the pink disk.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.9\textwidth]{move4-2}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the datum $\mathcal{D}$.
+\end{proof}
+
+\begin{combinatorialmove}\label{move:4-3}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $2\le s\le d-2$;
+\item $g\ge 1$;
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item there is an element $y\in\pi_2$ such that $x\ge 3$.
+\end{enumerate}
+Consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[x]\cup[x-2],&&\pi_2'=\pi_2\setminus[y]\cup[y-2].
+\end{align*}
+Then
+\[
+\mathcal{D'}=\datum{\Sigma_{g-1},d-2}{\pi_1',\pi_2',[s-1,d-s-1]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
+\end{combinatorialmove}
+
+\begin{combinatorialmove}\label{move:33-22}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $3\le s\le d-3$;
+\item $g\ge 1$;
+\item $[x,x]\subs\pi_1$ for some $x\ge 3$;
+\item $[2,2]\subs\pi_2$.
+\end{enumerate}
+Consider the partitions
+\begin{align*}
+\pi_1'=\pi_1\setminus[x,x]\cup[x-2,x-2],&&\pi_2'=\pi_2\setminus[2,2].
+\end{align*}
+Then
+\[
+\mathcal{D}'=\datum{\Sigma_{g-1},d-4}{\pi_1',\pi_2',[s-2,d-s-2]}
+\]
+is a proper candidate datum and $\mathcal{D}\cmove\mathcal{D}'$.
+\end{combinatorialmove}
+
+\section{Exceptional data}
+In this section, we will give a complete list of the proper exceptional candidate data of the form
+\[
+\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}.
+\]
+
+\begin{theorem}\label{th:exceptional-n3-g0}
+Let $\mathcal{D}=\datum{\Sigma_0,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Then $\mathcal{D}$ is realizable unless it satisfies one of the following.
+\begin{enumerate}
+\item $\mathcal{D}=\datum{\Sigma_0,12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
+\item $\mathcal{D}=\datum{\Sigma_0,2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$.
+\item $\mathcal{D}=\datum{\Sigma_0,2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
+\item $\mathcal{D}=\datum{\Sigma_0,4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
+\item $\mathcal{D}=\datum{\Sigma_0,4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
+\item $\mathcal{D}=\datum{\Sigma_0,kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}$ with $h\ge 2$, $k\ge 2$, $1\le l<h$.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{th:exceptional-n3-s1}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[1,d-1]}$ be a proper candidate datum. Then $\mathcal{D}$ is realizable unless
+\[
+\mathcal{D}=\datum{\Sigma_0,2k}{[2,\ldots,2],[2,\ldots,2],[1,2k-1]}
+\]
+for some $k\ge 2$.
+\end{lemma}
+\begin{proof}
+If $g=0$ the claim is a corollary of \cref{th:exceptional-n3-g0}. We then proceed by induction on $g\ge 1$. The Riemann-Hurwitz condition \eqref{eq:rh-n3} immediately implies that one of the partitions, say $\pi_1$, contains an element $x\ge 3$. By applying \cref{move:s1-3}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_{g-1},d}{\pi_1\setminus[x]\cup[1,1,x-2],\pi_2,[1,d-1]},
+\]
+which is realizable by induction.
+\end{proof}
+
+\begin{theorem}\label{th:exceptional-n3-g1}
+Let $\mathcal{D}=\datum{\Sigma_1,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Then $\mathcal{D}$ is realizable unless it satisfies one of the following.
+\begin{enumerate}
+\item $\mathcal{D}=\datum{\Sigma_1,6}{[3,3],[3,3],[2,4]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,8}{[2,2,2,2],[4,4],[3,5]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $k\ge 5$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Thanks to \cref{th:exceptional-n3-s1} we can assume that $2\le s\le d-2$. We analyze several cases.
+
+\paragraph{Case 0.} Assume that $d\le 14$. Using Zheng's algorithm, a list of all the proper exceptional candidate data has been computed. It turns out that $\mathcal{D}$ is realizable unless one of the following holds.
+\begin{enumerate}
+\item $\mathcal{D}=\datum{\Sigma_1,6}{[3, 3],[3, 3],[2, 4]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,8}{[2, 2, 2, 2],[4, 4],[3, 5]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,10}{[2, 2, 2, 2, 2],[2, 3, 5],[5, 5]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,12}{[2, 2, 2, 2, 2, 2],[3, 3, 3, 3],[5, 7]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,12}{[2, 2, 2, 2, 2, 2],[2, 2, 3, 5],[6, 6]}$.
+\item $\mathcal{D}=\datum{\Sigma_1,14}{[2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 3, 5],[7, 7]}$.
+\end{enumerate}
+This is in agreement with the theorem statement.
+
+\paragraph{Case 1.} Assume that:
+\begin{enumerate}
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item $2\in\pi_2$;
+\item $\pi_2\neq[2,\ldots,2]$.
+\end{enumerate}
+By applying \cref{move:4-2}, we can reduce the problem to the realizablility of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_0,d-2}{\pi_1',\pi_2',[s-1,d-s-1]},
+\]
+where $\pi_1'=\pi_1\setminus[x]\cup[1,x-3]$ and $\pi_2'=\pi_2\setminus[2]$. Notice that $\pi_1'$ and $\pi_2'$ are both different from $[2,\ldots,2]$. Therefore, by \cref{th:exceptional-n3-g0}, $\mathcal{D}'$ is realizable unless
+\begin{align*}
+\pi_1'=[1,\ldots,1,k+1],&&\pi_2'=[h,\ldots,h]
+\end{align*}
+for some $k\ge 2$, $h\ge 3$.
+If this is the case, then one of the following must hold.
+\begin{itemize}
+\item $\pi_1=[1,\ldots,1,k+4]$ and $\pi_2=[2,h,\ldots,h]$. Then we can apply \cref{move:4-2} and reduce to
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,d-2}{[1,\ldots,1,2,k],[h,\ldots,h],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0}.
+\item $\pi_1=[1,\ldots,1,4,k+1]$ and $\pi_2=[2,h,\ldots,h]$. Then we can apply \cref{move:4-3} and reduce to
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,d-2}{[1,\ldots,1,2,k+1],[2,h-2,h,\ldots,h],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0}.
+\end{itemize}
+
+\paragraph{Case 2.} Assume that:
+\begin{enumerate}
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item there is an element $y\in\pi_2$ such that $y\ge 4$.
+\end{enumerate}
+We can further assume that $2\not\in\pi_1$, $2\not\in\pi_2$, otherwise we are done by case 1. By applying \cref{move:4-3}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_0,d-2}{\pi_1',\pi_2',[s-1,d-s-2]},
+\]
+where $\pi_1'=\pi_1\setminus[x]\cup[x-2]$ and $\pi_2'=\pi_2\setminus[y]\cup[y-2]$. Notice that $\pi_1'$ and $\pi_2'$ are bot different from $[2,\ldots,2]$ (unless one of them is equal to $[2]$, but then $\mathcal{D}'$ would be realizable anyway). Therefore, by \cref{th:exceptional-n3-g0}, $\mathcal{D}'$ is realizable, unless, without loss of generality,
+\begin{align*}
+\pi_1'=[1,\ldots,1,k+1],&&\pi_2'=[h,\ldots,h]
+\end{align*}
+for some $k\ge 2$, $h\ge 3$. If this is the case, then $\pi_1=[1,\ldots,1,k+3]$ and $\pi_2=[h,\ldots,h+2]$, but then we can apply \cref{move:4-3} and reduce to
+\[
+\mathcal{D}\cmove\datum{\Sigma_2,d-2}{[1,\ldots,1,k+1],[h-2,h,\ldots,h,h+2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0}.
+
+\paragraph{Case 3.} Assume that:
+\begin{enumerate}
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item $3\in\pi_2$.
+\end{enumerate}
+We can further assume that $2\not\in\pi_2$, otherwise we are done by case 1, and that $\max(\pi_2)=3$, otherwise we are done by case 2. By applying \cref{move:4-3}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_0,d-2}{\pi_1',\pi_2',[s-1,d-s-1]},
+\]
+where $\pi_1'=\pi_1\setminus[x]\cup[x-2]$ and $\pi_2'=\pi_2\setminus[3]\cup[1]$. By \cref{th:exceptional-n3-g0}, $\mathcal{D}'$ is realizable unless one of the following holds.
+\begin{itemize}
+\item $\mathcal{D}'=\datum{\Sigma_0,12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$. In this case $d=14$, so we are done by case 0.
+\item $\mathcal{D}'=\datum{\Sigma_0,4}{[2,2],[1,3],[2,2]}$. In this case $d=6$, so we are done by case 0.
+\item $\mathcal{D}'=\datum{\Sigma_0,8}{[2,2,2,2],[1,1,3,3],[3,5]}$. In this case $d=10$, so we are done by case 0.
+\item $\mathcal{D}'=\datum{\Sigma_0,2h}{[h,h],[1,\ldots,1,3],[2l,2(h-l)]}$ for some $h\ge 2$, $1\le l<h$. In this case $\pi_1=[h,h+2]$ and $\pi_2=[1,\ldots,1,3,3]$. If $d\le 7$ we are done by case 0. Otherwise $[1,1,3]\subs\pi_2$, therefore we can apply \cref{move:113} and reduce to
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,2h+2}{[h,h+2],[1,\ldots,1,3],[s,2h+2-s]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0}.
+\end{itemize}
+
+\paragraph{Case 4.} Assume that:
+\begin{enumerate}
+\item $3\in\pi_1$;
+\item $\pi_2\neq[2,\ldots,2]$.
+\end{enumerate}
+We can further assume that $\max(\pi_1)=3$ and $\max(\pi_2)\le 3$, otherwise the situation is already covered by cases 1,2 and 3. We analyze different sub-cases.
+\begin{itemize}[\phantom{}]
+\item \textbf{Case 4.1:} $[1,1]\subs\pi_1$. By \cref{move:113} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,d}{\pi_1\setminus[3]\cup[1,1,1],\pi_2,[s,d-s]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0}.
+\item \textbf{Case 4.2:} $[3,3]\subs\pi_1$ and $[2,2]\subs\pi_2$. If $s=2$ or $s=d-2$ then $\mathcal{D}$ is realizable by \cref{move:s2-23-22}. Otherwise, by \cref{move:33-22} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,d-4}{\pi_1\setminus[3,3]\cup[1,1],\pi_2\setminus[2,2],[s-2,d-s-2]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0} unless $\pi_1=[1,3,3,3]$ and $\pi_2=[2,2,3,3]$. If this is the case, then we are done by case 0, since $d=10$.
+\item \textbf{Case 4.3:} $[2,2]\not\subs\pi_2$. The Riemann-Hurwitz condition \eqref{eq:rh-n3} immediately implies that $3\in\pi_2$. We can assume that $d\ge 13$, otherwise we are done by case 0. Assume by contradiction that $\mathcal{D}$ is not realizable. Then $[1,1]\not\subs\pi_2$ (case 4.1), but then $[3,3]\subs\pi_2$. It follows (case 4.2) that $[2,2]\not\subs\pi_1$; moreover, case 4.1 also implies that $[1,1]\not\subs\pi_1$. In other words, both $\pi_1$ and $\pi_2$ can be written as $\rho\cup[3,\ldots,3]$, where $\rho\subs[1,2]$  (possibly different for $\pi_1$ and $\pi_2$). As a consequence, we have the inequalities
+\begin{align*}
+d\ge 3\card{\pi_1}-3,&&d\ge 3\card{\pi_2}-3,
+\end{align*}
+which contradict the Riemann-Hurwitz condition \eqref{eq:rh-n3} if $d\ge 13$.
+\item \textbf{Case 4.4:} $[3,3]\not\subs\pi_1$. From the Riemann-Hurwitz condition \eqref{eq:rh-n3} it follows that $[3,3]\subs\pi_2$, but then $\mathcal{D}$ is realizable by cases 4.2 and 4.3.
+\end{itemize}
+
+\paragraph{Case 5.} Assume that:
+\begin{enumerate}
+\item $\max(\pi_1)\ge 4$;
+\item $\pi_2=[2,\ldots,2]$.
+\end{enumerate}
+Let $x=\max(\pi_1)$. By applying \cref{move:4-2}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D'}=\datum{\Sigma_0,d-2}{\pi_1\setminus[x]\cup[1,x-3],[2,\ldots,2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0} unless one of the following holds.
+\begin{itemize}
+\item $\mathcal{D}=\datum{\Sigma_1,14}{\pi_1,[2,\ldots,2],[s,14-s]}$. In this case $d=14$, so we are done by case 0.
+\item $\mathcal{D}=\datum{\Sigma_1,2k+2}{[2,\ldots,2,3,5],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 2$. If $k=2$ or $k=3$ then we are done by case 0, otherwise this datum is in fact one of the exceptions listed in the statement of the theorem.
+\item $\mathcal{D}=\datum{\Sigma_1,2k+2}{[2,\ldots,2,6],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 2$. By \cref{move:4-2} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,2k}{[2,\ldots,2],[2,\ldots,2],[k,k]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0}.
+\item $\mathcal{D}=\datum{\Sigma_1,4k+4}{[1,\ldots,1,k+1,k+2,4],[2,\ldots,2],[2k+2,2k+2]}$ with $k\in\{1,2\}$. In this case $d\le 12$, so we are done by case 0.
+\item $\mathcal{D}=\datum{\Sigma_1,4k+4}{[1,\ldots,1,k+2,k+4],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 1$. If $k=1$ then $d=8$, so we are done by case 0. Otherwise, by \cref{move:4-2} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,4k+2}{[1,\ldots,1,2,k,k+2],[2,\ldots,2],[2k+1,2k+1]},
+\]
+which is realizable for $k\ge 2$ by \cref{th:exceptional-n3-g0}.
+\item $\mathcal{D}=\datum{\Sigma_1,4k+4}{[1,\ldots,1,k+1,k+5],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 1$. By \cref{move:4-2} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,4k+2}{[1,\ldots,1,2,k+1,k+1],[2,\ldots,2],[2k+1,2k+1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0} (even if $k=1$).
+\item $\mathcal{D}=\datum{\Sigma_1,4k+2}{[1,\ldots,1,k+1,k+1,4],[2,\ldots,2],[2k,2k+2]}$ with $k\in\{2,3\}$. In this case $d\le 14$, so we are done by case 0.
+\item $\mathcal{D}=\datum{\Sigma_1,4k+2}{[1,\ldots,1,k+1,k+4],[2,\ldots,2],[2k,2k+2]}$ with $k\ge 2$. If $k=2$ then $d=10$, so we are done by case 0. Otherwise, by \cref{move:4-2} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,4k}{[1,\ldots,1,2,k,k+1],[2,\ldots,2],[2k-1,2k+1]},
+\]
+which is realizable for $k\ge 3$ by \cref{th:exceptional-n3-g0}.
+\item $\mathcal{D}=\datum{\Sigma_1,2k+2}{[1,\ldots,1,k+1,4],[2,\ldots,2],[k+1,k+1]}$ with $k\in\{2,3\}$. In this case $d\le 8$, so we are done by case 0.
+\item $\mathcal{D}=\datum{\Sigma_1,2k+2}{[1,\ldots,1,k+4],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 2$. If $k=2$ or $k=3$ then $d\le 8$, so we are done by case 0. Otherwise, by \cref{move:4-2} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,2k}{[1,\ldots,1,2,k],[2,\ldots,2],[k,k]},
+\]
+which is realizable for $k\ge 4$ by \cref{th:exceptional-n3-g0}.
+\end{itemize}
+
+\paragraph{Case 6.} Assume that:
+\begin{enumerate}
+\item $\max(\pi_1)=3$;
+\item $\pi_2=[2,\ldots,2]$.
+\end{enumerate}
+The Riemann-Hurwitz condition \eqref{eq:rh-n3} immediately implies that $[3,3,3,3]\subs\pi_1$. If $s=2$ or $s=d-2$ then $\mathcal{D}$ is realizable by \cref{move:s2-23-22}. Otherwise, by \cref{move:33-22} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_0,d-4}{\pi_1\setminus[3,3]\cup[1,1],[2,\ldots,2],[s-2,d-s-2]},
+\]
+which is realizable by \cref{th:exceptional-n3-g0} unless one of the following holds.
+\begin{itemize}
+\item $\mathcal{D}=\datum{\Sigma_1,16}{[1,3,3,3,3,3],[2,2,2,2,2,2,2,2],[8,8]}$. This is in fact one of the exceptions listed in the statement.
+\item $\mathcal{D}=\datum{\Sigma_1,12}{[3,3,3,3,3],[2,2,2,2,2,2],[5,7]}$. This is in fact one of the exceptions listed in the statement.
+\end{itemize}
+
+\paragraph{Conclusion.} The cases we have analyzed (up to swapping $\pi_1$ and $\pi_2$) cover all the proper candidate data of the form $\datum{\Sigma_1,d}{\pi_1,\pi_2,[s,d-s]}$. We have showed that every datum that is not listed in the statement is realizable, therefore the proof is complete.
+\end{proof}
+
+\begin{lemma}\label{th:exceptional-n3-special-family}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum. Assume that:
+\begin{enumerate}
+\item $g\ge 2$;
+\item $\pi_1=\rho_1\cup[3,\ldots,3]$ for some $\rho_1\subs[1,2]$.
+\item $\pi_2=\rho_2\cup[3,\ldots,3]$ for some $\rho_2\subs[1,2]$.
+\end{enumerate}
+Then $\mathcal{D}$ is realizable.
+\end{lemma}
+
+\begin{theorem}
+Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum with $g\ge 2$. Then $\mathcal{D}$ is realizable.
+\end{theorem}
+\begin{proof}
+Thanks to \cref{th:exceptional-n3-s1} we can assume that $2\le s\le d-2$. We then proceed by induction on $g\ge 2$.
+
+\paragraph{Case 0.} Assume that $d\le 18$. Using Zheng's algorithm, a list of all the proper exceptional candidate data has been computed. It turns out that $\mathcal{D}$ is always realizable.
+
+\paragraph{Case 1.} Assume that
+\begin{enumerate}
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item $2\in\pi_2$.
+\end{enumerate}
+By applying \cref{move:4-2}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_{g-1},d-2}{\pi_1\setminus[x]\cup[1,x-3],\pi_2\setminus[2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g1} if $g=2$ (by case 0 we can assume that $d-2\ge 17$), or by induction if $g\ge 3$.
+
+\paragraph{Case 2.} Assume that:
+\begin{enumerate}
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item there is an element $y\in\pi_2$ such that $y\ge 4$.
+\end{enumerate}
+We can further assume that $2\not\in\pi_2$ and $2\not\in\pi_2$, otherwise we are done by case 1. By applying \cref{move:4-3}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_{g-1},d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[y]\cup[y-2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g1} if $g=2$, or by induction if $g\ge 3$.
+
+\paragraph{Case 3.} Assume that:
+\begin{enumerate}
+\item there is an element $x\in\pi_1$ such that $x\ge 4$;
+\item $3\in\pi_2$.
+\end{enumerate}
+By applying \cref{move:4-3}, we can reduce the problem to the realizability of the candidate datum
+\[
+\mathcal{D}'=\datum{\Sigma_{g-1},d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[3]\cup[1],[s-1,d-s-1]},
+\]
+which is realizable by \cref{th:exceptional-n3-g1} if $g=2$ (by case 0 we can assume that $d-2\ge 17$), or by induction if $g\ge 3$.
+
+\paragraph{Case 4.} Assume that $3\in\pi_1$. We can further assume that $\max(\pi_1)=3$ and $\max(\pi_2)\le 3$, otherwise the situation is already covered by cases 1,2 and 3. We analyze different sub-cases.
+\begin{itemize}[\phantom{}]
+\item \textbf{Case 4.1:} $[1,1]\subs\pi_1$. By \cref{move:113} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_{g-1},d}{\pi_1\setminus[3]\cup[1,1,1],\pi_2,[s,d-s]},
+\]
+which is realizable by \cref{th:exceptional-n3-g1} if $g=2$, or by induction if $g\ge 3$.
+\item \textbf{Case 4.2:} $[3,3]\subs\pi_1$ and $[2,2]\subs\pi_2$. If $s=2$ or $s=d-2$ then $\mathcal{D}$ is realizable by \cref{move:s2-23-22}. Otherwise, by \cref{move:33-22} we have
+\[
+\mathcal{D}\cmove\datum{\Sigma_{g-1},d-4}{\pi_1\setminus[3,3]\cup[1,1],\pi_2\setminus[2,2],[s-2,d-s-2]},
+\]
+which is realizable by \cref{th:exceptional-n3-g1} if $g=2$, or by induction if $g\ge 3$.
+\item \textbf{Case 4.3:} $[2,2]\not\subs\pi_2$. The Riemann-Hurwitz condition \eqref{eq:rh-n3} immediately implies that $[3,3]\subs\pi_2$. Assume by contradiction that $\mathcal{D}$ is not realizable. Then $[1,1]\not\subs\pi_1$ and $[1,1]\not\subs\pi_2$ (case 4.1), and moreover $[2,2]\not\subs\pi_1$ (case 4.2). In other words, both $\pi_1$ and $\pi_2$ can be written as $\rho\cup[3,\ldots,3]$, where $\rho\subs[1,2]$ (possibly different for $\pi_1$ and $\pi_2$). As a consequence, by \cref{th:exceptional-n3-special-family}, $\mathcal{D}$ is realizable.
+\item \textbf{Case 4.4:} $[3,3]\not\subs\pi_1$. From the Riemann-Hurwitz condition \eqref{eq:rh-n3} it follows that $[3,3]\subs\pi_2$, but then $\mathcal{D}$ is realizable by cases 4.2 and 4.3.
+\end{itemize}
+\end{proof}
+
+\end{document}

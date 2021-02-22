@@ -5,6 +5,12 @@ debug.txt
 find_exceptional
 check_exceptional
 
+# LaTeX
+*.out
+*.aux
+*.log
+*.synctex.gz
+
 # Prerequisites
 *.d
 
