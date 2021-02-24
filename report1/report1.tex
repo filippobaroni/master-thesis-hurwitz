@@ -287,11 +287,37 @@ appear in this order along the perimeter of the pink disk.
 
 Let us unwind the perimeter of the pink disk in the shape of a circle. Some vertices may appear more than once, if they are traversed several times while traveling along the perimeter; for instance, $u$ appears $x-2\ge 2$ times, while $v$ appears $y-2$ times. Likewise, some edges may appear twice, with different orientations; this happens exactly for all the non-green edges on the boundary of the pink disk.
 \begin{itemize}
-\let\olditem\item
-\renewcommand{\item}[2]{\olditem\begin{minipage}[t]{.6\linewidth}#1\end{minipage}\begin{minipage}[t]{.4\linewidth}\centering#2\end{minipage}}
-\item{If $\{u,v,u,\text{green edge}\}$ appear in this order on the perimeter, then adding the two vertices on this green edge will give the desired result. The same holds if $\{v,u,v,\text{green edge}\}$ occur on the perimeter in this order.}{there}
-\item{Otherwise, there 
+\columnratio{.5}\setlength{\columnsep}{0em}
+\item If $\{u,v,u,\text{green edge}\}$ appear in this order on the perimeter, then adding the two vertices on this green edge will give the desired result. The same holds if $\{v,u,v,\text{green edge}\}$ occur on the perimeter in this order.
+
+\begin{center}\includegraphics[width=.5\textwidth]{move6-2-1}\end{center}
+
+\item Otherwise, we are in the following situation (1): there is a portion of the perimeter that contains all of the appearances of $u$, and does not contain any appearance of $v$ or any green edge; the same holds if we swap the roles of $u$ and $v$. Notice that $u$ and $v$ are never adjacent to a green edge, since by assumption they do not touch the orange disk.
+
+Consider the first (leftmost in the picture) occurrence of $u$ on the perimeter, and let $\alpha$ be the edge immediately afterwards (2). Since $\alpha$ is not a green edge, it must occur somewhere else on the perimeter, with the opposite orientation; notice that it cannot occur immediately before the first occurrence of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere on the right.
+
+Consider now the first (rightmost in the picture) occurrence of $v$, and let $\beta$ be the edge immediately before (3). Since $\beta$ is not a green edge, it will also occur somewhere else on the left.
+
+Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. We erase the edges $\alpha$ and $\beta$ and add two new edges, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture (4).
+
+It's now easy to see that the pink region is still a disk, and that the length of the perimeter has not changed. Moreover, traveling along the perimeter, we encounter $\{u,v,u\}$ in this order, without any green edges in between (5). Since there must be at least a green edge on the perimeter, the argument of the first bullet point applies.
+\begin{center}
+\newcommand{\pic}[1]{\raisebox{-1.\height}{\includegraphics[width=.3\linewidth]{#1}}}
+\pic{move6-2-2-1}\qquad\pic{move6-2-2-2}\qquad\pic{move6-2-2-3}\\
+\bigskip
+\pic{move6-2-2-4}\qquad\pic{move6-2-2-5}
+\end{center}
 \end{itemize}
+
+Once we have added the two vertices of degree 2 as shown above, we can perform the following operations.
+\begin{enumerate}
+\item Attach a tube to $\Sigma_{g-1}$ with both endpoints in the pink disk.
+\item Perform the joining operation along the red edges, replacing the black vertices labeled $u$, $2$ with a vertex of degree $x$, and the white vertices labeled $v$, $2$, with a vertex of degree $y$.
+\end{enumerate}
+\begin{center}
+\includegraphics[width=.6\textwidth]{move6-2}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$. It's easy to check that $\Gamma$ realizes the candidate datum $\mathcal{D}$.
 \end{proof}
 
 \section{Exceptional data}
