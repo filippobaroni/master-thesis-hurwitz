@@ -292,15 +292,14 @@ Let us unwind the perimeter of the pink disk in the shape of a circle. Some vert
 
 \begin{center}\includegraphics[width=.5\textwidth]{move6-2-1}\end{center}
 
-\item Otherwise, we are in the following situation (1): there is a portion of the perimeter that contains all of the appearances of $u$, and does not contain any appearance of $v$ or any green edge; the same holds if we swap the roles of $u$ and $v$. Notice that $u$ and $v$ are never adjacent to a green edge, since by assumption they do not touch the orange disk.
-
-Consider the first (leftmost in the picture) occurrence of $u$ on the perimeter, and let $\alpha$ be the edge immediately afterwards (2). Since $\alpha$ is not a green edge, it must occur somewhere else on the perimeter, with the opposite orientation; notice that it cannot occur immediately before the first occurrence of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere on the right.
-
-Consider now the first (rightmost in the picture) occurrence of $v$, and let $\beta$ be the edge immediately before (3). Since $\beta$ is not a green edge, it will also occur somewhere else on the left.
-
-Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. We erase the edges $\alpha$ and $\beta$ and add two new edges, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture (4).
-
-It's now easy to see that the pink region is still a disk, and that the length of the perimeter has not changed. Moreover, traveling along the perimeter, we encounter $\{u,v,u\}$ in this order, without any green edges in between (5). Since there must be at least a green edge on the perimeter, the argument of the first bullet point applies.
+\item Otherwise, consider the pictures below.
+\begin{enumerate}
+\item We are in the following situation: there is a portion of the perimeter that contains all of the appearances of $u$, and does not contain any appearance of $v$ or any green edge; the same holds if we swap the roles of $u$ and $v$. Notice that $u$ and $v$ are never adjacent to a green edge, since by assumption they do not touch the orange disk.
+\item Consider the first (leftmost in the picture) occurrence of $u$ on the perimeter, and let $\alpha$ be the edge immediately afterwards. Since $\alpha$ is not a green edge, it must occur somewhere else on the perimeter, with the opposite orientation; notice that it cannot occur immediately before the first occurrence of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere to the right.
+\item Consider now the first (rightmost in the picture) occurrence of $v$, and let $\beta$ be the edge immediately before. Since $\beta$ is not a green edge, it will also occur somewhere else to the left.
+\item Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. We erase the edges $\alpha$ and $\beta$ and add two new edges, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture.
+\item It's now easy to see that the pink region is still a disk, and that the length of the perimeter has not changed. Moreover, traveling along the perimeter, we encounter $\{u,v,u\}$ in this order, without any green edges in between. Since there must be at least a green edge on the perimeter, the argument of the first bullet point applies.
+\end{enumerate}
 \begin{center}
 \newcommand{\pic}[1]{\raisebox{-1.\height}{\includegraphics[width=.3\linewidth]{#1}}}
 \pic{move6-2-2-1}\qquad\pic{move6-2-2-2}\qquad\pic{move6-2-2-3}\\
@@ -308,7 +307,6 @@ It's now easy to see that the pink region is still a disk, and that the length o
 \pic{move6-2-2-4}\qquad\pic{move6-2-2-5}
 \end{center}
 \end{itemize}
-
 Once we have added the two vertices of degree 2 as shown above, we can perform the following operations.
 \begin{enumerate}
 \item Attach a tube to $\Sigma_{g-1}$ with both endpoints in the pink disk.
@@ -541,6 +539,20 @@ Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate 
 \end{enumerate}
 Then $\mathcal{D}$ is realizable.
 \end{lemma}
+\begin{proof}
+\newcommand{\env}[1]{\underline{#1}}
+In the scope of this proof, we define an \emph{augmented combinatorial datum} as a combinatorial datum
+\[
+\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,\pi_3}
+\]
+where some distinguished elements of $\pi_3$ are called \emph{enveloping}; we will underline the enveloping elements in order to recognize them. An augmented combinatorial datum is \emph{realizable} if it admits a \dessin{} $\Gamma$ such that, for every disk $D$ of the complement $\Sigma_g\setminus\Gamma$ that corresponds to an enveloping element of $\pi_3$, there is an edge of $\Gamma$ that does not lie on the boundary of any disk other than $D$; we say that such an edge is \emph{enveloped} by $D$.
+
+\paragraph{Step 1.} The augmented datum
+\[
+\mathcal{D}=\datum{\Sigma_2,12}{[3,3,3,3],[3,3,3,3],\pi_3}
+\]
+is realizable for $\pi_3\in\left\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\right\}$.
+\end{proof}
 
 \begin{theorem}
 Let $\mathcal{D}=\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ be a proper candidate datum with $g\ge 2$. Then $\mathcal{D}$ is realizable.
@@ -598,6 +610,8 @@ which is realizable by \cref{th:exceptional-n3-g1} if $g=2$, or by induction if 
 \item \textbf{Case 4.3:} $[2,2]\not\subs\pi_2$. The Riemann-Hurwitz condition \eqref{eq:rh-n3} immediately implies that $[3,3]\subs\pi_2$. Assume by contradiction that $\mathcal{D}$ is not realizable. Then $[1,1]\not\subs\pi_1$ and $[1,1]\not\subs\pi_2$ (case 4.1), and moreover $[2,2]\not\subs\pi_1$ (case 4.2). In other words, both $\pi_1$ and $\pi_2$ can be written as $\rho\cup[3,\ldots,3]$, where $\rho\subs[1,2]$ (possibly different for $\pi_1$ and $\pi_2$). As a consequence, by \cref{th:exceptional-n3-special-family}, $\mathcal{D}$ is realizable.
 \item \textbf{Case 4.4:} $[3,3]\not\subs\pi_1$. From the Riemann-Hurwitz condition \eqref{eq:rh-n3} it follows that $[3,3]\subs\pi_2$, but then $\mathcal{D}$ is realizable by cases 4.2 and 4.3.
 \end{itemize}
+
+\paragraph{Conclusion.} The cases we have analyzed (up to swapping $\pi_1$ and $\pi_2$) cover all the proper candidate data of the form $\datum{\Sigma_g,d}{\pi_1,\pi_2,[s,d-s]}$ with $g\ge 2$. We have showed that every datum is realizable, therefore the proof is complete.
 \end{proof}
 
 \end{document}
