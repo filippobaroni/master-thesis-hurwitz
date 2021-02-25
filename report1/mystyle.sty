@@ -46,6 +46,8 @@
 \graphicspath{{./pictures/}}
 \usepackage{tikz}
 \usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows.meta}
 
 % Set theory
 \newcommand*{\subs}{\subseteq}
@@ -73,7 +75,7 @@
 
 % Hurwitz
 \newcommand*{\datum}[2]{\left(#1;#2\right)}
-\newcommand*{\cmove}{\implies}
+\newcommand*{\cmove}{\mathbin{\tikz[baseline=-.3em]\draw[-{Latex[scale=1.2]},decorate,decoration={snake,amplitude=.5mm,segment length=2mm,post length=1.6mm}] (0,0) -- (.83,0);}}
 \def\dessin{\emph{dessin d'enfant}}
 \def\dessins{\emph{dessins d'enfant}}
 \def\Dessin{\emph{Dessin d'enfant}}
