@@ -3,10 +3,16 @@
 \usepackage{geometry}
 \usepackage{microtype}
 
+% Logic 
+\usepackage{ifthenx}
+\usepackage{suffix}
+\usepackage{xparse}
+
 % List packages
 \usepackage{enumerate}
 \usepackage[shortlabels]{enumitem}
 \setlist[enumerate,1]{label={(\arabic*)}}
+\setlist[itemize,1]{label={\raisebox{1pt}{\scalebox{.5}{$\blacksquare$}}}}
 
 % Style packages
 \usepackage{paracol}
@@ -26,18 +32,16 @@
     linkcolor=black,
     urlcolor=black
 }
-\usepackage[capitalize,nameinlink]{cleveref}
-\usepackage{crossreftools}
-\def\cref{\crthypercref}
+\usepackage{cleveref}
 
 % Theorem environments
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\newtheorem{lemma}[proposition]{Lemma}
 \newtheorem*{fact*}{Fact}
 \newtheorem{combinatorialmove}{Combinatorial move}
 
@@ -48,6 +52,17 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{arrows.meta}
+
+% Theorem styles
+\usepackage[many]{tcolorbox}
+\pgfkeys{my/theoremstyle/.style={breakable,blank,top=.5mm,bottom=.5mm,borderline west={1.5pt}{0pt}{black},borderline west={.5pt}{3pt}{black},left=10pt}}
+\tcolorboxenvironment{theorem}{/my/theoremstyle}
+\tcolorboxenvironment{proposition}{/my/theoremstyle}
+\tcolorboxenvironment{corollary}{/my/theoremstyle}
+\tcolorboxenvironment{lemma}{/my/theoremstyle}
+\tcolorboxenvironment{fact*}{/my/theoremstyle}
+\tcolorboxenvironment{combinatorialmove}{/my/theoremstyle}
+\tcolorboxenvironment{definition}{/my/theoremstyle}
 
 % Set theory
 \newcommand*{\subs}{\subseteq}
@@ -72,6 +87,45 @@
 #3&\longmapsto#4
 \end{align*}
 }
+
+% \widetilde height
+\let\oldwidetilde\widetilde
+\renewcommand{\widetilde}[1]{\vphantom{#1}\smash[t]{\oldwidetilde{#1}}}
+
+% manycases environment
+\newcounter{manycasesnested}
+\newcounter{casei}
+\newcounter{caseii}
+\newcounter{globalcasei}
+\newcounter{manycasesenvi}
+\newcommand{\caseref}[1]{\hyperref[cases:\arabic{manycasesenvi}:#1]{#1}}
+\makeatletter
+\NewDocumentEnvironment{manycases}{O{Case \arabic*.}}{%
+\stepcounter{manycasesnested}
+\ifthenelse{\value{manycasesnested}=1}%
+{\def\mycounter{casei}\stepcounter{manycasesenvi}\let\mynewcommand\NewDocumentCommand}%
+{\def\mycounter{caseii}\let\mynewcommand\RenewDocumentCommand}
+\setcounter{\mycounter}{0}
+\edef\casemacro{\unexpanded{#1}}
+\mynewcommand{\case}{oo}{
+\IfNoValueTF{##1}{}{\def\casemacro{\unexpanded{##1}}}
+\ifthenelse{\value{\mycounter}=0}{}{\end{tcolorbox}}
+\stepcounter{\mycounter}
+\refstepcounter{globalcasei}
+\IfNoValueTF{##2}{\pgfkeys{my/casestyle/.style={}}}{\pgfkeys{my/casestyle/.style={##2}}}
+\begin{tcolorbox}[/my/line/.style={gray,line width=.5pt}, breakable,blanker,top=1.5mm,bottom=.5mm,left=6pt,
+overlay unbroken={\draw[/my/line] ([xshift=.5pt]frame.north west) -- ++(1mm,0) -- ([xshift=.5pt]frame.north west) -- ([xshift=.5pt]frame.south west) -- ++(1mm,0);},
+overlay first={\draw[/my/line] ([xshift=.5pt]frame.north west) -- ++(1mm,0) -- ([xshift=.5pt]frame.north west) -- ([xshift=.5pt]frame.south west);},
+overlay middle={\draw[/my/line] ([xshift=.5pt]frame.north west) -- ([xshift=.5pt]frame.south west);},
+overlay last={\draw[/my/line] ([xshift=.5pt]frame.north west) -- ([xshift=.5pt]frame.south west) -- ++(1mm,0);},
+,/my/casestyle]
+\ifthenelse{\value{manycasesnested}=1}%
+{\label{cases:\arabic{manycasesenvi}:\arabic{casei}}}%
+{\label{cases:\arabic{manycasesenvi}:\arabic{casei}.\arabic{caseii}}}
+{\WithSuffix\newcommand\arabic*{\arabic{\mycounter}}\textbf{\IfNoValueTF{##1}{\casemacro}{##1}}}
+}
+}{\addtocounter{manycasesnested}{-1}\end{tcolorbox}}
+\makeatother
 
 % Hurwitz
 \newcommand*{\datum}[2]{\left(#1;#2\right)}
