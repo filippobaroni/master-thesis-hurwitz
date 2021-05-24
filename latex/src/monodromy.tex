@@ -1,0 +1,170 @@
+\chapter{Monodromy}
+
+\section{Monodromy and realizability}
+
+\section{Non-positive Euler characteristic}
+
+\begin{lemma}\label{monodromy:th:product-of-two-cycles}
+Let $\alpha\in\symgroup[d]$ be a permutation. Set $r=d-v(\alpha)$, and let $t\ge 0$ be an integer such that $2t\le v(\alpha)$. Then $\alpha$ can be written as the product of a $(r+2t)$\=/cycle and a $d$\=/cycle.
+\end{lemma}
+
+\begin{corollary}
+Let $\alpha\in\altgroup[d]$ be an even permutation. Then $\alpha$ can be written as:
+\begin{enumerate}
+\item a commutator $[\beta,\gamma]$, where $\gamma$ is a $d$\=/cycle;
+\item a product of two squares $\beta^2\gamma^2$, where $\beta\gamma$ is a $d$\=/cycle.
+\end{enumerate}
+\end{corollary}
+
+\begin{theorem}
+Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum with $\Sigma$ and $\tSigma$ both orientable or both non-orientable. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
+\end{theorem}
+
+\begin{proposition}
+Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum with $\Sigma$ non-orientable and $\tSigma$ orientable. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
+\end{proposition}
+
+\section{Products in symmetric groups}
+\begin{lemma}\label{monodromy:th:same-number-of-cycles}
+Let $X,Y$ be finite sets; denote by $h$ the cardinality of $Y$, and by $k$ the cardinality of $X\cap Y$. Let $\alpha\in\symgroup(X)$, $\beta\in\symgroup(Y)$, $\gamma\in\symgroup(X\cap Y)$. Assume that $\beta=\cycle{b_1,\ldots,b_h}$ is a $h$\=/cycle, and that $\gamma$ is a $k$\=/cycle of the form $\gamma=\cycle{b_{i_1},\ldots,b_{i_k}}$ with $1\le i_1\le\ldots\le i_k\le h$. Then $\alpha\in\symgroup(X)$ and $\alpha\gamma^{-1}\beta\in\symgroup(X\cup Y)$ have the same number of cycles.
+\end{lemma}
+\begin{proof}
+Let $\gamma=\cycle{u_1,\ldots,u_k}$, where $u_j=b_{i_j}$. Without loss of generality, assume that $i_1=1$. Then we can write
+\[
+\beta=\cycle{u_1,\ldots,w_1,u_2,\ldots,w_2,u_3,\ldots,w_{k-1},u_k,\ldots,w_k},
+\]
+possibly with $u_j=w_j$ for some values of $j$. We immediately get that
+\[
+\gamma^{-1}\beta=\cycle{u_1,\ldots,w_1}\cycle{u_2,\ldots,w_2}\cdots\cycle{u_k,\ldots,w_k}.
+\]
+If we denote by $A_1,\ldots,A_r\subs X$ the orbits of $\alpha$, it is then easy to see that the orbits of $\alpha\gamma^{-1}\beta$ are $A_1',\ldots,A_r'\subs X\cup Y$, where
+\[
+A_j'=A_j\cup\bigcup_{u_l\in A_j}\{u_l,\ldots,w_l\}.\qedhere
+\]
+\end{proof}
+
+\begin{comment}
+\begin{lemma}
+\todo{Maybe useless?}Let $\alpha,\beta\in\symgroup[d]$ be permutations. Then $v(\alpha\beta)\le v(\angled{\alpha,\beta})\le v(\alpha)+v(\beta)$. Moreover if $v(\angled{\alpha,\beta})=v(\alpha)+v(\beta)$ then $v(\alpha\beta)=v(\alpha)+v(\beta)$.
+\end{lemma}
+\begin{proof}
+Let $q=v(\angled{\alpha,\beta})$, and let $\gamma=\alpha\beta$. Since $\gamma\in\angled{\alpha,\beta}$, the inequality $v(\gamma)\le q$ trivially holds. We have that $\alpha\beta\gamma^{-1}=1$; by \cref{?}, this implies that the combinatorial datum $\datum{\tSigma,S^2}{d}{[\alpha],[\beta],[\gamma]}$ is realizable for some orientable surface $\tSigma$. The \RH{} formula for this datum is
+\[
+v(\alpha)+v(\beta)+v(\gamma)=2d-\chi(\tSigma).
+\]
+Given that $\chi(\tSigma)\le 2\le 2(d-q)$, we find that
+\[
+v(\alpha)+v(\beta)=(v(\alpha)+v(\beta)+v(\gamma))-v(\gamma)\stackrel{(*)}{\ge} 2q-q=q\ge v(\gamma),
+\]
+which proves the first part of the lemma. Moreover, if $v(\alpha)+v(\beta)=q$, inequality $(*)$ must be an equality, hence $v(\gamma)=q$.
+\end{proof}
+\end{comment}
+
+\begin{proposition}\label{monodromy:th:product-reduction-small-v}
+Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)<d$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$ and $[\beta]=\rho$ such that $v(\alpha\beta)=v(\alpha)+v(\beta)$.
+\end{proposition}
+\begin{proof}
+First of all, note that the conclusion is trivial whenever $v(\pi)=0$ or $v(\rho)=0$. This already solves the cases $d=1$ and $d=2$. We now proceed by induction on $d\ge 3$, assuming that $v(\pi)>0$ and $v(\rho)>0$. Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$; without loss of generality, assume that $b_1>1$. Fix
+\[
+\beta=\cycle{1,\ldots,d_1}\cycle{d_1+1,\ldots,d_2}\cdots\cycle{d_{s-1}+1,\ldots,d_s},
+\]
+where $b_1=d_1\ge 2$, $b_i=d_i-d_{i-1}$ for $2\le i\le s$ (in particular, $d_s=d$). Note that
+\[
+d-1\ge v(\pi)+v(\rho)=(a_1-1)+\ldots+(a_r-1)+d-s\ge a_1-1+d-s,
+\]
+hence $a_1\le s$. Fix $\alpha_1=\cycle{1,d_1+1,\ldots,d_{a_1-1}+1}$, and let $A=\{1,d_1+1,\ldots,d_{a_1-1}+1\}$ be the support of $\alpha_1$. Define $Q=\{1,\ldots,d_{a_1}\}\setminus A$; note that $Q_1$ is non-empty, since $d_1+1\ge 3$ implies that $2\in Q_1$. Consider the partitions
+\begin{align*}
+\pi'=[a_2,a_3,\ldots,a_r],&&\rho'=[\card{Q},b_{a_1+1},\ldots,b_s].
+\end{align*}
+We have that
+\begin{align*}
+\sum\pi'=\sum\rho'=d-a_1,&&v(\pi')=v(\pi)-a_1+1,&&v(\rho')=v(\rho)-1.
+\end{align*}
+Since $d-a_1<d$ and $v(\pi')+v(\rho')=v(\pi)+v(\rho)-a_1<d-a_1$, by induction we find $\alpha',\beta'\in\symgroup(\{1,\ldots,d\}\setminus A)$ with $[\alpha']=\pi'$ and $[\beta']=\rho'$ such that $v(\alpha'\beta')=v(\alpha')+v(\beta')$. Up to conjugation, we may assume that
+\[
+\beta'=\beta_1\cycle{d_{a_1}+1,\ldots,d_{a_1+1}}\cycle{d_{a_1+1}+1,\ldots,d_{a_1+2}}\cdots\cycle{d_{s-1}+1,\ldots,d_s},
+\]
+where $\beta_1$ is the $\card{Q}$\=/cycle whose entries are the elements of $Q$ in increasing order. An easy computation shows that
+\[
+\alpha_1\beta=\cycle{1,\ldots,d_{a_1}}\cycle{d_{a_1}+1,\ldots,d_{a_1+1}}\cdots\cycle{d_{s-1}+1,\ldots,d_s}.
+\]
+Therefore, setting $\alpha=\alpha'\alpha_1$, we have that
+\begin{align*}
+\alpha\beta&=\alpha_1\alpha'\beta\\
+&=\alpha'\cycle{1,\ldots,d_{a_1}}\cycle{d_{a_1}+1,\ldots,d_{a_1+1}}\cdots\cycle{d_{s-1}+1,\ldots,d_s}\\
+&=\alpha'\beta'\beta_1^{-1}\cycle{1,\ldots,d_{a_1}}
+\end{align*}
+By \cref{monodromy:th:same-number-of-cycles}, this implies that $\alpha\beta$ has the same number of cycles as $\alpha'\beta'$, so that
+\begin{align*}
+v(\alpha\beta)&=a_1+v(\alpha'\beta')\\
+&=a_1+v(\alpha')+v(\beta')\\
+&=a_1+(v(\pi)-a_1+1)+(v(\rho)-1)\\
+&=v(\pi)+v(\rho).
+\end{align*}
+Since $[\alpha]=\pi$ and $[\beta]=\rho$, the conclusion follows.
+\end{proof}
+
+\begin{proposition}\label{monodromy:th:product-reduction-large-v-odd}
+Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)\ge d$, and let $t=v(\pi)+v(\rho)-d+1$. Fix an integer $0\le k\le t$ such that $k\equiv t\pmod{2}$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$ and $[\beta]=\rho$ such that $v(\alpha\beta)=d-1-k$ and the action of $\angled{\alpha,\beta}$ on $\{1,\ldots,d\}$ is transitive.\todo{Maybe only $k=0$ needed (in this case, transitivity is trivial)?}
+\end{proposition}
+\begin{proof}
+Write $\pi=[a_1,\ldots,a_r]$. Since $v(\rho)\le d-1$ and $v(\pi)+v(\rho)\ge d$, there exists a largest integer $0\le i\le r$ such that $(a_1-1)+\ldots(a_i-1)+v(\rho)\le d-1$. Define
+\[
+z=d-v(\rho)-(a_1-1)-\ldots-(a_i-1).
+\]
+Consider the partition $\pi'=[a_1,\ldots,a_i,z,1,\ldots,1]\in\Partitions{d}$. Since by construction $v(\pi')+v(\rho)=d-1$, thanks to \cref{monodromy:th:product-reduction-small-v} we can find permutations $\alpha',\beta\in\symgroup[d]$ with $[\alpha']=\pi'$ and $[\beta]=\rho$ such that $v(\alpha'\beta)=d-1$; in other words, $\alpha'\beta$ is a $d$\=/cycle. Consider now the partition $\pi''=[a_{i+1}-z+1,a_{i+2},\ldots,a_r]$, whose branching number\todo{Terminology?} is $v(\pi'')=t$. Let $n=\sum\pi''$; fix an element $u_1$ of the $z$\=/cycle of $\alpha'$, and let $u_2,\ldots,u_n$ be the fixed points of $\alpha'$ corresponding to the last ones of $\pi'$ (it is easy to see that there are exactly $n-1$ such ones). Since $k\le t=v(\rho'')$ and $k\equiv t\pmod{2}$, \cref{monodromy:th:product-of-two-cycles} gives permutations $\alpha'',\gamma\in\symgroup(\{u_1,\ldots,u_n\})$ such that $[\alpha'']=\rho''$, $\gamma$ is a $n$\=/cycle and $\alpha''\gamma$ is a $(n-k)$\=/cycle. Up to conjugation, we can assume that $\gamma=\cycle{u_1,\ldots,u_n}$. Moreover, it is not restrictive to assume that $u_1,\ldots,u_n$ appear in this order in the $d$\=/cycle $\alpha'\beta$. Therefore, setting $\alpha=\alpha''\alpha'$, we have that
+\[
+\alpha\beta=(\alpha''\gamma)\gamma^{-1}(\alpha'\beta);
+\]
+by \cref{monodromy:th:same-number-of-cycles}, this implies that $\alpha\beta$ has the same number of cycles as $\alpha''\gamma\in\symgroup(\{u_1,\ldots,u_n\})$, that is $v(\alpha\beta)=d-(k+1)$. Since $[\alpha]=\pi$ and $[\beta]=\rho$, the only thing left to show is that the action of $\angled{\alpha,\beta}$ on $\{1,\ldots,d\}$ is transitive. Write
+\[
+\alpha'\beta=\cycle{u_1,\ldots,w_1,u_2,\ldots,w_2,u_3,\ldots,w_{n-1},u_n,\ldots,w_n}
+\]
+as in the proof of \cref{monodromy:th:same-number-of-cycles}, where an explicit description of the orbits of $\alpha\beta=\alpha''\gamma\gamma^{-1}\alpha'\beta$ is given; from that description, it is clear that for each $1\le j\le n$ the elements $u_j,\ldots,w_j$ all belong to the same orbit. Moreover, since $\beta=(\alpha')^{-1}\cycle{u_1,\ldots,w_1,u_2,\ldots,w_n}$ and $\alpha'$ fixes $u_2,\ldots,u_n$, it follows that $w_j$ and $u_{j+1}$ belong to the same orbit for each $1\le j\le n-1$; this completes the proof.
+\end{proof}
+
+\begin{corollary}\label{monodromy:th:product-reduction-odd}
+Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)\ge d-1$ and $v(\pi)+v(\rho)\equiv d-1\pmod{2}$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$ and $[\beta]=\rho$ such that $\alpha\beta$ is a $d$\=/cycle.
+\end{corollary}
+\begin{proof}
+The conclusion immediately follows from \cref{monodromy:th:product-reduction-small-v} if $v(\pi)+v(\rho)=d-1$, or from \cref{monodromy:th:product-reduction-large-v-odd} if $v(\pi)+v(\rho)\ge d$.
+\end{proof}
+
+\begin{remark}\label{monodromy:rm:product-reduction-odd-prescribed-cycles}
+Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$. By directly examining the proof of \cref{monodromy:th:product-reduction-small-v}, we see that the proposed construction yields permutations $\alpha,\beta\in\symgroup[d]$ such that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$. It is not hard to see\todo{Maybe explain why?}, once again by inspecting the proof, that the same can be said for \cref{monodromy:th:product-reduction-large-v-odd}. As a consequence, the statement of \cref{monodromy:th:product-reduction-odd} can be enhanced by adding the following line: \emph{$\alpha$ and $\beta$ can be chosen in such a way that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$}.
+\end{remark}
+
+\begin{proposition}\label{monodromy:th:product-reduction-large-v-even}
+Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)\ge d$ and $v(\pi)+v(\rho)\equiv d\pmod{2}$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$ and $[\beta]=\rho$ such that $\angled{\alpha,\beta}$ acts transitively on $\{1,\ldots,d\}$ and
+\[
+[\alpha\beta]=\begin{dcases*}
+[d/2,d/2]&if $\pi=\rho=[2,\ldots,2]$,\\
+[1,d-1]&otherwise.
+\end{dcases*}
+\]
+\end{proposition}
+\begin{proof}
+Assume first that $\pi=\rho=[2,\ldots,d]$. We can choose
+\begin{align*}
+\alpha=\cycle{2,3}\cycle{4,5}\cdots\cycle{d,1}&&\beta=\cycle{1,2}\cycle{3,4}\cdots\cycle{d-1,d}.
+\end{align*}
+The action of $\angled{\alpha,\beta}$ is obviously transitive, and
+\[
+\alpha\beta=\cycle{1,3,\ldots,d-1}\cycle{2,4,\ldots,2}.
+\]
+Otherwise, since $v(\pi)+v(\rho)\ge d$, at least one of $\pi$ and $\rho$ has an entry which is greater than $2$; without loss of generality, we can assume it is $\rho$. Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$ with $a_1\ge 2$ (since $v(\pi)\ge 1$) and $b_1\ge 3$. Fix
+\[
+\beta=\cycle{1,\ldots,d_1}\cycle{d_1+1,\ldots,d_2}\cdots\cycle{d_{s-1}+1,\ldots,d_s},
+\]
+where $b_1=d_1\ge 3$, $b_i=d_i-d_{i-1}$ for $2\le i\le s$ (in particular, $d_s=d$). Consider the partitions
+\begin{align*}
+\pi'=[a_1-1,\ldots,a_r],&&\rho'=[b_1-1,\ldots,b_s].
+\end{align*}
+Since $\sum\pi'=\sum\rho'=d-1$ and $v(\pi')+v(\rho')=v(\pi)+v(\rho)-2$, by \cref{monodromy:th:product-reduction-odd} we can find permutations $\alpha',\beta'\in\symgroup(\{2,\ldots,d\})$ with $[\alpha']=\pi'$ and $[\beta']=\rho'$ such that $\alpha'\beta'$ is a $(d-1)$\=/cycle. Up to conjugation, we can assume that
+\[
+\beta'=\cycle{2,\ldots,d_1}\cycle{d_1+1,\ldots,d_2}\cdots\cycle{d_{s-1}+1,\ldots,d_s}
+\]
+or, in other words, $\beta=\cycle{1,2}\beta'$; moreover, as explained in \cref{monodromy:rm:product-reduction-odd-prescribed-cycles}, we can choose $\alpha'$ in such a way that $2$ belongs to its $(a_1-1)$\=/cycle. By setting $\alpha=\alpha'\cycle{1,2}$, we immediately get that $\alpha\beta=\alpha'\beta'$ is a $(d-1)$\=/cycle fixing $1$. Finally, the action of $\angled{\alpha,\beta}$ is transitive since $\alpha$ does not fix $1$.
+\end{proof}
+
+\section{Sphere and projective plane}

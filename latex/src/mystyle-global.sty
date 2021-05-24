@@ -1,0 +1,39 @@
+\ProvidesPackage{mystyle-global}
+
+
+
+% Groups
+\NewDocumentCommand{\symgroup}{o}{%
+\mathfrak{S}\IfNoValueF{#1}{_{#1}}
+}
+\NewDocumentCommand{\altgroup}{o}{%
+\mathfrak{A}\IfNoValueF{#1}{_{#1}}
+}
+\NewDocumentCommand{\op}{m}{#1^{\operatorname{op}}}
+\NewDocumentCommand{\angled}{m}{\left\langle#1\right\rangle}
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{m}{%
+\clist_set:Nn\l_tmpa_clist{#1}
+(\clist_use:Nn\l_tmpa_clist{,})
+}
+\ExplSyntaxOff
+
+
+
+% Partitions
+\NewDocumentCommand{\Partitions}{m}{\Pi\left(#1\right)}
+
+
+% Surface names
+\NewDocumentCommand{\tSigma}{}{\widetilde{\Sigma}}
+
+
+% Combinatorial data
+\NewDocumentCommand{\DD}{}{\mathcal{D}}
+\NewDocumentCommand{\datum}{mmm}{(#1;#2;#3)}
+
+
+% Sets
+\NewDocumentCommand{\subs}{}{\subseteq}
+\NewDocumentCommand{\card}{m}{\left\lvert #1\right\rvert}
+

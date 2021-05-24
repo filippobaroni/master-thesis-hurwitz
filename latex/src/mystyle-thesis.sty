@@ -1,0 +1,54 @@
+\ProvidesPackage{mystyle-thesis}
+
+
+% Page layout
+\usepackage[a4paper]{geometry}
+
+
+% Microtype
+\usepackage{microtype}
+
+
+% LaTeX programming
+\usepackage{xparse}
+
+
+% AMS packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+% Other math packages
+\usepackage{mathtools}
+
+
+% Unbreakable dashes
+\usepackage[shortcuts]{extdash}
+
+
+% Theorems
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheorem[numberwithin=chapter]{theorem}
+\declaretheorem[numberlike=theorem]{lemma}
+\declaretheorem[numberlike=theorem]{corollary}
+\declaretheorem[numberlike=theorem]{proposition}
+\declaretheorem[style=definition]{definition}
+\declaretheorem[style=remark,numberwithin=chapter]{remark}
+
+
+% References
+\usepackage{hyperref}
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+\usepackage{cleveref}
+\NewDocumentCommand{\RH}{}{\cref{riemann-hurwitz}}
+
+
+% Lists
+\usepackage{enumitem}
+\setenumerate{label=(\roman*)}
+
+
+% Todos
+\usepackage{todonotes}
+\usepackage{comment}
