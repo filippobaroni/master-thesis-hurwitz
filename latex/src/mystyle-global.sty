@@ -11,6 +11,7 @@
 }
 \NewDocumentCommand{\op}{m}{#1^{\operatorname{op}}}
 \NewDocumentCommand{\angled}{m}{\left\langle#1\right\rangle}
+\NewDocumentCommand{\subgroup}{}{\le}
 \ExplSyntaxOn
 \NewDocumentCommand{\cycle}{m}{%
 \clist_set:Nn\l_tmpa_clist{#1}
@@ -26,7 +27,11 @@
 
 % Surface names
 \NewDocumentCommand{\tSigma}{}{\widetilde{\Sigma}}
-
+\NewDocumentCommand{\RP}{o}{%
+\mathbb{R}\mathbb{P}\IfNoValueF{#1}{^{#1}}
+}
+\NewDocumentCommand{\surf}{m}{\Sigma_{#1}}
+\NewDocumentCommand{\nosurf}{m}{N_{#1}}
 
 % Combinatorial data
 \NewDocumentCommand{\DD}{}{\mathcal{D}}

@@ -2,6 +2,26 @@
 
 \section{Monodromy and realizability}
 
+\begin{proposition}\label{monodromy:th:monodromy-realizability-orientable}
+Let $\surf{g}$ be the connected sum of $g$ tori, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_g,\beta_1,\ldots,\beta_n,\gamma_1,\ldots,\gamma_n\in\symgroup[g]$ such that:
+\begin{enumerate}
+\item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
+\item $[\beta_1,\gamma_1]\cdots[\beta_g,\gamma_g]\cdot\alpha_1\cdots\alpha_n=1$;
+\item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
+\end{enumerate}
+In this case, $\tSigma$ is necessarily orientable.
+\end{proposition}
+
+\begin{proposition}\label{monodromy:th:monodromy-realizability-non-orientable}
+Let $\nosurf{g}$ be the connected sum of $g$ projective planes, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g\in\symgroup[d]$ such that:
+\begin{enumerate}
+\item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
+\item $\beta_1^2\cdots\beta_g^2\cdot\alpha_1\cdots\alpha_n=1$;
+\item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
+\end{enumerate}
+In this case, $\tSigma$ is orientable if and only if ??.
+\end{proposition}
+
 \section{Non-positive Euler characteristic}
 
 \begin{lemma}\label{monodromy:th:product-of-two-cycles}
@@ -17,12 +37,8 @@ Let $\alpha\in\altgroup[d]$ be an even permutation. Then $\alpha$ can be written
 \end{corollary}
 
 \begin{theorem}
-Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum with $\Sigma$ and $\tSigma$ both orientable or both non-orientable. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
+Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
 \end{theorem}
-
-\begin{proposition}
-Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum with $\Sigma$ non-orientable and $\tSigma$ orientable. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
-\end{proposition}
 
 \section{Products in symmetric groups}
 \begin{lemma}\label{monodromy:th:same-number-of-cycles}
@@ -131,7 +147,7 @@ The conclusion immediately follows from \cref{monodromy:th:product-reduction-sma
 \end{proof}
 
 \begin{remark}\label{monodromy:rm:product-reduction-odd-prescribed-cycles}
-Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$. By directly examining the proof of \cref{monodromy:th:product-reduction-small-v}, we see that the proposed construction yields permutations $\alpha,\beta\in\symgroup[d]$ such that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$. It is not hard to see\todo{Maybe explain why?}, once again by inspecting the proof, that the same can be said for \cref{monodromy:th:product-reduction-large-v-odd}. As a consequence, the statement of \cref{monodromy:th:product-reduction-odd} can be enhanced by adding the following line: \emph{$\alpha$ and $\beta$ can be chosen in such a way that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$}.
+Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$; assume that $b_1\ge 2$. By directly examining the proof of \cref{monodromy:th:product-reduction-small-v}, we see that the proposed construction yields permutations $\alpha,\beta\in\symgroup[d]$ such that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$. It is not hard to see\todo{Maybe explain why?}, once again by inspecting the proof, that the same can be said for \cref{monodromy:th:product-reduction-large-v-odd}. As a consequence, the statement of \cref{monodromy:th:product-reduction-odd} can be enhanced by adding the following line: \emph{$\alpha$ and $\beta$ can be chosen in such a way that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$, provided that $b_1\ge 2$}. We will need this improvement for the upcoming proof.
 \end{remark}
 
 \begin{proposition}\label{monodromy:th:product-reduction-large-v-even}
@@ -164,7 +180,57 @@ Since $\sum\pi'=\sum\rho'=d-1$ and $v(\pi')+v(\rho')=v(\pi)+v(\rho)-2$, by \cref
 \[
 \beta'=\cycle{2,\ldots,d_1}\cycle{d_1+1,\ldots,d_2}\cdots\cycle{d_{s-1}+1,\ldots,d_s}
 \]
-or, in other words, $\beta=\cycle{1,2}\beta'$; moreover, as explained in \cref{monodromy:rm:product-reduction-odd-prescribed-cycles}, we can choose $\alpha'$ in such a way that $2$ belongs to its $(a_1-1)$\=/cycle. By setting $\alpha=\alpha'\cycle{1,2}$, we immediately get that $\alpha\beta=\alpha'\beta'$ is a $(d-1)$\=/cycle fixing $1$. Finally, the action of $\angled{\alpha,\beta}$ is transitive since $\alpha$ does not fix $1$.
+or, in other words, $\beta=\cycle{1,2}\beta'$; moreover, as explained in \cref{monodromy:rm:product-reduction-odd-prescribed-cycles}, we can choose $\alpha'$ in such a way that its $(a_1-1)$\=/cycle contains $2$. By setting $\alpha=\alpha'\cycle{1,2}$, we immediately get that $\alpha\beta=\alpha'\beta'$ is a $(d-1)$\=/cycle fixing $1$. Finally, the action of $\angled{\alpha,\beta}$ is transitive since $\alpha$ does not fix $1$.
+\end{proof}
+
+\begin{corollary}\label{monodromy:th:product-reduction-large-v}
+Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)\ge d-1$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$, $[\beta]=\rho$ such that $\angled{\alpha,\beta}$ acts transitively on $\{1,\ldots,d\}$ and
+\[
+[\alpha\beta]\in\{[d],[1,d-1],[d/2,d/2]\}.
+\]
+\end{corollary}
+\begin{proof}
+The conclusion follows immediately from \cref{monodromy:th:product-reduction-large-v-odd} or \cref{monodromy:th:product-reduction-large-v-even} depending on the parity of $v(\pi)+v(\rho)+d$.
 \end{proof}
 
 \section{Sphere and projective plane}
+
+\begin{theorem}
+Let $\DD=\datum{\tSigma,\RP[2]}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\tSigma$ is non-orientable, then $\DD$ is realizable.
+\end{theorem}
+\begin{proof}
+First of all, since $\DD$ is a candidate datum, the \RH{} formula implies that
+\[
+v(\pi_1)+\ldots+v(\pi_n)=d\cdot\chi(\RP[2])-\chi(\tSigma)\ge d-1
+\]
+(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to make use of \cref{monodromy:th:monodromy-realizability-non-orientable}, we will now inductively define representatives $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
+\[
+v(\alpha_1\cdots\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)
+\]
+or
+\[
+\text{$[\alpha_1\cdots\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$ and $\angled{\alpha_1,\ldots,\alpha_i}$ acts transitively.}
+\]
+Assume we have already defined $\alpha_1,\ldots,\alpha_{i-1}$; we want to suitably choose $\alpha_i$. Let $\alpha=\alpha_1\cdots\alpha_{i-1}$; there are two cases.
+\begin{itemize}
+\item If $v(\alpha)+v(\pi_i)<d$, by \cref{monodromy:th:product-reduction-small-v} we can find $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $v(\alpha\alpha_i)=v(\alpha)+v(\alpha_i)$. The invariant is still satisfied: if $v(\alpha)=v(\pi_1)+\ldots+v(\pi_{i-1})$ then obviously $v(\alpha\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)$. If instead $[\alpha]\in\{[d],[1,d-1],[d/2,d/2]\}$, then either $\alpha_i$ is the identity or $\alpha\alpha_i$ is a $d$\=/cycle; either way, $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$. Note that if the action of $\angled{\alpha_1,\ldots,\alpha_{i-1}}$ is transitive, then the action of $\angled{\alpha_1,\ldots,\alpha_i}$ is transitive as well.
+\item If $v(\alpha)+v(\alpha_i)\ge d$, \cref{monodromy:th:product-reduction-large-v} gives a permutation $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$ and the action of $\angled{\alpha,\alpha_i}$ is transitive. The invariant is obviously satisfied.
+\end{itemize}
+By induction, we can find $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that
+\[
+[\alpha_1\cdots\alpha_n]\in\{[d],[1,d-1],[d/2,d/2]\}
+\]
+and $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$ (the first condition of the invariant also implies that $[\alpha_1,\ldots,\alpha_n]=[d]$). Note that 
+\[
+v(\alpha_1\cdots\alpha_n)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
+\]
+We now prove that $\alpha=\alpha_1\cdots\alpha_n$ is a square.
+\begin{itemize}
+\item If $[\alpha]=[d]$, then $d$ is odd, so $\alpha$ is the square of $\alpha^{(d+1)/2}$.
+\item If $[\alpha]=[1,d-2]$, then $d$ is even, so $\alpha$ is the square of $\alpha^{d/2}$.
+\item If $[\alpha]=[d/2,d/2]$, then $d$ is even, and it is easy to see that $\alpha$ is the square of a $d$-cycle.
+\end{itemize}
+\end{proof}
+
+
+\section{Prime-degree conjecture}
