@@ -3,7 +3,7 @@
 \section{Monodromy and realizability}
 
 \begin{proposition}\label{monodromy:th:monodromy-realizability-orientable}
-Let $\surf{g}$ be the connected sum of $g$ tori, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_g,\beta_1,\ldots,\beta_n,\gamma_1,\ldots,\gamma_n\in\symgroup[g]$ such that:
+Let $\surf{g}$ be the connected sum of $g\ge 0$ tori, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_g,\beta_1,\ldots,\beta_n,\gamma_1,\ldots,\gamma_n\in\symgroup[g]$ such that:
 \begin{enumerate}
 \item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
 \item $[\beta_1,\gamma_1]\cdots[\beta_g,\gamma_g]\cdot\alpha_1\cdots\alpha_n=1$;
@@ -11,9 +11,16 @@ Let $\surf{g}$ be the connected sum of $g$ tori, $d\ge 1$ an integer, $\pi_1,\ld
 \end{enumerate}
 In this case, $\tSigma$ is necessarily orientable.
 \end{proposition}
+\begin{remark}\label{monodromy:rm:sigma-tilde-unique-orientable}
+Given $\surf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there is at most one surface $\tSigma$ such that $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ is a candidate datum. In fact, the \RH{} formula gives
+\[
+\chi(\tSigma)=d\chi(\surf{g})-v(\pi_1)-\ldots-v(\pi_n)
+\]
+which, in turn, uniquely determines the orientable surface $\tSigma$.
+\end{remark}
 
 \begin{proposition}\label{monodromy:th:monodromy-realizability-non-orientable}
-Let $\nosurf{g}$ be the connected sum of $g$ projective planes, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g\in\symgroup[d]$ such that:
+Let $\nosurf{g}$ be the connected sum of $g\ge 1$ projective planes, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g\in\symgroup[d]$ such that:
 \begin{enumerate}
 \item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
 \item $\beta_1^2\cdots\beta_g^2\cdot\alpha_1\cdots\alpha_n=1$;
@@ -21,6 +28,9 @@ Let $\nosurf{g}$ be the connected sum of $g$ projective planes, $d\ge 1$ an inte
 \end{enumerate}
 In this case, $\tSigma$ is orientable if and only if ??.
 \end{proposition}
+\begin{remark}\label{monodromy:rm:sigma-tilde-unique-non-orientable}
+Given $\nosurf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there are at most two surfaces $\tSigma$, one orientable and one non-orientable, such that $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ is a candidate datum: like in \cref{monodromy:rm:sigma-tilde-unique-orientable}, the \RH{} formula fixes $\chi(\tSigma)$ which, together with orientability, uniquely determines $\tSigma$.
+\end{remark}
 
 \section{Non-positive Euler characteristic}
 
@@ -193,7 +203,7 @@ Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho
 The conclusion follows immediately from \cref{monodromy:th:product-reduction-large-v-odd} or \cref{monodromy:th:product-reduction-large-v-even} depending on the parity of $v(\pi)+v(\rho)+d$.
 \end{proof}
 
-\section{Sphere and projective plane}
+\section{Projective plane}
 
 \begin{theorem}
 Let $\DD=\datum{\tSigma,\RP[2]}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\tSigma$ is non-orientable, then $\DD$ is realizable.
@@ -201,7 +211,7 @@ Let $\DD=\datum{\tSigma,\RP[2]}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If
 \begin{proof}
 First of all, since $\DD$ is a candidate datum, the \RH{} formula implies that
 \[
-v(\pi_1)+\ldots+v(\pi_n)=d\cdot\chi(\RP[2])-\chi(\tSigma)\ge d-1
+v(\pi_1)+\ldots+v(\pi_n)=d\chi(\RP[2])-\chi(\tSigma)\ge d-1
 \]
 (recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to make use of \cref{monodromy:th:monodromy-realizability-non-orientable}, we will now inductively define representatives $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
 \[
@@ -213,14 +223,14 @@ or
 \]
 Assume we have already defined $\alpha_1,\ldots,\alpha_{i-1}$; we want to suitably choose $\alpha_i$. Let $\alpha=\alpha_1\cdots\alpha_{i-1}$; there are two cases.
 \begin{itemize}
-\item If $v(\alpha)+v(\pi_i)<d$, by \cref{monodromy:th:product-reduction-small-v} we can find $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $v(\alpha\alpha_i)=v(\alpha)+v(\alpha_i)$. The invariant is still satisfied: if $v(\alpha)=v(\pi_1)+\ldots+v(\pi_{i-1})$ then obviously $v(\alpha\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)$. If instead $[\alpha]\in\{[d],[1,d-1],[d/2,d/2]\}$, then either $\alpha_i$ is the identity or $\alpha\alpha_i$ is a $d$\=/cycle; either way, $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$. Note that if the action of $\angled{\alpha_1,\ldots,\alpha_{i-1}}$ is transitive, then the action of $\angled{\alpha_1,\ldots,\alpha_i}$ is transitive as well.
+\item If $v(\alpha)+v(\pi_i)<d$, by \cref{monodromy:th:product-reduction-small-v} we can find $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $v(\alpha\alpha_i)=v(\alpha)+v(\alpha_i)$. The invariant is still satisfied: if $v(\alpha)=v(\pi_1)+\ldots+v(\pi_{i-1})$ then obviously $v(\alpha\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)$. If instead $[\alpha]\in\{[d],[1,d-1],[d/2,d/2]\}$, then either $\alpha_i$ is the identity, or $\alpha\alpha_i$ is a $d$\=/cycle; either way, $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$. Note that if the action of $\angled{\alpha_1,\ldots,\alpha_{i-1}}$ is transitive, then the action of $\angled{\alpha_1,\ldots,\alpha_i}$ is transitive as well.
 \item If $v(\alpha)+v(\alpha_i)\ge d$, \cref{monodromy:th:product-reduction-large-v} gives a permutation $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$ and the action of $\angled{\alpha,\alpha_i}$ is transitive. The invariant is obviously satisfied.
 \end{itemize}
 By induction, we can find $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that
 \[
 [\alpha_1\cdots\alpha_n]\in\{[d],[1,d-1],[d/2,d/2]\}
 \]
-and $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$ (the first condition of the invariant also implies that $[\alpha_1,\ldots,\alpha_n]=[d]$). Note that 
+and $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$ (note that $v(\alpha_1\cdots\alpha_n)=v(\alpha_1)+\ldots+v(\alpha_n)$ also implies that $[\alpha_1\cdots\alpha_n]=[d]$). Note that 
 \[
 v(\alpha_1\cdots\alpha_n)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
 \]
@@ -230,7 +240,22 @@ We now prove that $\alpha=\alpha_1\cdots\alpha_n$ is a square.
 \item If $[\alpha]=[1,d-2]$, then $d$ is even, so $\alpha$ is the square of $\alpha^{d/2}$.
 \item If $[\alpha]=[d/2,d/2]$, then $d$ is even, and it is easy to see that $\alpha$ is the square of a $d$-cycle.
 \end{itemize}
+By \cref{monodromy:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{monodromy:rm:sigma-tilde-unique-non-orientable}), simply note that ??.
 \end{proof}
 
 
 \section{Prime-degree conjecture}
+\begin{proposition}
+Let $d$ be a positive integer. Assume that every candidate datum $\datum{\surf{g},\sphere{}}{d}{\pi_1,\pi_2,\pi_3}$ is realizable. Then every candidate datum $\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_n}$ with $n\ge 3$ is realizable.
+\end{proposition}
+\begin{proof}
+We proceed by induction on $n\ge 4$. Assume that every candidate datum with at most $n-1$ partitions is realizable. Fix a candidate datum $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n}}$; there are two cases.
+\begin{itemize}
+\item Assume that there are two indices $1\le i<j\le n$ such that $v(\pi_i)+v(\pi_j)\le d-1$; without loss of generality, consider $i=1$ and $j=2$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum $\DD'=\datum{\surf{g},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$. By induction, $\DD'$ is realizable; \cref{monodromy:th:monodromy-realizability-orientable} then gives permutations $\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $(\alpha_1\alpha_2)\alpha_3\cdots\alpha_n=1$ and the action of $\angled{\alpha_1\alpha_2,\alpha_2,\ldots,\alpha_n}$ on $\{1,\ldots,d\}$ is transitive. It is trivial to see that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{monodromy:th:monodromy-realizability-orientable}.
+\item Otherwise, $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. By \cref{monodromy:th:product-reduction-large-v}, we can find permutations $\alpha_1,\alpha_2$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let\todo{Here it is crucial that $n\ge 4$.}
+\[
+g'=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\alpha_3)+\ldots+v(\alpha_n))-d+1\ge\frac{1}{2}(d-2+d)-d+1\ge 0.
+\]
+It is easy to see that $\DD'=\datum{\surf{g'},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$ is a candidate datum, so it is realizable by induction. Similarly to the case above, this implies that $\DD$ is realizable.
+\end{itemize}
+\end{proof}
