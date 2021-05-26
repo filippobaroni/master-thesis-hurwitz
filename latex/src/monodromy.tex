@@ -1,5 +1,9 @@
 \chapter{Monodromy}
 
+\section{Symmetric group and partitions}
+
+\section{Branched covering action of the fundamental group}
+
 \section{Monodromy and realizability}
 
 \begin{proposition}\label{monodromy:th:monodromy-realizability-orientable}
@@ -32,30 +36,87 @@ In this case, $\tSigma$ is orientable if and only if ??.
 Given $\nosurf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there are at most two surfaces $\tSigma$, one orientable and one non-orientable, such that $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ is a candidate datum: like in \cref{monodromy:rm:sigma-tilde-unique-orientable}, the \RH{} formula fixes $\chi(\tSigma)$ which, together with orientability, uniquely determines $\tSigma$.
 \end{remark}
 
+\begin{proposition}\label{monodromy:th:monodromy-realizability-double-covering}
+Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots\pi_n}$ be a combinatorial datum, with $\Sigma$ non-orientable and $\tSigma$ orientable. Then $\DD$ is realizable if and only if $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_i\cup\pi''_i$ for each $1\le i\le n$, such that the combinatorial datum
+\[
+\DD'=\datum{\tSigma,\hSigma}{d/2}{\pi'_1,\ldots,\pi'_n,\pi''_i,\ldots,\pi''_n}
+\]
+is realizable, where $\hSigma$ is the orientable double covering of $\Sigma$.
+\end{proposition}
+
 \section{Non-positive Euler characteristic}
 
 \begin{lemma}\label{monodromy:th:product-of-two-cycles}
 Let $\alpha\in\symgroup[d]$ be a permutation. Set $r=d-v(\alpha)$, and let $t\ge 0$ be an integer such that $2t\le v(\alpha)$. Then $\alpha$ can be written as the product of a $(r+2t)$\=/cycle and a $d$\=/cycle.
 \end{lemma}
+\begin{proof}
+Without loss of generality, assume that
+\[
+\alpha=\cycle{1,\ldots,d_1}\cycle{d_1+1,\ldots,d_2}\cdots\cycle{d_{r-1}+1,\ldots,d_r},
+\]
+where $d_r=d$. Fix
+\begin{align*}
+\beta_0=\cycle{1,b_1,b_2,\ldots,b_{2t}},&&\beta_1=\cycle{1,d_1+1,d_2+2,\ldots,d_{r-1}+1}.
+\end{align*}
+Set
+\[
+\beta=\beta_0\beta_1=\cycle{1,d_1+1,d_2+1,\ldots,d_{r-1}+1,b_1,b_2,\ldots,b_{2t}}.
+\]
+An easy computation shows that
+\begin{align*}
+\beta\alpha&=\beta_0\beta_1\alpha\\
+&=\cycle{1,b_1,b_2,\ldots,b_{2t}}\cycle{1,2,\ldots,d}\\
+&=\cycle{1,\ldots,b_1-1,b_2,\ldots,b_3-1,\ldots,b_4,\ldots,b_{2t-1}-1,b_{2t},\ldots,d,b_1,\ldots,b_2-1,b_3,\ldots,b_{2t}-1}.
+\end{align*}
+Writing $\alpha=\beta^{-1}(\beta\alpha)$ gives the desired decomposition.
+\end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{monodromy:th:even-permutation-commutator-or-squares}
 Let $\alpha\in\altgroup[d]$ be an even permutation. Then $\alpha$ can be written as:
 \begin{enumerate}
 \item a commutator $[\beta,\gamma]$, where $\gamma$ is a $d$\=/cycle;
-\item a product of two squares $\beta^2\gamma^2$, where $\beta\gamma$ is a $d$\=/cycle.
+\item a product of two squares $\delta^2\epsilon^2$, where $\delta\epsilon$ is a $d$\=/cycle.
 \end{enumerate}
 \end{corollary}
+\begin{proof}
+Since $\alpha$ is an even permutation, its branching number $v(\alpha)$ is even. By \cref{monodromy:th:product-of-two-cycles}, there exist two $d$\=/cycles $\tau,\sigma\in\symgroup[d]$ such that $\alpha=\tau\sigma$.
+\begin{enumerate}
+\item Since $\tau$ and $\sigma^{-1}$ are conjugated, there exists a permutation $\beta\in\symgroup[d]$ such that $\tau=\beta\sigma^{-1}\beta^{-1}$. Setting $\gamma=\sigma^{-1}$, we immediately get that
+\[
+\alpha=\tau\sigma=\beta\sigma^{-1}\beta^{-1}\sigma=\beta\gamma\beta^{-1}\gamma^{-1}=[\beta,\gamma].
+\]
+\item Since $\tau$ and $\sigma$ are conjugated, there exists a permutation $\delta\in\symgroup[d]$ such that $\tau=\delta\sigma\delta^{-1}$. Setting $\epsilon=\delta^{-1}\sigma$, we have that
+\[
+\alpha=\tau\sigma=\delta\sigma\delta^{-1}\sigma=\delta^2(\delta^{-1}\sigma)^2=\delta^2\epsilon^2.\qedhere
+\]
+\end{enumerate}
+\end{proof}
 
 \begin{theorem}
 Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
 \end{theorem}
+\begin{proof}
+Let us first assume that $\Sigma$ is orientable; this means that $\Sigma=\surf{g}$ is the connected sum of $g\ge 1$ tori, and that $\tSigma$ is orientable as well. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Since $\DD$ is a candidate datum, we have that
+\[
+v(\alpha)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
+\]
+By \cref{monodromy:th:even-permutation-commutator-or-squares}, we can find permutations $\beta_1,\gamma_1\in\symgroup[d]$ such that $\alpha=[\gamma_1,\beta_1]$ and $\beta_1$ is a $d$\=/cycle. Set $\beta_2=\ldots=\beta_g=\gamma_2=\ldots=\gamma_g=\id\in\symgroup[d]$. All the conditions of \cref{monodromy:th:monodromy-realizability-orientable} are satisfied; since $\tSigma$ is orientable, this implies that $\DD$ is realizable (see \cref{monodromy:rm:sigma-tilde-unique-orientable}).
+
+Assume now that $\Sigma$ and $\tSigma$ are both non-orientable; this means that $\Sigma=\nosurf{g}$ is the connected sum of $g\ge 2$ projective planes. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Similarly to what we did for the previous case, we can find $\beta_1,\beta_2\in\symgroup[d]$ such that $\alpha=\beta_2^{-2}\beta_1^{-2}$ and $\beta_2\beta_1$ is a $d$\=/cycle. By setting $\beta_3=\ldots=\beta_g=\id\in\symgroup[d]$, \cref{monodromy:th:monodromy-realizability-non-orientable} (together with \cref{monodromy:rm:sigma-tilde-unique-non-orientable}) implies the realizability of $\DD$.
+
+Finally, consider the case where $\Sigma$ is non-orientable and $\tSigma$ is orientable. Since $\DD$ is a candidate datum, $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_1\cup\pi''_i$ for each $1\le i\le n$. Let $\hSigma$ be the double orientable covering of $\Sigma$; by the first case we analyzed, the candidate datum
+\[
+\DD'=\datum{\tSigma,\hSigma}{d/2}{\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n}
+\]
+is realizable. By \cref{monodromy:th:monodromy-realizability-double-covering}, $\DD$ is realizable as well.
+\end{proof}
 
 \section{Products in symmetric groups}
 \begin{lemma}\label{monodromy:th:same-number-of-cycles}
 Let $X,Y$ be finite sets; denote by $h$ the cardinality of $Y$, and by $k$ the cardinality of $X\cap Y$. Let $\alpha\in\symgroup(X)$, $\beta\in\symgroup(Y)$, $\gamma\in\symgroup(X\cap Y)$. Assume that $\beta=\cycle{b_1,\ldots,b_h}$ is a $h$\=/cycle, and that $\gamma$ is a $k$\=/cycle of the form $\gamma=\cycle{b_{i_1},\ldots,b_{i_k}}$ with $1\le i_1\le\ldots\le i_k\le h$. Then $\alpha\in\symgroup(X)$ and $\alpha\gamma^{-1}\beta\in\symgroup(X\cup Y)$ have the same number of cycles.
 \end{lemma}
 \begin{proof}
-Let $\gamma=\cycle{u_1,\ldots,u_k}$, where $u_j=b_{i_j}$. Without loss of generality, assume that $i_1=1$. Then we can write
+Write $\gamma=\cycle{u_1,\ldots,u_k}$, where $u_j=b_{i_j}$. Without loss of generality, assume that $i_1=1$. Then we can write
 \[
 \beta=\cycle{u_1,\ldots,w_1,u_2,\ldots,w_2,u_3,\ldots,w_{k-1},u_k,\ldots,w_k},
 \]
@@ -213,7 +274,7 @@ First of all, since $\DD$ is a candidate datum, the \RH{} formula implies that
 \[
 v(\pi_1)+\ldots+v(\pi_n)=d\chi(\RP[2])-\chi(\tSigma)\ge d-1
 \]
-(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to make use of \cref{monodromy:th:monodromy-realizability-non-orientable}, we will now inductively define representatives $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
+(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to apply \cref{monodromy:th:monodromy-realizability-non-orientable}, we will now inductively define representatives $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
 \[
 v(\alpha_1\cdots\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)
 \]
@@ -230,7 +291,7 @@ By induction, we can find $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alph
 \[
 [\alpha_1\cdots\alpha_n]\in\{[d],[1,d-1],[d/2,d/2]\}
 \]
-and $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$ (note that $v(\alpha_1\cdots\alpha_n)=v(\alpha_1)+\ldots+v(\alpha_n)$ also implies that $[\alpha_1\cdots\alpha_n]=[d]$). Note that 
+and $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$ (note that $v(\alpha_1\cdots\alpha_n)=v(\alpha_1)+\ldots+v(\alpha_n)$ also implies that $[\alpha_1\cdots\alpha_n]=[d]$). Note that\todo{Show that $v(\alpha\beta)\equiv v(\alpha)+v(\beta)\pmod{2}$.}
 \[
 v(\alpha_1\cdots\alpha_n)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
 \]

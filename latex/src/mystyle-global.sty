@@ -12,6 +12,7 @@
 \NewDocumentCommand{\op}{m}{#1^{\operatorname{op}}}
 \NewDocumentCommand{\angled}{m}{\left\langle#1\right\rangle}
 \NewDocumentCommand{\subgroup}{}{\le}
+\DeclareMathOperator{\id}{id}
 \ExplSyntaxOn
 \NewDocumentCommand{\cycle}{m}{%
 \clist_set:Nn\l_tmpa_clist{#1}
@@ -27,6 +28,7 @@
 
 % Surface names
 \NewDocumentCommand{\tSigma}{}{\widetilde{\Sigma}}
+\NewDocumentCommand{\hSigma}{}{\widehat{\Sigma}}
 \NewDocumentCommand{\RP}{o}{%
 \mathbb{R}\mathbb{P}\IfNoValueF{#1}{^{#1}}
 }
