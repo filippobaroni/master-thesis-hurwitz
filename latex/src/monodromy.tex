@@ -218,7 +218,7 @@ The conclusion immediately follows from \cref{monodromy:th:product-reduction-sma
 \end{proof}
 
 \begin{remark}\label{monodromy:rm:product-reduction-odd-prescribed-cycles}
-Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$; assume that $b_1\ge 2$. By directly examining the proof of \cref{monodromy:th:product-reduction-small-v}, we see that the proposed construction yields permutations $\alpha,\beta\in\symgroup[d]$ such that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$. It is not hard to see\todo{Maybe explain why?}, once again by inspecting the proof, that the same can be said for \cref{monodromy:th:product-reduction-large-v-odd}. As a consequence, the statement of \cref{monodromy:th:product-reduction-odd} can be enhanced by adding the following line: \emph{$\alpha$ and $\beta$ can be chosen in such a way that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$, provided that $b_1\ge 2$}. We will need this improvement for the upcoming proof.
+Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$; assume that $b_1\ge 2$. By directly examining the proof of \cref{monodromy:th:product-reduction-small-v}, we can see that the proposed construction yields permutations $\alpha,\beta\in\symgroup[d]$ such that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$. It is not hard to see\todo{Maybe explain why?}, once again by inspecting the proof, that the same can be said for \cref{monodromy:th:product-reduction-large-v-odd}. As a consequence, the statement of \cref{monodromy:th:product-reduction-odd} can be enhanced by adding the following line: \emph{$\alpha$ and $\beta$ can be chosen in such a way that $1$ belongs to the $a_1$\=/the cycle of $\alpha$ and to the $b_1$\=/cycle of $\beta$, provided that $b_1\ge 2$}. We will need this improvement for the upcoming proof.
 \end{remark}
 
 \begin{proposition}\label{monodromy:th:product-reduction-large-v-even}
@@ -233,7 +233,7 @@ Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho
 \begin{proof}
 Assume first that $\pi=\rho=[2,\ldots,d]$. We can choose
 \begin{align*}
-\alpha=\cycle{2,3}\cycle{4,5}\cdots\cycle{d,1}&&\beta=\cycle{1,2}\cycle{3,4}\cdots\cycle{d-1,d}.
+\alpha=\cycle{2,3}\cycle{4,5}\cdots\cycle{d,1},&&\beta=\cycle{1,2}\cycle{3,4}\cdots\cycle{d-1,d}.
 \end{align*}
 The action of $\angled{\alpha,\beta}$ is obviously transitive, and
 \[
@@ -264,7 +264,7 @@ Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho
 The conclusion follows immediately from \cref{monodromy:th:product-reduction-large-v-odd} or \cref{monodromy:th:product-reduction-large-v-even} depending on the parity of $v(\pi)+v(\rho)+d$.
 \end{proof}
 
-\section{Projective plane}
+\section{Projective plane and sphere}
 
 \begin{theorem}
 Let $\DD=\datum{\tSigma,\RP[2]}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\tSigma$ is non-orientable, then $\DD$ is realizable.
@@ -304,6 +304,56 @@ We now prove that $\alpha=\alpha_1\cdots\alpha_n$ is a square.
 By \cref{monodromy:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{monodromy:rm:sigma-tilde-unique-non-orientable}), simply note that ??.
 \end{proof}
 
+\section{First results on the sphere}
+
+\todo{Assume $n\ge 3$.}
+
+\begin{proposition}
+Let $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[d]}$ be a candidate datum. Then $\DD$ is realizable.
+\end{proposition}
+\begin{proof}
+We proceed by induction on $n$, starting with the base case $n=3$. If $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\pi_2,[d]}$ is a candidate datum, by the \RH{} formula we have that
+\[
+v(\pi_1)+v(\pi_2)=2d-2+2g-(d-1)\ge d-1.
+\]
+Moreover, the total branching number $v(\pi_1)+v(\pi_2)+d-1$ is even. \Cref{monodromy:th:product-reduction-odd} then gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]=[d]$. By \cref{monodromy:th:monodromy-realizability-orientable}, $\DD$ is realizable (see \cref{monodromy:rm:sigma-tilde-unique-orientable}).
+
+Assume now that the statement holds for candidate data with at most $n-1$ partitions, and fix $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[d]}$. There are two cases.
+\begin{itemize}
+\item Assume that $v(\pi_1)+v(\pi_2)\le d-1$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum $\DD'=\datum{\surf{g},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[d]}$. By induction, $\DD'$ is realizable; \cref{monodromy:th:monodromy-realizability-orientable} then gives permutations $\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for $3\le i\le n-1$ and $[\alpha_n]=[d]$ such that $(\alpha_1\alpha_2)\alpha_3\cdots\alpha_n=1$. It is easy to see that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{monodromy:th:monodromy-realizability-orientable} (together, as usual, with \cref{monodromy:rm:sigma-tilde-unique-orientable}).
+\item Otherwise, we have that $v(\pi_1)+v(\pi_2)\ge d$. By \cref{monodromy:th:product-reduction-large-v}, we can find permutations $\alpha_1,\alpha_2$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let
+\begin{align*}
+g'&=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+\ldots+v(\pi_{n-1})+d-1)-d+1\\
+&\ge\frac{1}{2}(d-2+1+d-1)-d+1\ge 0.
+\end{align*}
+It is easy to see that $\DD'=\datum{\surf{g'},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$ is a candidate datum, so it is realizable by induction. Similarly to the previous case, this implies that $\DD$ is realizable.\qedhere
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+Let $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}$ be a proper candidate datum. Then $\DD$ is not realizable if and only if it satisfies one of the following.
+\begin{enumerate}[(1)]
+\item $\DD=\datum{\surf{n-3},\sphere{}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
+\item $\DD=\datum{\sphere{},\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[1,2k-1]}$ with $k\ge 2$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proposition}
+Let $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. Assume that $d\neq 4$ and that $2g\ge d-1$. Then $\DD$ is realizable.
+\end{proposition}
+
+\begin{corollary}
+Let $d$ be a positive integer with $d\neq 4$. Then there exist at most finitely many non-realizable candidate data of the form $\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_n}$.
+\end{corollary}
+
+\begin{proposition}
+Let $\DD=\datum{\surf{g},\sphere{}}{4}{\pi_1,\ldots,\pi_n}$ be a proper candidate datum. Then $\DD$ is realizable if and only if
+\[
+\DD\neq\datum{\surf{n-3},\sphere{}}{4}{[2,2],\ldots,[2,2],[1,3]}.
+\]
+\end{proposition}
+
 
 \section{Prime-degree conjecture}
 \begin{proposition}
@@ -312,11 +362,11 @@ Let $d$ be a positive integer. Assume that every candidate datum $\datum{\surf{g
 \begin{proof}
 We proceed by induction on $n\ge 4$. Assume that every candidate datum with at most $n-1$ partitions is realizable. Fix a candidate datum $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n}}$; there are two cases.
 \begin{itemize}
-\item Assume that there are two indices $1\le i<j\le n$ such that $v(\pi_i)+v(\pi_j)\le d-1$; without loss of generality, consider $i=1$ and $j=2$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum $\DD'=\datum{\surf{g},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$. By induction, $\DD'$ is realizable; \cref{monodromy:th:monodromy-realizability-orientable} then gives permutations $\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $(\alpha_1\alpha_2)\alpha_3\cdots\alpha_n=1$ and the action of $\angled{\alpha_1\alpha_2,\alpha_2,\ldots,\alpha_n}$ on $\{1,\ldots,d\}$ is transitive. It is trivial to see that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{monodromy:th:monodromy-realizability-orientable}.
+\item Assume that there are two indices $1\le i<j\le n$ such that $v(\pi_i)+v(\pi_j)\le d-1$; without loss of generality, consider $i=1$ and $j=2$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum $\DD'=\datum{\surf{g},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$. By induction, $\DD'$ is realizable; a reduction argument shows that $\DD$ is realizable as well\footnote{}.
 \item Otherwise, $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. By \cref{monodromy:th:product-reduction-large-v}, we can find permutations $\alpha_1,\alpha_2$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let\todo{Here it is crucial that $n\ge 4$.}
 \[
-g'=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\alpha_3)+\ldots+v(\alpha_n))-d+1\ge\frac{1}{2}(d-2+d)-d+1\ge 0.
+g'=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+\ldots+v(\pi_n))-d+1\ge\frac{1}{2}(d-2+d)-d+1\ge 0.
 \]
-It is easy to see that $\DD'=\datum{\surf{g'},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$ is a candidate datum, so it is realizable by induction. Similarly to the case above, this implies that $\DD$ is realizable.
+It is easy to see that $\DD'=\datum{\surf{g'},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n}$ is a candidate datum, so it is realizable by induction. Similarly to the previous case, this implies that $\DD$ is realizable.\qedhere
 \end{itemize}
 \end{proof}
