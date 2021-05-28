@@ -60,7 +60,7 @@ We will proceed by induction on $n$. We start with the base case $n=4$, which re
 \[
 \DD'=\datum{\surf{g}}{d}{[\alpha_1\alpha_2],\pi_3,[s,d-s]}.
 \]
-The standard reduction argument implies that $\DD$ is realizable provided that $\DD'$ is. If $g\ge 2$, then $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. If instead $g=1$, then $\DD'$ is realizable unless
+A standard reduction argument implies that $\DD$ is realizable provided that $\DD'$ is. If $g\ge 2$, then $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. If instead $g=1$, then $\DD'$ is realizable unless
 \[
 \text{$\DD'=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $2k=d$.}
 \]
@@ -73,7 +73,7 @@ k+2<1+k+2\le v(\pi_1)+v(\pi_3)\le \frac{k}{2}+k+2<d.
 Repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item If $\pi_3=[2,\ldots,2]$ and $v(\pi_1)\not\in\{2,k,k+1\}$ then $v(\pi_1)+v(\pi_3)<d$ and $v(\pi_1)+v(\pi_3)\not\in\{k,k+2\}$. Therefore, repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item If $\pi_3=[2,\ldots,2]$, $v(\pi_1)=2$ and $\pi_2\neq [2,\ldots,2]$, then repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
-\item If $\pi_2=\pi_3=[2,\ldots,2]$, we follow a different approach. By \cref{monodromy:th:product-reduction-large-v-even}, we can find permutations $\beta_2,\beta_3\in\symgroup[d]$ with $[\beta_2]=[\beta_3]=[2,\ldots,2]$ such that $[\beta_2\beta_3]=[k,k]$. It is easy to see that $\DD''=\datum{\sphere{}}{2k}{\pi_1,[k,k],[k,k]}$ is a candidate datum, and it is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}. The standard reduction argument implies that $\DD$ is realizable as well.
+\item If $\pi_2=\pi_3=[2,\ldots,2]$, we follow a different approach. By \cref{monodromy:th:product-reduction-large-v-even}, we can find permutations $\beta_2,\beta_3\in\symgroup[d]$ with $[\beta_2]=[\beta_3]=[2,\ldots,2]$ such that $[\beta_2\beta_3]=[k,k]$. It is easy to see that $\DD''=\datum{\sphere{}}{2k}{\pi_1,[k,k],[k,k]}$ is a candidate datum, and it is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}. A reduction argument implies that $\DD$ is realizable as well.
 \end{itemize}
 
 Up to swapping $\pi_1$ and $\pi_2$, this analysis covers all the possible cases.
@@ -81,22 +81,18 @@ Up to swapping $\pi_1$ and $\pi_2$, this analysis covers all the possible cases.
 \[
 g'=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+d-2)-d+1\ge\frac{1}{2}\left(d-2+\frac{d}{2}+d-2\right)-d+1=\frac{d}{4}-1\ge 2.
 \]
-It is easy to see that $\DD'=\datum{\surf{g'}}{d}{[\alpha_1,\alpha_2],\pi_3,[s,d-s]}$ is candidate datum, and it is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. The standard reduction argument implies that $\DD$ is realizable as well.
+It is easy to see that $\DD'=\datum{\surf{g'}}{d}{[\alpha_1,\alpha_2],\pi_3,[s,d-s]}$ is candidate datum, and it is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. A reduction argument implies that $\DD$ is realizable as well.
 \end{itemize}
 
-We now turn to the case $n\ge 5$; we will show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is covered by \cref{??}. If $n=5$ and $d=8$, a computer-aided search shows that $\DD$ is realizable. Otherwise, we once again employ a reduction argument.
+We now turn to the case $n\ge 5$; we will show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, a computer-aided search shows that $\DD$ is realizable. Otherwise, we once again employ a reduction argument.
 \begin{itemize}
-\item Assume that the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le n-1$; up to reindexing, we can assume that $v(\pi_1)+v(\pi_2)<d$. \Cref{monodromy:th:product-reduction-small-v} gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1\alpha_2)$. By induction the candidate datum
-\[
-\DD'=\datum{\surf{g}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[s,d-s]}
-\]
-is realizable, therefore $\DD$ is realizable as well.
+\item If the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le n-1$, it is now routine to show that $\DD$ is realizable.
 \item Otherwise, the inequality $v(\pi_i)+v(\pi_j)\ge d$ holds for every $1\le i<j\le n-1$. By \cref{monodromy:th:product-reduction-large-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let
 \begin{align*}
 g'&=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+\ldots+v(\pi_{n-1})+d-2)-d+1\\
 &\ge\frac{1}{2}(d-2+d+d-2)-d+1\\
 &=\frac{d}{2}-1\ge 0.
 \end{align*}
-It is easy to see that $\DD'=\datum{\surf{g'}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[s,d-s]}$ is a candidate datum, and it is realizable by induction. The standard reduction argument implies that $\DD$ is realizable as well.
+It is easy to see that $\DD'=\datum{\surf{g'}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[s,d-s]}$ is a candidate datum, and it is realizable by induction. The usual reduction argument implies that $\DD$ is realizable as well.\qedhere
 \end{itemize}
 \end{proof}
