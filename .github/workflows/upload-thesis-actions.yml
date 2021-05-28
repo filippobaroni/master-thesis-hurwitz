@@ -1,0 +1,14 @@
+name: upload thesis
+on: [push]
+jobs:
+  upload-ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "latex/src/main.pdf"
+          target: "~/nobackup/public_html/master-thesis.pfg"
