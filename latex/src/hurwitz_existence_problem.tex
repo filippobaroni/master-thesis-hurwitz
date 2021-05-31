@@ -61,10 +61,59 @@ For every point $x\in\Sigma$, if $f^{-1}(x)=\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}
 \begin{definition}
 Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$. Let $x_1,\ldots,x_n\in\Sigma$ be the branching points of $f$. The \emph{branching datum} of $f$ is the tuple
 \[
-\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi(x_1),\ldots,\pi(x_n)}.
+\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi(x_1),\ldots,\pi(x_n)},
 \]
+well-defined up to a permutation of the branching points $x_1,\ldots,x_n$.
 \end{definition}
 
-Branching data are a way to extract some combinatorial information from branched coverings. Even though the exact location of the branching points (both in $\Sigma$ and in $\tSigma$) is not encoded in the branching datum, this piece of information is completely irrelevant, since surfaces are \emph{homogeneous}\footnote{By \emph{homogeneous}, we mean that the group of homeomorphisms of a surface $\Sigma$ acts transitively on the set of $n$-uples of points $(y_1,\ldots,y_n)$.}. However, the reader should not be induced to believe that the combinatorial information provided by the branching datum is enough to fully reconstruct the topology of $f$. In fact, it turns out that this is not the case\todo{More on this later (?).}.
+Branching data are a way to extract some combinatorial information from branched coverings. Even though the exact location of the branching points (both in $\Sigma$ and in $\tSigma$) is not encoded in the branching datum, this piece of information is completely irrelevant, since surfaces are \emph{homogeneous}\footnote{By \emph{homogeneous}, we mean that, for each $n\ge 1$, the group of homeomorphisms of a surface $\Sigma$ acts transitively on the set of $n$-uples of points $(y_1,\ldots,y_n)\in\Sigma\times\ldots\times\Sigma$.}. However, the reader should not be induced to believe that the combinatorial information provided by the branching datum is enough to fully reconstruct the topology of $f$. In fact, it turns out that this is not the case\todo{More on this later (?).}.
 
-It is now perfectly legitimate to wonder 
+This entire thesis is devoted to the problem of determining what values can actually be attained by $\DD(f)$ as $f$ ranges over all the possible branched covering maps. We start with a very general definition.
+
+\begin{definition}
+A \emph{combinatorial datum} is a tuple
+\[
+\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n},
+\]
+where $\Sigma,\tSigma$ are surfaces, $d$ is a positive integer, and $\pi_1,\ldots,\pi_n$ are partitions of $d$ different from $[1,\ldots,1]$.
+\end{definition}
+
+Again, a combinatorial datum is defined up to a permutation of the partitions $\pi_1,\ldots,\pi_n$. In other words, we will consider two combinatorial data equal if they have the same partitions, irrespective of the ordering.
+
+A first, naive guess could be that every combinatorial datum can be realized. However, it turns out that there are a few easy and general necessary conditions for a combinatorial datum to be associated to a branched covering. The first one, and arguably the most important, is known as the \emph{Riemann-Hurwitz formula}; we state it in the next proposition.
+
+\begin{proposition}\label{hurwitz:th:riemann-hurwitz-formula}
+Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering, and let $\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be its branching datum. Then we have the equality
+\[
+d\chi(\Sigma)-\chi(\tSigma)=v(\pi_1)+\ldots+v(\pi_n).
+\]
+\end{proposition}
+\begin{proof}
+Using the same notation as above, consider the covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$. Since $\holed{f}$ has degree $d$, the Euler characteristics of $\holed{\Sigma}$ and $\holed{\tSigma}$ are related by the formula $d\chi(\holed{\Sigma})=\chi(\holed{\tSigma})$. Note that there are $n$ branching points in $\Sigma$, and $\len{\pi_1}+\ldots+\len{\pi_n}$ branching points in $\tSigma$; therefore
+\begin{align*}
+\chi(\holed{\Sigma})=\chi(\Sigma)-n,&&\chi(\holed{\tSigma})=\chi(\tSigma)-\len{\pi_1}-\ldots-\len{\pi_n}.
+\end{align*}
+As a consequence, we have that
+\[
+d\chi(\Sigma)-\chi(\tSigma)=d\chi(\holed{\Sigma})+dn-\chi(\holed{\tSigma})-\len{\pi_1}-\ldots-\len{\pi_n}=v(\pi_1)+\ldots+v(\pi_n).\qedhere
+\]
+\end{proof}
+
+There are three more conditions that every branching datum must satisfy: two of them concern the orientability of $\Sigma$ and/or $\tSigma$, and the other one provides an additional constraint for the \emph{total branching number} $v(\pi_1)+\ldots+v(\pi_n)$; we group these four requirements in the following definition.
+
+\begin{definition}
+A combinatorial datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ is a \emph{candidate datum} if it satisfies the following conditions:
+\begin{enumerate}
+\item\label{hurwitz:it:candidate-datum-def:1} $d\chi(\Sigma)-\chi(\tSigma)=v(\pi_1)+\ldots+v(\pi_n)$;
+\item\label{hurwitz:it:candidate-datum-def:2} $v(\pi_1)+\ldots+v(\pi_n)$ is even;
+\item\label{hurwitz:it:candidate-datum-def:3} if $\Sigma$ is orientable, then $\tSigma$ is orientable as well;
+\item\label{hurwitz:it:candidate-datum-def:4} if $\Sigma$ is non-orientable and $\tSigma$ is orientable, then $d$ is even, and each $\pi_i$ can be written as $\pi'_i\cup\pi''_i$, where $\pi'_i$ and $\pi''_i$ are partitions of $d/2$.
+\end{enumerate}
+We say that $\DD$ is \emph{realizable} if $\DD=\DD(f)$ for some branched covering $\map{f}{\tSigma}{\Sigma}$, \emph{exceptional} otherwise.
+\end{definition}
+
+\begin{remark}
+In \cref{??}, we will show that conditions \ref{hurwitz:it:candidate-datum-def:1}--\ref{hurwitz:it:candidate-datum-def:4} are necessary for a combinatorial datum to be realizable (actually, the first condition was already proved in \cref{hurwitz:th:riemann-hurwitz-formula}). For now, let us focus on condition \ref{hurwitz:it:candidate-datum-def:3}, which is perhaps the most obvious one. If $\Sigma$ is orientable, then so is $\holed{\Sigma}$, since removing a finite number of points does not affect orientability. The surface $\holed{\tSigma}$, being a covering space of an orientable manifold, is itself orientable. Finally, this implies that $\tSigma$ is orientable as well.
+\end{remark}
+
+It would be natural to ask whether the necessary conditions we have enumerated are also sufficient for a candidate datum to be realizable.
