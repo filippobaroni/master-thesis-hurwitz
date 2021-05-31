@@ -33,8 +33,14 @@
 \declaretheorem[numberlike=theorem]{lemma}
 \declaretheorem[numberlike=theorem]{corollary}
 \declaretheorem[numberlike=theorem]{proposition}
-\declaretheorem[style=definition]{definition}
+\declaretheorem[style=definition,numberwithin=chapter]{definition}
 \declaretheorem[style=remark,numberwithin=chapter]{remark}
+
+
+% Diagrams
+\usepackage{tikz-cd}
+\tikzcdset{diagrams={row sep=large,column sep=large}}
+\NewDocumentEnvironment{diagram}{O{}}{\begin{equation*}\begin{tikzcd}[#1]}{\end{tikzcd}\end{equation*}}
 
 
 % References

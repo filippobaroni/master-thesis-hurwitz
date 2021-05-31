@@ -4,10 +4,10 @@
 
 % Groups
 \NewDocumentCommand{\symgroup}{o}{%
-\mathfrak{S}\IfNoValueF{#1}{_{#1}}
+\mathfrak{S}\IfValueT{#1}{_{#1}}
 }
 \NewDocumentCommand{\altgroup}{o}{%
-\mathfrak{A}\IfNoValueF{#1}{_{#1}}
+\mathfrak{A}\IfValueT{#1}{_{#1}}
 }
 \NewDocumentCommand{\op}{m}{#1^{\operatorname{op}}}
 \NewDocumentCommand{\angled}{m}{\left\langle#1\right\rangle}
@@ -21,20 +21,26 @@
 \ExplSyntaxOff
 
 
-
 % Partitions
 \NewDocumentCommand{\Partitions}{m}{\Pi\left(#1\right)}
+\NewDocumentCommand{\len}{m}{\ell(#1)}
 
 
-% Surface names
-\NewDocumentCommand{\tSigma}{}{\widetilde{\Sigma}}
+% Surfaces
+\NewDocumentCommand{\tSigma}{}{\wtilde{\Sigma}}
 \NewDocumentCommand{\hSigma}{}{\widehat{\Sigma}}
 \NewDocumentCommand{\RP}{o}{%
-\mathbb{R}\mathbb{P}\IfNoValueF{#1}{^{#1}}
+\mathbb{R}\mathbb{P}\IfValueT{#1}{^{#1}}
 }
 \NewDocumentCommand{\surf}{m}{\Sigma_{#1}}
 \NewDocumentCommand{\nosurf}{m}{N_{#1}}
 \NewDocumentCommand{\sphere}{}{S^2}
+
+\setbox1=\hbox{$\bullet$}
+\newlength{\holedbulletraise}
+\setlength{\holedbulletraise}{\dimexpr0.25\ht1}
+\NewDocumentCommand{\holed}{m}{#1^{\raisebox{\holedbulletraise}{\scalebox{0.5}{$\bullet$}}}}
+
 
 % Combinatorial data
 \NewDocumentCommand{\DD}{}{\mathcal{D}}
@@ -42,6 +48,27 @@
 
 
 % Sets
+\NewDocumentCommand{\RR}{}{\mathbb{R}}
+\NewDocumentCommand{\CC}{}{\mathbb{C}}
 \NewDocumentCommand{\subs}{}{\subseteq}
 \NewDocumentCommand{\card}{m}{\left\lvert #1\right\rvert}
+
+
+% Functions
+\NewDocumentCommand{\map}{mmm}{#1\colon\umap{#2}{#3}}
+\NewDocumentCommand{\umap}{mm}{%
+#1\mathchoice{\longrightarrow}{\to}{\to}{\to}#2
+}
+\NewDocumentCommand{\Map}{mmmmm}{%
+\begin{alignedat}{2}
+#1\colon&&#2&\longrightarrow#3\\
+&&#4&\longmapsto#5
+\end{alignedat}
+}
+
+
+% Other aliases
+\let\phi\varphi
+\NewDocumentCommand{\wtilde}{m}{\vphantom{#1}\smash[t]{\widetilde{#1}}}
+
 

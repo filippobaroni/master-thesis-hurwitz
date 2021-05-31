@@ -1,1 +1,70 @@
 \chapter{Hurwitz existence problem}
+
+\section{Branched coverings of surfaces}
+
+According to standard terminology, a \emph{surface} is simply a topological $2$-manifold. We will, however, only be concerned with compact, connected surfaces without boundary. For the sake of conciseness, unless otherwise stated, we will always implicitly assume that the surfaces we mention have these properties.
+
+There is a structure theorem which completely classifies orientable and non-orientable surfaces.
+\begin{itemize}
+\item An orientable surface is (homeomorphic to) a connected sum of $g\ge 0$ tori. We call such a connected sum a \emph{surface of genus $g$}, and we denote it by $\surf{g}$. By definition, we say that $\surf{0}$ is the $2$-sphere $\sphere{}$; this is consistent with the formula $\chi(\surf{g})=2-2g$ for the Euler characteristic.
+\item A non-orientable surface is (homeomorphic to) a connected sum of $g\ge 1$ real projective planes. We denote such a connected sum by $\nosurf{g}$. The Euler characteristic for a non-orientable surfaces is given by $\chi(\nosurf{g})=2-g$.
+\end{itemize}
+
+Loosely speaking, given two surfaces $\Sigma,\tSigma$, a \emph{covering map} between them is a continuous function $\map{f}{\tSigma}{\Sigma}$ which is locally modeled on the identity function $\umap{\RR^2}{\RR^2}$. Sometimes, however, the notion of covering map can be too restrictive. Consider, for instance, the sphere $\sphere{}$: being simply connected, it does not admit any non-trivial coverings. However, every (non-constant) homolorphic function $\umap{\sphere{}}{\sphere{}}$ is \emph{almost} a covering map, in the sense that it is locally modeled on the identity $\umap{\CC}{\CC}$, except for a finite number of \emph{branching points}, where it looks like the map
+\[
+\Map{F_k}{\CC}{\CC}{z}{z^k}
+\]
+for some $k\ge 2$. In fact, it turns out that every (non-constant) holomorphic function between two complex $1$-manifolds (which, topologically, are just oriented surfaces), has this remarkable property. This motivates the following definition.
+
+\begin{definition}
+Let $\Sigma,\tSigma$ be two surfaces. A continuous function $\map{f}{\tSigma}{\Sigma}$ is a \emph{branched covering map} (or simply a \emph{branched covering}) if the following property holds: for every $x\in\Sigma$, $\wtilde{x}\in f^{-1}(x)$ there exist a positive integer $k$, open neighborhoods $U,\wtilde{U}$ of $x,\wtilde{x}$ respectively, and homeomorphisms $\map{\phi}{U}{\CC}$, $\map{\wtilde{\phi}}{\wtilde{U}}{\CC}$ such that $\phi(x)=0$, $\wtilde{\phi}(\wtilde{x})=0$, $f(\wtilde{U})=U$ and the diagram
+\begin{diagram}
+\wtilde{U}\rar{f}\dar{\wtilde{\phi}}&U\dar{\phi}\\
+\CC\rar{F_k}&\CC
+\end{diagram}
+commutes ($F_k$ is the map defined above).
+\end{definition}
+
+More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $z\mapsto z^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{branching degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will sometimes denote it by $k(\wtilde{x})$.
+
+A point $\wtilde{x}\in\tSigma$ is called a \emph{branching point} if $k(\wtilde{x})>1$; in other words, if $f$ is \emph{not} a local homeomorphism in a neighborhood of $\wtilde{x}$. We also say that a point $x\in\Sigma$ is a \emph{branching point} if $f^{-1}(x)$ contains at least one branching point; usually, no ambiguity will arise as to which kind of branching point we are referring to.
+
+It is not hard to see that branching points are quite rare. If $\wtilde{x}\in\tSigma$ is a branching point, then (using again the notation from the definition) every other point in $\wtilde{U}$ is not a branching point; by compactness, it follows that the set of branching points in $\tSigma$ is finite. As a consequence, the set of branching points in $\Sigma$ is finite as well.
+
+Given a branched covering $\map{f}{\tSigma}{\Sigma}$, we denote by $\holed{\Sigma}$ the subspace of $\Sigma$ containing all the non-branching points; since the set of branching points is finite, $\holed{\Sigma}$ is a non-compact connected surface with finitely many punctures. We also set $\holed{\tSigma}=f^{-1}(\holed{\Sigma})$, and we denote by $\holed{f}$ the restriction of $f$ to $\holed{\tSigma}$. By construction, $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ is a covering map and, as such, has a well-defined degree $d$ (the number of preimages of an arbitrary point); we call this integer the \emph{degree} of the branched covering $f$. The following proposition shows that the notion of degree extends nicely to branching points.
+
+\begin{proposition}\label{hurwitz:th:sum-of-preimage-degrees}
+Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$. Then for every point $x\in\Sigma$ we have that the set $f^{-1}(x)$ is finite and
+\[
+\sum_{\wtilde{x}\in f^{-1}(x)}k(\wtilde{x})=d.
+\]
+\end{proposition}
+\begin{proof}
+If $x$ is not a branching point, the conclusion follows immediately, since $x$ has exactly $d$ preimages, all of which have branching degree $k$ equal to $1$. Assume now that $x$ is a branching point; it is clear from the definition that the set $f^{-1}(x)\subs\tSigma$ is discrete and, hence, finite. Let $f^{-1}(x)=\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}$. Fix open neighborhoods $\wtilde{U}_1,\ldots,\wtilde{U}_r$ of $\wtilde{x}_1,\ldots,\wtilde{x}_r$ respectively as in the definition; a routine compactness argument shows that there exists an open neighborhood $U$ of $x$ such that $f^{-1}(U)\subs \wtilde{U}_1\cup\ldots\cup\wtilde{U}_r$. Fix a point $y\in U\setminus\{x\}$: it follows from the discussion above that $y$ is not a branching point and that $\card{f^{-1}(y)\cup\wtilde{U}_i}=k(\wtilde{x}_i)$ for every $1\le i\le r$. Since $\card{f^{-1}(y)}=d$, we immediately conclude that
+\[
+\sum_{i=1}^r k(\wtilde{x}_i)=\sum_{i=1}^r\card{f^{-1}(y)\cap\wtilde{U}_i}=\card{f^{-1}(y)}=d.\qedhere
+\]
+\end{proof}
+
+\section{Branching data}
+
+Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering. For each point $x\in\Sigma$, as we have just seen in \cref{hurwitz:th:sum-of-preimage-degrees}, the sum $k(\wtilde{x}_1)+\ldots k(\wtilde{x}_r)$ of the branching degrees of its preimages is equal to the degree $d$ of the branched covering. Since there is no natural ordering on the set $f^{-1}(x)$, the appropriate combinatorial object for representing the collection $k(\wtilde{x}_1),\ldots,k(\wtilde{x}_r)$ is a \emph{partition}.
+
+\begin{definition}
+Let $d$ be a positive integer. A \emph{partition} of $d$ is an unordered finite multiset $\pi=[k_1,\ldots,k_r]$, where $k_i>0$ is an integer for every $1\le i\le r$ and $k_1+\ldots+k_r=d$.
+\end{definition}
+
+Given a positive integer $d$, we denote the set of all partitions of $d$ by $\Partitions{d}$. If $\pi=[k_1,\ldots,k_r]$ is a partition of $d$, we call the integer $r$ the \emph{length} (or \emph{size}, or \emph{cardinality}) of $\pi$, and we denote it by $\len{\pi}$. We also introduce a new quantity, the \emph{branching number} $v(\pi)=d-\len{\pi}$, whose purpose will soon become apparent.
+
+For every point $x\in\Sigma$, if $f^{-1}(x)=\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}$, we can define the \emph{associated partition} $\pi(x)=[k(\wtilde{x}_1),\ldots,k(\wtilde{x}_r)]\in\Partitions{d}$. For all non-branching points, the associated partition will simply be $[1,\ldots,1]$. On the contrary, if $x$ is a branching point, then $\pi(x)\neq[1,\ldots,1]$ (or, equivalently, $v(\pi(x))>0$).
+
+\begin{definition}
+Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$. Let $x_1,\ldots,x_n\in\Sigma$ be the branching points of $f$. The \emph{branching datum} of $f$ is the tuple
+\[
+\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi(x_1),\ldots,\pi(x_n)}.
+\]
+\end{definition}
+
+Branching data are a way to extract some combinatorial information from branched coverings. Even though the exact location of the branching points (both in $\Sigma$ and in $\tSigma$) is not encoded in the branching datum, this piece of information is completely irrelevant, since surfaces are \emph{homogeneous}\footnote{By \emph{homogeneous}, we mean that the group of homeomorphisms of a surface $\Sigma$ acts transitively on the set of $n$-uples of points $(y_1,\ldots,y_n)$.}. However, the reader should not be induced to believe that the combinatorial information provided by the branching datum is enough to fully reconstruct the topology of $f$. In fact, it turns out that this is not the case\todo{More on this later (?).}.
+
+It is now perfectly legitimate to wonder 

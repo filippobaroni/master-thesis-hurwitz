@@ -11,4 +11,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: "latex/src/main.pdf"
-          target: "~/nobackup/public_html/master-thesis.pfg"
+          strip_components: 2
+          target: "~/nobackup/public_html/master-thesis"
