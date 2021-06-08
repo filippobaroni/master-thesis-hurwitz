@@ -13,6 +13,8 @@
 \NewDocumentCommand{\angled}{m}{\left\langle#1\right\rangle}
 \NewDocumentCommand{\subgroup}{}{\le}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\NewDocumentCommand{\stab}{mm}{\operatorname{Stab}_{#1}(#2)}
 \ExplSyntaxOn
 \NewDocumentCommand{\cycle}{m}{%
 \clist_set:Nn\l_tmpa_clist{#1}
@@ -36,10 +38,19 @@
 \NewDocumentCommand{\nosurf}{m}{N_{#1}}
 \NewDocumentCommand{\sphere}{}{S^2}
 
+\NewDocumentCommand{\cat}{}{\ast}
+\NewDocumentCommand{\invpath}{m}{\iota(#1)}
+
 \setbox1=\hbox{$\bullet$}
 \newlength{\holedbulletraise}
 \setlength{\holedbulletraise}{\dimexpr0.25\ht1}
-\NewDocumentCommand{\holed}{m}{#1^{\raisebox{\holedbulletraise}{\scalebox{0.5}{$\bullet$}}}}
+\NewDocumentCommand{\holed}{m}{{#1^{\raisebox{\holedbulletraise}{\scalebox{0.5}{$\bullet$}}}}}
+
+
+% Covering maps
+\NewDocumentCommand{\lift}{mm}{\operatorname{lift}(#1,#2)}
+\NewDocumentCommand{\mon}{}{\bullet}
+\NewDocumentCommand{\Mon}{}{\mathfrak{m}}
 
 
 % Combinatorial data
@@ -52,6 +63,10 @@
 \NewDocumentCommand{\CC}{}{\mathbb{C}}
 \NewDocumentCommand{\subs}{}{\subseteq}
 \NewDocumentCommand{\card}{m}{\left\lvert #1\right\rvert}
+
+
+% Relations
+\NewDocumentCommand{\iso}{}{\simeq}
 
 
 % Functions
@@ -69,6 +84,27 @@
 
 % Other aliases
 \let\phi\varphi
-\NewDocumentCommand{\wtilde}{m}{\vphantom{#1}\smash[t]{\widetilde{#1}}}
+%\NewDocumentCommand{\wtilde}{m}{\vphantom{#1}\smash[t]{\widetilde{#1}}}
+\makeatletter %https://tex.stackexchange.com/questions/3682/how-do-i-lower-the-widetilde-accent-i-e-move-it-closer-to-the-variable
+\NewDocumentCommand{\wtilde}{m}{\mathpalette\wtildehelper{#1}}
+\NewDocumentCommand{\wtildehelper}{mm}{%
+    \hbox{\dimen@\accentfontxheight#1%
+        \accentfontxheight#11.1\dimen@
+        $\m@th#1\widetilde{#2}$%
+        \accentfontxheight#1\dimen@
+    }%
+}
+\NewDocumentCommand{\accentfontxheight}{m}{%
+    \fontdimen5\ifx#1\displaystyle
+        \textfont
+    \else\ifx#1\textstyle
+        \textfont
+    \else\ifx#1\scriptstyle
+        \scriptfont
+    \else
+        \scriptscriptfont
+    \fi\fi\fi3
+}
+\makeatother
 
 

@@ -1,48 +1,6 @@
 \chapter{Realizablility by monodromy}
 
-\section{Symmetric group and partitions}
 
-\section{Branched covering action of the fundamental group}
-
-\section{Monodromy and realizability}
-
-\begin{proposition}\label{monodromy:th:monodromy-realizability-orientable}
-Let $\surf{g}$ be the connected sum of $g\ge 0$ tori, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_g,\beta_1,\ldots,\beta_n,\gamma_1,\ldots,\gamma_n\in\symgroup[g]$ such that:
-\begin{enumerate}
-\item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
-\item $[\beta_1,\gamma_1]\cdots[\beta_g,\gamma_g]\cdot\alpha_1\cdots\alpha_n=1$;
-\item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
-\end{enumerate}
-In this case, $\tSigma$ is necessarily orientable.
-\end{proposition}
-\begin{remark}\label{monodromy:rm:sigma-tilde-unique-orientable}
-Given $\surf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there is at most one surface $\tSigma$ such that $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ is a candidate datum. In fact, the \RH{} formula gives
-\[
-\chi(\tSigma)=d\chi(\surf{g})-v(\pi_1)-\ldots-v(\pi_n)
-\]
-which, in turn, uniquely determines the orientable surface $\tSigma$.
-\end{remark}
-
-\begin{proposition}\label{monodromy:th:monodromy-realizability-non-orientable}
-Let $\nosurf{g}$ be the connected sum of $g\ge 1$ projective planes, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g\in\symgroup[d]$ such that:
-\begin{enumerate}
-\item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
-\item $\beta_1^2\cdots\beta_g^2\cdot\alpha_1\cdots\alpha_n=1$;
-\item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
-\end{enumerate}
-In this case, $\tSigma$ is orientable if and only if ??.
-\end{proposition}
-\begin{remark}\label{monodromy:rm:sigma-tilde-unique-non-orientable}
-Given $\nosurf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there are at most two surfaces $\tSigma$, one orientable and one non-orientable, such that $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ is a candidate datum: like in \cref{monodromy:rm:sigma-tilde-unique-orientable}, the \RH{} formula fixes $\chi(\tSigma)$ which, together with orientability, uniquely determines $\tSigma$.
-\end{remark}
-
-\begin{proposition}\label{monodromy:th:monodromy-realizability-double-covering}
-Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots\pi_n}$ be a combinatorial datum, with $\Sigma$ non-orientable and $\tSigma$ orientable. Then $\DD$ is realizable if and only if $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_i\cup\pi''_i$ for each $1\le i\le n$, such that the combinatorial datum
-\[
-\DD'=\datum{\tSigma,\hSigma}{d/2}{\pi'_1,\ldots,\pi'_n,\pi''_i,\ldots,\pi''_n}
-\]
-is realizable, where $\hSigma$ is the orientable double covering of $\Sigma$.
-\end{proposition}
 
 \section{Non-positive Euler characteristic}
 
@@ -100,15 +58,15 @@ Let us first assume that $\Sigma$ is orientable; this means that $\Sigma=\surf{g
 \[
 v(\alpha)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
 \]
-By \cref{monodromy:th:even-permutation-commutator-or-squares}, we can find permutations $\beta_1,\gamma_1\in\symgroup[d]$ such that $\alpha=[\gamma_1,\beta_1]$ and $\beta_1$ is a $d$\=/cycle. Set $\beta_2=\ldots=\beta_g=\gamma_2=\ldots=\gamma_g=\id\in\symgroup[d]$. All the conditions of \cref{monodromy:th:monodromy-realizability-orientable} are satisfied; since $\tSigma$ is orientable, this implies that $\DD$ is realizable (see \cref{monodromy:rm:sigma-tilde-unique-orientable}).
+By \cref{monodromy:th:even-permutation-commutator-or-squares}, we can find permutations $\beta_1,\gamma_1\in\symgroup[d]$ such that $\alpha=[\gamma_1,\beta_1]$ and $\beta_1$ is a $d$\=/cycle. Set $\beta_2=\ldots=\beta_g=\gamma_2=\ldots=\gamma_g=\id\in\symgroup[d]$. All the conditions of \cref{hurwitz:th:monodromy-realizability-orientable} are satisfied; since $\tSigma$ is orientable, this implies that $\DD$ is realizable (see \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
 
-Assume now that $\Sigma$ and $\tSigma$ are both non-orientable; this means that $\Sigma=\nosurf{g}$ is the connected sum of $g\ge 2$ projective planes. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Similarly to what we did for the previous case, we can find $\beta_1,\beta_2\in\symgroup[d]$ such that $\alpha=\beta_2^{-2}\beta_1^{-2}$ and $\beta_2\beta_1$ is a $d$\=/cycle. By setting $\beta_3=\ldots=\beta_g=\id\in\symgroup[d]$, \cref{monodromy:th:monodromy-realizability-non-orientable} (together with \cref{monodromy:rm:sigma-tilde-unique-non-orientable}) implies the realizability of $\DD$.
+Assume now that $\Sigma$ and $\tSigma$ are both non-orientable; this means that $\Sigma=\nosurf{g}$ is the connected sum of $g\ge 2$ projective planes. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Similarly to what we did for the previous case, we can find $\beta_1,\beta_2\in\symgroup[d]$ such that $\alpha=\beta_2^{-2}\beta_1^{-2}$ and $\beta_2\beta_1$ is a $d$\=/cycle. By setting $\beta_3=\ldots=\beta_g=\id\in\symgroup[d]$, \cref{hurwitz:th:monodromy-realizability-non-orientable} (together with \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}) implies the realizability of $\DD$.
 
 Finally, consider the case where $\Sigma$ is non-orientable and $\tSigma$ is orientable. Since $\DD$ is a candidate datum, $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_1\cup\pi''_i$ for each $1\le i\le n$. Let $\hSigma$ be the double orientable covering of $\Sigma$; by the first case we analyzed, the candidate datum
 \[
 \DD'=\datum{\tSigma,\hSigma}{d/2}{\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n}
 \]
-is realizable. By \cref{monodromy:th:monodromy-realizability-double-covering}, $\DD$ is realizable as well.
+is realizable. By \cref{hurwitz:th:monodromy-realizability-double-covering}, $\DD$ is realizable as well.
 \end{proof}
 
 \section{Products in symmetric groups}
@@ -274,7 +232,7 @@ First of all, since $\DD$ is a candidate datum, the \RH{} formula implies that
 \[
 v(\pi_1)+\ldots+v(\pi_n)=d\chi(\RP[2])-\chi(\tSigma)\ge d-1
 \]
-(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to apply \cref{monodromy:th:monodromy-realizability-non-orientable}, we will now inductively define representatives $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
+(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to apply \cref{hurwitz:th:monodromy-realizability-non-orientable}, we will now inductively define representatives $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
 \[
 v(\alpha_1\cdots\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)
 \]
@@ -301,7 +259,7 @@ We now prove that $\alpha=\alpha_1\cdots\alpha_n$ is a square.
 \item If $[\alpha]=[1,d-2]$, then $d$ is even, so $\alpha$ is the square of $\alpha^{d/2}$.
 \item If $[\alpha]=[d/2,d/2]$, then $d$ is even, and it is easy to see that $\alpha$ is the square of a $d$-cycle.
 \end{itemize}
-By \cref{monodromy:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{monodromy:rm:sigma-tilde-unique-non-orientable}), simply note that ??.
+By \cref{hurwitz:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}), simply note that ??.
 \end{proof}
 
 \section{Reduction technique on the sphere}
@@ -316,11 +274,11 @@ We proceed by induction on $n$, starting with the base case $n=3$. If $\DD=\datu
 \[
 v(\pi_1)+v(\pi_2)=2d-2+2g-(d-1)\ge d-1.
 \]
-Moreover, the total branching number $v(\pi_1)+v(\pi_2)+d-1$ is even. \Cref{monodromy:th:product-reduction-odd} then gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]=[d]$. By \cref{monodromy:th:monodromy-realizability-orientable}, $\DD$ is realizable (see \cref{monodromy:rm:sigma-tilde-unique-orientable}).
+Moreover, the total branching number $v(\pi_1)+v(\pi_2)+d-1$ is even. \Cref{monodromy:th:product-reduction-odd} then gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]=[d]$. By \cref{hurwitz:th:monodromy-realizability-orientable}, $\DD$ is realizable (see \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
 
 We now turn to the case $n\ge 4$. Fix a candidate datum $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[d]}$; there are two cases.
 \begin{itemize}
-\item Assume that $v(\pi_1)+v(\pi_2)\le d-1$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum $\DD'=\datum{\surf{g},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[d]}$. By induction, $\DD'$ is realizable; \cref{monodromy:th:monodromy-realizability-orientable} then gives permutations $\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for $3\le i\le n-1$ and $[\alpha_n]=[d]$ such that $(\alpha_1\alpha_2)\alpha_3\cdots\alpha_n=1$. It is easy to see that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{monodromy:th:monodromy-realizability-orientable} (together, as usual, with \cref{monodromy:rm:sigma-tilde-unique-orientable}).
+\item Assume that $v(\pi_1)+v(\pi_2)\le d-1$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum $\DD'=\datum{\surf{g},\sphere{}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[d]}$. By induction, $\DD'$ is realizable; \cref{hurwitz:th:monodromy-realizability-orientable} then gives permutations $\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for $3\le i\le n-1$ and $[\alpha_n]=[d]$ such that $(\alpha_1\alpha_2)\alpha_3\cdots\alpha_n=1$. It is easy to see that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{hurwitz:th:monodromy-realizability-orientable} (together, as usual, with \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
 \item Otherwise, we have that $v(\pi_1)+v(\pi_2)\ge d$. By \cref{monodromy:th:product-reduction-large-v}, we can find permutations $\alpha_1,\alpha_2$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let
 \begin{align*}
 g'&=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+\ldots+v(\pi_{n-1})+d-1)-d+1\\
@@ -348,7 +306,7 @@ be a candidate datum. The \RH{} formula implies that
 \[
 v(\pi_1)+v(\pi_2)=2d-2+2g-(d-2)\ge d.
 \]
-Moreover, the total branching number $v(\pi_1)+v(\pi_2)+d-2$ is even. \Cref{monodromy:th:product-reduction-large-v-even} then gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]=[1,d-1]$ and the action of $\angled{\alpha_1,\alpha_2}$ is transitive. As usual, \cref{monodromy:th:monodromy-realizability-orientable} implies that $\DD$ is realizable.
+Moreover, the total branching number $v(\pi_1)+v(\pi_2)+d-2$ is even. \Cref{monodromy:th:product-reduction-large-v-even} then gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]=[1,d-1]$ and the action of $\angled{\alpha_1,\alpha_2}$ is transitive. As usual, \cref{hurwitz:th:monodromy-realizability-orientable} implies that $\DD$ is realizable.
 
 We now turn to the case $n\ge 4$; we will employ a reduction technique. Fix a candidate datum
 \[
@@ -443,8 +401,8 @@ Let $\DD=\datum{\surf{g},\sphere{}}{4}{\pi_1,\ldots,\pi_n}$ be a candidate datum
 We now turn to the case $n\ge 4$; once again, we can assume that all the partitions are either $[1,1,2]$ or $[2,2]$. There are three cases.
 \begin{itemize}
 \item If all the partitions are equal to $[2,2]$, then we can apply \cref{monodromy:th:product-reduction-large-v-even} to combine two partitions into a single $[2,2]$, and conclude by a reduction argument.
-\item If all the partitions are equal to $[1,1,2]$, then by the \RH{} formula we have $n\ge 6$. We can apply \cref{monodromy:th:product-reduction-small-v} twice to combine three partitions into a single $[d]$, and conclude by reduction.
-\item Otherwise, there is at least one $[2,2]$ and one $[1,1,2]$; using \cref{monodromy:th:product-reduction-small-v}, we can combine them into a single $[d]$ and conclude by reduction.\qedhere
+\item If all the partitions are equal to $[1,1,2]$, then by the \RH{} formula we have $n\ge 6$. We can apply \cref{monodromy:th:product-reduction-small-v} twice to combine three partitions into a single $[4]$, and conclude by reduction.
+\item Otherwise, there is at least one $[2,2]$ and one $[1,1,2]$; using \cref{monodromy:th:product-reduction-small-v}, we can combine them into a single $[4]$ and conclude by reduction.\qedhere
 \end{itemize}
 \end{proof}
 

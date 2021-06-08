@@ -11,6 +11,9 @@ check_exceptional
 *.log
 *.synctex.gz
 
+# TeXstudio sessions
+*.txss
+
 # Prerequisites
 *.d
 

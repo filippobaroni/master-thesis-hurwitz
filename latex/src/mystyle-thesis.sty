@@ -35,12 +35,13 @@
 \declaretheorem[numberlike=theorem]{proposition}
 \declaretheorem[style=definition,numberwithin=chapter]{definition}
 \declaretheorem[style=remark,numberwithin=chapter]{remark}
+\declaretheorem[numbered=no,name={Hurwitz existence problem},style=definition]{hurwitz-existence-problem*}
 
 
 % Diagrams
 \usepackage{tikz-cd}
 \tikzcdset{diagrams={row sep=large,column sep=large}}
-\NewDocumentEnvironment{diagram}{O{}}{\begin{equation*}\begin{tikzcd}[#1]}{\end{tikzcd}\end{equation*}}
+\NewDocumentEnvironment{diagram}{O{}}{\begin{equation*}\begin{tikzcd}[#1]}{\end{tikzcd}\end{equation*}\ignorespacesafterend}
 
 
 % References
