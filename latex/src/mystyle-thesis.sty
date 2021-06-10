@@ -16,14 +16,25 @@
 % AMS packages
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 
 
 % Other math packages
 \usepackage{mathtools}
 
 
+% Cool symbols
+\usepackage[fixed]{fontawesome5}
+
+
 % Unbreakable dashes
 \usepackage[shortcuts]{extdash}
+
+% References
+\usepackage{hyperref}
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+\usepackage{cleveref}
+\NewDocumentCommand{\RH}{}{\hyperref[hurwitz:th:riemann-hurwitz-formula]{Riemann-Hurwitz}}
 
 
 % Theorems
@@ -36,6 +47,13 @@
 \declaretheorem[style=definition,numberwithin=chapter]{definition}
 \declaretheorem[style=remark,numberwithin=chapter]{remark}
 \declaretheorem[numbered=no,name={Hurwitz existence problem},style=definition]{hurwitz-existence-problem*}
+\declaretheoremstyle[headformat={\NAME.\NUMBER \NOTE}]{combinatorial move}
+\declaretheorem[style=combinatorial move,name={Combinatorial move A},refname={combinatorial move A},Refname={Combinatorial move A}]{combinatorial move a}
+
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
 
 
 % Diagrams
@@ -44,16 +62,10 @@
 \NewDocumentEnvironment{diagram}{O{}}{\begin{equation*}\begin{tikzcd}[#1]}{\end{tikzcd}\end{equation*}\ignorespacesafterend}
 
 
-% References
-\usepackage{hyperref}
-\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
-\usepackage{cleveref}
-\NewDocumentCommand{\RH}{}{Riemann-Hurwitz [??]}
-
-
 % Lists
 \usepackage[short labels]{enumitem}
 \setenumerate{label=(\roman*)}
+\setlist[itemize]{label=\raisebox{0.2\height}{\scalebox{0.6}{\faFire}}}
 
 
 % Todos

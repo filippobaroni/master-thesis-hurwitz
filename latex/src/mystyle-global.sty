@@ -30,7 +30,7 @@
 
 % Surfaces
 \NewDocumentCommand{\tSigma}{}{\wtilde{\Sigma}}
-\NewDocumentCommand{\hSigma}{}{\widehat{\Sigma}}
+\NewDocumentCommand{\hSigma}{}{\what{\Sigma}}
 \NewDocumentCommand{\RP}{o}{%
 \mathbb{R}\mathbb{P}\IfValueT{#1}{^{#1}}
 }
@@ -44,7 +44,7 @@
 \setbox1=\hbox{$\bullet$}
 \newlength{\holedbulletraise}
 \setlength{\holedbulletraise}{\dimexpr0.25\ht1}
-\NewDocumentCommand{\holed}{m}{{#1^{\raisebox{\holedbulletraise}{\scalebox{0.5}{$\bullet$}}}}}
+\NewDocumentCommand{\holed}{m}{#1^{\raisebox{\holedbulletraise}{\scalebox{0.5}{$\bullet$}}}}
 
 
 % Covering maps
@@ -56,13 +56,16 @@
 % Combinatorial data
 \NewDocumentCommand{\DD}{}{\mathcal{D}}
 \NewDocumentCommand{\datum}{mmm}{(#1;#2;#3)}
+\NewDocumentCommand{\cmove}{}{\mathbin{\tikz[baseline=-.3em]\draw[-{Latex[scale=1.2]},decorate,decoration={snake,amplitude=.5mm,segment length=2mm,post length=1.6mm}] (0,0) -- (.83,0);}}
 
 
 % Sets
 \NewDocumentCommand{\RR}{}{\mathbb{R}}
 \NewDocumentCommand{\CC}{}{\mathbb{C}}
+\NewDocumentCommand{\ZZ}{}{\mathbb{Z}}
 \NewDocumentCommand{\subs}{}{\subseteq}
 \NewDocumentCommand{\card}{m}{\left\lvert #1\right\rvert}
+\let\setminus\smallsetminus
 
 
 % Relations
@@ -91,6 +94,14 @@
     \hbox{\dimen@\accentfontxheight#1%
         \accentfontxheight#11.1\dimen@
         $\m@th#1\widetilde{#2}$%
+        \accentfontxheight#1\dimen@
+    }%
+}
+\NewDocumentCommand{\what}{m}{\mathpalette\whathelper{#1}}
+\NewDocumentCommand{\whathelper}{mm}{%
+    \hbox{\dimen@\accentfontxheight#1%
+        \accentfontxheight#11.1\dimen@
+        $\m@th#1\widehat{#2}$%
         \accentfontxheight#1\dimen@
     }%
 }
