@@ -47,8 +47,12 @@
 \declaretheorem[style=definition,numberwithin=chapter]{definition}
 \declaretheorem[style=remark,numberwithin=chapter]{remark}
 \declaretheorem[numbered=no,name={Hurwitz existence problem},style=definition]{hurwitz-existence-problem*}
-\declaretheoremstyle[headformat={\NAME.\NUMBER \NOTE}]{combinatorial move}
-\declaretheorem[style=combinatorial move,name={Combinatorial move A},refname={combinatorial move A},Refname={Combinatorial move A}]{combinatorial move a}
+%\declaretheoremstyle[headformat={\NAME.\NUMBER \NOTE}]{combinatorial move}
+\declaretheoremstyle{combinatorial move}
+\declaretheorem[style=combinatorial move,name={Combinatorial move},refname={combinatorial move},Refname={Combinatorial move}]{combinatorialmovea}
+\makeatletter
+\renewcommand{\thecombinatorialmovea}{A.\arabic{combinatorialmovea}}
+\makeatother
 
 
 % TikZ
