@@ -52,7 +52,7 @@ Since $\alpha$ is an even permutation, its branching number $v(\alpha)$ is even.
 \end{enumerate}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{monodromy:th:realizability-nonpositive-chi}
 Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
 \end{theorem}
 \begin{proof}
@@ -73,7 +73,7 @@ is realizable. By \cref{hurwitz:th:monodromy-realizability-double-covering}, $\D
 
 \section{Products in symmetric groups}
 
-The monodromy approach can prove to be quite fruitful also in the cases where $\chi(\Sigma)>0$ (namely, when $\Sigma$ is either the sphere $\sphere$ or the projective plain $\RP[2]$). In order to deal with this instances of the Hurwitz existence problem, however, we will need a few more technical results about products of permutations.
+The monodromy approach can prove to be quite fruitful also in the cases where $\chi(\Sigma)>0$ (namely, when $\Sigma$ is either the sphere $\sphere$ or the projective plane $\RP[2]$). In order to deal with this instances of the Hurwitz existence problem, however, we will need a few more technical results about products of permutations.
 
 \begin{lemma}\label{monodromy:th:same-number-of-cycles}
 Let $X,Y$ be finite sets; denote by $h$ the cardinality of $Y$, and by $k$ the cardinality of $X\cap Y$. Let $\alpha\in\symgroup(X)$, $\beta\in\symgroup(Y)$, $\gamma\in\symgroup(X\cap Y)$. Assume that $\beta=\cycle{b_1,\ldots,b_h}$ is a $h$\=/cycle, and that $\gamma$ is a $k$\=/cycle of the form $\gamma=\cycle{b_{i_1},\ldots,b_{i_k}}$ with $1\le i_1\le\ldots\le i_k\le h$. Then $\alpha\in\symgroup(X)$ and $\alpha\gamma^{-1}\beta\in\symgroup(X\cup Y)$ have the same number of cycles.
@@ -224,7 +224,7 @@ The conclusion follows immediately from \cref{monodromy:th:product-reduction-odd
 
 As a first application of the results established in the previous section, we fully solve the Hurwitz existence problem in the cases where $\Sigma=\RP[2]$ and $\tSigma$ is non-orientable.
 
-\begin{theorem}
+\begin{theorem}\label{monodromy:th:realizability-projective-plane}
 Let $\DD=\datum{\tSigma,\RP[2]}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\tSigma$ is non-orientable, then $\DD$ is realizable.
 \end{theorem}
 \begin{proof}
@@ -260,12 +260,54 @@ We now prove that $\alpha=\alpha_1\cdots\alpha_n$ is a square.
 \item If $[\alpha]=[d/2,d/2]$, then $d$ is even, and it is easy to see that $\alpha$ is the square of a $d$-cycle.
 \end{itemize}
 In any case, we obtain a permutations $\beta_1\in\symgroup[d]$ such that $\alpha=\beta_1^{-2}$
-By \cref{hurwitz:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}), simply note that there exists a permutation $\gamma\in\angled{\alpha_1,\ldots,\alpha_n}$ such that $\gamma\beta_1$ has a fixed point, since $\gamma\in\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$.
+By \cref{hurwitz:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}), simply note that there exists a permutation $\gamma\in\angled{\alpha_1,\ldots,\alpha_n}$ such that $\gamma\beta_1$ has a fixed point, since $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$.
 \end{proof}
 
 \section{Combinatorial moves}
 
+With \cref{monodromy:th:realizability-nonpositive-chi,monodromy:th:realizability-projective-plane} we have shown that every candidate datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ is realizable whenever
+\begin{itemize}
+\item $\chi(\Sigma)\le 0$, or
+\item $\Sigma=\RP[2]$ and $\tSigma$ is non-orientable.
+\end{itemize}
+Moreover, \cref{hurwitz:th:monodromy-realizability-double-covering} shows that the case where $\Sigma=\RP[2]$ and $\tSigma$ is orientable can be reduced to the analysis of realizable candidate data on the sphere. As a consequence, it stands to reason that, from now on, we will only be concerned with candidate data where $\Sigma=\sphere{}$; in fact, a classification of the realizable data of this kind would lead to a full solution of the Hurwitz existence problem\todo{To be fair, even after solving the existence problem on the sphere, compiling the full list of exceptional data with $\Sigma=\RP[2]$ and $\tSigma$ is non-orientable could still be non-trivial.}. However, we will soon find out that realizability on the sphere can be a very delicate matter: there are several seemingly unrelated families of exceptional data, and even to this day we are still far from a complete understanding of the problem.
 
+Since, from now on, we will only deal with branched coverings on the sphere, we adopt the following convention: whenever we have a combinatorial datum $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots\pi_n}$, we can omit the $\sphere{}$ and simply write $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots\pi_n}$.
+
+For convenience, we will now briefly discuss once and for all the cases where $n\le 2$.
+\begin{itemize}
+\item If $n=1$, \cref{hurwitz:th:monodromy-realizability-orientable} immediately implies that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1}$ is not realizable (recall that we are always assuming $\pi_1\neq[1,\ldots,1]$).
+\item If $n=2$, the only realizable candidate data are of the form $\DD=\datum{\sphere{}}{d}{[d],[d]}$, again by \cref{hurwitz:th:monodromy-realizability-orientable}.
+\end{itemize}
+
+Finally, we turn to the topic promised by the title of this section. \emph{Combinatorial moves} are conceptually trivial things, but they offer a convenient framework for presenting proofs based on a reduction technique. The definition is extremely simple.
+
+\begin{definition}
+Let $\DD,\DD'$ be combinatorial data. We say that there is a \emph{combinatorial move} between them, and we write $\DD\cmove\DD'$, if the realizability of $\DD'$ implies that $\DD$ is realizable as well.
+\end{definition}
+
+In this thesis we will encounter two kinds of combinatorial moves. The first one, which we introduce in this section, focuses on reducing the number of partitions of a combinatorial datum by means of products in the symmetric group. In \cref{??}, we will describe another kind of combinatorial moves, which rely instead on topological constructions to reduce the genus of the surface $\tSigma$.
+
+\begin{combinatorial move a}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. Assume that $v(\pi_1)+v(\pi_2)\le d-1$. Then there exists a partition $\pi_1'\in\Partitions{d}$ such that $v(\pi_1')=v(\pi_1)+v(\pi_2)$, $\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ is a candidate datum and $\DD\cmove\DD'$.
+\end{combinatorial move a}
+
+\begin{combinatorial move a}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. Assume that:
+\begin{itemize}
+\item $v(\pi_1)+v(\pi_2)\ge d-1$;
+\item $v(\pi_3)+\ldots+v(\pi_n)\ge d-1$.
+\end{itemize}
+Then there exist an orientable surface $\surf{g'}$ and a partition $\pi_1'\in\{[d],[1,d-1],[d/2,d/2]\}$ such that $\DD'=\datum{\surf{g'}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ is a candidate datum and $\DD\cmove\DD'$. Moreover, if $\pi_1\neq[2,\ldots,2]$, then $\pi_1'$ can be chosen to be different from $[d/2,d/2]$.
+\end{combinatorial move a}
+
+\begin{remark}
+We can extract some additional information from the statement [and the proof] of \cref{??}. First of all, since both $\DD$ and $\DD'$ are candidate data, their total branching number must be even, so $v(\pi_1')\equiv v(\pi_1)+v(\pi_2)\pmod{2}$. Moreover, $g'$ can be explicitly computed by means of the \RH{} formula:
+\[
+g'=\frac{1}{2}(v(\pi_1')+v(\pi_2)+\ldots+v(\pi_n))-d+1.
+\]
+Finally, ??.
+\end{remark}
 
 \section{Some results on the sphere}
 
@@ -385,7 +427,7 @@ It is easy to see that $\DD'=\datum{\surf{g'},\sphere{}}{2k}{[\alpha_1\alpha_2\a
 \end{proof}
 
 \begin{corollary}
-Let $d$ be a positive integer with $d\neq 4$. Then there exist at most finitely many non-realizable candidate data of the form $\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_n}$.
+Let $d$ be a positive integer with $d\neq 4$. Then there exist at most finitely many exceptional candidate data of the form $\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_n}$.
 \end{corollary}
 \begin{proof}
 By \cref{monodromy:th:sphere-large-g}, every candidate datum with $n\ge 3d-3$ is realizable, and there are a finite number of candidate data with $n<3d-3$.
