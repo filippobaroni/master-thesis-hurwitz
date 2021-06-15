@@ -111,7 +111,7 @@ which proves the first part of the lemma. Moreover, if $v(\alpha)+v(\beta)=q$, i
 \end{comment}
 
 \begin{proposition}\label{monodromy:th:product-reduction-small-v}
-Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)<d$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$ and $[\beta]=\rho$ such that $v(\alpha\beta)=v(\alpha)+v(\beta)$.
+Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho)\le d-1$. Then there exist permutations $\alpha,\beta\in\symgroup[d]$ with $[\alpha]=\pi$ and $[\beta]=\rho$ such that $v(\alpha\beta)=v(\alpha)+v(\beta)$.
 \end{proposition}
 \begin{proof}
 First of all, note that the conclusion is trivial whenever $v(\pi)=0$ or $v(\rho)=0$. This already solves the cases $d=1$ and $d=2$. We now proceed by induction on $d\ge 3$, assuming that $v(\pi)>0$ and $v(\rho)>0$. Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$; without loss of generality, assume that $b_1>1$. Fix
@@ -270,7 +270,7 @@ With \cref{monodromy:th:realizability-nonpositive-chi,monodromy:th:realizability
 \item $\chi(\Sigma)\le 0$, or
 \item $\Sigma=\RP[2]$ and $\tSigma$ is non-orientable.
 \end{itemize}
-Moreover, \cref{hurwitz:th:monodromy-realizability-double-covering} shows that the case where $\Sigma=\RP[2]$ and $\tSigma$ is orientable can be reduced to the analysis of realizable candidate data on the sphere. As a consequence, it stands to reason that, from now on, we will only be concerned with candidate data where $\Sigma=\sphere{}$; in fact, a classification of the realizable data of this kind would lead to a full solution of the Hurwitz existence problem\todo{To be fair, even after solving the existence problem on the sphere, compiling the full list of exceptional data with $\Sigma=\RP[2]$ and $\tSigma$ is non-orientable could still be non-trivial.}. However, we will soon find out that realizability on the sphere can be a very delicate matter: there are several seemingly unrelated families of exceptional data, and even to this day we are still far from a complete understanding of the problem.
+Moreover, \cref{hurwitz:th:monodromy-realizability-double-covering} shows that the cases where $\Sigma=\RP[2]$ and $\tSigma$ is orientable can be reduced to the analysis of realizable candidate data on the sphere. As a consequence, it stands to reason that, from now on, we will only be concerned with candidate data where $\Sigma=\sphere{}$; in fact, a classification of the realizable data of this kind would lead to a full solution of the Hurwitz existence problem\todo{To be fair, even after solving the existence problem on the sphere, compiling the full list of exceptional data with $\Sigma=\RP[2]$ and $\tSigma$ orientable could still be non-trivial.}. However, we will soon find out that realizability on the sphere can be a very delicate matter: there are several seemingly unrelated families of exceptional data, and even to this day we are still far from a complete understanding of the problem.
 
 Since, from now on, we will only deal with branched coverings on the sphere, we adopt the following convention: whenever we have a combinatorial datum $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots\pi_n}$, we can omit the $\sphere{}$ and simply write $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots\pi_n}$.
 
@@ -280,17 +280,20 @@ For convenience, we will now briefly discuss once and for all the cases where $n
 \item If $n=2$, the only realizable candidate data are of the form $\DD=\datum{\sphere{}}{d}{[d],[d]}$, again by \cref{hurwitz:th:monodromy-realizability-orientable}.
 \end{itemize}
 
-Finally, we turn to the topic promised by the title of this section. \emph{Combinatorial moves} are conceptually trivial things, but they offer a convenient framework for presenting proofs based on a reduction technique. The definition is extremely simple.
+Finally, we turn to the topic promised by the title of this section. \emph{Combinatorial moves} are conceptually trivial things\todo{``Things''? Really?}, but they offer a convenient framework for presenting proofs based on a reduction technique. The definition is extremely simple.
 
 \begin{definition}
 Let $\DD,\DD'$ be combinatorial data. We say that there is a \emph{combinatorial move} between them, and we write $\DD\cmove\DD'$, if the realizability of $\DD'$ implies that $\DD$ is realizable as well.
 \end{definition}
 
-In this thesis we will encounter two kinds of combinatorial moves. The first one, which we introduce in this section, focuses on reducing the number of partitions of a combinatorial datum by means of products in the symmetric group. In \cref{??}, we will describe another kind of combinatorial moves, which rely instead on topological constructions to reduce the genus of the surface $\tSigma$.
+In this thesis we will encounter two kinds of combinatorial moves. The first one, which we introduce in this section, focuses on reducing the number of partitions of a combinatorial datum by means of products in the symmetric group. In \cref{??}, we will describe another kind of combinatorial moves, which relies instead on topological constructions to reduce the genus of the surface $\tSigma$.
 
 \begin{combinatorialmovea}\label{combinatorial-move:a:small-v}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. Assume that $v(\pi_1)+v(\pi_2)\le d-1$. Then there exists a partition $\pi_1'\in\Partitions{d}$ such that $v(\pi_1')=v(\pi_1)+v(\pi_2)$, $\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ is a candidate datum and $\DD\cmove\DD'$.
 \end{combinatorialmovea}
+\begin{proof}
+By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\pi_1)+v(\pi_2)$. Let $\pi_1'=[\alpha_1\alpha_2]$; it is easy to check that $\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ is a candidate datum. Assume that $\DD'$ is realizable; by \cref{hurwitz:th:monodromy-realizability-orientable}, this implies the existence of permutations $\alpha_1',\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ matching $\pi_1',\pi_3,\ldots,\pi_n$ respectively, such that $\alpha_1'\alpha_3\cdots\alpha_n=1$ and $\angled{\alpha_1',\alpha_3,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$. Since $[\alpha_1']=[\alpha_1\alpha_2]$, up to conjugation we may assume that $\alpha_1'=\alpha_1\alpha_2$. It is clear that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{hurwitz:th:monodromy-realizability-orientable} (see also \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
+\end{proof}
 
 \begin{combinatorialmovea}\label{combinatorial-move:a:large-v}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. Assume that:
@@ -300,18 +303,34 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. As
 \end{itemize}
 Then there exist an orientable surface $\surf{g'}$ and a partition $\pi_1'\in\Partitions{d}$ such that $\DD'=\datum{\surf{g'}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ is a candidate datum and $\DD\cmove\DD'$. Moreover, if $\pi_1=\pi_2=[2,\ldots,2]$ then $\pi_1'$ can be chosen equal to $[d/2,d/2]$, otherwise it can be chosen in such a way that $\pi_1'\in\{[d],[1,d-1]\}$.
 \end{combinatorialmovea}
+\begin{proof}
+By \cref{monodromy:th:product-reduction-odd} or \cref{monodromy:th:product-reduction-large-v-even}, depending on the parity of $v(\pi_1)+v(\pi_2)+d$, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]\in\{[d],[1,d-1],[d/2,d/2]\}$. More specifically, if $\pi_1=\pi_2=[2,\ldots,2]$ we can assume that $[\alpha_1\alpha_2]=[d/2,d/2]$, otherwise we can choose $[\alpha_1\alpha_2]\in\{[d],[1,d-1]\}$. Let $\pi_1'=[\alpha_1\alpha_2]$; if we want $\DD'=\datum{\surf{g'}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ to be a candidate datum, the \RH{} formula requires that
+\[
+g'=\frac{1}{2}(v(\pi_1')+v(\pi_3)+\ldots+v(\pi_n))-d+1.
+\]
+But $v(\pi_1')\ge d-2$ and $v(\pi_3)+\ldots+v(\pi_n)\ge d-1$, so
+\[
+v(\pi_1')+v(\pi_3)+\ldots+v(\pi_n)\ge 2d-3.
+\]
+Moreover, $v(\pi_1')$ and $v(\pi_1)+v(\pi_2)$ have the same parity, so $v(\pi_1')+v(\pi_3)+\ldots+v(\pi_n)$ is even and actually
+\[
+v(\pi_1')+v(\pi_3)+\ldots+v(\pi_n)\ge 2d-2.
+\]
+Therefore $g'$ is a non-negative integer, and $\DD'$ is a candidate datum. The very same argument used in the proof of \cref{combinatorial-move:a:small-v} shows that $\DD\cmove\DD'$.
+\end{proof}
 
+\begin{comment}
 \begin{remark}
-We can extract some additional information from the statement [and the proof] of \cref{combinatorial-move:a:large-v}. First of all, since both $\DD$ and $\DD'$ are candidate data, their total branching number must be even, so $v(\pi_1')\equiv v(\pi_1)+v(\pi_2)\pmod{2}$. Moreover, $g'$ can be explicitly computed by means of the \RH{} formula:
+We can extract some additional information from the statement of \cref{combinatorial-move:a:large-v}. First of all, since both $\DD$ and $\DD'$ are candidate data, their total branching number must be even, so $v(\pi_1')\equiv v(\pi_1)+v(\pi_2)\pmod{2}$. Moreover, $g'$ can be explicitly computed by means of the \RH{} formula:
 \[
 g'=\frac{1}{2}(v(\pi_1')+v(\pi_2)+\ldots+v(\pi_n))-d+1.
 \]
-Finally, ??.
 \end{remark}
+\end{comment}
 
 \section{Some results on the sphere}
 
-\todo{Assume $n\ge 3$.}
+In this section, we will make extensive use of the combinatorial moves we have just described to solve the Hurwitz existence problem for some specific families of candidate data. As we have already discussed the realizability of candidate data with $n\le 2$, from now on we will always assume that $n\ge 3$. We start by addressing the cases where one partition (without loss of generality, the last one) has length $1$.
 
 \begin{proposition}\label{monodromy:th:sphere-[d]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[d]}$ be a candidate datum. Then $\DD$ is realizable.
@@ -339,7 +358,7 @@ for a suitable candidate datum $\DD'$. Similarly to the previous case, this impl
 \end{itemize}
 \end{proof}
 
-\todo{Explain the reduction technique, with transitivity.}
+We now turn to candidate data containing the partition $[1,d-1]$. This is the first step towards the goal of this thesis, which will be further developed in \cref{??}: the full classification of exceptional data containing a partition of length $2$.
 
 \begin{proposition}\label{monodromy:th:sphere-[1 d-1]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}$ be a candidate datum. Then $\DD$ is non-realizable if and only if it satisfies one of the following.
@@ -391,6 +410,7 @@ Since $\DD\cmove\DD'$, this implies that $\DD$ is realizable as well.\qedhere
 \end{itemize}
 \end{proof}
 
+The next result we are going to prove does not have immediate applications to the study of candidate data with a short partition, but the theoretical consequences it provides are definitely interesting.
 
 \begin{proposition}\label{monodromy:th:sphere-large-g}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. Assume that $d\neq 4$ and that $2g\ge d-1$. Then $\DD$ is realizable.
@@ -402,7 +422,7 @@ v(\pi_1)+\ldots+v(\pi_n)\ge 3d-3
 \]
 by the \RH{} formula. Moreover, the cases where $d=2$ are trivial because of \cref{monodromy:th:sphere-[d]}; therefore, assume that $d\ge 3$.
 
-We proceed by induction, starting from the base case $n=3$. If $n=3$, the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 3d-3$ implies that $\pi_1=\pi_2=\pi_3=[d]$; by \cref{monodromy:th:sphere-[d]}, $\DD$ is realizable.
+We proceed by induction, starting from the base case $n=3$. If $n=3$, the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 3d-3$ implies that $\pi_1=\pi_2=\pi_3=[d]$; by \cref{monodromy:th:sphere-[d]}, $\DD$ is then realizable.
 
 We now turn to the case $n\ge 4$; we will once again employ a reduction technique. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$. We can assume that $\pi_i\neq[d]$ for every $1\le i\le n$, otherwise $\DD$ is immediately realizable by \cref{monodromy:th:sphere-[d]}. There are two cases.
 \begin{itemize}
@@ -442,6 +462,8 @@ Let $d$ be a positive integer with $d\neq 4$. Then there exist at most finitely 
 By \cref{monodromy:th:sphere-large-g}, every candidate datum with $n\ge 3d-3$ is realizable, and there are a finite number of candidate data with $n<3d-3$.
 \end{proof}
 
+Instead, there exist infinitely many exceptional candidate data of degree $4$.
+
 \begin{proposition}\label{monodromy:th:sphere-d-equals-4}
 Let $\DD=\datum{\surf{g}}{4}{\pi_1,\ldots,\pi_n}$ be a candidate datum. Then $\DD$ is realizable if and only if
 \[
@@ -449,7 +471,7 @@ Let $\DD=\datum{\surf{g}}{4}{\pi_1,\ldots,\pi_n}$ be a candidate datum. Then $\D
 \]
 \end{proposition}
 \begin{proof}
-\todo{Non-realizability will be addressed at some point.}We proceed by induction, starting from the base case $n=3$. Note that if any partition is either $[4]$ or $[1,3]$, we immediately conclude by \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]}. By the \RH{} formula, we have the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 6$; therefore, the only candidate datum left to consider is $\datum{\sphere{}}{4}{[2,2],[2,2],[2,2]}$. This datum is realizable, for instance, by choosing
+\todo{Non-realizability will be addressed at some point.}We proceed by induction, starting from the base case $n=3$. Note that if any of the partitions is either $[4]$ or $[1,3]$, we immediately conclude by \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]}. By the \RH{} formula, we have the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 6$; therefore, the only candidate datum left to consider is $\datum{\sphere{}}{4}{[2,2],[2,2],[2,2]}$. This datum is realizable, for instance, by choosing
 \begin{align*}
 \alpha_1=\cycle{1,2}\cycle{3,4},&&\alpha_2=\cycle{1,3}\cycle{2,4},&&\alpha_3=\cycle{1,4}\cycle{2,3}.
 \end{align*}
@@ -464,7 +486,23 @@ We now turn to the case $n\ge 4$; once again, we can assume that all the partiti
 
 
 \section{Prime-degree conjecture}
-\begin{proposition}
+
+This section is devoted to a fascinating and surprising conjecture related to the Hurwitz existence problem. After studying many examples of exceptional data, a very unexpected pattern begins to emerge: it looks like no such datum can be found when the degree is a prime number. In other words, one comes to suspect the following.
+
+\begin{prime-degree-conjecture*}
+Let $p$ be a prime number. Then every candidate datum $\datum{\surf{g}}{p}{\pi_1,\ldots,\pi_n}$ with $n\ge 3$ is realizable.
+\end{prime-degree-conjecture*}
+
+It is not immediately clear why prime numbers should be even remotely related to the realizability of candidate data. In fact, to the best of the author's knowledge, there is no number-theoretic argument in favor (or against) this conjecture; all the evidence gathered so far supporting the prime-degree conjecture is ``experimental''.
+\begin{itemize}
+\item As shown in \cref{??}, for every composite number $d\ge 4$ there is an exceptional candidate datum of degree $d$.
+\item In general, all the exceptional data found so far have a composite degree; for all the families of candidate data whose realizability is completely understood (including those presented in the previous section), the prime-degree conjecture holds.
+\item The first efficient algorithmic approach to the Hurwitz existence problem was presented in \cite{??}. Every candidate datum with $n=3$ and $d\le 20$\todo{Or $d\le 22$, according to some sources} was analyzed by a computer, and no exceptional data with prime degree were found; therefore, the prime-degree conjecture was verified for degrees numbers up to $19$ (see \cref{monodromy:th:reduction-to-n-3} below). In \cref{??}, with a much heavier computational effort, we extend this result to prime numbers up to $29$.
+\end{itemize}
+
+The following proposition is an essential tool for the computational approach to the existence problem, since it reduces the verification of the prime-degree conjecture to the case of $n=3$ partitions.
+
+\begin{proposition}\label{monodromy:th:reduction-to-n-3}
 Let $d$ be a positive integer. Assume that every candidate datum $\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ is realizable. Then every candidate datum $\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ with $n\ge 3$ is realizable.
 \end{proposition}
 \begin{proof}

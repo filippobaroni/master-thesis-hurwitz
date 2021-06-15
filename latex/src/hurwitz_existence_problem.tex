@@ -181,14 +181,14 @@ The monodromy action induces a group homomorphism $\map{\Mon}{\pi_1(X,x_0)}{\op{
 Let $X$ be a path-connected topological space, $x_0\in X$ a point. Let $d$ be a positive integer, and let $\map{\psi}{\pi_1(X,x_0)}{\op{\symgroup[d]}}$ be a group homomorphism. Then there exists a covering map $\map{f}{\wtilde{X}}{X}$ with $\Mon=\psi$ (up to conjugation).
 \end{theorem}
 
-After introducing monodromy for general topological spaces, we turn our attention to the case of branched coverings of surfaces. Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering. As we have seen, by removing the branching points from $\Sigma$, we get an associated covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$. Fix a base-point $x_0\in\holed{\Sigma}$, and let $x\in\Sigma$ be any point. There is a path $\gamma\in\pi_1(\holed{\Sigma},x_0)$ which ``goes around $x$ once''; to be more precise, we can construct it as follows. Pick a small neighborhood $U\subs\Sigma$ of $x$ which is homeomorphic to $\RR^2$ and does not contain any other branching points; here we can define a loop $\map{\beta}{[0,1]}{U\setminus\{x\}}$ that goes around $x$ once (we do not care about the orientation). Finally, pick a path $\map{\alpha}{[0,1]}{\holed{\Sigma}}$ connecting $x_0$ to $\beta(0)=\beta(1)$, and define $\gamma=\alpha\cat\beta\cat\invpath{\alpha}$, where $(\cat)$ is the concatenation of paths and $\invpath{\alpha}$ denotes the inverse path $\invpath{\alpha}(t)=\alpha(1-t)$. Of course, the homotopy class of $\gamma\in\pi_1(\holed{\Sigma},x_0)$ depends on $\alpha$ and even $\beta$ (we could have chosen $\invpath{\beta}$ instead); we will say that any path constructed with the procedure we have described is a \emph{loop around $x$}.
+After introducing monodromy for general topological spaces, we turn our attention to the case of branched coverings of surfaces. Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering. As we have seen, by removing the branching points from $\Sigma$, we get an associated covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$. Fix a base-point $x_0\in\holed{\Sigma}$, and let $x\in\Sigma$ be any point. There is a path $\gamma\in\pi_1(\holed{\Sigma},x_0)$ which ``goes around $x$ once''; to be more precise, we can construct it as follows. Pick a small neighborhood $U\subs\Sigma$ of $x$ which is homeomorphic to $\RR^2$ and does not contain any other branching points; here we can define a loop $\map{\beta}{[0,1]}{U\setminus\{x\}}$ that goes around $x$ once (we do not care about the orientation). Finally, pick a path $\map{\alpha}{[0,1]}{\holed{\Sigma}}$ connecting $x_0$ to $\beta(0)=\beta(1)$, and define $\gamma=\alpha\cat\beta\cat\invpath{\alpha}$, where $(\cat)$ is the concatenation of paths and $\invpath{\alpha}$ denotes the inverse path $\invpath{\alpha}(t)=\alpha(1-t)$. Of course, the homotopy class of $\gamma\in\pi_1(\holed{\Sigma},x_0)$ depends on $\alpha$ and even $\beta$ (we could have chosen $\invpath{\beta}$ instead); we will say that any path constructed with the procedure we have described is a \emph{loop around $x$} (based at $x_0$).
 
 We are finally ready to prove the connection between branched coverings and the monodromy of the associated covering map.
 \begin{proposition}\label{hurwitz:th:monodromy-permutation-matches-partition}
 Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$, and let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ be the associated covering map. Fix a base-point $x_0\in\holed{\Sigma}$ and a point $y\in\Sigma$. Let $\gamma$ be a loop around $y$. Consider the monodromy homomorphism $\map{\Mon}{\pi_1(\holed{\Sigma},x_0)}{\op{\symgroup(f^{-1}(x_0))}}$. Then the permutation $\Mon(\gamma)$ matches $\pi(y)$.
 \end{proposition}
 \begin{proof}
-Let the preimages $\wtilde{y}_1,\ldots,\wtilde{y}_r$ of $y$ have local degrees $k_1,\ldots,k_r$. Fix disjoint trivializing neighborhoods $\wtilde{U}_1,\ldots,\wtilde{U}_r$ of $\wtilde{y}_1,\ldots,\wtilde{y}_r$ respectively. Let $U\subs\Sigma$ be an open neighborhood of $x$ which is homeomorphic to $\RR^2$ and such that $f^{-1}(U)\subs \wtilde{U}_1\cup\ldots\cup\wtilde{U}_r$. Since $\gamma$ is a loop around $y$, we can write $\gamma=\alpha\cat\beta\cat\invpath{\alpha}$ as described above. Up to homotopy, we can assume that $\beta(t)\in U$ for every $t\in[0,1]$. Let $z=\alpha(1)=\beta(0)=\beta(1)\in U$; note that every preimage of $z$ lies exactly in one $\wtilde{U}_l$. Finally, let $\wtilde{x}_1,\ldots,\wtilde{x}_d$ be the preimages of $x_0$. We will show that $\wtilde{x}_i$ and $\wtilde{x}_j$ belong to the same orbit of $\Mon(\gamma)$ if and only if $\lift{\alpha}{\wtilde{x}_i}(1)$ and $\lift{\alpha}{\wtilde{x}_j}(1)$ lie in the same $\wtilde{U}_l$. Since $f^{-1}(z)\cap \wtilde{U}_l$ has cardinality $k_l$ and $\pi(y)=[k_1,\ldots,k_r]$, this completes the proof.
+Let the preimages $\wtilde{y}_1,\ldots,\wtilde{y}_r$ of $y$ have local degrees $k_1,\ldots,k_r$. Fix disjoint trivializing neighborhoods $\wtilde{U}_1,\ldots,\wtilde{U}_r$ of $\wtilde{y}_1,\ldots,\wtilde{y}_r$ respectively. Let $U\subs\Sigma$ be an open neighborhood of $x$ which is homeomorphic to $\RR^2$ and such that $f^{-1}(U)\subs \wtilde{U}_1\cup\ldots\cup\wtilde{U}_r$. Since $\gamma$ is a loop around $y$, we can write $\gamma=\alpha\cat\beta\cat\invpath{\alpha}$ as described above. Up to homotopy, we can assume that $\beta(t)\in U$ for every $t\in[0,1]$. Let $z=\alpha(1)=\beta(0)=\beta(1)\in U$; note that every preimage of $z$ lies exactly in one $\wtilde{U}_l$. Finally, let $\wtilde{x}_1,\ldots,\wtilde{x}_d$ be the preimages of $x_0$. We will show that $\wtilde{x}_i$ and $\wtilde{x}_j$ belong to the same orbit of $\Mon(\gamma)$ if and only if $\lift{\alpha}{\wtilde{x}_i}(1)$ and $\lift{\alpha}{\wtilde{x}_j}(1)$ lie in the same $\wtilde{U}_l$. Since $f^{-1}(z)\cap \wtilde{U}_l$ has cardinality $k_l$ and $\pi(y)=[k_1,\ldots,k_r]$, this would complete the proof.
 
 Let $\wtilde{x}_i\in f^{-1}(x_0)$, $\wtilde{z}_1=\lift{\alpha}{\wtilde{x}_i}(1)$. Let $l$ be the unique index such that $\wtilde{z}_1\in\wtilde{U}_l$. For each $m\ge 1$, inductively define $\wtilde{z}_{m+1}=\lift{\beta}{\wtilde{z}_m}(1)$. Since the support of $\beta$ lies entirely in $U$, we have that the support of $\lift{\beta}{\wtilde{z}_m}$ lies entirely in $\wtilde{U}_l$ and, therefore, $\wtilde{z}_{m+1}\in\wtilde{U}_l$ as well. Since $\wtilde{U}_l$ is a trivializing neighborhood of $\wtilde{y}_l$, which has local degree $k_l$, it is easy to see that the sequence $\wtilde{z}_1,\wtilde{z}_2,\ldots$ is periodic of period $k_l$, and that $f^{-1}(z)\cap\wtilde{U}_l=\{\wtilde{z}_1,\ldots\wtilde{z}_{k_l}\}$. It is also clear that
 \[
@@ -215,7 +215,7 @@ From \Cref{hurwitz:th:monodromy-permutation-matches-partition} we can derive a g
 Let $\Sigma$ be a surface, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Let $ x_1,\ldots x_n\in\Sigma$ be distinct points; define $\holed{\Sigma}=\Sigma\setminus\{x_1,\ldots,x_n\}$. Fix a base-point $x_0\in\holed{\Sigma}$ and loops $\gamma_1,\ldots,\gamma_n\in\pi_1(\holed{\Sigma},x_0)$ around $x_1,\ldots,x_n$ respectively. Then the following are equivalent.
 \begin{enumerate}
 \item There exist a surface $\tSigma$ and a branched covering $\map{f}{\tSigma}{\Sigma}$ with branching datum $\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$.
-\item There exists a group homomorphism $\map{\psi}{\pi_1(\holed{\Sigma},x_0)}{\op{\symgroup[d]}}$ such that $\im(\psi)\subgroup\op{\symgroup[d]}$ acts transitively on $\{1,\ldots,d\}$ and $[\psi(\gamma_i)]=\pi_i$ for every $1\le i\le n$.
+\item There exists a group homomorphism $\map{\psi}{\pi_1(\holed{\Sigma},x_0)}{\op{\symgroup[d]}}$ such that $\psi(\pi_1(\holed{\Sigma},x_0))\subgroup\op{\symgroup[d]}$ acts transitively on $\{1,\ldots,d\}$ and $[\psi(\gamma_i)]=\pi_i$ for every $1\le i\le n$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -243,7 +243,7 @@ In this case, $\tSigma$ is necessarily orientable.
 \begin{proof}
 Let $\holed{\surf{g}}$ be the non-compact surface obtained by removing $n$ points $x_1,\ldots,x_n$ from $\Sigma_g$. Fix a base-point $x_0\in\holed{\surf{g}}$. Once we observe that $\pi_1(\holed{\surf{g}},x_0)$ has a presentation
 \[
-\pi_1(\holed{\surf{g}},x_0)=\langle a_1,\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid [b_1,c_1]\cdots[b_g,c_g]\cdot a_1\cdots a_n\rangle,
+\pi_1(\holed{\surf{g}},x_0)=\angled{a_1,\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid [b_1,c_1]\cdots[b_g,c_g]\cdot a_1\cdots a_n},
 \]
 where $a_i$ is a loop around $x_i$, the criterion follows immediately from \cref{hurwitz:th:monodromy-realizability-general}. The orientability of $\tSigma$ was already addressed in \cref{hurwitz:rm:orientability-of-tsigma}.
 \end{proof}
@@ -253,7 +253,7 @@ Given $\surf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there is at most one surface $\t
 \[
 \chi(\tSigma)=d\chi(\surf{g})-v(\pi_1)-\ldots-v(\pi_n)
 \]
-which, in turn, uniquely determines the orientable surface $\tSigma$. As an application, assume that we have a candidate datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$, and we find permutations in $\symgroup[d]$ satisfying conditions \ref{hurwitz:it:monodomy-realizability-orientable-first}--\ref{hurwitz:it:monodomy-realizability-orientable-last}. This implies that $\DD$ is realizable.
+which, in turn, uniquely determines the orientable surface $\tSigma$. As an application, assume that we have a candidate datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$, and we find permutations in $\symgroup[d]$ satisfying conditions \ref{hurwitz:it:monodomy-realizability-orientable-first}--\ref{hurwitz:it:monodomy-realizability-orientable-last}: this immediately implies that $\DD$ is realizable.
 \end{remark}
 
 Before stating the monodromy criterion for non-orientable surfaces, we recall a few basic facts about covering maps and orientability.
@@ -262,7 +262,7 @@ Given a non-orientable topological manifold $M$, let $\map{\omega}{\what{M}}{M}$
 \[
 \map{w}{\pi_1(M,x_0)}{\symgroup(\omega^{-1}(x_0))\iso\ZZ/2}.
 \]
-We denote the kernel of $w$ (which is a subgroup of $\pi_1(M,x_0)$ of index $2$) by $W(M,x_0)$. Note that $W=\omega_\ast(\pi_1(\what{M},\what{x}_0))$ for every base-point $\what{x}_0\in\omega^{-1}(x_0)$. Given a connected topological manifold $N$ and a covering map $\map{f}{N}{M}$, elementary properties of covering spaces imply that the following are equivalent:
+We denote the kernel of $w$ (which is a subgroup of $\pi_1(M,x_0)$ of index $2$) by $W(M,x_0)$. Note that $W=\omega_\ast(\pi_1(\what{M},\what{x}_0))$ for every base-point $\what{x}_0\in\omega^{-1}(x_0)$, where $\map{\omega_\ast}{\pi_1(\what{M},\what{x}_0}{\pi_1(M,x_0)}$ denotes the map induced by $\omega$ on the fundamental groups. Given a connected topological manifold $N$ and a covering map $\map{f}{N}{M}$, elementary properties of covering spaces imply that the following are equivalent:
 \begin{enumerate}
 \item $N$ is orientable;
 \item $f_\ast(\pi_1(N,y_0))\subgroup W(M,x_0)$ for every base-point $y_0\in f^{-1}(x_0)$;
@@ -276,14 +276,14 @@ Let $\nosurf{g}$ be the connected sum of $g\ge 1$ projective planes, $d\ge 1$ an
 \item $\beta_1^2\cdots\beta_g^2\cdot\alpha_1\cdots\alpha_n=1$;
 \item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
 \end{enumerate}
-In this case, $\tSigma$ is non-orientable if and only if there exists a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as a product of an odd number of $\beta_j$ and any number of $\alpha_i$.
+In this case, $\tSigma$ is non-orientable if and only if there exists a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as the product of an odd number of $\beta_j$ and any number of $\alpha_i$.
 \end{corollary}
 \begin{proof}
 The proof of the criterion is identical to that of \cref{hurwitz:th:monodromy-realizability-orientable}: simply let $\holed{\nosurf{g}}=\nosurf{g}\setminus\{x_1,\ldots,x_n\}$ and observe that there is a presentation
 \[
-\pi_1(\holed{\nosurf{g}},x_0)=\langle a_1,\ldots,a_n,b_1,\ldots,b_g\mid b_1^2\cdots b_g^2\cdot a_1\cdots a_n\rangle,
+\pi_1(\holed{\nosurf{g}},x_0)=\angled{a_1,\ldots,a_n,b_1,\ldots,b_g\mid b_1^2\cdots b_g^2\cdot a_1\cdots a_n},
 \]
-where $a_i$ is a loop around $x_i$. As far as the orientability of $\tSigma$ is concerned, note that $w(a_1)=\ldots=w(a_n)=0$, while $w(b_1)=\ldots=w(b_g)=1$. Let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\nosurf{g}}}$ be the covering map associated to the branched covering, and let $\map{\Mon}{\pi_1(\holed{\nosurf{g}},x_0)}{\symgroup[d]}$ be the monodromy homomorphism. Fix a base-point $\wtilde{x}_0\in f^{-1}(x_0)$; we have that $\holed{\tSigma}$ is orientable if and only if $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))\subgroup W(\holed{\nosurf{g}},x_0)$. Since $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))=\stab{\pi_1(\holed{\nosurf{g}},x_0)}{\wtilde{x}_0}$, it follows that $\holed{\tSigma}$ is non-orientable if and only if there exists a loop $c\in\pi_1(\holed{\nosurf{g}},x_0)$ such that $w(c)=1$ and $\wtilde{x}_0\mon c=\wtilde{x}_0$. By applying $\Mon$, we see that this is equivalent to the existence of a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as a product of an odd number of $\beta_j$ and an arbitrary number of $\alpha_i$; note that the exact fixed point does not matter, since the subgroup generated by the $\alpha_i$ and $\beta_j$ acts transitively on $\{1,\ldots,d\}$. Finally, observe that $\holed{\tSigma}$ is orientable if and only if $\tSigma$ is.
+where $a_i$ is a loop around $x_i$. As far as the orientability of $\tSigma$ is concerned, note that $w(a_1)=\ldots=w(a_n)=0$, while $w(b_1)=\ldots=w(b_g)=1$. Let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\nosurf{g}}}$ be the covering map associated to the branched covering, and let $\map{\Mon}{\pi_1(\holed{\nosurf{g}},x_0)}{\symgroup[d]}$ be the monodromy homomorphism. Fix a base-point $\wtilde{x}_0\in f^{-1}(x_0)$; we have that $\holed{\tSigma}$ is orientable if and only if $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))\subgroup W(\holed{\nosurf{g}},x_0)$. Since $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))=\stab{\pi_1(\holed{\nosurf{g}},x_0)}{\wtilde{x}_0}$, it follows that $\holed{\tSigma}$ is non-orientable if and only if there exists a loop $c\in\pi_1(\holed{\nosurf{g}},x_0)$ such that $w(c)=1$ and $\wtilde{x}_0\mon c=\wtilde{x}_0$. By applying $\Mon$, we see that this is equivalent to the existence of a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as the product of an odd number of $\beta_j$ and an arbitrary number of $\alpha_i$; note that the exact fixed point does not matter, since the subgroup generated by the $\alpha_i$ and $\beta_j$ acts transitively on $\{1,\ldots,d\}$. Finally, observe that $\holed{\tSigma}$ is orientable if and only if $\tSigma$ is.
 \end{proof}
 
 
@@ -335,6 +335,6 @@ v(\beta_1^2\cdots\beta_g^2)&if $\Sigma$ is non-orientable
 \]
 But commutators and squares are even permutations, therefore
 \[
-v(\pi_1)+\ldots+v(\pi_n)=v(\alpha_1)+\ldots v(\alpha_n)\equiv v(\alpha_1\cdots\alpha_n)\equiv 0\pmod{2}.
+v(\pi_1)+\ldots+v(\pi_n)=v(\alpha_1)+\ldots v(\alpha_n)\equiv v(\alpha_1\cdots\alpha_n)\equiv 0\pmod{2}.\qedhere
 \]
 \end{proof}

@@ -11,7 +11,7 @@ Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $
 \item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
 \item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
 \item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
-\item $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}$ with $h\ge 2$, $k\ge 2$, $1\le l<h$.
+\item $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le h-1$.
 \end{enumerate}
 \end{theorem}
 
@@ -21,7 +21,7 @@ Let $\DD=\datum{\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate da
 
 \section{Realizability on the torus for $n=3$}
 
-\begin{theorem}
+\begin{theorem} \label{short-partition:th:realizability-on-torus-n-3}
 Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it satisfies one of the following.
 \begin{enumerate}[(1)]
 \item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
@@ -50,49 +50,47 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate dat
 \begin{proof}
 We will proceed by induction on $n$. We start with the base case $n=4$, which requires the heaviest casework. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3,[s,d-s]}$.
 \begin{itemize}
-\item If $d\le 16$, realizability can be checked by a computer. The only exceptional data are:
+\item If $d\le 16$, realizability can be checked by a computer\todo{Link to the appendix}. The only exceptional data are:
 \begin{enumerate}[(1)]
 \item $\DD=\datum{\surf{1}}{4}{[2, 2],[2, 2],[2, 2],[1, 3]}$;
 \item $\DD=\datum{\surf{2}}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$.
 \end{enumerate}
 \item If $g=0$, then $\DD$ is realizable by \cref{short-partition:th:realizability-on-sphere-n-ge-4}.
-\item Assume that the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le 3$; up to reindexing, we can assume that $v(\pi_1)+v(\pi_2)<d$. By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$. Consider the candidate datum
+\item Assume that the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le 3$; up to reindexing, we can assume that $v(\pi_1)+v(\pi_2)<d$. \Cref{combinatorial-move:a:small-v} gives
 \[
-\DD'=\datum{\surf{g}}{d}{[\alpha_1\alpha_2],\pi_3,[s,d-s]}.
+\DD\cmove\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,[s,d-s]}
 \]
-A standard reduction argument implies that $\DD$ is realizable provided that $\DD'$ is. If $g\ge 2$, then $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. If instead $g=1$, then $\DD'$ is realizable unless
+for a suitable candidate datum $\DD'$, where $v(\pi_1')=v(\pi_1)+v(\pi_2)$. If $g\ge 2$, then $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. If instead $g=1$, then $\DD'$ is realizable by \cref{short-partition:th:realizability-on-torus-n-3} unless
 \[
 \text{$\DD'=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $2k=d$.}
 \]
-If this is the case, then $s=k$ and $\{[\alpha_1\alpha_2],\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable.
+If this is the case, then $s=k$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
 \begin{itemize}
-\item If $[\alpha_1\alpha_2]=[2,\ldots,2]$, then $v(\alpha_1\alpha_2)=k$ and $v(\pi_3)=k+2$. Assume without loss of generality that $v(\pi_1)\le k/2$. We have that
+\item If $\pi_1'=[2,\ldots,2]$, then $v(\pi_1')=k$ and $v(\pi_3)=k+2$. Assume without loss of generality that $v(\pi_1)\le k/2$. We have that
 \[
 k+2<1+k+2\le v(\pi_1)+v(\pi_3)\le \frac{k}{2}+k+2<d.
 \]
 Repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item If $\pi_3=[2,\ldots,2]$ and $v(\pi_1)\not\in\{2,k,k+1\}$ then $v(\pi_1)+v(\pi_3)<d$ and $v(\pi_1)+v(\pi_3)\not\in\{k,k+2\}$. Therefore, repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item If $\pi_3=[2,\ldots,2]$, $v(\pi_1)=2$ and $\pi_2\neq [2,\ldots,2]$, then repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
-\item If $\pi_2=\pi_3=[2,\ldots,2]$, we follow a different approach. By \cref{monodromy:th:product-reduction-large-v-even}, we can find permutations $\beta_2,\beta_3\in\symgroup[d]$ with $[\beta_2]=[\beta_3]=[2,\ldots,2]$ such that $[\beta_2\beta_3]=[k,k]$. It is easy to see that $\DD''=\datum{\sphere{}}{2k}{\pi_1,[k,k],[k,k]}$ is a candidate datum, and it is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}. A reduction argument implies that $\DD$ is realizable as well.
+\item If $\pi_2=\pi_3=[2,\ldots,2]$, we follow a different approach. By applying \cref{combinatorial-move:a:large-v} to the partitions $\pi_2$ and $\pi_3$ we get
+\[
+\DD\cmove\DD''=\datum{\sphere{}}{d}{\pi_1,[k,k],[k,k]}.
+\]
+But $\DD''$ is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}, so $\DD$ is realizable as well.
 \end{itemize}
 
 Up to swapping $\pi_1$ and $\pi_2$, this analysis covers all the possible cases.
-\item Otherwise, the inequality $v(\pi_i)+v(\pi_j)\ge d$ holds for every $1\le i<j\le 3$. In particular, up to reindexing, we can assume that $v(\pi_3)\ge d/2$. \Cref{monodromy:th:product-reduction-large-v} gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let
+\item Otherwise, the inequality $v(\pi_i)+v(\pi_j)\ge d$ holds for every $1\le i<j\le 3$. In particular, up to reindexing, we can assume that $v(\pi_3)\ge d/2$. Note that $v(\pi_1)+v(\pi_2)\ge d$ and $v(\pi_3)+v([s,d-s])\ge 1+d-2=d-1$, so \cref{combinatorial-move:a:large-v} gives
 \[
-g'=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+d-2)-d+1\ge\frac{1}{2}\left(d-2+\frac{d}{2}+d-2\right)-d+1=\frac{d}{4}-1\ge 2.
+\DD\cmove\DD'=\datum{\surf{g'}}{d}{\pi_1',\pi_3,[s,d-s]}
 \]
-It is easy to see that $\DD'=\datum{\surf{g'}}{d}{[\alpha_1,\alpha_2],\pi_3,[s,d-s]}$ is candidate datum, and it is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}. A reduction argument implies that $\DD$ is realizable as well.
+for a suitable candidate datum $\DD'$, where $v(\pi_1')\ge d-2$. We can actually compute
+\[
+g'=\frac{1}{2}(v(\pi_1')+v(\pi_3)+v([s,d-s])-d+1\ge\frac{1}{2}\left(d-2+\frac{d}{2}+d-2\right)-d+1=\frac{d}{4}-1\ge 2.
+\]
+Therefore $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}, and $\DD$ is realizable as well.
 \end{itemize}
 
-We now turn to the case $n\ge 5$; we will show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, a computer-aided search shows that $\DD$ is realizable. Otherwise, we once again employ a reduction argument.
-\begin{itemize}
-\item If the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le n-1$, it is now routine to show that $\DD$ is realizable.
-\item Otherwise, the inequality $v(\pi_i)+v(\pi_j)\ge d$ holds for every $1\le i<j\le n-1$. By \cref{monodromy:th:product-reduction-large-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)\ge d-2$. Let
-\begin{align*}
-g'&=\frac{1}{2}(v(\alpha_1\alpha_2)+v(\pi_3)+\ldots+v(\pi_{n-1})+d-2)-d+1\\
-&\ge\frac{1}{2}(d-2+d+d-2)-d+1\\
-&=\frac{d}{2}-1\ge 0.
-\end{align*}
-It is easy to see that $\DD'=\datum{\surf{g'}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_{n-1},[s,d-s]}$ is a candidate datum, and it is realizable by induction. The usual reduction argument implies that $\DD$ is realizable as well.\qedhere
-\end{itemize}
+We now turn to the case $n\ge 5$; we show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, a computer-aided search\todo{Link to the appendix} shows that $\DD$ is realizable. Otherwise, the routine reduction argument relying on \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} shows that $\DD$ is realizable. \qedhere
 \end{proof}
