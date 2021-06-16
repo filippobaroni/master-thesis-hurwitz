@@ -1,7 +1,6 @@
 \ProvidesPackage{mystyle-global}
 
 
-
 % Groups
 \NewDocumentCommand{\symgroup}{o}{%
 \mathfrak{S}\IfValueT{#1}{_{#1}}
@@ -39,6 +38,7 @@
 
 \NewDocumentCommand{\cat}{}{\ast}
 \NewDocumentCommand{\invpath}{m}{\iota(#1)}
+\NewDocumentCommand{\interior}{m}{\accentset{\circ}{#1}}
 
 \setbox1=\hbox{$\bullet$}
 \newlength{\holedbulletraise}
@@ -63,7 +63,7 @@
 \NewDocumentCommand{\CC}{}{\mathbb{C}}
 \NewDocumentCommand{\ZZ}{}{\mathbb{Z}}
 \NewDocumentCommand{\subs}{}{\subseteq}
-\NewDocumentCommand{\card}{m}{\left\lvert #1\right\rvert}
+\NewDocumentCommand{\card}{m}{\lvert #1\rvert}
 \let\setminus\smallsetminus
 
 
@@ -82,6 +82,13 @@
 &&#4&\longmapsto#5
 \end{alignedat}
 }
+
+
+% Dessins d'enfant
+\NewDocumentCommand{\dessin}{}{\emph{dessin d'enfant}}
+\NewDocumentCommand{\Dessin}{}{\emph{Dessin d'enfant}}
+\NewDocumentCommand{\dessins}{}{\emph{dessins d'enfant}}
+\NewDocumentCommand{\Dessins}{}{\emph{Dessins d'enfant}}
 
 
 % Other aliases

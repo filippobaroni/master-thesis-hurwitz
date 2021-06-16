@@ -1,0 +1,66 @@
+\chapter{\texorpdfstring{\Dessins{}}{Dessins d'enfant}}
+
+\section{Child's drawings on surfaces}
+
+In \cref{monodromy:sc:combinatorial-moves}, we discussed how the Hurwitz existence problem can be reduced to the analysis of candidate data on the sphere. Moreover, thanks to \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v}, we have devised a relatively reliable technique to decrease the number $n$ of partitions; this technique was successfully employed in \cref{monodromy:sec:results-sphere} to show the realizability of a wide variety of candidate data by induction on $n$, starting from the base case $n=3$. Ignoring the cases where $n\le 2$, which were fully analyzed in \cref{monodromy:sc:combinatorial-moves}, it should come as no surprise that candidate data with $n=3$ play a very important role in the study of the existence problem.
+
+Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\Dessin{}'' is French for ``child's drawing'', hence the title of this section.} was introduced by Grothendieck in \cite{??}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \cite{??}.
+
+We start by introducing some basic terminology about graphs. Given a surface $\Sigma$, a \emph{graph} embedded in $\Sigma$ (or, simply, a graph on $\Sigma$) is a closed subspace $\Gamma\subs\Sigma$ consisting of:
+\begin{itemize}
+\item a finite number of points $x_1,\ldots,x_r\in\Sigma$, called \emph{vertices};
+\item a finite number of segments (subspaces homeomorphic to $[0,1]$) $e_1,\ldots,e_d\subs\Sigma$, called \emph{edges}; we require that each edge connects two (not necessarily distinct) vertices, and that the interiors of two edges are disjoint; in other words, two edges may intersect at most at their endpoints; moreover, a vertex cannot lie on the interior of an edge.
+\end{itemize}
+The \emph{degree} of a vertex $x$ is the number of edges having $x$ as an endpoint; edges connecting $x$ to itself are counted twice; we denote the degree of $x$ by $k(x)$. In order to avoid unpleasant corner cases, we will always require that there are no \emph{isolated vertices} or, in other words, that $k(x)\ge 1$ for every vertex $x$.
+
+A \emph{bipartite graph} is a graph whose vertices are colored either black or white, and each edge connects a black vertex and a white one. If we denote the black vertices by $x_1,\ldots,x_r$ and the white vertices by $y_1,\ldots,y_s$, an easy counting argument shows that
+\[
+k(x_1)+\ldots+k(x_r)=k(y_1)+\ldots+k(y_s)=d,
+\]
+where $d$ is the number of edges.
+
+Given a graph $\Gamma$ on a surface $\Sigma$, the space $\Sigma\setminus\Gamma$ is a disjoint union of a finite number of non-compact surfaces $S_1\sqcup\ldots\sqcup S_h$. Fix one of these \emph{complementary regions}, say $S_i$. By traveling along its boundary, always keeping $S_i$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $S_i$, and denote by $\partial S_i$. Note that the same edge can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial S_i$. The number of edges (with multiplicity) of $\partial S_i$ is the \emph{perimeter} of $S_i$, denoted by $\card{\partial S_i}$.\todo{The definition is not very formal, examples incoming.} Again, an easy counting argument shows that
+\[
+\card{\partial S_1}+\ldots+\card{\partial S_h}=2d.
+\]
+
+We are finally ready to give the definition of the much anticipated \dessins{}.
+
+\begin{definition}
+Let $\Sigma$ be a surface. A \emph{\dessin{}} on $\Sigma$ is a bipartite graph $\Gamma\subs\Sigma$ whose complementary regions are topological disks.
+\end{definition}
+
+\todo{Examples of \dessins{}.}
+
+If $\Gamma$ is a \dessin{} on $\Sigma$ (or, actually, any bipartite graph), it is easy to see that the perimeters of its complementary regions are even: in fact, when traveling along the boundary of a region, we alternately encounter black and white vertices, so an even number of edges is required to get back to the starting color.
+
+\begin{definition}
+Let $\Gamma$ be a \dessin{} on a surface $\Sigma$; let $d$ be the number of edges. Let $x_1,\ldots,x_r$ be the black vertices, $y_1,\ldots,y_s$ the white ones. Denote by $D_1,\ldots,D_h$ be the complementary regions of $\Gamma$. The \emph{branching datum} of $\Gamma$ is the tuple
+\[
+\DD(\Gamma)=\datum{\Sigma,\sphere{}}{d}{[k(x_1),\ldots,k(x_r)],[k(y_1),\ldots,k(y_s)],[\card{\partial D_1}/2,\ldots,\card{\partial D_h}/2]}.
+\]
+\end{definition}
+
+From the discussion above, we immediately see that $\DD(\Gamma)$ is a combinatorial datum, since
+\[
+k(x_1)+\ldots+k(x_r)=k(y_1)+\ldots+k(y_s)=\card{\partial D_1}/2+\ldots+\card{\partial D_h}/2=d.
+\]
+Actually, if $\Sigma$ is orientable, $\DD(\Gamma)$ is a candidate datum: by the Euler formula,
+\[
+\chi(\Sigma)=r+s-d+h=2d-v(\pi_1)-v(\pi_2)-v(\pi_3),
+\]
+where $\pi_1=[k(x_1),\ldots,k(x_r)]$, $\pi_2=[k(y_1),\ldots,k(y_s)]$ and $\pi_3=[\card{\partial D_1}/2,\ldots,\card{\partial D_h}/2]$. This is no coincidence, just like the name ``branching datum of $\Gamma$'' was not picked at random: the following result establishes a strong connection between \dessins{} and realizable combinatorial data.
+
+\begin{proposition}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a combinatorial datum. Then $\DD$ is realizable if and only if there exists a \dessin{} $\Gamma\subs\Sigma_g$ with $\DD(\Gamma)=\DD$.
+\end{proposition}
+\begin{proof}
+Assume that $\DD$ is realized by a branched covering $\map{f}{\surf{g}}{\sphere{}}$. Let $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$, $\{\wtilde{y}_1,\ldots,\wtilde{y}_s\}=f^{-1}(y)$, $\{\wtilde{z}_1,\ldots,\wtilde{z}_h\}=f^{-1}(z)$. Fix a segment $e\subs\sphere$ connecting $x$ and $y$; we claim that $\Gamma=f^{-1}(e)$ is the desired \dessin{}. Let $\interior{e}$ be the interior of $e$ (that is, $\interior{e}=e\setminus\{x,y\}$). First of all, note that $f^{-1}(\interior{e})$ is the disjoint union of $d$ open segments $\interior{e}_1,\ldots,\interior{e}_d$, since the restriction of $f$ to $\sphere{}\setminus\{x,y,z\}$ is a covering map of degree $d$. Moreover, it is easy to see that the closure of each $\interior{e}_i$ is a closed segment $e_i$ connecting one point in $f^{-1}(x)$ and one point of $f^{-1}(y)$; it follows that $\Gamma$ is a bipartite graph on $\surf{g}$, with black vertices $\wtilde{x}_1,\ldots,\wtilde{x}_r$ and white vertices $\wtilde{y}_1,\ldots,\wtilde{y}_s$. Consider a vertex $\wtilde{x}_i$; recall that $f$ is locally modeled on the complex map $\xi\mapsto\xi^k$, where $k=k(\wtilde{x}_i)$ is the local degree of $\wtilde{x}_i$. As a consequence, we immediately see that there are exactly $k(\wtilde{x}_i)$ edges of $\Gamma$ with $\wtilde{x}_i$ as an endpoint; of course, the same holds for every $\wtilde{y}_j$. Finally, we turn to the complementary regions of $\Gamma$. Let $D=\sphere{}\setminus e\iso\RR^2$, $\holed{D}=D\setminus\{z\}\iso\RR^2\setminus\{0\}$. The restriction of $f$ to $f^{-1}(\holed{D})=\surf{g}\setminus(\Gamma\cup\{\wtilde{z}_1,\ldots,\wtilde{z}_h\})$ is a covering map of the punctured disk $\holed{D}$. It is then easy to see that the complementary regions of $\Gamma$ are discs $\wtilde{D}_1,\ldots,\wtilde{D}_h$, with $\wtilde{z}_i\in\wtilde{D}_i$ for each $1\le i\le h$, and that the restriction $\map{f}{\wtilde{D}_i}{D}$ is modeled the complex map $\xi\mapsto\xi^{k(\wtilde{z}_i)}$. Since the perimeter of $D$ is $2$, we have that $\card{\partial\wtilde{D}_i}=2 k(\wtilde{z}_i)$; this concludes the proof of the equality $\DD(f)=\DD(\Gamma)$.
+
+Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$. First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map\todo{Picture much needed.} $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
+\begin{diagram}
+\partial K\dar{\phi}\ar[dr,"\psi"]\\
+\Gamma\rar{f}&e
+\end{diagram}
+commutes, $\psi$ is a local homeomorphism in $\interior{K}\setminus\{0\}$ and it is modeled on $\xi\mapsto\xi^k$ in a neighborhood of $0\in K$; in particular $k$ will necessarily be equal to half the perimeter of $\wtilde{D}$. We can now extend $f$ to $\wtilde{D}$ by setting $f(\wtilde{x})=\psi(\phi^{-1}(\wtilde{x}))$ for every $\wtilde{x}\in\wtilde{D}$. After repeating the process for all the complementary regions, it is not hard to verify that the map $\map{f}{\tSigma}{\sphere{}}$ we have obtained is a branched covering with branching points $x,y,z\in\sphere{}$. Since $\Gamma=f^{-1}(e)$, the first\todo{Namely, $\Rightarrow$.} part of the proof implies that $\DD(\Gamma)=\DD(f)$.
+\end{proof}

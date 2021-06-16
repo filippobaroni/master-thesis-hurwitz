@@ -10,7 +10,7 @@ There is a structure theorem which completely classifies orientable and non-orie
 \item A non-orientable surface is (homeomorphic to) a connected sum of $g\ge 1$ real projective planes. We denote such a connected sum by $\nosurf{g}$. The Euler characteristic for a non-orientable surfaces is given by $\chi(\nosurf{g})=2-g$.
 \end{itemize}
 
-Loosely speaking, given two surfaces $\Sigma,\tSigma$, a \emph{covering map} between them is a continuous function $\map{f}{\tSigma}{\Sigma}$ which is locally modeled on the identity function $\umap{\RR^2}{\RR^2}$. Sometimes, however, the notion of covering map can be too restrictive. Consider, for instance, the sphere $\sphere{}$: being simply connected, it does not admit any non-trivial coverings. However, every (non-constant) homolorphic function $\umap{\sphere{}}{\sphere{}}$ is \emph{almost} a covering map, in the sense that it is locally modeled on the identity $\umap{\CC}{\CC}$, except for a finite number of \emph{branching points}, where it looks like the map
+Loosely speaking, given two surfaces $\Sigma$, $\tSigma$, a \emph{covering map} between them is a continuous function $\map{f}{\tSigma}{\Sigma}$ which is locally modeled on the identity function $\umap{\RR^2}{\RR^2}$. Sometimes, however, the notion of covering map can be too restrictive. Consider, for instance, the sphere $\sphere{}$: being simply connected, it does not admit any non-trivial coverings. However, every (non-constant) homolorphic function $\umap{\sphere{}}{\sphere{}}$ is \emph{almost} a covering map, in the sense that it is locally modeled on the identity $\umap{\CC}{\CC}$, except for a finite number of \emph{branching points}, where it looks like the map
 \[
 \Map{F_k}{\CC}{\CC}{z}{z^k}
 \]
@@ -25,7 +25,7 @@ Let $\Sigma,\tSigma$ be two surfaces. A continuous function $\map{f}{\tSigma}{\S
 commutes ($F_k$ is the map defined above). We say that $\wtilde{U}$ is a \emph{trivializing neighborhood} of $\wtilde{x}$.
 \end{definition}
 
-More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $z\mapsto z^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{local degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will sometimes denote it by $k(\wtilde{x})$.
+More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $z\mapsto z^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{local degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will denote it by $k(\wtilde{x})$.
 
 A point $\wtilde{x}\in\tSigma$ is called a \emph{branching point} if $k(\wtilde{x})>1$; in other words, if $f$ is \emph{not} a local homeomorphism in a neighborhood of $\wtilde{x}$. We also say that a point $x\in\Sigma$ is a \emph{branching point} if $f^{-1}(x)$ contains at least one branching point; usually, no ambiguity will arise as to which kind of branching point we are referring to.
 
@@ -123,7 +123,7 @@ It would be natural to ask whether the necessary conditions we have enumerated a
 Determine necessary and sufficient conditions for a candidate datum $\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ to be realizable.
 \end{hurwitz-existence-problem*}
 
-In the remainder of this thesis, we will try to address some instances of this problem. We will present a variety of techniques, which will provide us with a full solution for a few classes of candidate data.
+In the remainder of this thesis, we will try to address some instances of this problem. We will present a variety of techniques, which will provide us with a full solution for some classes of candidate data.
 
 
 \section{Symmetric group and partitions}
