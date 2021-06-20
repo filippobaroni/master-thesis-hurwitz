@@ -34,7 +34,7 @@
 % References
 \usepackage{hyperref}
 \hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
-\usepackage{cleveref}
+\usepackage[capitalize]{cleveref}
 \NewDocumentCommand{\RH}{}{\hyperref[hurwitz:th:riemann-hurwitz-formula]{Riemann-Hurwitz}}
 
 
@@ -49,10 +49,11 @@
 \declaretheorem[style=remark,numberwithin=chapter]{remark}
 \declaretheorem[numbered=no,name={Hurwitz existence problem},style=definition]{hurwitz-existence-problem*}
 \declaretheorem[numbered=no,name={Prime-degree conjecture}]{prime-degree-conjecture*}
-%\declaretheoremstyle[headformat={\NAME.\NUMBER \NOTE}]{combinatorial move}
-\declaretheorem[name={Combinatorial move},refname={combinatorial move,combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmovea}
+\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmovea}
+\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmoveb}
 \makeatletter
 \renewcommand{\thecombinatorialmovea}{A.\arabic{combinatorialmovea}}
+\renewcommand{\thecombinatorialmoveb}{B.\arabic{combinatorialmoveb}}
 \makeatother
 
 
@@ -71,6 +72,13 @@
 \usepackage[short labels]{enumitem}
 \setenumerate{label=(\roman*)}
 \setlist[itemize]{label=\raisebox{0.2\height}{\scalebox{0.6}{\faFire}}}
+\NewDocumentEnvironment{assumptions}{}{\begin{itemize}}{\end{itemize}}
+
+
+% Bibliography
+\usepackage[doi=false,isbn=false,url=false]{biblatex}
+\addbibresource{bibliography.bib}
+\NewDocumentCommand{\resultcite}{mmm}{\cite[\MakeUppercase #1~#2]{#3}}
 
 
 % Todos

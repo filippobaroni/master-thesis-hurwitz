@@ -2,9 +2,9 @@
 
 \section{Child's drawings on surfaces}
 
-In \cref{monodromy:sc:combinatorial-moves}, we discussed how the Hurwitz existence problem can be reduced to the analysis of candidate data on the sphere. Moreover, thanks to \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v}, we have devised a relatively reliable technique to decrease the number $n$ of partitions; this technique was successfully employed in \cref{monodromy:sec:results-sphere} to show the realizability of a wide variety of candidate data by induction on $n$, starting from the base case $n=3$. Ignoring the cases where $n\le 2$, which were fully analyzed in \cref{monodromy:sc:combinatorial-moves}, it should come as no surprise that candidate data with $n=3$ play a very important role in the study of the existence problem.
+In \cref{monodromy:sc:combinatorial-moves}, we discussed how the Hurwitz existence problem can be reduced to the analysis of candidate data on the sphere. Moreover, thanks to \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v}, we have devised a relatively reliable technique to decrease the number $n$ of partitions; this technique was successfully employed in \cref{monodromy:sc:results-sphere} to show the realizability of a wide variety of candidate data by induction on $n$, starting from the base case $n=3$. Ignoring the cases where $n\le 2$, which were fully analyzed in \cref{monodromy:sc:combinatorial-moves}, it should come as no surprise that candidate data with $n=3$ play a very important role in the study of the existence problem.
 
-Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\Dessin{}'' is French for ``child's drawing'', hence the title of this section.} was introduced by Grothendieck in \cite{??}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \cite{??}.
+Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\emph{\Dessin{}}'' is French for ``child's drawing'', hence the title of this section.} was popularized by Grothendieck in \cite{grothendieck}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \resultcite{definition}{3.1}{pervova}.
 
 We start by introducing some basic terminology about graphs. Given a surface $\Sigma$, a \emph{graph} embedded in $\Sigma$ (or, simply, a graph on $\Sigma$) is a closed subspace $\Gamma\subs\Sigma$ consisting of:
 \begin{itemize}
@@ -19,7 +19,7 @@ k(x_1)+\ldots+k(x_r)=k(y_1)+\ldots+k(y_s)=d,
 \]
 where $d$ is the number of edges.
 
-Given a graph $\Gamma$ on a surface $\Sigma$, the space $\Sigma\setminus\Gamma$ is a disjoint union of a finite number of non-compact surfaces $S_1\sqcup\ldots\sqcup S_h$. Fix one of these \emph{complementary regions}, say $S_i$. By traveling along its boundary, always keeping $S_i$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $S_i$, and denote by $\partial S_i$. Note that the same edge can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial S_i$. The number of edges (with multiplicity) of $\partial S_i$ is the \emph{perimeter} of $S_i$, denoted by $\card{\partial S_i}$.\todo{The definition is not very formal, examples incoming.} Again, an easy counting argument shows that
+Given a graph $\Gamma$ on a surface $\Sigma$, the space $\Sigma\setminus\Gamma$ is a disjoint union of a finite number of non-compact surfaces $S_1\sqcup\ldots\sqcup S_h$. Fix one of these \emph{complementary regions}, say $S_i$. By traveling along its boundary, always keeping $S_i$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $S_i$, and denote by $\partial S_i$. Note that the same edge $e$ can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial S_i$, and we will say that $e$ is \emph{enveloped} by $S_i$. The number of edges (with multiplicity) of $\partial S_i$ is the \emph{perimeter} of $S_i$, denoted by $\card{\partial S_i}$.\todo{The definition is not very formal, examples incoming.} Again, an easy counting argument shows that
 \[
 \card{\partial S_1}+\ldots+\card{\partial S_h}=2d.
 \]
@@ -51,16 +51,113 @@ Actually, if $\Sigma$ is orientable, $\DD(\Gamma)$ is a candidate datum: by the 
 \]
 where $\pi_1=[k(x_1),\ldots,k(x_r)]$, $\pi_2=[k(y_1),\ldots,k(y_s)]$ and $\pi_3=[\card{\partial D_1}/2,\ldots,\card{\partial D_h}/2]$. This is no coincidence, just like the name ``branching datum of $\Gamma$'' was not picked at random: the following result establishes a strong connection between \dessins{} and realizable combinatorial data.
 
-\begin{proposition}
+\begin{proposition}\label{dessins:th:dessins-realizability}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a combinatorial datum. Then $\DD$ is realizable if and only if there exists a \dessin{} $\Gamma\subs\Sigma_g$ with $\DD(\Gamma)=\DD$.
 \end{proposition}
 \begin{proof}
-Assume that $\DD$ is realized by a branched covering $\map{f}{\surf{g}}{\sphere{}}$. Let $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$, $\{\wtilde{y}_1,\ldots,\wtilde{y}_s\}=f^{-1}(y)$, $\{\wtilde{z}_1,\ldots,\wtilde{z}_h\}=f^{-1}(z)$. Fix a segment $e\subs\sphere$ connecting $x$ and $y$; we claim that $\Gamma=f^{-1}(e)$ is the desired \dessin{}. Let $\interior{e}$ be the interior of $e$ (that is, $\interior{e}=e\setminus\{x,y\}$). First of all, note that $f^{-1}(\interior{e})$ is the disjoint union of $d$ open segments $\interior{e}_1,\ldots,\interior{e}_d$, since the restriction of $f$ to $\sphere{}\setminus\{x,y,z\}$ is a covering map of degree $d$. Moreover, it is easy to see that the closure of each $\interior{e}_i$ is a closed segment $e_i$ connecting one point in $f^{-1}(x)$ and one point of $f^{-1}(y)$; it follows that $\Gamma$ is a bipartite graph on $\surf{g}$, with black vertices $\wtilde{x}_1,\ldots,\wtilde{x}_r$ and white vertices $\wtilde{y}_1,\ldots,\wtilde{y}_s$. Consider a vertex $\wtilde{x}_i$; recall that $f$ is locally modeled on the complex map $\xi\mapsto\xi^k$, where $k=k(\wtilde{x}_i)$ is the local degree of $\wtilde{x}_i$. As a consequence, we immediately see that there are exactly $k(\wtilde{x}_i)$ edges of $\Gamma$ with $\wtilde{x}_i$ as an endpoint; of course, the same holds for every $\wtilde{y}_j$. Finally, we turn to the complementary regions of $\Gamma$. Let $D=\sphere{}\setminus e\iso\RR^2$, $\holed{D}=D\setminus\{z\}\iso\RR^2\setminus\{0\}$. The restriction of $f$ to $f^{-1}(\holed{D})=\surf{g}\setminus(\Gamma\cup\{\wtilde{z}_1,\ldots,\wtilde{z}_h\})$ is a covering map of the punctured disk $\holed{D}$. It is then easy to see that the complementary regions of $\Gamma$ are discs $\wtilde{D}_1,\ldots,\wtilde{D}_h$, with $\wtilde{z}_i\in\wtilde{D}_i$ for each $1\le i\le h$, and that the restriction $\map{f}{\wtilde{D}_i}{D}$ is modeled the complex map $\xi\mapsto\xi^{k(\wtilde{z}_i)}$. Since the perimeter of $D$ is $2$, we have that $\card{\partial\wtilde{D}_i}=2 k(\wtilde{z}_i)$; this concludes the proof of the equality $\DD(f)=\DD(\Gamma)$.
+Assume that $\DD$ is realized by a branched covering $\map{f}{\surf{g}}{\sphere{}}$. Let $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$, $\{\wtilde{y}_1,\ldots,\wtilde{y}_s\}=f^{-1}(y)$, $\{\wtilde{z}_1,\ldots,\wtilde{z}_h\}=f^{-1}(z)$. Fix a segment $e\subs\sphere$ connecting $x$ and $y$ (and avoiding $z$); we claim that $\Gamma=f^{-1}(e)$ is the desired \dessin{}. Let $\interior{e}$ be the interior of $e$ (that is, $\interior{e}=e\setminus\{x,y\}$). First of all, note that $f^{-1}(\interior{e})$ is the disjoint union of $d$ open segments $\interior{e}_1,\ldots,\interior{e}_d$, since the restriction of $f$ to $\sphere{}\setminus\{x,y,z\}$ is a covering map of degree $d$. Moreover, it is easy to see that the closure of each $\interior{e}_i$ is a closed segment $e_i$ connecting one point in $f^{-1}(x)$ and one point of $f^{-1}(y)$; it follows that $\Gamma$ is a bipartite graph on $\surf{g}$, with black vertices $\wtilde{x}_1,\ldots,\wtilde{x}_r$ and white vertices $\wtilde{y}_1,\ldots,\wtilde{y}_s$. Consider a vertex $\wtilde{x}_i$; recall that $f$ is locally modeled on the complex map $\xi\mapsto\xi^k$, where $k=k(\wtilde{x}_i)$ is the local degree of $\wtilde{x}_i$. As a consequence, we immediately see that there are exactly $k(\wtilde{x}_i)$ edges of $\Gamma$ with $\wtilde{x}_i$ as an endpoint; of course, the same holds for every $\wtilde{y}_j$. Finally, we turn to the complementary regions of $\Gamma$. Let $D=\sphere{}\setminus e\iso\RR^2$, $\holed{D}=D\setminus\{z\}\iso\RR^2\setminus\{0\}$. The restriction of $f$ to $f^{-1}(\holed{D})=\surf{g}\setminus(\Gamma\cup\{\wtilde{z}_1,\ldots,\wtilde{z}_h\})$ is a covering map of the punctured disk $\holed{D}$. It is then easy to see that the complementary regions of $\Gamma$ are discs $\wtilde{D}_1,\ldots,\wtilde{D}_h$, with $\wtilde{z}_i\in\wtilde{D}_i$ for each $1\le i\le h$, and that the restriction $\map{f}{\wtilde{D}_i}{D}$ is modeled the complex map $\xi\mapsto\xi^{k(\wtilde{z}_i)}$. Since the perimeter of $D$ is $2$, we have that $\card{\partial\wtilde{D}_i}=2 k(\wtilde{z}_i)$; this concludes the proof of the equality $\DD(f)=\DD(\Gamma)$.
 
-Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$. First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map\todo{Picture much needed.} $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
+Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$ (and avoiding $z$). First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map\todo{Picture much needed.} $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
 \begin{diagram}
 \partial K\dar{\phi}\ar[dr,"\psi"]\\
 \Gamma\rar{f}&e
 \end{diagram}
 commutes, $\psi$ is a local homeomorphism in $\interior{K}\setminus\{0\}$ and it is modeled on $\xi\mapsto\xi^k$ in a neighborhood of $0\in K$; in particular $k$ will necessarily be equal to half the perimeter of $\wtilde{D}$. We can now extend $f$ to $\wtilde{D}$ by setting $f(\wtilde{x})=\psi(\phi^{-1}(\wtilde{x}))$ for every $\wtilde{x}\in\wtilde{D}$. After repeating the process for all the complementary regions, it is not hard to verify that the map $\map{f}{\tSigma}{\sphere{}}$ we have obtained is a branched covering with branching points $x,y,z\in\sphere{}$. Since $\Gamma=f^{-1}(e)$, the first\todo{Namely, $\Rightarrow$.} part of the proof implies that $\DD(\Gamma)=\DD(f)$.
 \end{proof}
+
+\section{Unwinding and joining}
+
+In the next section we will introduce a new kind of combinatorial moves, which operate on \dessins{} rather than permutations. In this context, the importance of visual intuition cannot be overstated. Therefore, we will now spend some time describing in detail two operations that will play a major role in the topological explanation of the upcoming combinatorial moves.
+
+\paragraph{Unwinding the boundary.} Let $\Gamma$ be a graph on a surface $\Sigma$. Take a complementary region $D$, and assume $D$ is a topological disk. Intuitively, when we \emph{unwind the boundary} of $D$, we represent $D$ as the standard closed disk $K$ embedded in $\RR^2$; the edges of the combinatorial boundary of $D$ are placed sequentially on the topological boundary of $K$, possibly with repetitions. For a more formal description, we can follow the strategy presented in the second part of the proof of \cref{dessins:th:dessins-realizability}: we consider a continuous map $\map{\phi}{K}{\surf{g}}$ which restricts to a homeomorphism $\map{\phi}{\interior{K}}{D}$; edges on the topological boundary of $D$ can be pulled back by $\phi$, thus unwinding the combinatorial boundary of $D$ on $\partial K$.
+
+\paragraph{Joining vertices along edges.} Let $\Gamma$ be a graph on a surface $\Sigma$. Consider an edge $e$, and let $x$, $y$ be its (distinct) endpoints. \emph{Joining} $x$ and $y$ along $e$ means shrinking $e$ to a single point, so that $x$ and $y$ are merged into a single vertex, say $z$; it is immediate to check that $k(z)=k(x)+k(y)-2$, while the degrees of the other vertices are left unchanged. The topology of the complementary regions does not change either. To be more precise, there is a natural one-to-one correspondence between regions of $\Sigma\setminus\Gamma$ and regions of $\Sigma\setminus\Gamma'$, where $\Gamma'$ is the graph obtained after joining $x$ and $y$ along $e$, and corresponding regions are homeomorphic. The edge $e$ disappears from the combinatorial boundaries, so the perimeters of the two regions touching $e$ decrease by $1$ (if the two regions were actually the same, then the perimeter decreases by $2$); the other perimeters do not change. Of course, the joining operation can be performed along more edges simultaneously, by joining vertices along one edge at a time.
+
+\todo{How to represent dessins (?).}
+
+\section{Genus-reducing combinatorial moves}\label{dessins:sc:combinatorial-moves}
+
+As we have already anticipated, the goal of this thesis is a complete classification of the exceptional data with a partition of length $2$. \Cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} are often able to reduce the existence problem to instances with $n=3$ partitions. We will now introduce a few more combinatorial moves, which heavily exploit the machinery of \dessins{}. Unlike the aforementioned ones, these moves only work under very restrictive assumptions, namely that $n=3$ and $\len{\pi_3}=2$; on the other hand, they allow a much finer control on the partitions involved, and are often versatile enough to reduce an instance of the existence problem to the case where $\tSigma=\sphere{}$.
+
+In this section, we will only be dealing with candidate data of the form $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ with $1\le s\le d-1$. In this setting, the \RH{} formula can simply be written as
+\[
+\len{\pi_1}+\len{\pi_2}=d-2g.
+\]
+We will adopt the following conventions:
+\begin{itemize}
+\item vertices corresponding to the entries of $\pi_1$ will be colored black;
+\item vertices corresponding to the entries of $\pi_2$ will be colored white;
+\item the complementary disk with perimeter $2s$ will be denoted by $D_1$ and will be colored orange;
+\item the complementary disk with perimeter $2(d-s)$ will be denoted by $D_2$ and will be colored pink.
+\end{itemize}
+
+\begin{combinatorialmoveb}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that $[1,1,3]\subs\pi_1$. Consider the candidate datum
+\[
+\DD'=\datum{\surf{g-1}}{d}{\pi_1',\pi_2,[s,d-s]},
+\]
+where $\pi_1'=\pi_1\setminus[3]\cup[1,1,1]$. Then $\DD\cmove\DD'$.
+\end{combinatorialmoveb}
+
+\begin{combinatorialmoveb}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
+\begin{assumptions}
+\item $2\le s\le d-s$;
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $2\in\pi_2$.
+\end{assumptions}
+Let $x_1$, $x_2$ be positive integers whose sum equals $x-2$, and consider the candidate datum
+\[
+\DD'=\datum{\surf{g-1}}{d}{\pi_1',\pi_2',[s-1,d-s-1]},
+\]
+where $\pi_1'=\pi_1\setminus[x]\cup[x_1,x_2]$ and $\pi_2'=\pi_2\setminus[s]$. Then $\DD\cmove\DD'$.
+\end{combinatorialmoveb}
+
+\begin{combinatorialmoveb}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
+\begin{assumptions}
+\item $3\le s\le d-3$;
+\item $[x,y]\subs\pi_1$ for some $x\ge 3$, $y\ge 3$;
+\item $[2,2]\subs\pi_2$.
+\end{assumptions}
+Consider the candidate datum
+\[
+\DD'=\datum{\surf{g-1}}{d-4}{\pi_1',\pi_2',[s-2,d-s-2]},
+\]
+where $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ and $\pi_2'=\pi_2\setminus[2,2]$. Then $\DD\cmove\DD'$.
+\end{combinatorialmoveb}
+
+\begin{combinatorialmoveb}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
+\begin{assumptions}
+\item $2\le s\le d-2$;
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $y\in\pi_2$ for some $y\ge 3$.
+\end{assumptions}
+Consider the candidate datum
+\[
+\DD'=\datum{\surf{g-1}}{d-2}{\pi_1',\pi_2',[s-1,d-s-1]},
+\]
+where $\pi_1'=\pi_1\setminus[x]\cup[x-2]$ and $\pi_2'=\pi_2\setminus[y]\cup[y-2]$. Then $\DD\cmove\DD'$.
+\end{combinatorialmoveb}
+
+We will make extensive use of these combinatorial moves in the next chapter, where a full classification of the exceptional data with $n=3$ and $\len{\pi_3}=2$ will be provided (see \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-3}).
+
+\section{Realizability by \dessins{}}
+
+We conclude this chapter by proving the realizability of a few families of candidate data by means of \dessins{}; these results, while interesting by themselves, will be useful in the next chapter for addressing some cases which are not covered by the combinatorial moves we have introduced.
+
+\begin{proposition}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[2,d-2]}$ be a candidate datum. Then $\DD$ is realizable.
+\end{proposition}
+
+\begin{proposition}
+The following families of candidate data are realizable for every $g\ge 2$.
+\begin{enumerate}[(1)]
+\item $\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,6g-s]}$.
+\item $\datum{\surf{g}}{6g+2}{[2,3,\ldots,3],[2,3\ldots,3],[s,6g+2-s]}$.
+\item $\datum{\surf{g}}{6g+3}{[3,\ldots,3],[1,2,3,\ldots,3],[s,6g+3-s]}$.
+\item $\datum{\surf{g}}{6g+4}{[1,3,\ldots,3],[1,3,\ldots,3],[s,6g+4-s]}$.
+\item $\datum{\surf{g}}{6g+6}{[1,2,3,\ldots,3],[1,2,3,\ldots,3],[s,6g+6-s]}$.
+\end{enumerate}
+\end{proposition}

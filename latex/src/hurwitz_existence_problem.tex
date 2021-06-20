@@ -4,7 +4,7 @@
 
 According to standard terminology, a \emph{surface} is simply a topological $2$-manifold. We will, however, only be concerned with compact, connected surfaces without boundary. For the sake of conciseness, unless otherwise stated, we will always implicitly assume that the surfaces we mention have these properties.
 
-There is a structure theorem which completely classifies orientable and non-orientable surfaces.
+Orientable and non-orientable surfaces are completely classified by a well-known structure theorem (see \resultcite{theorem}{12.1}{munkres}).
 \begin{itemize}
 \item An orientable surface is (homeomorphic to) a connected sum of $g\ge 0$ tori. We call such a connected sum a \emph{surface of genus $g$}, and we denote it by $\surf{g}$. By definition, we say that $\surf{0}$ is the $2$-sphere $\sphere{}$; this is consistent with the formula $\chi(\surf{g})=2-2g$ for the Euler characteristic.
 \item A non-orientable surface is (homeomorphic to) a connected sum of $g\ge 1$ real projective planes. We denote such a connected sum by $\nosurf{g}$. The Euler characteristic for a non-orientable surfaces is given by $\chi(\nosurf{g})=2-g$.
@@ -12,9 +12,9 @@ There is a structure theorem which completely classifies orientable and non-orie
 
 Loosely speaking, given two surfaces $\Sigma$, $\tSigma$, a \emph{covering map} between them is a continuous function $\map{f}{\tSigma}{\Sigma}$ which is locally modeled on the identity function $\umap{\RR^2}{\RR^2}$. Sometimes, however, the notion of covering map can be too restrictive. Consider, for instance, the sphere $\sphere{}$: being simply connected, it does not admit any non-trivial coverings. However, every (non-constant) homolorphic function $\umap{\sphere{}}{\sphere{}}$ is \emph{almost} a covering map, in the sense that it is locally modeled on the identity $\umap{\CC}{\CC}$, except for a finite number of \emph{branching points}, where it looks like the map
 \[
-\Map{F_k}{\CC}{\CC}{z}{z^k}
+\Map{F_k}{\CC}{\CC}{\xi}{\xi^k}
 \]
-for some $k\ge 2$. In fact, it turns out that every (non-constant) holomorphic function between two complex $1$-manifolds (which, topologically, are just oriented surfaces), has this remarkable property. This motivates the following definition.
+for some $k\ge 2$. In fact, it turns out that every (non-constant) holomorphic function between two Riemann surfaces has this remarkable property (see \resultcite{section}{3.2}{szamuely}). This motivates the following definition.
 
 \begin{definition}
 Let $\Sigma,\tSigma$ be two surfaces. A continuous function $\map{f}{\tSigma}{\Sigma}$ is a \emph{branched covering map} (or simply a \emph{branched covering}) if the following property holds: for every $x\in\Sigma$, $\wtilde{x}\in f^{-1}(x)$ there exist a positive integer $k$, open neighborhoods $U,\wtilde{U}$ of $x,\wtilde{x}$ respectively, and homeomorphisms $\map{\phi}{U}{\CC}$, $\map{\wtilde{\phi}}{\wtilde{U}}{\CC}$ such that $\phi(x)=0$, $\wtilde{\phi}(\wtilde{x})=0$, $f(\wtilde{U})=U$ and the diagram
@@ -25,7 +25,7 @@ Let $\Sigma,\tSigma$ be two surfaces. A continuous function $\map{f}{\tSigma}{\S
 commutes ($F_k$ is the map defined above). We say that $\wtilde{U}$ is a \emph{trivializing neighborhood} of $\wtilde{x}$.
 \end{definition}
 
-More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $z\mapsto z^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{local degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will denote it by $k(\wtilde{x})$.
+More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $\xi\mapsto \xi^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{local degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will denote it by $k(\wtilde{x})$.
 
 A point $\wtilde{x}\in\tSigma$ is called a \emph{branching point} if $k(\wtilde{x})>1$; in other words, if $f$ is \emph{not} a local homeomorphism in a neighborhood of $\wtilde{x}$. We also say that a point $x\in\Sigma$ is a \emph{branching point} if $f^{-1}(x)$ contains at least one branching point; usually, no ambiguity will arise as to which kind of branching point we are referring to.
 
@@ -66,7 +66,7 @@ Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$. Let $x_1,\l
 well-defined up to a permutation of the branching points $x_1,\ldots,x_n$.
 \end{definition}
 
-Branching data are a way to extract some combinatorial information from branched coverings. Even though the exact location of the branching points (both in $\Sigma$ and in $\tSigma$) is not encoded in the branching datum, this piece of information is completely irrelevant, since surfaces are \emph{homogeneous}\footnote{By \emph{homogeneous}, we mean that, for each $n\ge 1$, the group of homeomorphisms of a surface $\Sigma$ acts transitively on the set of $n$-uples of pairwise distinct points $(y_1,\ldots,y_n)$.}. However, the reader should not be induced to believe that the combinatorial information provided by the branching datum is enough to fully reconstruct the topology of $f$. In fact, it turns out that this is not the case\todo{More on this later (?).}.
+Branching data are a way to extract some combinatorial information from branched coverings. Even though the exact location of the branching points (both in $\Sigma$ and in $\tSigma$) is not encoded in the branching datum, this piece of information is completely irrelevant, since surfaces are \emph{homogeneous}\footnote{By \emph{homogeneous}, we mean that, for each $n\ge 1$, the group of homeomorphisms of a surface $\Sigma$ acts transitively on the set of $n$-uples of pairwise distinct points $(y_1,\ldots,y_n)$.}. However, the reader should not be induced to believe that the combinatorial information provided by the branching datum is enough to fully reconstruct the topology of $f$. In fact, it turns out that this is not the case: there can be many inequivalent branched coverings sharing the same branching datum. See \cite{sarti} for an in-depth discussion of this topic.
 
 This entire thesis is devoted to the problem of determining what values can actually be attained by $\DD(f)$ as $f$ ranges over all the possible branched covering maps. We start with a very general definition.
 
@@ -80,7 +80,7 @@ where $\Sigma,\tSigma$ are surfaces, $d$ and $n$ are positive integers, and $\pi
 
 Again, a combinatorial datum is defined up to a permutation of the partitions $\pi_1,\ldots,\pi_n$. In other words, we will consider two combinatorial data equal if they have the same partitions, irrespective of the ordering.
 
-Technically, we could also allow combinatorial data to have $n=0$ partitions. However, data of this kind would correspond to standard covering maps, without any branching points. Since covering maps between surfaces are completely understood from a topological point of view, we will always assume that $n\ge 1$. For the same reason, when we say ``branched covering'', we will be implicitly excluding the trivial cases of standard covering maps.
+Technically, we could also allow combinatorial data to have $n=0$ partitions. However, data of this kind would correspond to standard covering maps, without any branching points. Since covering maps between surfaces are completely understood from a topological point of view (even in the non-empty boundary case, as shown in \cite{massey-covering}), we will always assume that $n\ge 1$. For the same reason, when we say ``branched covering'', we will be implicitly excluding the trivial cases of standard covering maps.
 
 We say that a combinatorial datum $\DD$ is \emph{realizable} if $\DD=\DD(f)$ for some branched covering $\map{f}{\tSigma}{\Sigma}$, \emph{exceptional} otherwise. A first, naive guess could be that every combinatorial datum can be realized. However, it turns out that there are a few easy and general necessary conditions for a combinatorial datum to be associated to a branched covering. The first one, and arguably the most important, is known as the \emph{Riemann-Hurwitz formula}; we state it in the next proposition.
 
@@ -101,7 +101,7 @@ d\chi(\Sigma)-\chi(\tSigma)=d\chi(\holed{\Sigma})+dn-\chi(\holed{\tSigma})-\len{
 \]
 \end{proof}
 
-There are three more conditions that every branching datum must satisfy: two of them concern the orientability of $\Sigma$ and/or $\tSigma$, and the other one provides an additional constraint for the \emph{total branching number} $v(\pi_1)+\ldots+v(\pi_n)$; we group these four requirements in the following definition.
+There are three more conditions that every branching datum must satisfy: two of them concern the orientability of $\Sigma$ and $\tSigma$, and the other one provides an additional constraint for the \emph{total branching number} $v(\pi_1)+\ldots+v(\pi_n)$; we group these four requirements in the following definition.
 
 \begin{definition}\label{hurwitz:df:candidate-datum}
 A combinatorial datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ is a \emph{candidate datum} if it satisfies the following conditions:
@@ -117,7 +117,7 @@ A combinatorial datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ is a \
 In \cref{hurwitz:th:candidate-datum-necessary-conditions}, we will show that conditions \ref{hurwitz:it:candidate-datum-def:1}--\ref{hurwitz:it:candidate-datum-def:4} are necessary for a combinatorial datum to be realizable (actually, the first condition was already proved in \cref{hurwitz:th:riemann-hurwitz-formula}). For now, let us focus on condition \ref{hurwitz:it:candidate-datum-def:3}, which is perhaps the most obvious one. If $\Sigma$ is orientable, then so is $\holed{\Sigma}$, since removing a finite number of points does not affect orientability. The non-compact surface $\holed{\tSigma}$, being a covering space of an orientable manifold, is itself orientable. Finally, this implies that $\tSigma$ is orientable as well.
 \end{remark}
 
-It would be natural to ask whether the necessary conditions we have enumerated are also sufficient for a candidate datum to be realizable. We will see in the following chapters that the answer is negative, and that, in general, determining the full list of exceptional data is remarkably difficult; we call this the \emph{Hurwitz existence problem}\footnote{The question originally posed by Hurwitz was actually even harder: the task was counting \emph{how many} branched coverings (up to a suitable notion of isomorphism) realize a given candidate datum. We will, however, mostly ignore this point of view, considering that the existence problem is hard enough as it is. The interested reader may\ldots}, and we state it in the following deliberately vague fashion.
+It would be natural to ask whether the necessary conditions we have enumerated are also sufficient for a candidate datum to be realizable. We will see in the following chapters that the answer is negative, and that, in general, determining the full list of exceptional data is remarkably difficult; we call this the \emph{Hurwitz existence problem}\footnote{The question originally posed by Hurwitz in \cite{hurwitz} was actually even harder: the task was counting \emph{how many} branched coverings (up to a suitable notion of isomorphism) realize a given candidate datum. We will, however, ignore this point of view, considering that the existence problem is hard enough as it is. The interested reader may find some relevant results on the \emph{Hurwitz enumeration problem} in \cite{hurwitz-counting-1,hurwitz-counting-2,hurwitz-counting-3,hurwitz-counting-4,hurwitz-counting-5}.}, and we state it in the following deliberately vague fashion.
 
 \begin{hurwitz-existence-problem*}
 Determine necessary and sufficient conditions for a candidate datum $\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ to be realizable.
@@ -160,7 +160,7 @@ Since a $k$-cycle can be written as a product of $k-1$ transpositions, we have t
 
 \section{Branched covering action of the fundamental group}
 
-We now introduce the monodromy action in the general setting of topological spaces; we will assume that all the spaces we mention are locally path-connected and locally simply-connected.
+We now introduce the monodromy action in the general setting of topological spaces; we will assume that all the spaces we mention are locally path-connected and locally simply-connected. For a much more in-depth discussion of the monodromy action, and especially for a proof of \cref{hurwitz:th:covering-with-given-monodromy}, see \resultcite{section}{2.3}{szamuely}
 
 Let $\map{f}{\wtilde{X}}{X}$ be a covering map between topological spaces, with $X$ path-connected. Fix a base-point $x_0\in X$, and let $\wtilde{x}_0\in\wtilde{X}$ be a point in $f^{-1}(x_0)$. Given a path $\map{\gamma}{[0,1]}{X}$ with $\gamma(0)=x_0$, denote by $\map{\lift{\gamma}{\wtilde{x}_0}}{[0,1]}{\wtilde{X}}$ the unique lift of $\gamma$ such that $\lift{\gamma}{\wtilde{x}_0}(0)=\wtilde{x}_0$. There is a very natural right action of the fundamental group $\pi_1(X,x_0)$ on the fiber $f^{-1}(x_0)$, defined by\footnote{Since the lifting operation is, in some sense, invariant up to homotopy, we will often use the same symbol ($\gamma$, in this case) to interchangeably represent a class in the fundamental group $\pi_1(X,x_0)$ and a representative of that class.}
 \begin{align*}
@@ -209,7 +209,7 @@ so $\wtilde{x}_i$ and $\wtilde{x}_j$ belong to the same orbit of $\Mon(\gamma)$.
 
 \section{Monodromy and realizability}
 
-From \Cref{hurwitz:th:monodromy-permutation-matches-partition} we can derive a group-theoretic criterion for the realizability of a given combinatorial datum.
+From \Cref{hurwitz:th:monodromy-permutation-matches-partition}, we can derive a group-theoretic criterion for the realizability of a given combinatorial datum.
 
 \begin{proposition}\label{hurwitz:th:monodromy-realizability-general}
 Let $\Sigma$ be a surface, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Let $ x_1,\ldots x_n\in\Sigma$ be distinct points; define $\holed{\Sigma}=\Sigma\setminus\{x_1,\ldots,x_n\}$. Fix a base-point $x_0\in\holed{\Sigma}$ and loops $\gamma_1,\ldots,\gamma_n\in\pi_1(\holed{\Sigma},x_0)$ around $x_1,\ldots,x_n$ respectively. Then the following are equivalent.
@@ -226,7 +226,7 @@ Assume conversely that we are given a group homomorphism $\map{\psi}{\pi_1(\hole
 \wtilde{V}_j\rar{\holed{f}}\dar{\wtilde{\phi}_j}&U\setminus\{x_i\}\dar{\phi_j}\\
 \CC\setminus\{0\}\rar{F_{k_j}}&\CC\setminus\{0\}
 \end{diagram}
-commutes, where $F_{k_j}(z)=z^{k_j}$. We can ``fill the hole'' in $\wtilde{V}_j$ by considering the surface $\holed{\tSigma}_1=\holed{\tSigma}\sqcup\CC/\sim$, where $y\sim \wtilde{\phi}_j(y)$ for each $y\in\wtilde{V}_j$. It is clear that $\holed{f}$ extends to a continuous function $\umap{\holed{\tSigma}_1}{\Sigma}$ by sending $0\in\CC$ to $x_i$; this map is locally modeled on $z\mapsto z^{k_j}$ near $0$. If we ``fill the hole'' in $\wtilde{V}_j$ for $1\le j\le r$, and then repeat the process for each $x_i$, we end up with a surface $\tSigma$ and a map $\map{f}{\tSigma}{\Sigma}$. It is easy to see from the construction that $\tSigma$ is compact and connected, and that $f$ is a branched covering. Since the associated covering map is exactly $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$, \cref{hurwitz:th:monodromy-permutation-matches-partition} implies that $\pi(x_i)$ matches $\Mon(\gamma_i)=\psi(\gamma_i)$, so $\pi(x_i)=\pi_i$.
+commutes, where $F_{k_j}(z)=z^{k_j}$. We can ``fill the hole'' in $\wtilde{V}_j$ by considering the surface $\holed{\tSigma}_1=\holed{\tSigma}\sqcup\CC/\sim$, where $y\sim \wtilde{\phi}_j(y)$ for each $y\in\wtilde{V}_j$. It is clear that $\holed{f}$ extends to a continuous function $\umap{\holed{\tSigma}_1}{\Sigma}$ by sending $0\in\CC$ to $x_i$; this map is locally modeled on $\xi\mapsto \xi^{k_j}$ near $0$. If we ``fill the hole'' in $\wtilde{V}_j$ for $1\le j\le r$, and then repeat the process for each $x_i$, we end up with a surface $\tSigma$ and a map $\map{f}{\tSigma}{\Sigma}$. It is easy to see from the construction that $\tSigma$ is compact and connected, and that $f$ is a branched covering. Since the associated covering map is exactly $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$, \cref{hurwitz:th:monodromy-permutation-matches-partition} implies that $\pi(x_i)$ matches $\Mon(\gamma_i)=\psi(\gamma_i)$, so $\pi(x_i)=\pi_i$.
 \end{proof}
 
 By combining \cref{hurwitz:th:monodromy-realizability-general} with the classification of surfaces, we obtain the following criteria for realizability.

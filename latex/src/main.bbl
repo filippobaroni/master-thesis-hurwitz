@@ -1,0 +1,540 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{edmonds}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a299dcd31e7340cf2b3a2fb55b5fd35c}{%
+           family={Edmonds},
+           familyi={E\bibinitperiod},
+           given={Allan\bibnamedelima L.},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=d14a64073507a80d98a3bf4b7a860386}{%
+           family={Kulkarni},
+           familyi={K\bibinitperiod},
+           given={Ravi\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=8bac84dc59cbeece7b887bbbc8c3c567}{%
+           family={Stong},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{d74c5b85dd4d75f1aedda6cf3045cd13}
+      \strng{fullhash}{d74c5b85dd4d75f1aedda6cf3045cd13}
+      \strng{bibnamehash}{d74c5b85dd4d75f1aedda6cf3045cd13}
+      \strng{authorbibnamehash}{d74c5b85dd4d75f1aedda6cf3045cd13}
+      \strng{authornamehash}{d74c5b85dd4d75f1aedda6cf3045cd13}
+      \strng{authorfullhash}{d74c5b85dd4d75f1aedda6cf3045cd13}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0002-9947}
+      \field{journaltitle}{Trans. Amer. Math. Soc.}
+      \field{number}{2}
+      \field{title}{Realizability of branched coverings of surfaces}
+      \field{volume}{282}
+      \field{year}{1984}
+      \field{pages}{773\bibrangedash 790}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.2307/1999265
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.2307/1999265
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.2307/1999265
+      \endverb
+    \endentry
+    \entry{grothendieck}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=aa39afb043bb2b10255ad9e6efbd0775}{%
+           family={Grothendieck},
+           familyi={G\bibinitperiod},
+           given={Alexandre},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge Univ. Press, Cambridge}%
+      }
+      \strng{namehash}{aa39afb043bb2b10255ad9e6efbd0775}
+      \strng{fullhash}{aa39afb043bb2b10255ad9e6efbd0775}
+      \strng{bibnamehash}{aa39afb043bb2b10255ad9e6efbd0775}
+      \strng{authorbibnamehash}{aa39afb043bb2b10255ad9e6efbd0775}
+      \strng{authornamehash}{aa39afb043bb2b10255ad9e6efbd0775}
+      \strng{authorfullhash}{aa39afb043bb2b10255ad9e6efbd0775}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Geometric {G}alois actions, 1}
+      \field{note}{With an English translation on pp. 243--283}
+      \field{series}{London Math. Soc. Lecture Note Ser.}
+      \field{title}{Esquisse d'un programme}
+      \field{volume}{242}
+      \field{year}{1997}
+      \field{pages}{5\bibrangedash 48}
+      \range{pages}{44}
+    \endentry
+    \entry{hurwitz}{article}{}
+      \name{author}{1}{}{%
+        {{hash=4a2e28faeaf493b2a3480d91f1235b68}{%
+           family={Hurwitz},
+           familyi={H\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{4a2e28faeaf493b2a3480d91f1235b68}
+      \strng{fullhash}{4a2e28faeaf493b2a3480d91f1235b68}
+      \strng{bibnamehash}{4a2e28faeaf493b2a3480d91f1235b68}
+      \strng{authorbibnamehash}{4a2e28faeaf493b2a3480d91f1235b68}
+      \strng{authornamehash}{4a2e28faeaf493b2a3480d91f1235b68}
+      \strng{authorfullhash}{4a2e28faeaf493b2a3480d91f1235b68}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0025-5831}
+      \field{journaltitle}{Math. Ann.}
+      \field{number}{1}
+      \field{title}{Über {R}iemann'sche {F}lächen mit gegebenen {V}erzweigungspunkten}
+      \field{volume}{39}
+      \field{year}{1891}
+      \field{pages}{1\bibrangedash 60}
+      \range{pages}{60}
+      \verb{doi}
+      \verb 10.1007/BF01199469
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF01199469
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF01199469
+      \endverb
+    \endentry
+    \entry{hurwitz-counting-2}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8ba778794b842e9e14a821e14f78882e}{%
+           family={Kwak},
+           familyi={K\bibinitperiod},
+           given={Jin\bibnamedelima Ho},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=301a83dc746df3e07f2868a343cf139a}{%
+           family={Mednykh},
+           familyi={M\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3ad719523a5c6572e61267d8fe6e440}
+      \strng{fullhash}{d3ad719523a5c6572e61267d8fe6e440}
+      \strng{bibnamehash}{d3ad719523a5c6572e61267d8fe6e440}
+      \strng{authorbibnamehash}{d3ad719523a5c6572e61267d8fe6e440}
+      \strng{authornamehash}{d3ad719523a5c6572e61267d8fe6e440}
+      \strng{authorfullhash}{d3ad719523a5c6572e61267d8fe6e440}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0195-6698}
+      \field{journaltitle}{European J. Combin.}
+      \field{number}{1}
+      \field{title}{Enumerating branched coverings over surfaces with boundaries}
+      \field{volume}{25}
+      \field{year}{2004}
+      \field{pages}{23\bibrangedash 34}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.ejc.2003.09.005
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.ejc.2003.09.005
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.ejc.2003.09.005
+      \endverb
+    \endentry
+    \entry{massey-covering}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1a5f8838d1e3d03ac9e61e739b09622d}{%
+           family={Massey},
+           familyi={M\bibinitperiod},
+           given={W.\bibnamedelimi S.},
+           giveni={W\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a5f8838d1e3d03ac9e61e739b09622d}
+      \strng{fullhash}{1a5f8838d1e3d03ac9e61e739b09622d}
+      \strng{bibnamehash}{1a5f8838d1e3d03ac9e61e739b09622d}
+      \strng{authorbibnamehash}{1a5f8838d1e3d03ac9e61e739b09622d}
+      \strng{authornamehash}{1a5f8838d1e3d03ac9e61e739b09622d}
+      \strng{authorfullhash}{1a5f8838d1e3d03ac9e61e739b09622d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0012-7094}
+      \field{journaltitle}{Duke Math. J.}
+      \field{title}{Finite covering spaces of {$2$}-manifolds with boundary}
+      \field{volume}{41}
+      \field{year}{1974}
+      \field{pages}{875\bibrangedash 887}
+      \range{pages}{13}
+      \verb{urlraw}
+      \verb http://projecteuclid.org/euclid.dmj/1077310745
+      \endverb
+      \verb{url}
+      \verb http://projecteuclid.org/euclid.dmj/1077310745
+      \endverb
+    \endentry
+    \entry{hurwitz-counting-1}{article}{}
+      \name{author}{3}{}{%
+        {{hash=9a64618c77c49d76c7f3ee4b2b163eec}{%
+           family={Monni},
+           familyi={M\bibinitperiod},
+           given={Stefano},
+           giveni={S\bibinitperiod}}}%
+        {{hash=671e4f16157e4bececbbffce47332511}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Jun\bibnamedelima S.},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a4a3018cd42c47afe742b09431f70975}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Yun\bibnamedelima S.},
+           giveni={Y\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{bcf5aec7ebbe5ba0e5dee2da656369c7}
+      \strng{fullhash}{bcf5aec7ebbe5ba0e5dee2da656369c7}
+      \strng{bibnamehash}{bcf5aec7ebbe5ba0e5dee2da656369c7}
+      \strng{authorbibnamehash}{bcf5aec7ebbe5ba0e5dee2da656369c7}
+      \strng{authornamehash}{bcf5aec7ebbe5ba0e5dee2da656369c7}
+      \strng{authorfullhash}{bcf5aec7ebbe5ba0e5dee2da656369c7}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0393-0440}
+      \field{journaltitle}{J. Geom. Phys.}
+      \field{number}{1-4}
+      \field{title}{The {H}urwitz enumeration problem of branched covers and {H}odge integrals}
+      \field{volume}{50}
+      \field{year}{2004}
+      \field{pages}{223\bibrangedash 256}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.1016/j.geomphys.2003.11.003
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.geomphys.2003.11.003
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.geomphys.2003.11.003
+      \endverb
+    \endentry
+    \entry{munkres}{book}{}
+      \name{author}{1}{}{%
+        {{hash=681c503f86c5b4758bc41fce37310d03}{%
+           family={Munkres},
+           familyi={M\bibinitperiod},
+           given={James\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall, Inc., Upper Saddle River, NJ}%
+      }
+      \strng{namehash}{681c503f86c5b4758bc41fce37310d03}
+      \strng{fullhash}{681c503f86c5b4758bc41fce37310d03}
+      \strng{bibnamehash}{681c503f86c5b4758bc41fce37310d03}
+      \strng{authorbibnamehash}{681c503f86c5b4758bc41fce37310d03}
+      \strng{authornamehash}{681c503f86c5b4758bc41fce37310d03}
+      \strng{authorfullhash}{681c503f86c5b4758bc41fce37310d03}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-13-181629-2}
+      \field{note}{Second edition}
+      \field{title}{Topology}
+      \field{year}{2000}
+      \field{pages}{xvi+537}
+      \range{pages}{-1}
+    \endentry
+    \entry{pervova}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=6ef7a1f52057b5277ad3ada86e654f4c}{%
+           family={Pervova},
+           familyi={P\bibinitperiod},
+           given={Ekaterina},
+           giveni={E\bibinitperiod}}}%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Univ. Stud. Bologna, Bologna}%
+      }
+      \strng{namehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{fullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{bibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authorbibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authornamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authorfullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Geometry {S}eminars. 2005--2009 ({I}talian)}
+      \field{title}{Realizability and exceptionality of candidate surface branched covers: methods and results}
+      \field{year}{2010}
+      \field{pages}{105\bibrangedash 120}
+      \range{pages}{16}
+    \endentry
+    \entry{hurwitz-counting-3}{article}{}
+      \name{author}{1}{}{%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{fullhash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{bibnamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authorbibnamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authornamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authorfullhash}{940ea63e12521e79e9ef35fd6c31004f}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0195-6698}
+      \field{journaltitle}{European J. Combin.}
+      \field{title}{Explicit computation of some families of {H}urwitz numbers}
+      \field{volume}{75}
+      \field{year}{2019}
+      \field{pages}{136\bibrangedash 151}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1016/j.ejc.2018.08.008
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.ejc.2018.08.008
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.ejc.2018.08.008
+      \endverb
+    \endentry
+    \entry{hurwitz-counting-4}{article}{}
+      \name{author}{1}{}{%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{fullhash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{bibnamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authorbibnamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authornamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authorfullhash}{940ea63e12521e79e9ef35fd6c31004f}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1615-715X}
+      \field{journaltitle}{Adv. Geom.}
+      \field{number}{4}
+      \field{title}{Explicit computation of some families of {H}urwitz numbers, {II}}
+      \field{volume}{20}
+      \field{year}{2020}
+      \field{pages}{483\bibrangedash 498}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1515/advgeom-2020-0013
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1515/advgeom-2020-0013
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1515/advgeom-2020-0013
+      \endverb
+    \endentry
+    \entry{hurwitz-counting-5}{article}{}
+      \name{author}{1}{}{%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{fullhash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{bibnamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authorbibnamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authornamehash}{940ea63e12521e79e9ef35fd6c31004f}
+      \strng{authorfullhash}{940ea63e12521e79e9ef35fd6c31004f}
+      \field{extraname}{3}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0049-4704}
+      \field{journaltitle}{Rend. Istit. Mat. Univ. Trieste}
+      \field{title}{Realizations of certain odd-degree surface branch data}
+      \field{volume}{52}
+      \field{year}{2020}
+      \field{pages}{355\bibrangedash 379}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.13137/2464-8728/30767
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.13137/2464-8728/30767
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.13137/2464-8728/30767
+      \endverb
+    \endentry
+    \entry{sarti}{article}{}
+      \name{author}{2}{}{%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=837a628b2e3071f9c7c2db4992b27b95}{%
+           family={Sarti},
+           familyi={S\bibinitperiod},
+           given={Filippo},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{92663b835f59da0417adf8d077b02185}
+      \strng{fullhash}{92663b835f59da0417adf8d077b02185}
+      \strng{bibnamehash}{92663b835f59da0417adf8d077b02185}
+      \strng{authorbibnamehash}{92663b835f59da0417adf8d077b02185}
+      \strng{authornamehash}{92663b835f59da0417adf8d077b02185}
+      \strng{authorfullhash}{92663b835f59da0417adf8d077b02185}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0081-6906}
+      \field{journaltitle}{Studia Sci. Math. Hungar.}
+      \field{number}{3}
+      \field{title}{Counting surface branched covers}
+      \field{volume}{56}
+      \field{year}{2019}
+      \field{pages}{309\bibrangedash 322}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1556/012.2019.56.3.1431
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1556/012.2019.56.3.1431
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1556/012.2019.56.3.1431
+      \endverb
+    \endentry
+    \entry{szamuely}{book}{}
+      \name{author}{1}{}{%
+        {{hash=934491605fe4a22de62016eac47e5213}{%
+           family={Szamuely},
+           familyi={S\bibinitperiod},
+           given={Tamás},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press, Cambridge}%
+      }
+      \strng{namehash}{934491605fe4a22de62016eac47e5213}
+      \strng{fullhash}{934491605fe4a22de62016eac47e5213}
+      \strng{bibnamehash}{934491605fe4a22de62016eac47e5213}
+      \strng{authorbibnamehash}{934491605fe4a22de62016eac47e5213}
+      \strng{authornamehash}{934491605fe4a22de62016eac47e5213}
+      \strng{authorfullhash}{934491605fe4a22de62016eac47e5213}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-521-88850-9}
+      \field{series}{Cambridge Studies in Advanced Mathematics}
+      \field{title}{Galois groups and fundamental groups}
+      \field{volume}{117}
+      \field{year}{2009}
+      \field{pages}{x+270}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1017/CBO9780511627064
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1017/CBO9780511627064
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1017/CBO9780511627064
+      \endverb
+    \endentry
+    \entry{zheng}{article}{}
+      \name{author}{1}{}{%
+        {{hash=34d448899769c04cec124cb68f2bb014}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{fullhash}{34d448899769c04cec124cb68f2bb014}
+      \strng{bibnamehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{authorbibnamehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{authornamehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{authorfullhash}{34d448899769c04cec124cb68f2bb014}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0166-8641}
+      \field{journaltitle}{Topology Appl.}
+      \field{number}{12}
+      \field{title}{Realizability of branched coverings of {$S^2$}}
+      \field{volume}{153}
+      \field{year}{2006}
+      \field{pages}{2124\bibrangedash 2134}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.topol.2005.08.007
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.topol.2005.08.007
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.topol.2005.08.007
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
