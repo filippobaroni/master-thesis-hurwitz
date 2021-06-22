@@ -91,10 +91,11 @@ In this section, we will only be dealing with candidate data of the form $\DD=\d
 \]
 We will adopt the following conventions:
 \begin{itemize}
-\item vertices corresponding to the entries of $\pi_1$ will be colored black;
-\item vertices corresponding to the entries of $\pi_2$ will be colored white;
-\item the complementary disk with perimeter $2s$ will be denoted by $D_1$ and will be colored orange;
-\item the complementary disk with perimeter $2(d-s)$ will be denoted by $D_2$ and will be colored pink.
+\item vertices corresponding to the entries of $\pi_1$ (or $\pi_1'$) will be colored black;
+\item vertices corresponding to the entries of $\pi_2$ (or $\pi_2'$) will be colored white;
+\item unnamed vertices will be labeled with their degrees;
+\item the complementary disk associated to the first entry of $\pi_3$ (or $\pi_3'$) will be denoted by $D_1$ and will be colored orange;
+\item the complementary disk associated to the second entry of $\pi_3$ (or $\pi_3'$) will be denoted by $D_2$ and will be colored blue.
 \end{itemize}
 
 \begin{combinatorialmoveb}\label{combinatorial-move:b:[1 1 3]}
@@ -104,6 +105,19 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\
 \]
 where $\pi_1'=\pi_1\setminus[3]\cup[1,1,1]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
+\begin{proof}
+Assume that $\DD'$ is realizable; by \cref{dessins:th:dessins-realizability}, there exists a \dessin{} $\Gamma'\subs\surf{g-1}$ with $\DD(\Gamma')=\DD'$. Our aim will be to construct a new \dessin{} $\Gamma\subs{g}$ with $\DD(\Gamma)=\DD$; by \cref{dessins:th:dessins-realizability}, this will imply that $\DD$ is realizable as well.
+
+Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we can assume that $\Gamma$ has three black vertices of degree $1$ lying on the boundary of the complementary region $D_1$. Let us represent $D_1$ with its boundary unwound, and focus on the three black vertices of degree $1$. We perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Attach a tube to $\surf{g-1}$ with both endpoints in $D_1$; to be more precise, remove two disjoint open disks contained in the interior of $D_1$, and glue a tube $S^1\times[0,1]$ along the two new boundary components. This effectively increases the genus by $1$.
+\item Connect the three black vertices with two new edges, as shown in red in the picture; note that the orange complementary region of the new graph is still a disk.
+\item Join the three black vertices along the red edges.
+\end{enumerate}
+After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\DD(\Gamma)=\DD$, therefore $\DD$ is realizable.
+\end{proof}
+
+In the upcoming proofs, we will often represent complementary disks with their boundaries unwound, without explicitly saying so. The pictures should be clear enough to avoid any ambiguity.
 
 \begin{combinatorialmoveb}\label{combinatorial-move:b:4 2}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
@@ -118,6 +132,26 @@ Let $x_1$, $x_2$ be positive integers whose sum equals $x-2$, and consider the c
 \]
 where $\pi_1'=\pi_1\setminus[x]\cup[x_1,x_2]$ and $\pi_2'=\pi_2\setminus[2]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
+\begin{proof}
+Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two cases.
+\paragraph{Case 1:} the black vertex of degree $x_1$ lies on $\partial D_1$ and the one with degree $x_2$ lies on $\partial D_2$ (or vice versa). Then we perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Attach a tube to $\surf{g-1}$ with one endpoint in $D_1$ and the other one in $D_2$.
+\item Add one black vertex, one white vertex and two edges as shown in the picture.
+\item Draw the two red edges shown in the picture.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+
+\paragraph{Case 2:} the two black vertices of degrees $x_1$ and $x_2$ lie (say) on $\partial D_1$. Fix an edge $e\subs\Gamma'$ which lies on the boundaries of both disks. We perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Add one black vertex and one white vertex on $e$.
+\item Attach a tube to $\surf{g-1}$ with both endpoints in $D_1$.
+\item Draw the two red edges shown in the picture.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+
+In both cases, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
+\end{proof}
 
 \begin{combinatorialmoveb}\label{combinatorial-move:b:[3 3] [2 2]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
@@ -132,6 +166,26 @@ Consider the candidate datum
 \]
 where $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ and $\pi_2'=\pi_2\setminus[2,2]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
+\begin{proof}
+Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two cases.
+\paragraph{Case 1:} the black vertex of degree $x-2$ lies on $\partial D_1$ and the one with degree $y-2$ lies on $\partial D_2$ (or vice versa). Then we perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Attach a tube to $\surf{g-1}$ with one endpoint in $D_1$ and the other one in $D_2$.
+\item Add two black vertices, two white vertices and four edges as shown in the picture.
+\item Draw the red edge as shown in the picture.
+\item Perform the join operation along the red edges.
+\end{enumerate}
+
+\paragraph{Case 2:} the two black vertices of degrees $x-2$ and $y-2$ lie (say) on $\partial D_1$. We perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Add two black vertices and two white vertices on $e$.
+\item Attach a tube to $\surf{g-1}$ with both endpoints in $D_1$.
+\item Draw the two red edges shown in the picture.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+
+In both cases, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
+\end{proof}
 
 \begin{combinatorialmoveb}\label{combinatorial-move:b:4 3}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
@@ -146,6 +200,38 @@ Consider the candidate datum
 \]
 where $\pi_1'=\pi_1\setminus[x]\cup[x-2]$ and $\pi_2'=\pi_2\setminus[y]\cup[y-2]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
+\begin{proof}
+Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. Let $u$ be the black vertex of degree $x-2$, and let $v$ be the white vertex of degree $y-2$; there are two cases.
+\paragraph{Case 1:} $u$ lies on $\partial D_1$ and $v$ lies on $\partial D_2$ (or vice versa). Then we perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Attach a tube to $\surf{g-1}$ with one endpoint in $D_1$ and the other in $D_2$.
+\item Add one black vertex, one white vertex and two edges as shown in the picture.
+\item Draw the two red edges shown in the picture.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+
+\paragraph{Case 2:} neither $u$ nor $v$ lie (say) on $\partial D_2$; analyzing this case will be more involved than usual. We will say that an edge is \emph{shared} if it is not enveloped by $D_1$ or by $D_2$; in other words, an edge is shared if it appears exactly once in $\partial D_1$; in the following pictures, shared edges will be colored green. Our goal will be to prove that we can add two vertices of degree $2$ -- one black and one white -- on a shared edge, in such a way that the vertices $\{u,2,2,v\}$ appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; since $u$ does not lie on the boundary of $D_2$, it appears exactly $x-2\ge 2$ times on $\partial D_1$; similarly, $v$ appears exactly $y-2$ times.
+\begin{itemize}
+\item Assume that $\{u,v,u,\text{shared edge}\}$ appear in this order on $\partial D_1$. Then, by adding a black and a white vertex on this shared edge, we get the desired result.
+\item Otherwise, consider the pictures below.
+\begin{enumerate}[(1)]
+\item We are in the following situation: there is a contiguous segment $A$ of $\partial D_1$ that contains all the occurrences of $u$, and does not contain any occurrence of $v$ or any shared edge. Similarly, there is a segment $B$ of $\partial D_1$ that contains all the occurrences of $v$, no occurrence of $u$ and no shared edge. Note that $u$ and $v$ are never adjacent to a shared edge, since by assumption they do not lie on $\partial D_2$.
+\item Choose an orientation of $\partial D_1$ (counterclockwise in the picture) and consider the first occurrence of $u$ in $A$; let $\alpha$ be the edge immediately afterwards in $\partial D_1$. Since $\alpha$ is not shared, it must appear once more on the combinatorial boundary of $D_1$, with the opposite orientation. Note that $\alpha$ it cannot occur immediately before the first appearance of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere else on $A$
+\item Consider the first occurrence of $v$ in $B$; let $\beta$ be the edge immediately before in $\partial D_1$. Since $\beta$ is not shared, it will also occur somewhere else on the combinatorial perimeter of $D_1$
+\item Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. Erase the edges $\alpha$ and $\beta$ and draw two new ones, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture.
+\item It is now easy to see that the orange region is still a complementary disk, and that its perimeter has not changed. Moreover, by traveling along its boundary, we encounter $\{u,v,u\}$ in this order, without any shared edges in between; since there must be at least one shared edge on the boundary of the new orange region, the argument of the first bullet point applies.
+\end{enumerate}
+
+Once we have added the two vertices of degree $2$ as explained above, we can perform the following operations.
+\begin{enumerate}[(1)]
+\item Attach a tube to $\surf{g-1}$ with both endpoints in $D_1$.
+\item Draw the two red edges shown in the picture.
+\item Perform the joining operation along the red edges.
+\end{enumerate}
+\end{itemize}
+
+In both cases, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
+\end{proof}
 
 We will make extensive use of these combinatorial moves in the next chapter, where a full classification of the exceptional data with $n=3$ and $\len{\pi_3}=2$ will be provided (see \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-3}).
 
@@ -161,8 +247,21 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[2,d-2]}$ be a candidate datum. Assume 
 \end{assumptions}
 Then $\DD$ is realizable.
 \end{proposition}
+\begin{proof}
+We will show that, under the stated assumptions, there is a combinatorial move\footnote{To be precise, when $d=5$ the tuple $\DD'$ is not a combinatorial datum according to our definition. However, the only candidate datum $\DD$ of degree $5$ satisfying the assumptions is $\DD=\datum{\sphere{}}{5}{[2,3],[1,2,2],[2,3]}$, whose realizability can be easily checked by hand with a suitable \dessin{}.}
+\[
+\DD\cmove\DD'=\datum{\surf{g}}{d-4}{\pi_1\setminus[x,y]\cup[x+y-4],\pi_2\setminus[2,2],[d-4]}.
+\]
+Note that $\DD'$ is realizable by \cref{monodromy:th:sphere-[d]}; let $\Gamma'\subs\surf{g}$ be a \dessin{} realizing it. We perform the following operations on $\Gamma'$.
+\begin{enumerate}[(1)]
+\item Consider the black vertex of degree $x+y-4$ and split it into two vertices of degrees $x-2$ and $y-2$.
+\item Add two white vertices and four edges as shown in the picture. This creates a new complementary disk with perimeter $4$.
+\end{enumerate}
+After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
+\end{proof}
 
-\begin{proposition}
+
+\begin{proposition}\label{dessins:th:special-families}
 The following families of candidate data are realizable for every $g\ge 2$.
 \begin{enumerate}[(1)]
 \item $\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,6g-s]}$.
@@ -172,3 +271,6 @@ The following families of candidate data are realizable for every $g\ge 2$.
 \item $\datum{\surf{g}}{6g+6}{[1,2,3,\ldots,3],[1,2,3,\ldots,3],[s,6g+6-s]}$.
 \end{enumerate}
 \end{proposition}
+\begin{proof}
+In the scope of this proof we define an \emph{augmented combinatorial datum} as a combinatorial datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ where some distinguished elements of $\pi_3$ are called \emph{enveloping}; we will underline the enveloping elements in order to recognize them. An augmented combinatorial datum $\DD$ is \emph{realizable} if there exists a \dessin{} $\Gamma$ with $\DD(\Gamma)=\DD$ such that, for every complementary disk $D$ corresponding to an enveloping element of $\pi_3$, there is an edge of $\Gamma$ which is enveloped by $D$.
+\end{proof}
