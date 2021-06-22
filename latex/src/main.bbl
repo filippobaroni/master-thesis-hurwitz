@@ -278,7 +278,85 @@
       \field{pages}{xvi+537}
       \range{pages}{-1}
     \endentry
-    \entry{pervova}{incollection}{}
+    \entry{pakovich}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b26ab589eb6b7883cb75396893bd42a0}{%
+           family={Pakovich},
+           familyi={P\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{b26ab589eb6b7883cb75396893bd42a0}
+      \strng{fullhash}{b26ab589eb6b7883cb75396893bd42a0}
+      \strng{bibnamehash}{b26ab589eb6b7883cb75396893bd42a0}
+      \strng{authorbibnamehash}{b26ab589eb6b7883cb75396893bd42a0}
+      \strng{authornamehash}{b26ab589eb6b7883cb75396893bd42a0}
+      \strng{authorfullhash}{b26ab589eb6b7883cb75396893bd42a0}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0218-2165}
+      \field{journaltitle}{J. Knot Theory Ramifications}
+      \field{number}{2}
+      \field{title}{Solution of the {H}urwitz problem for {L}aurent polynomials}
+      \field{volume}{18}
+      \field{year}{2009}
+      \field{pages}{271\bibrangedash 302}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1142/S0218216509006896
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1142/S0218216509006896
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1142/S0218216509006896
+      \endverb
+    \endentry
+    \entry{pervova-existence-ii}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6ef7a1f52057b5277ad3ada86e654f4c}{%
+           family={Pervova},
+           familyi={P\bibinitperiod},
+           given={Ekaterina},
+           giveni={E\bibinitperiod}}}%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{fullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{bibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authorbibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authornamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authorfullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0218-2165}
+      \field{journaltitle}{J. Knot Theory Ramifications}
+      \field{number}{7}
+      \field{title}{On the existence of branched coverings between surfaces with prescribed branch data. {II}}
+      \field{volume}{17}
+      \field{year}{2008}
+      \field{pages}{787\bibrangedash 816}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1142/S0218216508006397
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1142/S0218216508006397
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1142/S0218216508006397
+      \endverb
+    \endentry
+    \entry{pervova-methods}{incollection}{}
       \name{author}{2}{}{%
         {{hash=6ef7a1f52057b5277ad3ada86e654f4c}{%
            family={Pervova},
@@ -300,6 +378,7 @@
       \strng{authorbibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
       \strng{authornamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
       \strng{authorfullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \field{extraname}{2}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}

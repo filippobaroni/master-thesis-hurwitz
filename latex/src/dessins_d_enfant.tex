@@ -4,7 +4,7 @@
 
 In \cref{monodromy:sc:combinatorial-moves}, we discussed how the Hurwitz existence problem can be reduced to the analysis of candidate data on the sphere. Moreover, thanks to \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v}, we have devised a relatively reliable technique to decrease the number $n$ of partitions; this technique was successfully employed in \cref{monodromy:sc:results-sphere} to show the realizability of a wide variety of candidate data by induction on $n$, starting from the base case $n=3$. Ignoring the cases where $n\le 2$, which were fully analyzed in \cref{monodromy:sc:combinatorial-moves}, it should come as no surprise that candidate data with $n=3$ play a very important role in the study of the existence problem.
 
-Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\emph{\Dessin{}}'' is French for ``child's drawing'', hence the title of this section.} was popularized by Grothendieck in \cite{grothendieck}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \resultcite{section}{3}{pervova}.
+Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\emph{\Dessin{}}'' is French for ``child's drawing'', hence the title of this section.} was popularized by Grothendieck in \cite{grothendieck}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \resultcite{section}{3}{pervova-methods}.
 
 We start by introducing some basic terminology about graphs. Given a surface $\Sigma$, a \emph{graph} embedded in $\Sigma$ (or, simply, a graph on $\Sigma$) is a closed subspace $\Gamma\subs\Sigma$ consisting of:
 \begin{itemize}
@@ -19,12 +19,7 @@ k(x_1)+\ldots+k(x_r)=k(y_1)+\ldots+k(y_s)=d,
 \]
 where $d$ is the number of edges.
 
-Given a graph $\Gamma$ on a surface $\Sigma$, the space $\Sigma\setminus\Gamma$ is a disjoint union of a finite number of non-compact surfaces $S_1\sqcup\ldots\sqcup S_h$. Fix one of these \emph{complementary regions}, say $S_i$. By traveling along its boundary, always keeping $S_i$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $S_i$, and denote by $\partial S_i$. Note that the same edge $e$ can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial S_i$, and we will say that $e$ is \emph{enveloped} by $S_i$. The number of edges (with multiplicity) of $\partial S_i$ is the \emph{perimeter} of $S_i$, denoted by $\card{\partial S_i}$.\todo{The definition is not very formal, examples incoming.} Again, an easy counting argument shows that
-\[
-\card{\partial S_1}+\ldots+\card{\partial S_h}=2d.
-\]
-
-We are finally ready to give the definition of the much anticipated \dessins{}.
+Given a graph $\Gamma$ on a surface $\Sigma$, the space $\Sigma\setminus\Gamma$ is a disjoint union of a finite number of non-compact surfaces $S_1\sqcup\ldots\sqcup S_h$, called \emph{complementary regions} of $\Gamma$. We are finally ready to give the definition of the much anticipated \dessins{}.
 
 \begin{definition}
 Let $\Sigma$ be a surface. A \emph{\dessin{}} on $\Sigma$ is a bipartite graph $\Gamma\subs\Sigma$ whose complementary regions are topological disks.
@@ -32,10 +27,17 @@ Let $\Sigma$ be a surface. A \emph{\dessin{}} on $\Sigma$ is a bipartite graph $
 
 \todo{Examples of \dessins{}.}
 
-If $\Gamma$ is a \dessin{} on $\Sigma$ (or, actually, any bipartite graph), it is easy to see that the perimeters of its complementary regions are even: in fact, when traveling along the boundary of a region, we alternately encounter black and white vertices, so an even number of edges is required to get back to the starting color.
+Let $\Gamma$ be a \dessin{}, and fix one a complementary region $D$. By traveling along its boundary, always keeping $D$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $D$, and denote by $\partial D$. Note that the same edge $e$ can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial D$, and we will say that $e$ is \emph{enveloped} by $D$. The number of edges (with multiplicity) of $\partial D$ is the \emph{perimeter} of $D$, denoted by $\card{\partial D}$.\todo{The definition is not very formal, examples incoming.} If $D_1,\ldots,D_h$ are the complementary region of $\Gamma$, a counting argument shows that
+\[
+\card{\partial D_1}+\ldots+\card{\partial D_h}=2d.
+\]
+
+It is also easy to see that the perimeter of each complementary region is even: in fact, when traveling along the boundary of a region, we alternately encounter black and white vertices, so an even number of edges is required to get back to the starting color.
+
+Finally, note that every \dessin{} is necessarily connected, otherwise there would be some complementary region with two or more boundary components.
 
 \begin{definition}
-Let $\Gamma$ be a \dessin{} on a surface $\Sigma$; let $d$ be the number of edges. Let $x_1,\ldots,x_r$ be the black vertices, $y_1,\ldots,y_s$ the white ones. Denote by $D_1,\ldots,D_h$ be the complementary regions of $\Gamma$. The \emph{branching datum} of $\Gamma$ is the tuple
+Let $\Gamma$ be a \dessin{} on a surface $\Sigma$; let $d$ be the number of edges. Let $x_1,\ldots,x_r$ be the black vertices, $y_1,\ldots,y_s$ the white ones. Denote by $D_1,\ldots,D_h$ the complementary regions of $\Gamma$. The \emph{branching datum} of $\Gamma$ is the tuple
 \[
 \DD(\Gamma)=\datum{\Sigma,\sphere{}}{d}{[k(x_1),\ldots,k(x_r)],[k(y_1),\ldots,k(y_s)],[\card{\partial D_1}/2,\ldots,\card{\partial D_h}/2]}.
 \]
@@ -65,7 +67,7 @@ Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD
 commutes, $\psi$ is a local homeomorphism in $\interior{K}\setminus\{0\}$ and it is modeled on $\xi\mapsto\xi^k$ in a neighborhood of $0\in K$; in particular $k$ will necessarily be equal to half the perimeter of $\wtilde{D}$. We can now extend $f$ to $\wtilde{D}$ by setting $f(\wtilde{x})=\psi(\phi^{-1}(\wtilde{x}))$ for every $\wtilde{x}\in\wtilde{D}$. After repeating the process for all the complementary regions, it is not hard to verify that the map $\map{f}{\tSigma}{\sphere{}}$ we have obtained is a branched covering with branching points $x,y,z\in\sphere{}$. Since $\Gamma=f^{-1}(e)$, the first\todo{Namely, $\Rightarrow$.} part of the proof implies that $\DD(\Gamma)=\DD(f)$.
 \end{proof}
 
-\section{Unwinding and joining}
+\section{Unwinding, joining and fattening}
 
 In the next section we will introduce a new kind of combinatorial moves, which operate on \dessins{} rather than permutations. In this context, the importance of visual intuition cannot be overstated. Therefore, we will now spend some time describing in detail two operations that will play a major role in the topological explanation of the upcoming combinatorial moves.
 
@@ -73,7 +75,11 @@ In the next section we will introduce a new kind of combinatorial moves, which o
 
 \paragraph{Joining vertices along edges.} Let $\Gamma$ be a graph on a surface $\Sigma$. Consider an edge $e$, and let $x$, $y$ be its (distinct) endpoints. \emph{Joining} $x$ and $y$ along $e$ means shrinking $e$ to a single point, so that $x$ and $y$ are merged into a single vertex, say $z$; it is immediate to check that $k(z)=k(x)+k(y)-2$, while the degrees of the other vertices are left unchanged. The topology of the complementary regions does not change either. To be more precise, there is a natural one-to-one correspondence between regions of $\Sigma\setminus\Gamma$ and regions of $\Sigma\setminus\Gamma'$, where $\Gamma'$ is the graph obtained after joining $x$ and $y$ along $e$, and corresponding regions are homeomorphic. The edge $e$ disappears from the combinatorial boundaries, so the perimeters of the two regions touching $e$ decrease by $1$ (if the two regions were actually the same, then the perimeter decreases by $2$); the other perimeters do not change. Of course, the joining operation can be performed along more edges simultaneously, by joining vertices along one edge at a time.
 
-\todo{How to represent dessins (?).}
+\paragraph{Fattening graphs.} Representing \dessins{} on the sphere is easy, since graphs on $\sphere{}$ naturally embed in $\RR^2$; unfortunately, this is not the case for surfaces of genus $g\ge 1$. However, for a specific class of graphs (including \dessins{}), there is a trick we can exploit in order to represent them as diagrams on the plane. Let $\Gamma$ be a graph on a surface $\surf{g}$; assume that the complementary regions of $\Gamma$ are disks. Note that the topology of the embedding $\Gamma\subs\surf{g}$ can be completely recovered if we are given $\Gamma$ as an abstract graph, plus a tubular neighborhood of $\Gamma$ in $\surf{g}$; we call such a datum a \emph{fat graph}. A fat graph can be represented as a diagram with a finite number of transverse crossings on the plane; each crossing is equipped with the additional information of which edge goes over and which goes under.
+
+In order to reconstruct the embedding of $\Gamma$ in $\surf{g}$, we simply have to thicken the edges of the diagram, keeping in mind that the two edges involved in a crossing actually go one under the other. This operation yields a fat graph, from which $\surf{g}$ can be recovered by gluing a disk along each boundary component.
+
+We will employ this technique in order to display \dessins{} (and more generally, graphs whose complementary regions are disks) embedded in higher genus surfaces.
 
 \section{Genus-reducing combinatorial moves}\label{dessins:sc:combinatorial-moves}
 
@@ -91,7 +97,7 @@ We will adopt the following conventions:
 \item the complementary disk with perimeter $2(d-s)$ will be denoted by $D_2$ and will be colored pink.
 \end{itemize}
 
-\begin{combinatorialmoveb}
+\begin{combinatorialmoveb}\label{combinatorial-move:b:[1 1 3]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that $[1,1,3]\subs\pi_1$. Consider the candidate datum
 \[
 \DD'=\datum{\surf{g-1}}{d}{\pi_1',\pi_2,[s,d-s]},
@@ -99,7 +105,7 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\
 where $\pi_1'=\pi_1\setminus[3]\cup[1,1,1]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
 
-\begin{combinatorialmoveb}
+\begin{combinatorialmoveb}\label{combinatorial-move:b:4 2}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
 \begin{assumptions}
 \item $2\le s\le d-s$;
@@ -108,12 +114,12 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\
 \end{assumptions}
 Let $x_1$, $x_2$ be positive integers whose sum equals $x-2$, and consider the candidate datum
 \[
-\DD'=\datum{\surf{g-1}}{d}{\pi_1',\pi_2',[s-1,d-s-1]},
+\DD'=\datum{\surf{g-1}}{d-2}{\pi_1',\pi_2',[s-1,d-s-1]},
 \]
-where $\pi_1'=\pi_1\setminus[x]\cup[x_1,x_2]$ and $\pi_2'=\pi_2\setminus[s]$. Then $\DD\cmove\DD'$.
+where $\pi_1'=\pi_1\setminus[x]\cup[x_1,x_2]$ and $\pi_2'=\pi_2\setminus[2]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
 
-\begin{combinatorialmoveb}
+\begin{combinatorialmoveb}\label{combinatorial-move:b:[3 3] [2 2]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
 \begin{assumptions}
 \item $3\le s\le d-3$;
@@ -127,7 +133,7 @@ Consider the candidate datum
 where $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ and $\pi_2'=\pi_2\setminus[2,2]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
 
-\begin{combinatorialmoveb}
+\begin{combinatorialmoveb}\label{combinatorial-move:b:4 3}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
 \begin{assumptions}
 \item $2\le s\le d-2$;
@@ -143,12 +149,17 @@ where $\pi_1'=\pi_1\setminus[x]\cup[x-2]$ and $\pi_2'=\pi_2\setminus[y]\cup[y-2]
 
 We will make extensive use of these combinatorial moves in the next chapter, where a full classification of the exceptional data with $n=3$ and $\len{\pi_3}=2$ will be provided (see \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-3}).
 
-\section{Realizability by \dessins{}}
+\section{Realizability by \texorpdfstring{\dessins{}}{dessins d'enfant}}
 
 We conclude this chapter by proving the realizability of a few families of candidate data by means of \dessins{}; these results, while interesting by themselves, will be useful in the next chapter for addressing some cases which are not covered by the combinatorial moves we have introduced.
 
-\begin{proposition}
-Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[2,d-2]}$ be a candidate datum. Then $\DD$ is realizable.
+\begin{proposition}\label{dessins:th:special-case-[2 d-2]}
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[2,d-2]}$ be a candidate datum. Assume that:
+\begin{assumptions}
+\item $[x,y]\subs\pi_1$ for some $x\ge 2$, $y\ge 3$;
+\item $[2,2]\subs\pi_2$.
+\end{assumptions}
+Then $\DD$ is realizable.
 \end{proposition}
 
 \begin{proposition}

@@ -297,6 +297,14 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. As
 By \cref{monodromy:th:product-reduction-small-v}, we can find permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $v(\alpha_1\alpha_2)=v(\pi_1)+v(\pi_2)$. Let $\pi_1'=[\alpha_1\alpha_2]$; it is easy to check that $\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_n}$ is a candidate datum. Assume that $\DD'$ is realizable; by \cref{hurwitz:th:monodromy-realizability-orientable}, this implies the existence of permutations $\alpha_1',\alpha_3,\ldots,\alpha_n\in\symgroup[d]$ matching $\pi_1',\pi_3,\ldots,\pi_n$ respectively, such that $\alpha_1'\alpha_3\cdots\alpha_n=1$ and $\angled{\alpha_1',\alpha_3,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$. Since $[\alpha_1']=[\alpha_1\alpha_2]$, up to conjugation we may assume that $\alpha_1'=\alpha_1\alpha_2$. It is clear that the permutations $\alpha_1,\alpha_2,\alpha_3,\ldots,\alpha_n$ imply the realizability of $\DD$, again by \cref{hurwitz:th:monodromy-realizability-orientable} (see also \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
 \end{proof}
 
+\begin{remark}\label{monodromy:rm:combinatorial-move:a:small-v}
+The proof of \cref{combinatorial-move:a:small-v} shows that we have some freedom in selecting the partition $\pi_1'$: given two permutations $\alpha_1,\alpha_2\in\symgroup[d]$ matching, respectively, $\pi_1$ and $\pi_2$, we have the combinatorial move
+\[
+\DD\cmove\datum{\surf{g}}{d}{[\alpha_1\alpha_2],\pi_3,\ldots,\pi_n},
+\]
+provided that $v(\alpha_1\alpha_2)=v(\alpha_1)+v(\alpha_2)$.
+\end{remark}
+
 \begin{combinatorialmovea}\label{combinatorial-move:a:large-v}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\ldots,\pi_n}$ be a candidate datum. Assume that:
 \begin{assumptions}
@@ -360,7 +368,7 @@ for a suitable candidate datum $\DD'$. Similarly to the previous case, this impl
 \end{itemize}
 \end{proof}
 
-We now turn to candidate data containing the partition $[1,d-1]$. This is the first step towards the goal of this thesis, which will be further developed in \cref{??}: the full classification of exceptional data containing a partition of length $2$.
+We now turn to candidate data containing the partition $[1,d-1]$. This is the first step towards the goal of this thesis, which will be further developed in \cref{short-partition:ch}: the full classification of exceptional data containing a partition of length $2$.
 
 \begin{proposition}\label{monodromy:th:sphere-[1 d-1]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}$ be a candidate datum. Then $\DD$ is exceptional if and only if it satisfies one of the following.
@@ -498,9 +506,9 @@ Let $p$ be a prime number. Then every candidate datum $\datum{\surf{g}}{p}{\pi_1
 
 It is not immediately clear why prime numbers should be even remotely related to the realizability of candidate data. In fact, to the best of the author's knowledge, there is no number-theoretic argument in favor (or against) this conjecture; all the evidence gathered so far supporting the prime-degree conjecture is ``experimental''.
 \begin{itemize}
-\item As shown in \cref{??}, for every composite number $d\ge 4$ there is an exceptional candidate datum of degree $d$.
+\item As shown in \cref{short-partitions:th:exceptional-composite}, for every composite number $d\ge 4$ there is an exceptional candidate datum of degree $d$.
 \item In general, all the exceptional data found so far have a composite degree; for all the families of candidate data whose realizability is completely understood (including those presented in the previous section), the prime-degree conjecture holds.
-\item The first efficient algorithmic approach to the Hurwitz existence problem was presented in \cite{zheng}. Every candidate datum with $n=3$ and $d\le 20$\todo{Or $d\le 22$, according to some sources} was analyzed by a computer, and no exceptional data with prime degree were found; therefore, the prime-degree conjecture was verified for degrees numbers up to $19$ (see \cref{monodromy:th:reduction-to-n-3} below). In \cref{??}, with a much heavier computational effort, we extend this result to prime numbers up to $29$.
+\item The first efficient algorithmic approach to the Hurwitz existence problem was presented in \cite{zheng}. Every candidate datum with $n=3$ and $d\le 20$\todo{Or $d\le 22$, according to some sources} was analyzed by a computer, and no exceptional data with prime degree were found; therefore, the prime-degree conjecture was verified for numbers up to $19$ (see \cref{monodromy:th:reduction-to-n-3} below). In \cref{computational-results:ch}, with a much heavier computational effort, we extend this result to prime numbers up to $29$.
 \end{itemize}
 
 The following proposition is an essential tool for the computational approach to the existence problem, since it reduces the verification of the prime-degree conjecture to the case of $n=3$ partitions.

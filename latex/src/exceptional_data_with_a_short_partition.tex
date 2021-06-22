@@ -1,7 +1,14 @@
-\chapter{Exceptional data with a short partition}
-\todo{Always assume $n\ge 3$}.
+\chapter{Exceptional data with a short partition}\label{short-partition:ch}
 
 \section{Realizability on the sphere}
+
+In this final chapter, we will give a full solution of the Hurwitz existence problem for candidate data containing a partition of length $2$; as usual, we will assume that $\Sigma=\sphere{}$ and $n\ge 3$. This specific instance of the existence problem had already received some interest in the literature, leading to a few partial results.
+\begin{itemize}
+\item \cref{monodromy:th:sphere-[1 d-1]} addresses the cases where $\pi_n=[1,d-1]$; the proof was actually borrowed from \resultcite{proposition}{5.3}{edmonds}.
+\item \textcite{pervova-existence-ii} dealt with the cases where $n=3$ and $\pi_3=[2,d-2]$.
+\item \textcite{pakovich} solved the existence problem for $\len{\pi_n}=2$ and $\tSigma=\sphere{}$.
+\end{itemize}
+In particular, we will consistently exploit the results by \citeauthor{pakovich} as a base case for genus-reducing combinatorial moves. We now state the relevant theorems, but we decide to omit the proofs: while the core ideas are very ingenious, filling in the details is quite tedious and time-consuming\footnote{The same could probably be said about the other proofs in this chapter, which cannot be omitted for obvious reasons.}. We refer the interested reader to \cite{pakovich}.
 
 \begin{theorem}\label{short-partition:th:realizability-on-sphere-n-3}
 Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it satisfies one of the following.
@@ -11,7 +18,7 @@ Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $
 \item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
 \item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
 \item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
-\item $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le h-1$.
+\item\label{short-partition:th:realizability-on-sphere-n-3:it:6} $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le h-1$.
 \end{enumerate}
 \end{theorem}
 
@@ -19,7 +26,11 @@ Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $
 Let $\DD=\datum{\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate datum with $n\ge 4$. Then $\DD$ is realizable.
 \end{theorem}
 
+In the upcoming proofs, we will also make extensive use of the computational results from \cref{computational-results:ch}; although delegating work to the computer is never necessary (and in theory we could prove the same results by hand), doing so will save us a lot of effort in dealing with tricky corner-cases, and allow us to focus more on the reduction-oriented part of the proofs.
+
 \section{Realizability on the torus for \texorpdfstring{$n=3$}{n=3}}
+
+As anticipated in the title, this section deals with the cases where $n=3$ and $\tSigma=\surf{1}$. Due to the relatively large number of families of exceptional data listed in \cref{short-partition:th:realizability-on-sphere-n-3}, this is the instance of the problem which will require the heaviest casework.
 
 \begin{theorem} \label{short-partition:th:realizability-on-torus-n-3}
 Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it satisfies one of the following.
@@ -31,31 +42,240 @@ Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\
 \item $\DD=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $k\ge 5$.
 \end{enumerate}
 \end{theorem}
+\begin{proof}
+Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:ch}) shows that the only exceptional cases are:
+\begin{enumerate}[(1)]
+\item $\DD=\datum{\surf{1}}{6}{[3, 3],[3, 3],[2, 4]}$;
+\item $\DD=\datum{\surf{1}}{8}{[2, 2, 2, 2],[4, 4],[3, 5]}$;
+\item $\DD=\datum{\surf{1}}{10}{[2, 2, 2, 2, 2],[2, 3, 5],[5, 5]}$;
+\item $\DD=\datum{\surf{1}}{12}{[2, 2, 2, 2, 2, 2],[3, 3, 3, 3],[5, 7]}$;
+\item $\DD=\datum{\surf{1}}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 3, 5],[6, 6]}$;
+\item $\DD=\datum{\surf{1}}{14}{[2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 3, 5],[7, 7]}$;
+\item $\DD=\datum{\surf{1}}{16}{[2, 2, 2, 2, 2, 2, 2, 2],[1, 3, 3, 3, 3, 3],[8, 8]}$;
+\item $\DD=\datum{\surf{1}}{16}{[2, 2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 3, 5],[8, 8]}$.
+
+\end{enumerate}
+This is in agreement with the theorem statement, so we can assume that $d\ge 17$. We now analyze several cases.
+\paragraph{Case 1.} Assume that:
+\begin{assumptions}
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $2\in\pi_2$;
+\item $\pi_2\neq[2,\ldots,2]$.
+\end{assumptions}
+\Cref{combinatorial-move:b:4 2} gives
+\[
+\DD\cmove\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[1,x-3],\pi_2\setminus[2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless one of the following holds\footnote{Since this proof is long enough as it is, we will refrain from explaining in detail why candidate data of a certain form are realizable by \cref{short-partition:th:realizability-on-sphere-n-3}; we leave the tedious yet elementary casework required to the motivated reader. In this situation, for instance, one could simply note that $\pi_1\setminus[x]\cup[1,x-3]$ and $\pi_2\setminus[2]$ are both different from $[2,\ldots,2]$, therefore the only exceptional data to consider among those listed in \cref{short-partition:th:realizability-on-sphere-n-3} are those belonging to family \ref{short-partition:th:realizability-on-sphere-n-3:it:6}.}.
+\begin{itemize}
+\item $\DD=\datum{\surf{1}}{kh+2}{[1,\ldots,1,k+4],[2,h,\ldots,h],[lk+1,(h-l)k+1]}$ with $k\ge 2$, $h\ge 3$, $1\le l\le h-1$. By applying \cref{combinatorial-move:b:4 2} we get
+\[
+\DD\cmove\datum{\sphere{}}{kh}{[1,\ldots,1,2,k],[h,\ldots,h],[lk,(h-l)k]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item $\DD=\datum{\surf{1}}{kh+2}{[1,\ldots,1,4,k+1],[2,h,\ldots,h],[lk+1,(h-l)k+1]}$ with $k\ge 2$, $h\ge 3$, $1\le l\le h-1$. By applying \cref{combinatorial-move:b:4 3} we get
+\[
+\DD\cmove\datum{\sphere{}}{kh}{[1,\ldots,1,2,k+1],[2,h-2,h,\ldots,h],[lk,(h-l)k]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\end{itemize}
+
+\paragraph{Case 2.} Assume that:
+\begin{assumptions}
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $y\in\pi_2$ for some $y\ge 4$;
+\item $2\not\in\pi_1$ and $2\not\in\pi_2$.
+\end{assumptions}
+\Cref{combinatorial-move:b:4 3} gives
+\[
+\DD\cmove\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[y]\cup[y-2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless
+\[
+\DD=\datum{\surf{1}}{kh+2}{[1,\ldots,1,k+3],[h,\ldots,h,h+2],[lk+1,(h-l)k+1]}
+\]
+for some $k\ge 2$, $h\ge 3$, $1\le l\le h-1$. If this is the case, applying \cref{combinatorial-move:b:4 3} yields
+\[
+\DD\cmove\datum{\sphere{}}{kh}{[1,\ldots,1,k+1],[h-2,h,\ldots,h,h+2],[lk,(h-l)k]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+
+\paragraph{Case 3.} Assume that:
+\begin{assumptions}
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $\max(\pi_2)=3$;
+\item $2\not\in\pi_2$.
+\end{assumptions}
+\Cref{combinatorial-move:b:4 3} gives
+\[
+\DD\cmove=\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[3]\cup[1],[s-1,d-s-1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless
+\[
+\DD=\datum{\surf{1}}{2h+2}{[h,h+2],[1,\ldots,1,3,3],[2l+1,2(h-l)+1]}
+\]
+for some $h\ge 2$, $1\le l\le h-1$ (recall that we are assuming $d\ge 17$). If this is the case, applying \Cref{combinatorial-move:b:[1 1 3]} yields
+\[
+\DD\cmove\datum{\sphere{}}{2h+2}{[h,h+2],[1,\ldots,1,3],[2l+1,2(h-l)+1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+
+\paragraph{Case 4.} Assume that:
+\begin{assumptions}
+\item $\max(\pi_1)=3$;
+\item $\max(\pi_2)\le 3$;
+\item $\pi_2\neq[2,\ldots,2]$.
+\end{assumptions}
+We analyze a few sub-cases.
+\begin{itemize}
+\item \textbf{Case 4.1:} $[1,1]\subs\pi_1$. \Cref{combinatorial-move:b:[1 1 3]} gives
+\[
+\DD\cmove\datum{\sphere{}}{d}{\pi_1\setminus[3]\cup[1,1,1],\pi_2,[s,d-s]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item \textbf{Case 4.2:} $[3,3]\subs\pi_1$ and $[2,2]\subs\pi_2$. If $s=2$ or $s=d-2$ then $\DD$ is realizable by \cref{dessins:th:special-case-[2 d-2]}. Otherwise, \cref{combinatorial-move:b:[3 3] [2 2]} gives
+\[
+\DD\cmove\datum{\sphere{}}{d-4}{\pi_1\setminus[3,3]\cup[1,1],\pi_2\setminus[2,2],[s-2,d-s-2]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item \textbf{Case 4.3:} $[2,2]\not\subs\pi_2$. The \RH{} formula immediately implies that $3\in\pi_2$. Assume by contradiction that $\DD$ is not realizable. If this is the case, $[1,1]\not\subs\pi_2$ by case 4.1, but then $[3,3]\subs\pi_2$. It follows (case 4.2) that $[2,2]\not\subs\pi_1$; moreover, case 4.1 also implies that $[1,1]\not\subs\pi_1$. In other words, both $\pi_1$ and $\pi_2$ can be written as $\rho\cup[3,\ldots,3]$, where $\rho\subs[1,2]$ (possibly different for $\pi_1$ and $\pi_2$). As a consequence, we have the inequalities
+\begin{align*}
+d\ge 3\len{\pi_1}-3,&&d\ge 3\len{\pi_2}-3,
+\end{align*}
+which contradict the \RH{} formula if $d\ge 13$.
+\item \textbf{Case 4.4:} $[3,3]\not\subs\pi_1$. From the \RH{} formula it follows that $[3,3]\subs\pi_2$, but then $\DD$ is realizable by case 4.1.
+\end{itemize}
+
+\paragraph{Case 5.} Assume that:
+\begin{assumptions}
+\item $\max(\pi_1)\ge 4$;
+\item $\pi_2=[2,\ldots,2]$.
+\end{assumptions}
+Let $x=\max(\pi_1)$; \cref{combinatorial-move:b:4 2} gives
+\[
+\DD\cmove\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[1,x-3],[2,\ldots,2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless one of the following holds.
+\begin{itemize}
+\item $\DD=\datum{\surf{1}}{2k+2}{[2,\ldots,2,3,5],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 7$. This is in fact one of the exceptional data listed in the statement.
+\item $\DD=\datum{\surf{1}}{2k+2}{[2,\ldots,2,6],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 7$. By applying \cref{combinatorial-move:b:4 2} we get
+\[
+\DD\cmove\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[k,k]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item $\DD=\datum{\surf{1}}{4k+4}{[1,\ldots,1,k+2,k+4],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 3$. By applying \cref{combinatorial-move:b:4 2} we get
+\[
+\DD\cmove\datum{\sphere{}}{4k+2}{[1,\ldots,1,2,k,k+2],[2,\ldots,2],[2k+1,2k+1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item $\DD=\datum{\surf{1}}{4k+4}{[1,\ldots,1,k+1,k+5],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 3$. By applying \cref{combinatorial-move:b:4 2} we get
+\[
+\DD\cmove\datum{\sphere{}}{4k+2}{[1,\ldots,1,2,k+1,k+1],[2,\ldots,2],[2k+1,2k+1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item $\DD=\datum{\surf{1}}{4k+2}{[1,\ldots,1,k+1,k+4],[2,\ldots,2],[2k,2k+2]}$ with $k\ge 4$. By applying \cref{combinatorial-move:b:4 2} we get
+\[
+\DD\cmove\datum{\sphere{}}{4k}{[1,\ldots,1,2,k,k+1],[2,\ldots,2],[2k-1,2k+1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item $\DD=\datum{\surf{1}}{2k+2}{[1,\ldots,1,k+4],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 7$. By applying \cref{combinatorial-move:b:4 2} we get
+\[
+\DD\cmove\datum{\sphere{}}{2k}{[1,\ldots,1,2,k],[2,\ldots,2],[k,k]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\end{itemize}
+
+\paragraph{Case 6.} Assume that:
+\begin{assumptions}
+\item $\max(\pi_1)=3$;
+\item $\pi_2=[2,\ldots,2]$.
+\end{assumptions}
+The \RH{} formula immediately implies that $[3,3,3,3]\subs\pi_1$. If $s=2$ or $s=d-2$ then $\DD$ is realizable by \cref{dessins:th:special-case-[2 d-2]}. Otherwise, \cref{combinatorial-move:b:[3 3] [2 2]} gives
+\[
+\DD\cmove\datum{\sphere{}}{d-4}{\pi_1\setminus[3,3]\cup[1,1],[2,\ldots,2],[s-2,d-s-2]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}, since we are assuming that $d\ge 17$.
+
+The cases we have analyzed, up to swapping $\pi_1$ and $\pi_2$, cover all the candidate data of the form $\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$. We have showed that every datum which is not listed in the statement is realizable, therefore the proof is complete.
+\end{proof}
 
 \section{Realizability on higher genus surfaces for \texorpdfstring{$n=3$}{n=3}}
+
+It turns out that, for $n=3$ and $\len{\pi_3}=2$, there are no exceptional data on surfaces with genus $g\ge 2$.
 
 \begin{theorem}\label{short-partition:th:realizability-on-higher-genus-n-3}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 2$. Then $\DD$ is realizable.
 \end{theorem}
+\begin{proof}
+Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. For $d\le 18$, a computer-aided search shows that there are no exceptional data (see the results in \cref{computational-results:ch}). Therefore, we can further assume that $d\ge 19$. We proceed by induction on $g\ge 2$, analyzing several cases.
+
+\paragraph{Case 1.} Assume that:
+\begin{assumptions}
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $2\in\pi_2$.
+\end{assumptions}
+\Cref{combinatorial-move:b:4 2} gives
+\[
+\DD\cmove\datum{\surf{g-1}}{d-2}{\pi_1\setminus[x]\cup[1,x-3],\pi_2\setminus[2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-torus-n-3} if $g=2$, or by induction if $g\ge 3$.
+
+\paragraph{Case 2.} Assume that:
+\begin{assumptions}
+\item $x\in\pi_1$ for some $x\ge 4$;
+\item $y\in\pi_2$ for some $y\ge 3$;
+\item $2\not\in\pi_1$ and $2\not\in\pi_2$.
+\end{assumptions}
+\Cref{combinatorial-move:b:4 3} gives
+\[
+\DD\cmove\datum{\surf{g-1}}{d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[y]\cup[y-2],[s-1,d-s-1]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-torus-n-3} if $g=2$, or by induction if $g\ge 3$.
+
+\paragraph{Case 3.} Assume that:
+\begin{assumptions}
+\item $\max(\pi_1)=3$;
+\item $\max(\pi_2)\le 3$.
+\end{assumptions}
+We analyze a few sub-cases.
+\begin{itemize}
+\item \textbf{Case 3.1:} $[1,1]\subs\pi_1$. \Cref{combinatorial-move:b:[1 1 3]} gives
+\[
+\DD\cmove\datum{\surf{g-1}}{d}{\pi_1\setminus[3]\cup[1,1,1],\pi_2,[s,d-s]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-torus-n-3} if $g=2$, or by induction if $g\ge 3$.
+\item\textbf{Case 3.2:} $[3,3]\subs\pi_1$ and $[2,2]\subs\pi_2$. If $s=2$ or $s=d-2$ then $\DD$ is realizable by \cref{dessins:th:special-case-[2 d-2]}. Otherwise, \cref{combinatorial-move:b:[3 3] [2 2]} gives
+\[
+\DD\cmove\datum{\surf{g-1}}{d-4}{\pi_1\setminus[3,3]\cup[1,1],\pi_2\setminus[2,2],[s-2,d-s-2]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-torus-n-3} if $g=2$, or by induction if $g\ge 3$.
+\item \textbf{Case 3.3:} $[2,2]\not\subs\pi_1$. The \RH{} formula immediately implies that $[3,3]\subs\pi_2$. Assume by contradiction that $\DD$ is not realizable. Then $[1,1]\not\subs\pi_1$ and $[1,1]\not\subs\pi_2$ (case 3.1), and moreover $[2,2]\not\subs\pi_1$ (case 3.2). In other words, both $\pi_1$ and $\pi_2$ can be written as $\rho\cup[3,\ldots,3]$, where $\rho\subs[1,2]$ (possibly different for $\pi_1$ and $\pi_2$). It is then easy to see that $\DD$ belongs to one of the families listed in \cref{dessins:th:dessins-realizability} and, therefore, is realizable.
+\item \textbf{Case 3.4:} $[3,3]\not\subs\pi_1$. From the \RH{} formula it follows that $[3,3]\subs\pi_2$, but then $\DD$ is realizable by cases 3.2 and 3.3.
+\end{itemize}
+The cases we have analyzed, up to swapping $\pi_1$ and $\pi_2$, cover all the candidate data of the form $\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ with $g\ge 2$. We have shown that every datum is realizable, therefore the proof is complete.
+\end{proof}
 
 \section{Realizability for \texorpdfstring{$n\ge 4$}{n≥4}}
 
-\begin{theorem}
+After solving the existence problem for $n=3$ and $\len{\pi_3}=2$, we turn to candidate data with $n\ge 4$ partitions. As we are about to see, exceptional data in this setting are very rare: there is an infinite family with $d=4$, which we already encountered in \cref{monodromy:th:sphere-d-equals-4}, and a single datum with $n=4$ and $d=8$.
+
+\begin{theorem}\label{short-partition:th:realizability-on-higher-genus-n-ge-4}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate datum with $n\ge 4$. Then $\DD$ is realizable unless it satisfies one of the following.
 \begin{enumerate}[(1)]
-\item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
 \item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$.
+\item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-We will proceed by induction on $n$. We start with the base case $n=4$, which requires the heaviest casework. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3,[s,d-s]}$.
-\begin{itemize}
-\item If $d\le 16$, realizability can be checked by a computer\todo{Link to the appendix}. The only exceptional data are:
+If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:ch}) shows that the only exceptional cases are:
 \begin{enumerate}[(1)]
 \item $\DD=\datum{\surf{1}}{4}{[2, 2],[2, 2],[2, 2],[1, 3]}$;
 \item $\DD=\datum{\surf{2}}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$.
 \end{enumerate}
-\item If $g=0$, then $\DD$ is realizable by \cref{short-partition:th:realizability-on-sphere-n-ge-4}.
+This is in agreement with the statement, so we can assume that $d\ge 17$. Moreover, every candidate datum with $g=0$ is realizable by \cref{short-partition:th:realizability-on-sphere-n-ge-4}; as a consequence, we only have to consider the cases where $g\ge 1$.
+
+We will proceed by induction on $n$. We start with the base case $n=4$, which requires the heaviest casework. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3,[s,d-s]}$.
+\begin{itemize}
 \item Assume that the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le 3$; up to reindexing, we can assume that $v(\pi_1)+v(\pi_2)<d$. \Cref{combinatorial-move:a:small-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,[s,d-s]}
@@ -64,7 +284,7 @@ for a suitable candidate datum $\DD'$, where $v(\pi_1')=v(\pi_1)+v(\pi_2)$. If $
 \[
 \text{$\DD'=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $2k=d$.}
 \]
-If this is the case, then $s=k$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
+If this is the case, then $\pi_4=[k,k]$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
 \begin{itemize}
 \item If $\pi_1'=[2,\ldots,2]$, then $v(\pi_1')=k$ and $v(\pi_3)=k+2$. Assume without loss of generality that $v(\pi_1)\le k/2$. We have that
 \[
@@ -73,11 +293,28 @@ k+2<1+k+2\le v(\pi_1)+v(\pi_3)\le \frac{k}{2}+k+2<d.
 Repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item If $\pi_3=[2,\ldots,2]$ and $v(\pi_1)\not\in\{2,k,k+1\}$ then $v(\pi_1)+v(\pi_3)<d$ and $v(\pi_1)+v(\pi_3)\not\in\{k,k+2\}$. Therefore, repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item If $\pi_3=[2,\ldots,2]$, $v(\pi_1)=2$ and $\pi_2\neq [2,\ldots,2]$, then repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
-\item If $\pi_2=\pi_3=[2,\ldots,2]$, we follow a different approach. By applying \cref{combinatorial-move:a:large-v} to the partitions $\pi_2$ and $\pi_3$ we get
+\item If $\pi_2=\pi_3=[2,\ldots,2]$ and $\pi_1\neq[1,\ldots,1,3]$, we follow a different approach. By applying \cref{combinatorial-move:a:large-v} to the partitions $\pi_2$ and $\pi_3$ we get
 \[
-\DD\cmove\DD''=\datum{\sphere{}}{d}{\pi_1,[k,k],[k,k]}.
+\DD\cmove\datum{\sphere{}}{d}{\pi_1,[k,k],[k,k]},
 \]
-But $\DD''$ is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}, so $\DD$ is realizable as well.
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
+\item Finally, if $\pi_1=[1,\ldots,1,3]$ and $\pi_2=\pi_3=[2,\ldots,2]$, we have to work explicitly with permutations. Consider
+\begin{align*}
+\alpha_1=\cycle{1,3,5},&&\alpha_2=\cycle{1,2}\cycle{3,4}\cdots\cycle{2k-1,2k}.
+\end{align*}
+Clearly $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$; moreover,
+\[
+\alpha_1\alpha_2=\cycle{1,2,3,4,5,6}\cycle{7,8}\cdots\cycle{2k-1,2k},
+\]
+so $[\alpha_1\alpha_2]=[2,\ldots,2,6]$. Note that
+\[
+v(\alpha_1)+v(\alpha_2)=2+k=v(\alpha_1\alpha_2),
+\]
+so \cref{monodromy:rm:combinatorial-move:a:small-v} gives
+\[
+\DD\cmove\datum{\surf{1}}{2k}{[2,\ldots,2,6],[2,\ldots,2],[k,k]},
+\]
+which is realizable by \cref{short-partition:th:realizability-on-torus-n-3}.
 \end{itemize}
 
 Up to swapping $\pi_1$ and $\pi_2$, this analysis covers all the possible cases.
@@ -92,5 +329,116 @@ g'=\frac{1}{2}(v(\pi_1')+v(\pi_3)+v([s,d-s])-d+1\ge\frac{1}{2}\left(d-2+\frac{d}
 Therefore $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}, and $\DD$ is realizable as well.
 \end{itemize}
 
-We now turn to the case $n\ge 5$; we show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, a computer-aided search\todo{Link to the appendix} shows that $\DD$ is realizable. Otherwise, the routine reduction argument relying on \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} shows that $\DD$ is realizable. \qedhere
+We now turn to the case $n\ge 5$; we show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, the computational results in \cref{computational-results:ch} imply that $\DD$ is realizable. Otherwise, the routine reduction argument relying on \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} shows that $\DD$ is realizable. \qedhere
 \end{proof}
+
+
+\section{Exceptionality}
+
+This section is devoted to showing that the candidate data listed in the statements of \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-ge-4} are in fact exceptional. First of all, we address the special cases with small degree ($d\le 16$). The computational results in \cref{computational-results:ch} show that the following candidate data are exceptional.
+\begin{enumerate}[(1)]
+\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
+\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
+\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$.
+\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$.
+\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$.
+\item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$.
+\end{enumerate}
+
+We now turn to infinite families of exceptional data.
+
+\begin{proposition}
+Let $n\ge 3$ be a positive integer. Then the candidate datum
+\[
+\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}
+\]
+is exceptional.
+\end{proposition}
+\begin{proof}
+In order to show the exceptionality of $\DD$, we will employ the monodromy approach. Let $\alpha_1,\ldots,\alpha_{n-1}\in\symgroup[4]$ be permutations matching $[2,2]$. It is easy to see that the three permutations matching $[2,2]$, together with the identity, form a subgroup
+\[
+\{\id,\cycle{1,2}\cycle{3,4},\cycle{1,3}\cycle{2,4},\cycle{1,4}\cycle{2,3}\}\subgroup\symgroup[4],
+\]
+which does not contain any $3$\=/cycles. As a consequence, the product $\alpha_1\cdots\alpha_{n-1}$ cannot match $[1,3]$; by \cref{hurwitz:th:monodromy-realizability-orientable}, this implies that $\DD$ is exceptional.
+\end{proof}
+
+For the other families of exceptional data, we will instead make use of \dessins{}.
+
+\begin{proposition}\label{short-partitions:th:exceptional-composite}
+Let $h\ge 2$, $k\ge 2$, $1\le l\le h-1$ be integers. Then the candidate datum
+\[
+\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}
+\]
+is exceptional.
+\end{proposition}
+\begin{proof}
+Assume by contradiction that there is a \dessin{} $\Gamma\subs\sphere{}$ realizing $\DD$.
+\end{proof}
+
+The following result will allow us to deal with candidate data of the form $\datum{\surf{g}}{d}{[2,\ldots,2],\pi_2,\pi_3}$.
+
+\begin{lemma}
+Let $\DD=\datum{\surf{g}}{d}{[2,\ldots,2],\pi_2,\pi_3}$. Then $\DD$ is realizable if and only if there exists a graph $\Gamma$ embedded in $\surf{g}$ such that:
+\begin{itemize}
+\item $\pi_2=[k(v_1),\ldots,k(v_r)]$, where $v_1,\ldots,v_r$ are the vertices of $\Gamma$;
+\item the complementary regions of $\Gamma$ are topological disks $D_1,\ldots,D_h$;
+\item $\pi_3=[\card{\partial D_1},\ldots,\card{\partial D_h}]$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
+This lemma suggests an approach by enumeration, as we will see in the upcoming proofs.
+
+\begin{proposition}
+The following families of candidate data are exceptional.
+\begin{enumerate}[(1)]
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$.
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
+\item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
+\item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+\begin{proposition}
+Let $k\ge 5$ be an integer. Then the candidate datum
+\[
+\DD=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}
+\]
+is exceptional.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+
+\section{Final result}
+
+By combining all the results in this chapter, we are finally able to compile the full list of exceptional data with a partition of length $2$.
+
+\begin{solution-hurwitz*}
+Let
+\[
+\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}
+\]
+be a candidate datum with $n\ge 3$. Then $\DD$ is exceptional if and only if one of the following holds.
+\begin{enumerate}[(1)]
+\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$.
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
+\item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
+\item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
+\item $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lk,(h-l)k]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le h-1$.
+\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
+\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$.
+\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$.
+\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$.
+\item $\DD=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $k\ge 5$.
+\item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$.
+\item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
+\end{enumerate}
+\end{solution-hurwitz*}
