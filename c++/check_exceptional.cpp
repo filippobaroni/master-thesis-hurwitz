@@ -26,8 +26,65 @@
 template<typename I, typename T, uint32_t n>
 struct _check_exceptional_data_impl {
     auto operator () (const uint32_t d, const std::vector<std::array<uint32_t, n>>& data) {
-        abort();
-        return data;
+        auto P = partitions_table<T>(d)[d];
+        
+        std::atomic<uint32_t> idx = 0;
+        std::vector<std::thread> threads;
+        std::mutex mutex;
+        std::vector<std::array<uint32_t, n>> exceptional;
+        
+        debug << "Partitions: " << P.size() << std::endl;
+        
+        timer::start("r and s");
+        auto r_and_s = compute_r_and_s<I, T>(d);
+        timer::end("r and s");
+        debug << "Secondary partitions: " << r_and_s.size() << std::endl;
+        
+        debug << "Chunk size: " << 1 << std::endl;
+        
+        debug << "RAM usage: " << get_used_RAM() << std::endl;
+        
+        timer::start("exceptional data check");
+        for(int t = 0; t < THREADS; ++t) {
+            threads.emplace_back([&, t]() {
+                while(true) {
+                    uint32_t myidx = idx++;
+                    if(myidx >= data.size()) {
+                        break;
+                    }
+                    if(data.size() < 100 or myidx % (data.size() / 100) == 0) {
+                        std::scoped_lock lock(mutex);
+                        std::cerr << std::setw(3) << (100 * myidx / data.size()) << std::setw(0) << "%    in " << timer::elapsed("exceptional data check") << "s" << std::endl;
+                    }
+                    auto mydatum = data[myidx];
+                    I mycoeff = 0;
+                    for(const auto& [r, s] : r_and_s) {
+                        std::y_combinator([&](auto rec, uint32_t k, uint32_t j, I c) -> void {
+                            for(uint32_t i = j; i < s.size(); ++i) {
+                                if(std::get<1>(s[i]) != mydatum[k]) {
+                                    continue;
+                                }
+                                if(k + 1 == n) {
+                                    mycoeff += c * std::get<0>(s[i]);
+                                } else {
+                                    rec(k + 1, i, c * std::get<0>(s[i]));
+                                }
+                            }
+                        })(0, 0, r);
+                    }
+                    if(mycoeff == 0) {
+                        std::scoped_lock lock(mutex);
+                        exceptional.push_back(mydatum);
+                    }
+                }
+            });
+        }
+        for(auto& t : threads) {
+            t.join();
+        }
+        std::sort(exceptional.begin(), exceptional.end());
+        timer::end("exceptional data check");
+        return exceptional;
     }
 };
 template<typename I, typename T>
@@ -105,7 +162,7 @@ auto check_exceptional_data(uint32_t d, const std::vector<std::array<uint32_t, n
 
 int main(int argc, char** argv) {
     using imodd = imod<1000000009>;
-    constexpr int n = 3;
+    constexpr int n = 4;
     
     debug.open("debug.txt");
     

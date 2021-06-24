@@ -226,7 +226,7 @@ int main(int argc, char** argv) {
     
     auto p_table = partitions_table<uint8_t>(d);
     
-    auto E = exceptional_data<imodd, uint8_t, 5>(d);
+    auto E = exceptional_data<imodd, uint8_t, 4>(d);
     
     for(const auto& e : E) {
         for(auto i : e) {
