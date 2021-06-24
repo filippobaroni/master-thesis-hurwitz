@@ -8,7 +8,7 @@ In this final chapter, we will give a full solution of the Hurwitz existence pro
 \item \textcite{pervova-existence-ii} dealt with the cases where $n=3$ and $\pi_3=[2,d-2]$.
 \item \textcite{pakovich} solved the existence problem for $\len{\pi_n}=2$ and $\tSigma=\sphere{}$.
 \end{itemize}
-In particular, we will consistently exploit the results by \citeauthor{pakovich} as a base case for genus-reducing combinatorial moves. We now state the relevant theorems, but we decide to omit the proofs: while the core ideas are very ingenious, filling in the details is quite tedious and time-consuming\footnote{The same could probably be said about the other proofs in this chapter, which cannot be omitted for obvious reasons.}. We refer the interested reader to \cite{pakovich}.
+In particular, we will consistently exploit the results by \citeauthor{pakovich} as a base case for genus-reducing combinatorial moves. We will now state the relevant theorems, but we decide to omit the proofs: while the core ideas are very ingenious, filling in the details is quite tedious and time-consuming\footnote{The same could probably be said about the other proofs in this chapter, which cannot be omitted for obvious reasons.}. We refer the interested reader to \cite{pakovich}.
 
 \begin{theorem}\label{short-partition:th:realizability-on-sphere-n-3}
 Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it satisfies one of the following.
@@ -43,7 +43,7 @@ Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:ch}\todo{Better link.}) shows that the only exceptional cases are:
+Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional cases are:
 \begin{enumerate}[(1)]
 \item $\DD=\datum{\surf{1}}{6}{[3, 3],[3, 3],[2, 4]}$;
 \item $\DD=\datum{\surf{1}}{8}{[2, 2, 2, 2],[4, 4],[3, 5]}$;
@@ -196,7 +196,7 @@ The \RH{} formula immediately implies that $[3,3,3,3]\subs\pi_1$. If $s=2$ or $s
 \]
 which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}, since we are assuming that $d\ge 17$.
 
-The cases we have analyzed, up to swapping $\pi_1$ and $\pi_2$, cover all the candidate data of the form $\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$. We have showed that every datum which is not listed in the statement is realizable, therefore the proof is complete.
+The cases we have analyzed, up to swapping $\pi_1$ and $\pi_2$, cover all the candidate data of the form $\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$. We have shown that every datum which is not listed in the statement is realizable, therefore the proof is complete.
 \end{proof}
 
 \section{Realizability on higher genus surfaces for \texorpdfstring{$n=3$}{n=3}}
@@ -207,7 +207,7 @@ It turns out that, for $n=3$ and $\len{\pi_3}=2$, there are no exceptional data 
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 2$. Then $\DD$ is realizable.
 \end{theorem}
 \begin{proof}
-Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. For $d\le 18$, a computer-aided search shows that there are no exceptional data (see the results in \cref{computational-results:ch}\todo{Better link.}). Therefore, we can further assume that $d\ge 19$. We proceed by induction on $g\ge 2$, analyzing several cases.
+Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. For $d\le 18$, a computer-aided search shows that there are no exceptional data (see the results in \cref{computational-results:sc:lists}). Therefore, we can further assume that $d\ge 19$. We proceed by induction on $g\ge 2$, analyzing several cases.
 
 \paragraph{Case 1.} Assume that:
 \begin{assumptions}
@@ -267,7 +267,7 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate dat
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:ch}\todo{Better link.}) shows that the only exceptional cases are:
+If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional cases are:
 \begin{enumerate}[(1)]
 \item $\DD=\datum{\surf{1}}{4}{[2, 2],[2, 2],[2, 2],[1, 3]}$;
 \item $\DD=\datum{\surf{2}}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$.
@@ -329,13 +329,13 @@ g'=\frac{1}{2}(v(\pi_1')+v(\pi_3)+v([s,d-s])-d+1\ge\frac{1}{2}\left(d-2+\frac{d}
 Therefore $\DD'$ is realizable by \cref{short-partition:th:realizability-on-higher-genus-n-3}, and $\DD$ is realizable as well.
 \end{itemize}
 
-We now turn to the case $n\ge 5$; we show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, the computational results in \cref{computational-results:ch}\todo{Better link.} imply that $\DD$ is realizable. Otherwise, the routine reduction argument relying on \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} shows that $\DD$ is realizable. \qedhere
+We now turn to the case $n\ge 5$; we show by induction that every candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$  different from $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ is realizable. The case $d=4$ is addressed by \cref{monodromy:th:sphere-d-equals-4}. If $n=5$ and $d=8$, the computational results in \cref{computational-results:sc:lists} imply that $\DD$ is realizable. Otherwise, the routine reduction argument relying on \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} shows that $\DD$ is realizable. \qedhere
 \end{proof}
 
 
 \section{Exceptionality}
 
-This section is devoted to showing that the candidate data listed in the statements of \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-ge-4} are in fact exceptional. First of all, we address the special cases with small degree ($d\le 16$). The computational results in \cref{computational-results:ch}\todo{Better link.} show that the following candidate data are exceptional.
+This section is devoted to showing that the candidate data listed in the statements of \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-ge-4} are in fact exceptional. First of all, we address the special cases with small degree ($d\le 16$). The computational results in \cref{computational-results:sc:lists} show that the following candidate data are exceptional.
 \begin{enumerate}[(1)]
 \item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
 \item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
