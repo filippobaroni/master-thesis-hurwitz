@@ -272,5 +272,74 @@ The following families of candidate data are realizable for every $g\ge 2$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
+\def\env#1{\underline{#1}}
 In the scope of this proof we define an \emph{augmented combinatorial datum} as a combinatorial datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ where some distinguished elements of $\pi_3$ are called \emph{enveloping}; we will underline the enveloping elements in order to recognize them. An augmented combinatorial datum $\DD$ is \emph{realizable} if there exists a \dessin{} $\Gamma$ with $\DD(\Gamma)=\DD$ such that, for every complementary disk $D$ corresponding to an enveloping element of $\pi_3$, there is an edge of $\Gamma$ which is enveloped by $D$.
+\paragraph{Step 1.} The augmented datum
+\[
+\DD=\datum{\surf{2}}{12}{[3,3,3,3],[3,3,3,3],\pi_3}
+\]
+is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.
+\paragraph{Step 2.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
+\[
+\DD'=\datum{\surf{g+1}}{d+6}{\pi_1\cup[3,3],\pi_2\cup[3,3],\pi_3\setminus[\env{x}]\cup[\env{x+6}]}
+\]
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. We perform the following operations on $\Gamma$.
+\begin{enumerate}[(1)]
+\item Add one black vertex and one white vertex on $e$.
+\item Attach a tube to $\surf{g}$ with both endpoints on $D$.
+\item Add one black vertex, one white vertex and four edges as shown in the picture.
+\end{enumerate}
+After these operations, we get a new \dessin{} $\Gamma'$ embedded in $\surf{g+1}$. It is easy to check that $\Gamma'$ realizes the augmented datum $\DD'$.
+\paragraph{Step 3.} For every $g\ge 2$, the augmented datum 
+\[
+\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],\pi_3}
+\]
+is realizable for $\pi_3\in\{[1,\env{6g-1}],[2,\env{6g-2}]\}\cup\{[\env{s},\env{6g-s}]\colon 3\le s\le 6g-3\}$. This can be easily shown by induction on $g$, using step 1 as the base case and step 2 for the induction.
+\paragraph{Step 4.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
+\[
+\DD'=\datum{\surf{g}}{d+2}{\pi_1\cup[2],\pi_2\cup[2],\pi_3\setminus[\env{x}]\cup[\env{x+2}]}
+\]
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add one black vertex and one white vertex on $e$. The new \dessin{} realizes the augmented datum $\DD'$.
+\paragraph{Step 5.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
+\[
+\DD'=\datum{\surf{g}}{d+3}{\pi_1\cup[3],\pi_2\cup[1,2],\pi_3\setminus[\env{x}]\cup[\env{x+3}]}
+\]
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add one black vertex and two white vertices as shown in the picture. The new \dessin{} realizes the augmented datum $\DD'$.
+\paragraph{Step 6.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
+\[
+\DD'=\datum{\surf{g}}{d+4}{\pi_1\cup[1,3],\pi_2\cup[1,3],\pi_3\setminus[\env{x}]\cup[\env{x+4}]}
+\]
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add two black vertices and two white vertices as shown in the picture. The new \dessin{} realizes the augmented datum $\DD'$.
+
+Finally, it is easy to see that the five families listed in the statement can be obtained by applying steps 4, 5 and 6 zero or more times to an augmented datum which is realizable by step 3, and then forgetting about the augmentation; here are the details.
+\begin{enumerate}[(1)]
+\item $\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,6g-s]}$ is already realizable by step 3.
+\item If we assume that $s\le 3g+1$, step 4 gives
+\begin{multline*}
+\datum{\surf{g}}{6g+2}{[2,3,\ldots,3],[2,3\ldots,3],[s,\env{6g+2-s}]}\\
+\cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
+\end{multline*}
+which is realizable by step 3.
+\item If we assume that $s\le 3g+1$, step 5 gives 
+\begin{multline*}
+\datum{\surf{g}}{6g+3}{[3,\ldots,3],[1,2,3,\ldots,3],[s,\env{6g+3-s}]}\\
+\cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
+\end{multline*}
+which is realizable by step 3.
+\item If we assume that $s\le 3g+2$, step 6 gives
+\begin{multline*}
+\datum{\surf{g}}{6g+4}{[1,3,\ldots,3],[1,3,\ldots,3],[s,\env{6g+4-s}]}\\
+\cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
+\end{multline*}
+which is realizable by step 3.
+\item If we assume that $s\le 3g+3$, step 4 and 6 give
+\begin{multline*}
+\datum{\surf{g}}{6g+6}{[1,2,3,\ldots,3],[1,2,3,\ldots,3],[s,\env{6g+6-s}]}\\
+\begin{aligned}
+&\cmove\datum{\surf{g}}{6g+4}{[1,3,\ldots,3],[1,3,\ldots,3],[s,\env{6g+4-s}]}\\
+&\cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
+\end{aligned}
+\end{multline*}
+which is realizable by step 3.\qedhere
+\end{enumerate}
 \end{proof}

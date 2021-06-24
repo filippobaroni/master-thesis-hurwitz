@@ -373,12 +373,12 @@ We now turn to candidate data containing the partition $[1,d-1]$. This is the fi
 \begin{proposition}\label{monodromy:th:sphere-[1 d-1]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}$ be a candidate datum. Then $\DD$ is exceptional if and only if it satisfies one of the following.
 \begin{enumerate}[(1)]
-\item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
 \item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[1,2k-1]}$ with $k\ge 2$.
+\item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-\todo{The exceptionality of the listed candidate data will be addressed at some point.}We proceed by induction on $n$, starting from the base case $n=3$. Let
+The exceptionality of the listed candidate data is addressed in \cref{short-partition:th:exceptional-sphere,short-partition:th:exceptional-d-4} respectively. In order to prove that every other candidate datum is realizable, we proceed by induction on $n$, starting from the base case $n=3$. Let
 \[
 \DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[1,d-1]}\neq\datum{\sphere{}}{d}{[2,\ldots,2],[2,\ldots,2],[1,d-1]}
 \]
@@ -469,7 +469,7 @@ for a suitable candidate datum $\DD''$, where $\pi_1''\in\{[2k],[1,2k-1]\}$. Sin
 Let $d$ be a positive integer with $d\neq 4$. Then there exist at most finitely many exceptional candidate data of the form $\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$.
 \end{corollary}
 \begin{proof}
-By \cref{monodromy:th:sphere-large-g}, every candidate datum with $n\ge 3d-3$ is realizable, and there are a finite number of candidate data with $n<3d-3$.
+By \cref{monodromy:th:sphere-large-g}, every candidate datum with $n\ge 3d-3$ is realizable, and there are only a finite number of candidate data with $n<3d-3$.
 \end{proof}
 
 Instead, there exist infinitely many exceptional candidate data of degree $4$.
@@ -481,7 +481,7 @@ Let $\DD=\datum{\surf{g}}{4}{\pi_1,\ldots,\pi_n}$ be a candidate datum. Then $\D
 \]
 \end{proposition}
 \begin{proof}
-\todo{Non-realizability will be addressed at some point.}We proceed by induction, starting from the base case $n=3$. Note that if any of the partitions is either $[4]$ or $[1,3]$, we immediately conclude by \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]}. By the \RH{} formula, we have the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 6$; therefore, the only candidate datum left to consider is $\datum{\sphere{}}{4}{[2,2],[2,2],[2,2]}$. This datum is realizable, for instance, by choosing
+The exceptionality of the mentioned candidate datum is addressed in \cref{short-partition:th:exceptional-d-4}. In order to show that every other candidate datum with $d=4$ is realizable, we proceed by induction, starting from the base case $n=3$. Note that if any of the partitions is either $[4]$ or $[1,3]$, we immediately conclude by \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]}. By the \RH{} formula, we have the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 6$; therefore, the only candidate datum left to consider is $\datum{\sphere{}}{4}{[2,2],[2,2],[2,2]}$. This datum is realizable, for instance, by choosing
 \begin{align*}
 \alpha_1=\cycle{1,2}\cycle{3,4},&&\alpha_2=\cycle{1,3}\cycle{2,4},&&\alpha_3=\cycle{1,4}\cycle{2,3},
 \end{align*}
@@ -500,13 +500,13 @@ We now turn to the case $n\ge 4$; once again, we can assume that all the partiti
 
 This section is devoted to a fascinating and surprising conjecture related to the Hurwitz existence problem. After studying many examples of exceptional data, a very unexpected pattern begins to emerge: it looks like no such datum can be found when the degree is a prime number. In other words, one comes to suspect the following.
 
-\begin{prime-degree-conjecture*}
+\begin{prime-degree-conjecture*}\label{prime-degree-conjecture}
 Let $p$ be a prime number. Then every candidate datum $\datum{\surf{g}}{p}{\pi_1,\ldots,\pi_n}$ with $n\ge 3$ is realizable.
 \end{prime-degree-conjecture*}
 
 It is not immediately clear why prime numbers should be even remotely related to the realizability of candidate data. In fact, to the best of the author's knowledge, there is no number-theoretic argument in favor (or against) this conjecture; all the evidence gathered so far supporting the prime-degree conjecture is ``experimental''.
 \begin{itemize}
-\item As shown in \cref{short-partitions:th:exceptional-composite}, for every composite number $d\ge 4$ there is an exceptional candidate datum of degree $d$.
+\item As shown in \cref{short-partition:th:exceptional-composite}, for every composite number $d\ge 4$ there is an exceptional candidate datum of degree $d$.
 \item In general, all the exceptional data found so far have a composite degree; for all the families of candidate data whose realizability is completely understood (including those presented in the previous section), the prime-degree conjecture holds.
 \item The first efficient algorithmic approach to the Hurwitz existence problem was presented in \cite{zheng}. Every candidate datum with $n=3$ and $d\le 20$\todo{Or $d\le 22$, according to some sources} was analyzed by a computer, and no exceptional data with prime degree were found; therefore, the prime-degree conjecture was verified for numbers up to $19$ (see \cref{monodromy:th:reduction-to-n-3} below). In \cref{computational-results:ch}, with a much heavier computational effort, we extend this result to prime numbers up to $29$.
 \end{itemize}

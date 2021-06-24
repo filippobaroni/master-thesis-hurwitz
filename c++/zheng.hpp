@@ -13,7 +13,7 @@
 
 #include "combinatorics.hpp"
 
-constexpr int THREADS = 48;
+constexpr int THREADS = 4;
 constexpr long long RAM = 240 * (1LL << 30);
 
 std::ofstream debug;

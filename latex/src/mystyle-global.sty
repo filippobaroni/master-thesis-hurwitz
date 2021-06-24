@@ -22,7 +22,8 @@
 
 
 % Partitions
-\NewDocumentCommand{\Partitions}{m}{\Pi\left(#1\right)}
+\NewDocumentCommand{\Partitions}{m}{\Pi(#1)}
+\NewDocumentCommand{\SPartitions}{m}{\Pi^2(#1)}
 \NewDocumentCommand{\len}{m}{\ell(#1)}
 
 
@@ -62,6 +63,8 @@
 \NewDocumentCommand{\RR}{}{\mathbb{R}}
 \NewDocumentCommand{\CC}{}{\mathbb{C}}
 \NewDocumentCommand{\ZZ}{}{\mathbb{Z}}
+\NewDocumentCommand{\QQ}{}{\mathbb{Q}}
+\NewDocumentCommand{\FF}{}{\mathbb{F}}
 \NewDocumentCommand{\subs}{}{\subseteq}
 \NewDocumentCommand{\card}{m}{\lvert #1\rvert}
 \let\setminus\smallsetminus
@@ -89,6 +92,10 @@
 \NewDocumentCommand{\Dessin}{}{Dessin d'enfant}
 \NewDocumentCommand{\dessins}{}{dessins d'enfant}
 \NewDocumentCommand{\Dessins}{}{Dessins d'enfant}
+
+
+% C++
+\NewDocumentCommand{\Cpp}{}{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
 
 
 % Other aliases

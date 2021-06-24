@@ -1,1 +1,171 @@
 \chapter{Computational results}\label{computational-results:ch}
+
+\section{Zheng's formula}
+\bgroup
+\def\tt{\mathbf{t}}
+
+This chapter is devoted to the presentation of a computational approach to the Hurwitz existence problem, which was first introduced by \citeauthor{zheng} in \cite{zheng}, and to the discussion of some experimental results we have obtained by exploiting it. In this short section, we will merely report the formula used for the computation, without any explanation. For an in-depth derivation of said formula, we refer the reader to \citeauthor{zheng}'s article.
+
+We will require some basic notions about the representation theory of $\symgroup[d]$; all the material we will need is extensively covered in \cite{sagan}. Let $d$ be a positive integer. Given a partition $\pi\in\Partitions{d}$, we denote by $\rho^\pi$, $\zeta^\pi$ and $C_\pi$ the irreducible representation of $\symgroup[d]$, the character and the conjugacy class of $\symgroup[d]$ associated to $\pi$.
+
+A \emph{secondary partition} of $d$ is an unordered multiset $\mu=[\pi_1,\ldots,\pi_k]$, where $\pi_1,\ldots,\pi_k$ are partitions such that $\sum\pi_1+\ldots+\sum\pi_k=d$. We denote the set of all secondary partitions of $d$ by $\SPartitions{d}$.
+
+Fix a positive integer $n$. We will work in the polynomial ring $\QQ[\mathcal{T}]$, where $\mathcal{T}$ is the infinite set of variables $\mathcal{T}=\{t_{i,j}\colon 1\le i\le n,j\ge 1\}$. Given an integer $1\le i\le n$ and a partition $\pi=[a_1,\ldots,a_p]\in\Partitions{d}$, we define $\tt_i^\pi=t_{i,a_1}\cdots t_{i,a_p}$.
+
+Consider now a secondary partition $\mu=[\pi_1,\ldots,\pi_k]\in\SPartitions{d}$; let $d_i=\sum\pi_i$ for $1\le i\le k$, and let $m_1,\ldots,m_l$ be the multiplicities of the elements of $[\pi_1,\ldots,\pi_k]$ (in particular, $m_1+\ldots+m_l=k$). We define:
+\begin{itemize}
+\item the rational number $\displaystyle r(\mu)=(-1)^{k-1}\frac{(k-1)!}{m_1!\cdots m_l!}\prod_{j=1}^k\left(\frac{\dim\rho^{\pi_j}}{d_j!}\right)^2$;
+\item the polynomials $\displaystyle s(\mu)(t_{i,1},\ldots,t_{i,d})=\prod_{j=1}^k\sum_{\nu\in\Partitions{d_j}}\frac{\zeta^{\pi_j}(C_\nu)\cdot\card{C_\nu}}{\dim\rho^{\pi_j}}\cdot\tt_j^\nu$ for $1\le i\le n$.
+\end{itemize}
+
+Finally, for fixed positive integers $n$ and $d$, we define the polynomial
+\[
+P_{n,d}(t_{1,1},\ldots,t_{1,d},t_{2,1},\ldots,t_{n,d})=\sum_{\mu\in\SPartitions{d}}r(\mu)\prod_{i=1}^ks(\mu)(t_{i,1},\ldots,t_{i,d}).
+\]
+As shown in \cite{zheng}, given a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$, the coefficient of the monomial $\tt_1^{\pi_1}\cdots\tt_n^{\pi_n}$ in $P_{n,d}$ is non-zero if and only if $\DD$ is realizable. This property gives a computationally efficient method for finding all the exceptional data for given values of $n$ and $d$.
+
+\section{Implementation}\label{computational-results:sc:implementation}
+We wrote a \Cpp{} program for efficiently listing the exceptional data using Zheng's formula. Here are a few implementation details.
+\begin{itemize}
+\item For a given partition $\pi=[a_1,\ldots,a_p]\in\Partitions{d}$, computing $\card{C_\pi}$ is very easy: we have the formula
+\[
+\card{C_\pi}=\frac{d!}{a_1!\cdots a_p!}.
+\]
+\item The characters $\zeta^\pi$ can be recursively computed by means of the Murnaghan–Nakayama formula (see \resultcite{theorem}{4.10.2}{sagan}).
+\item In order to compute the dimension of $\rho^\pi$, we can exploit the fact that $\dim\rho^\pi=\zeta^\pi(\id)$, since we need the characters anyway.
+\item Instead of carrying out the exact computation in $\QQ$, which is quite expensive, we can work in a finite field $\FF_q$ for some prime $q$. If a candidate datum is realizable according the the reduced computation in $\FF_q$, then it is realizable; if it is exceptional for sufficiently many primes $q$, then it is exceptional.
+\item The computation of $P_{n,d}$ is very well-suited to parallelization, since it involves a summation whose terms can be evaluated independently.
+\end{itemize}
+
+\section{Results}
+
+To the best of the author's knowledge, the only available computational results date back to \citeyear{zheng}, when \citeauthor{zheng} managed to compute the polynomial $P_{n,d}$ for $n=3$ and $d\le 20$. Thanks to the resources kindly provided by the University of Pisa (and the undeniable advancement in hardware technology in the past 15 years), we were able to carry out the computation up to $d=29$ which, very conveniently, is a prime number. The results are displayed in the following table. (for obvious reasons, we cannot include the full list).
+
+\bgroup
+\pgfplotstabletypeset[
+column type=,
+begin table={\begin{tabularx}{\textwidth}{rrrr}},
+end table={\end{tabularx}},
+every head row/.style={output empty row,before row={\toprule\multicolumn{4}{c}{Number of exceptional data for $n=3$, $d\le 29$.}\\[0.2em]
+$d$&$\tSigma=\sphere{}$&$\tSigma=\surf{1}$&Total\\},after row={\midrule}},
+every last row/.style={after row={\bottomrule}}
+]{table-n3.txt}
+\egroup
+
+\begin{remark}
+For the sake of efficiency, as explained in the previous section, the computation was carried out in the finite fields $\FF_{q_1}$ and $\FF_{q_2}$, where $q_1=\numprint{1000000007}$ and $q_2=\numprint{1000000009}$. As a consequence, the numbers reported in the table are merely an upper bound, rather than exact values. However, heuristic arguments suggests that, at least for $d\le 29$, working in these two finite fields is enough to avoid any false positives.
+\end{remark}
+
+A few considerations are in order. First of all, one of the most prominent goals of the computer-assisted approach to the Hurwitz existence problem is providing experimental evidence supporting the \hyperref[prime-degree-conjecture]{prime-degree conjecture}. Thanks to \cref{monodromy:th:reduction-to-n-3}, the verification can be reduced to the $n=3$ case. Therefore, our results prove that the conjecture holds for prime numbers up to $29$ (recall that the algorithm is able to prove realizability even when working in finite fields).
+
+Moreover, the results reveal that most of the exceptional data have $\tSigma=\sphere{}$; there are a handful with $\tSigma=\surf{1}$, and none with $\tSigma=\surf{g}$ for $g\ge 2$. This curious pattern calls for a more in-depth investigation: \cref{computational-results:fg:n-4,computational-results:fg:n-5} show the results we have obtained by running \citeauthor{zheng}'s algorithm for $n=4$ and $n=5$ respectively.
+
+\begin{figure}[h]
+Here are the results.
+\caption{Exceptional data for $n=4$, $d\le 20$.}
+\label{computational-results:fg:n-4}
+\end{figure}
+\begin{figure}[h]
+Here are the results.
+\caption{Exceptional data for $n=5$, $d\le 15$.}
+\label{computational-results:fg:n-5}
+\end{figure}
+
+From the experimental results it looks like, even for $n\ge 4$, the majority of the exceptional data occurs when $\tSigma=\sphere$. We note that, unlike in the $n=3$ case, when $n\ge 4$ we also find a few exceptional data on surfaces of genus $g\ge 2$; however,
+all of them are covered by the following families:
+\begin{enumerate}[(1)]
+\item $\DD=\datum{\surf{2}}{16}{[2,\ldots,2],[2,\ldots,2],[2,\ldots,2],[1,3,3,3,3,3]}$;
+\item $\DD=\datum{\surf{2}}{2k}{[2,\ldots,2],[2,\ldots,2],[2,\ldots,2],[2,\ldots,2,3,5]}$ with $k\ge 4$;
+\item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$ with $n\ge 5$.
+\end{enumerate}
+This observation leads to the following conjecture, which was already proposed in \cite{zheng}.
+\begin{conjecture*}[Zheng]
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum with $g\ge 2$. Then $\DD$ is realizable unless it belongs to one of the aforementioned families.
+\end{conjecture*}
+According to \citeauthor{zheng}, the statement can be reduced to the $n=3$ case, just like the prime-degree conjecture. Therefore, our computation shows that Zheng's conjecture holds at least for $d\le 29$.
+
+\section{Lists of exceptional data with a short partition}
+
+We conclude this appendix by enumerating all the exceptional data $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ with $\len{\pi_n}=2$ for small values of $n$ and $d$. These lists, which were computed by our \Cpp{} program, were used in the proofs of \cref{short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-3,short-partition:th:realizability-on-higher-genus-n-ge-4} to dramatically reduce the number of cases we had to handle. In the unlikely (but not impossible) event that running the algorithm in finite fields yields some false positives, the results in this section were double-checked by carrying out the exact computation in the field $\QQ$ of rational numbers.
+
+\def\mytablewidth{.8\textwidth}
+\begin{tabularx}{\mytablewidth}{l}
+\caption{List of exceptional data with $n=3$, $\len{\pi_3}=2$, $\tSigma=\sphere{}$ and $d\le 12$.}
+\label{computational-results:tb:n-3-sphere}\\
+\toprule
+$\datum{\sphere}{4}{[2, 2],[2, 2],[1, 3]}$\\
+$\datum{\sphere}{6}{[2, 2, 2],[2, 2, 2],[2, 4]}$\\
+$\datum{\sphere}{6}{[2, 2, 2],[2, 2, 2],[1, 5]}$\\
+$\datum{\sphere}{6}{[2, 2, 2],[1, 2, 3],[3, 3]}$\\
+$\datum{\sphere}{6}{[2, 2, 2],[1, 1, 4],[2, 4]}$\\
+$\datum{\sphere}{6}{[1, 1, 1, 3],[3, 3],[3, 3]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 6]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[1, 7]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[1, 2, 2, 3],[4, 4]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[1, 1, 3, 3],[3, 5]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[1, 1, 1, 5],[4, 4]}$\\
+$\datum{\sphere}{8}{[2, 2, 2, 2],[1, 1, 1, 5],[2, 6]}$\\
+$\datum{\sphere}{8}{[1, 1, 1, 1, 1, 3],[4, 4],[4, 4]}$\\
+$\datum{\sphere}{9}{[1, 1, 1, 1, 1, 4],[3, 3, 3],[3, 6]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[2, 2, 2, 2, 2],[4, 6]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[2, 2, 2, 2, 2],[3, 7]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[2, 2, 2, 2, 2],[2, 8]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[2, 2, 2, 2, 2],[1, 9]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[1, 2, 2, 2, 3],[5, 5]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[1, 1, 1, 3, 4],[5, 5]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[1, 1, 1, 1, 6],[4, 6]}$\\
+$\datum{\sphere}{10}{[2, 2, 2, 2, 2],[1, 1, 1, 1, 6],[2, 8]}$\\
+$\datum{\sphere}{10}{[1, 1, 1, 1, 1, 1, 1, 3],[5, 5],[5, 5]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 2, 2],[5, 7]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 2, 2],[4, 8]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 2, 2],[3, 9]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 2, 2],[2, 10]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 2, 2],[1, 11]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[1, 2, 2, 2, 2, 3],[6, 6]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[1, 1, 1, 3, 3, 3],[6, 6]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[1, 1, 1, 1, 4, 4],[5, 7]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[1, 1, 1, 1, 1, 7],[6, 6]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[1, 1, 1, 1, 1, 7],[4, 8]}$\\
+$\datum{\sphere}{12}{[2, 2, 2, 2, 2, 2],[1, 1, 1, 1, 1, 7],[2, 10]}$\\
+$\datum{\sphere}{12}{[1, 1, 1, 1, 1, 1, 1, 1, 1, 3],[6, 6],[6, 6]}$\\
+$\datum{\sphere}{12}{[1, 1, 1, 1, 1, 1, 1, 5],[3, 3, 3, 3],[6, 6]}$\\
+$\datum{\sphere}{12}{[1, 1, 1, 1, 1, 1, 1, 5],[3, 3, 3, 3],[3, 9]}$\\
+$\datum{\sphere}{12}{[1, 1, 1, 1, 1, 1, 1, 1, 4],[4, 4, 4],[4, 8]}$\\
+\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\mytablewidth}{l}
+\caption{List of exceptional data with $n=3$ $\len{\pi_3}=2$, $g\ge 1$ and $d\le 18$.}
+\label{computational-results:tb:n-3-higher-genus}\\
+\toprule
+$\datum{\surf{1}}{6}{[3, 3],[3, 3],[2, 4]}$\\
+$\datum{\surf{1}}{8}{[2, 2, 2, 2],[4, 4],[3, 5]}$\\
+$\datum{\surf{1}}{10}{[2, 2, 2, 2, 2],[2, 3, 5],[5, 5]}$\\
+$\datum{\surf{1}}{12}{[2, 2, 2, 2, 2, 2],[3, 3, 3, 3],[5, 7]}$\\
+$\datum{\surf{1}}{12}{[2, 2, 2, 2, 2, 2],[2, 2, 3, 5],[6, 6]}$\\
+$\datum{\surf{1}}{14}{[2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 3, 5],[7, 7]}$\\
+$\datum{\surf{1}}{16}{[2, 2, 2, 2, 2, 2, 2, 2],[1, 3, 3, 3, 3, 3],[8, 8]}$\\
+$\datum{\surf{1}}{16}{[2, 2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 3, 5],[8, 8]}$\\
+$\datum{\surf{1}}{18}{[2, 2, 2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 2, 3, 5],[9, 9]}$\\
+\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\mytablewidth}{l}
+\caption{List of exceptional data with $n=4$, $\len{\pi_4}=2$ and $d\le 16$.}
+\label{computational-results:tb:n-4}\\
+\toprule
+$\datum{\surf{1}}{4}{[2, 2],[2, 2],[2, 2],[1, 3]}$\\
+$\datum{\surf{2}}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$\\
+\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\mytablewidth}{l}
+\caption{List of exceptional data with $n=5$, $\len{\pi_5}=2$ and $3\le d\le 8$.}
+\label{computational-results:tb:n-5}\\
+\toprule
+$\datum{\surf{2}}{4}{[2, 2],[2, 2],[2, 2],[2, 2],[1, 3]}$\\
+\bottomrule
+\end{tabularx}
+
+\egroup

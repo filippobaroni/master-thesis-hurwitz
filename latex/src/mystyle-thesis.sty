@@ -5,8 +5,9 @@
 \usepackage[a4paper]{geometry}
 
 
-% Microtype
+% Typography
 \usepackage{microtype}
+\usepackage{numprint}
 
 
 % LaTeX programming
@@ -34,7 +35,7 @@
 % References
 \usepackage{hyperref}
 \hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
-\usepackage[capitalize]{cleveref}
+\usepackage[noabbrev,capitalize]{cleveref}
 \NewDocumentCommand{\RH}{}{\hyperref[hurwitz:th:riemann-hurwitz-formula]{Riemann-Hurwitz}}
 
 
@@ -47,19 +48,42 @@
 \declaretheorem[numberlike=theorem]{proposition}
 \declaretheorem[style=definition,numberwithin=chapter]{definition}
 \declaretheorem[style=remark,numberwithin=chapter]{remark}
+\declaretheorem[numbered=no,name={Conjecture}]{conjecture*}
 \declaretheorem[numbered=no,name={Hurwitz existence problem},style=definition]{hurwitz-existence-problem*}
 \declaretheorem[numbered=no,name={Prime-degree conjecture}]{prime-degree-conjecture*}
 \declaretheorem[numbered=no,name={Solution of the Hurwitz existence problem for $\ell(\pi_n)=2$}]{solution-hurwitz*}
-\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmovea}
-\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmoveb}
+
 \makeatletter
-\renewcommand{\thecombinatorialmovea}{A.\arabic{combinatorialmovea}}
-\renewcommand{\thecombinatorialmoveb}{B.\arabic{combinatorialmoveb}}
+\NewDocumentCommand{\NewCombinatorialMoveType}{m}{
+\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmove#1}
+\expandafter\renewcommand\csname thecombinatorialmove#1\endcsname{\uppercase{#1}.\arabic{combinatorialmove#1}}
+}
 \makeatother
+\NewCombinatorialMoveType{a}
+\NewCombinatorialMoveType{b}
+\NewCombinatorialMoveType{c}
+%\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmovea}
+%\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmoveb}
+%\makeatletter
+%\renewcommand{\thecombinatorialmovea}{A.\arabic{combinatorialmovea}}
+%\renewcommand{\thecombinatorialmoveb}{B.\arabic{combinatorialmoveb}}
+%\makeatother
 
 
 % Appendices
 \usepackage{appendix}
+
+
+% Floats
+\usepackage{float}
+\floatstyle{plain}
+
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ltablex}
+\usepackage{pgfplotstable}
 
 
 % TikZ

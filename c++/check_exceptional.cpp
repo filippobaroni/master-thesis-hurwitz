@@ -11,6 +11,8 @@
 #include <sstream>
 #include <vector>
 
+#include <gmpxx.h>
+
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -161,8 +163,9 @@ auto check_exceptional_data(uint32_t d, const std::vector<std::array<uint32_t, n
 }
 
 int main(int argc, char** argv) {
-    using imodd = imod<1000000009>;
-    constexpr int n = 4;
+    //using T = imod<1000000009>;
+    using T = mpq_class;
+    constexpr int n = 5;
     
     debug.open("debug.txt");
     
@@ -192,7 +195,7 @@ int main(int argc, char** argv) {
         }
     }
     
-    auto E = check_exceptional_data<imodd, uint8_t, n>(d, data);
+    auto E = check_exceptional_data<T, uint8_t, n>(d, data);
     
     for(const auto& e : E) {
         for(auto i : e) {
