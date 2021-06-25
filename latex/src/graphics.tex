@@ -1,0 +1,158 @@
+\usetikzlibrary{decorations.markings,decorations.pathreplacing,math,calc}
+
+% Settings
+
+\def\graphicfast{0}
+%\tikzexternaldisable
+%\let\oldtikzsetnextfilename\tikzsetnextfilename
+%\def\tikzsetnextfilename#1{\oldtikzsetnextfilename{#1-fast\graphicfast}}
+
+\makeatletter
+\def\createcontour@precision{0.1}
+\makeatother
+
+\newlength{\edgelinewidth}
+\setlength{\edgelinewidth}{0.6pt}
+\newlength{\contourradius}
+\setlength{\contourradius}{2.5pt}
+\newlength{\edgehalo}
+\setlength{\edgehalo}{1pt}
+
+% Colors
+\colorlet{disk 1 boundary}{orange}
+\colorlet{disk 2 boundary}{blue!80!green}
+\colorlet{disk 1}{disk 1 boundary!30!white}
+\colorlet{disk 2}{disk 2 boundary!30!white}
+
+
+% Arc
+\tikzset{pics/arc from center and point/.style n args={3}{code={
+\tikzmath{coordinate \c,\p,\d;\c=#1;\p=#2;\d=(\p)-(\c);\r=veclen(\dx,\dy);\a=atan2(\dy,\dx);}
+\path[pic actions] (\p) arc(\a:{\a+#3}:{\r pt});
+}}}
+
+
+% Contour graphs
+
+\pgfdeclarelayer{graph near vertex contour}
+\pgfdeclarelayer{graph near vertex mask}
+\pgfdeclarelayer{graph near vertex edge}
+\pgfdeclarelayer{graph edge below}
+\pgfdeclarelayer{graph edge above}
+\pgfdeclarelayer{graph vertex}
+
+\tikzset{
+graph picture/.style={
+/utils/exec={\pgfsetlayers{graph near vertex contour,graph near vertex mask,graph near vertex edge,graph edge below,graph edge above,graph vertex,main}}
+}
+}
+
+\tikzset{
+exec on layer/.code 2 args={\begin{pgfonlayer}{#1}#2\end{pgfonlayer}}
+}
+
+\tikzset{
+black vertex/.pic={\begin{pgfonlayer}{graph vertex}\fill[black] circle(1.5pt);\end{pgfonlayer}},
+white vertex/.pic={\begin{pgfonlayer}{graph vertex}\filldraw[black,fill=white] circle(1.5pt);\end{pgfonlayer}},
+black edge/.style={line width=\edgelinewidth,black!80},
+graph edge/.style 2 args={postaction={decorate,decoration={show path construction,
+	lineto code={\begin{pgfonlayer}{graph edge #1}\draw[tmpstyle/.style/.expand once=#2,line width=\edgelinewidth,tmpstyle] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);\end{pgfonlayer}},
+	curveto code={\begin{pgfonlayer}{graph edge #1}\draw[tmpstyle/.style/.expand once=#2,line width=\edgelinewidth,tmpstyle] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);\end{pgfonlayer}}}}},
+}
+
+\makeatletter
+\tikzset{
+create contour settings/.is family,
+create contour settings/.cd,
+defaults/.style={save in=contour},
+direction/.store in=\createcontour@direction,
+radius/.store in=\createcontour@radius,
+begin/.store in=\createcontour@begin,
+end/.store in=\createcontour@end,
+save in/.store in=\createcontour@savein,
+}
+\tikzset{
+create contour/.style={
+	create contour settings/.cd,
+	defaults,
+	#1,
+	/tikz/.cd,
+	postaction={
+	/utils/exec={
+		\expandafter\xdef\csname\createcontour@savein\endcsname{}
+		\expandafter\xdef\csname\createcontour@savein rev\endcsname{}
+		\def\todoonmark{
+			\edef\coordname{\createcontour@savein-\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}}
+			\expandafter\xdef\csname\createcontour@savein\endcsname{\csname\createcontour@savein\endcsname (\coordname)}
+\expandafter\xdef\csname\createcontour@savein rev\endcsname{(\coordname-rev) \csname\createcontour@savein rev\endcsname}
+			\coordinate (\coordname) at ({90*(\createcontour@direction)}:\createcontour@radius);
+			\coordinate (\coordname-rev);
+}},
+	decorate,decoration={
+		markings,
+		mark=at position {\createcontour@begin} with {\coordinate (\createcontour@savein-begin-onedge);\coordinate (\createcontour@savein-begin) at ({90*(\createcontour@direction)}:\createcontour@radius);},
+		mark=between positions {\createcontour@begin+0.0005} and {\createcontour@end-0.0005} step \createcontour@precision with {\todoonmark},
+		mark=at position {\createcontour@end} with {\coordinate (\createcontour@savein-end-onedge);\coordinate (\createcontour@savein-end) at ({90*(\createcontour@direction)}:\createcontour@radius);\todoonmark}
+	},
+	}
+}
+}
+
+\tikzset{
+contour edge settings/.is family,
+contour edge settings/.cd,
+defaults/.style={below,begin=0.2,end=0.8,left bcap=0,right bcap=0,left ecap=0,right ecap=0,edge={opacity=0}},
+right/.store in=\contouredge@right,
+left/.store in=\contouredge@left,
+below/.code={\def\contouredge@layer{below}\def\contouredge@isabove{0}},
+above/.code={\def\contouredge@layer{above}\def\contouredge@isabove{1}},
+edge/.store in=\contouredge@edge,
+begin/.store in=\contouredge@begin,
+end/.store in=\contouredge@end,
+left bcap/.store in=\contouredge@leftbcap,
+right bcap/.store in=\contouredge@rightbcap,
+left ecap/.store in=\contouredge@leftecap,
+right ecap/.store in=\contouredge@rightecap,
+}
+\tikzset{
+contour edge settings/do stuff/.style 2 args={
+	/utils/exec={
+	\ifnum\contouredge@isabove=1\tikzset{postaction={
+	create contour={direction=#1,radius={\contourradius+\edgehalo},begin=\contouredge@begin,end=\contouredge@end},
+	postaction={exec on layer={graph edge \contouredge@layer}{\fill[white] plot[smooth] coordinates \contour -- plot[smooth] coordinates \contourrev -- cycle;}}}}\fi},
+	postaction={create contour={direction=#1,radius={\contourradius-.5\edgelinewidth},begin=0,end=\contouredge@begin},
+	postaction={exec on layer={graph near vertex mask}{\fill[white] plot[smooth] coordinates \contour -- plot[smooth] coordinates \contourrev -- cycle;}}},
+	postaction={create contour={direction=#1,radius={\contourradius-.5\edgelinewidth},begin=\contouredge@end,end=0.998},
+	postaction={exec on layer={graph near vertex mask}{\fill[white] plot[smooth] coordinates \contour -- plot[smooth] coordinates \contourrev -- cycle;}}},
+	postaction={
+	create contour={direction=#1,radius=\contourradius,begin=\contouredge@begin,end=\contouredge@end},
+	postaction={contour edge settings/tmpstyle/.style/.expand once=#2,exec on layer={graph edge \contouredge@layer}{\draw[contour edge settings/tmpstyle] plot[smooth] coordinates \contour;},}},
+	postaction={
+	create contour={direction=#1,radius=\contourradius,begin=0,end=0.998},
+	postaction={contour edge settings/tmpstyle/.style/.expand once=#2,exec on layer={graph near vertex contour}{\draw[contour edge settings/tmpstyle] plot[smooth] coordinates \contour;\ifnumcomp{#1}{=}{-1}{\pic[draw,contour edge settings/tmpstyle]{arc from center and point={(contour-begin-onedge)}{(contour-begin)}{-\contouredge@rightbcap}};\pic[draw,contour edge settings/tmpstyle]{arc from center and point={(contour-end-onedge)}{(contour-end)}{\contouredge@rightecap}};}{\pic[draw,contour edge settings/tmpstyle]{arc from center and point={(contour-begin-onedge)}{(contour-begin)}{\contouredge@leftbcap}};\pic[draw,contour edge settings/tmpstyle]{arc from center and point={(contour-end-onedge)}{(contour-end)}{-\contouredge@leftecap}};}
+},}},
+},
+contour edge/.style={
+	postaction={
+	contour edge settings/.cd,
+	defaults,
+	#1,
+	/tikz/.cd,
+	contour edge settings/do stuff={-1}{\contouredge@right},
+	contour edge settings/do stuff={1}{\contouredge@left},
+	graph edge={\contouredge@layer}{\contouredge@edge},
+}}
+}
+
+\ifnum\graphicfast=1
+\tikzset{contour edge/.style={
+	postaction={
+	contour edge settings/.cd,
+	defaults,
+	#1,
+	/tikz/.cd,
+	graph edge={\contouredge@layer}{\contouredge@edge},
+}}}
+\fi
+
+\makeatother

@@ -11,6 +11,7 @@
 
 
 % LaTeX programming
+\usepackage{etoolbox}
 \usepackage{xparse}
 
 
@@ -92,6 +93,10 @@
 % TikZ
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{external}
+\tikzexternalize[optimize=false,prefix=figures/]
+%\tikzset{external/export=false}
+\tikzset{external/only named=true}
 
 
 % Diagrams
@@ -109,7 +114,7 @@
 
 % Bibliography
 \usepackage[doi=false,isbn=false,url=false]{biblatex}
-\addbibresource{bibliography.bib}
+%\addbibresource{bibliography.bib}
 \NewDocumentCommand{\resultcite}{mmm}{\cite[\MakeUppercase #1~#2]{#3}}
 
 
