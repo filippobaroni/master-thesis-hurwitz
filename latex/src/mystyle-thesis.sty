@@ -94,7 +94,7 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{external}
-\tikzexternalize[optimize=false,prefix=figures/]
+\tikzexternalize[prefix=figures/]
 %\tikzset{external/export=false}
 \tikzset{external/only named=true}
 
@@ -102,7 +102,7 @@
 % Diagrams
 \usepackage{tikz-cd}
 \tikzcdset{diagrams={row sep=large,column sep=large}}
-\NewDocumentEnvironment{diagram}{O{}}{\begin{equation*}\begin{tikzcd}[#1]}{\end{tikzcd}\end{equation*}\ignorespacesafterend}
+\NewDocumentEnvironment{diagram}{O{}}{\tikzexternaldisable\begin{equation*}\begin{tikzcd}[#1]}{\end{tikzcd}\end{equation*}\tikzexternalenable\ignorespacesafterend}
 
 
 % Lists

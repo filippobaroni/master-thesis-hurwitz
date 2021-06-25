@@ -1,9 +1,15 @@
 \bgroup
+\tikzset{external/export=true}
+\begin{tikzpicture}
+\draw (0,0);
+\end{tikzpicture}
+\tikzset{external/export=false}
 \def\myradius{1.2}
 \tikzset{
 contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 boundary,edge=black edge}
 }
 \def\draweightvertices{
+\path[use as bounding box] circle(1.6*\myradius);
 \path (0:\myradius) coordinate (w1) pic{white vertex};
 \path (90:\myradius) coordinate (w2) pic{white vertex};
 \path (180:\myradius) coordinate (w3) pic{white vertex};
@@ -13,8 +19,9 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \path (225:\myradius) coordinate (b3) pic{black vertex};
 \path (315:\myradius) coordinate (b4) pic{black vertex};
 }
-\begin{tabularx}{\textwidth}{|X|X|X|}
+\begin{tabular}{ccc}
 \makecell[c]{
+$\pi_3=[1,{11}]$\\
 \tikzsetnextfilename{dessin-special-families-small-1}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -33,6 +40,7 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \end{tikzpicture}
 }
 &\makecell[c]{
+$\pi_3=[2,{10}]$\\
 \tikzsetnextfilename{dessin-special-families-small-2}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -50,6 +58,7 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \path[contour edge={quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
 \end{tikzpicture}
 }&\makecell[c]{
+$\pi_3=[{3},{9}]$\\
 \tikzsetnextfilename{dessin-special-families-small-3}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -68,6 +77,7 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \end{tikzpicture}
 }\\
 \makecell[c]{
+$\pi_3=[{4},{8}]$\\
 \tikzsetnextfilename{dessin-special-families-small-4}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -85,6 +95,7 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \path[contour edge={quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
 \end{tikzpicture}
 }&\makecell[c]{
+$\pi_3=[{5},{7}]$\\
 \tikzsetnextfilename{dessin-special-families-small-5}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -102,6 +113,7 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \path[contour edge={quick={2}{2}}] (b3) to[bend right] (w2);
 \end{tikzpicture}
 }&\makecell[c]{
+$\pi_3=[{6},{6}]$\\
 \tikzsetnextfilename{dessin-special-families-small-6}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -119,5 +131,5 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \path[contour edge={quick={2}{1}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
 \end{tikzpicture}
 }
-\end{tabularx}
+\end{tabular}
 \egroup

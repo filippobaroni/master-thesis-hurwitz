@@ -11,6 +11,9 @@ check_exceptional
 *.log
 *.synctex.gz
 
+# Figures
+latex/src/figures
+
 # TeXstudio sessions
 *.txss
 

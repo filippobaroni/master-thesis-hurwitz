@@ -279,6 +279,139 @@ In the scope of this proof we define an \emph{augmented combinatorial datum} as 
 \DD=\datum{\surf{2}}{12}{[3,3,3,3],[3,3,3,3],\pi_3}
 \]
 is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.
+
+\bgroup
+
+\def\myradius{1.2}
+\tikzset{
+contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 boundary,edge=black edge}
+}
+\def\draweightvertices{
+\path[use as bounding box] circle(1.6*\myradius);
+\path (0:\myradius) coordinate (w1) pic{white vertex};
+\path (90:\myradius) coordinate (w2) pic{white vertex};
+\path (180:\myradius) coordinate (w3) pic{white vertex};
+\path (270:\myradius) coordinate (w4) pic{white vertex};
+\path (45:\myradius) coordinate (b1) pic{black vertex};
+\path (135:\myradius) coordinate (b2) pic{black vertex};
+\path (225:\myradius) coordinate (b3) pic{black vertex};
+\path (315:\myradius) coordinate (b4) pic{black vertex};
+}
+
+\begin{tabular}{ccc}
+\makecell[c]{
+$\pi_3=[1,\env{11}]$\\
+\tikzsetnextfilename{dessin-special-families-small-1}
+\begin{tikzpicture}[graph picture]
+\draweightvertices
+\path[contour edge={quick={2}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={2}{2}}] (b3) to[bend left] (w3);
+\path[contour edge={quick={2}{1}}] (w3) to[bend left] (b2);
+\path[contour edge={quick={2}{2}}] (b2) to[bend left] (w2);
+\path[contour edge={quick={2}{2},left ecap=90}] (w2) to[bend left] (b1);
+\path[contour edge={quick={2}{2}}] (w4) to[out=110,looseness=2.2,in=170] (b4);
+\path[contour edge={quick={2}{2}}] (b3) to[out=60,out looseness=1.5,in=-135] (w1);
+\path[contour edge={quick={2}{2}}] (b4) to[bend right=90] (w1);
+\path[contour edge={above,quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
+\path[contour edge={above,quick={2}{2},end=0.85}] (w4) to[out=10,in=-160,out looseness=1.3,in looseness=2] (b1);
+\path[contour edge={quick={2}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
+\path[contour edge={quick={1}{2}}] (w3) to[bend right=90,looseness=2.2] (b2);
+\end{tikzpicture}
+}&\makecell[c]{
+$\pi_3=[2,\env{10}]$\\
+\tikzsetnextfilename{dessin-special-families-small-2}
+\begin{tikzpicture}[graph picture]
+\draweightvertices
+\path[contour edge={quick={1}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={1}{2}}] (b3) to[bend left] (w3);
+\path[contour edge={quick={1}{2}}] (w3) to[bend left] (b2);
+\path[contour edge={quick={1}{2}}] (b2) to[bend left=110] (w4);
+\path[contour edge={above,quick={2}{2}}] (w3) to[out=-20,out looseness=1.4,in=-180] (b1);
+\path[contour edge={above,quick={2}{2},end=0.75}] (b2) to[out=-60,in=-120,looseness=2.2] (w2);
+\path[contour edge={quick={2}{2}}] (w2) to[bend left=90] (b1);
+\path[contour edge={quick={2}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
+\path[contour edge={above,quick={2}{2}}] (w4) to[out=110,looseness=2.2,in=170] (b4);
+\path[contour edge={above,quick={2}{2}}] (b3) to[out=60,out looseness=1.4,in=-135] (w1);
+\path[contour edge={quick={2}{2}}] (b4) to[bend right=90] (w1);
+\path[contour edge={quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
+\end{tikzpicture}
+}&\makecell[c]{
+$\pi_3=[\env{3},\env{9}]$\\
+\tikzsetnextfilename{dessin-special-families-small-3}
+\begin{tikzpicture}[graph picture]
+\draweightvertices
+\path[contour edge={quick={2}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={2}{2}}] (b3) to[bend left] (w3);
+\path[contour edge={quick={2}{1}}] (w3) to[bend left] (b2);
+\path[contour edge={quick={1}{1},left ecap=90}] (b2) to[out=-40,out looseness=2,in=-170] (w2);
+\path[contour edge={quick={1}{2},left ecap=90}] (w2) to[bend left] (b1);
+\path[contour edge={quick={2}{2}}] (w4) to[out=110,looseness=2.2,in=170] (b4);
+\path[contour edge={quick={2}{2}}] (b3) to[out=60,out looseness=1.5,in=-135] (w1);
+\path[contour edge={quick={2}{2}}] (b4) to[bend right=90] (w1);
+\path[contour edge={above,quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
+\path[contour edge={above,quick={2}{2},end=0.85}] (w4) to[out=10,in=-160,out looseness=1.3,in looseness=2] (b1);
+\path[contour edge={quick={1}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
+\path[contour edge={above,quick={1}{2}}] (w3) to[out=-20,in=50,looseness=3.5] (b2);
+\end{tikzpicture}
+}\\
+\makecell[c]{
+$\pi_3=[\env{4},\env{8}]$\\\tikzsetnextfilename{dessin-special-families-small-4}
+\begin{tikzpicture}[graph picture]
+\draweightvertices
+\path[contour edge={quick={1}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={1}{2}}] (b3) to[bend left] (w3);
+\path[contour edge={quick={1}{2}}] (w3) to[bend left] (b2);
+\path[contour edge={quick={1}{2}}] (b2) to[out=-30,in=0] (w4);
+\path[contour edge={above,quick={2}{2}}] (w3) to[out=10,in=-180] (b1);
+\path[contour edge={quick={1}{1}}] (b2) to[bend left] (w2);
+\path[contour edge={quick={1}{2},left ecap=90}] (w2) to[bend left] (b1);
+\path[contour edge={quick={1}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
+\path[contour edge={above,quick={2}{2}}] (w4) to[out=110,looseness=2.2,in=170] (b4);
+\path[contour edge={above,quick={2}{2}}] (b3) to[out=60,out looseness=1.5,in=-135] (w1);
+\path[contour edge={quick={2}{2}}] (b4) to[bend right=90] (w1);
+\path[contour edge={quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
+\end{tikzpicture}
+}&\makecell[c]{
+$\pi_3=[\env{5},\env{7}]$\\
+\tikzsetnextfilename{dessin-special-families-small-5}
+\begin{tikzpicture}[graph picture]
+\draweightvertices
+\path[contour edge={quick={1}{2},left bcap=90}] (w4) to[bend left] (b3);
+\path[contour edge={quick={1}{2}}] (b3) to[bend left] (w3);
+\path[contour edge={quick={1}{2}}] (w3) to[bend left] (b2);
+\path[contour edge={quick={1}{2},right bcap=90,begin=.5}] (b2) to[bend left] (w2);
+\path[contour edge={quick={1}{2},end=.5,left ecap=90}] (w2) to[bend left] (b1);
+\path[contour edge={above,quick={2}{2}}] (w4) to[out=120,looseness=3,in=60] (b4);
+\path[contour edge={quick={1}{1}}] (b2) to[out=100,looseness=2,in=40] (w1);
+\path[contour edge={quick={2}{1},right bcap=90,left ecap=90}] (b4) to[bend right=90] (w1);
+\path[contour edge={quick={2}{1}}] (w1) to[out=140,in=150,looseness=2.2] (b4);
+\path[contour edge={quick={2}{1}}] (w4) to[out=30,in=-140,in looseness=2] (b1);
+\path[contour edge={above,quick={2}{2}}] (b1) to[out=170,in=10] (w3);
+\path[contour edge={quick={2}{2}}] (b3) to[bend right] (w2);
+\end{tikzpicture}
+}&\makecell[c]{
+$\pi_3=[\env{6},\env{6}]$\\
+\tikzsetnextfilename{dessin-special-families-small-6}
+\begin{tikzpicture}[graph picture]
+\draweightvertices
+\path[contour edge={quick={1}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={1}{2}}] (b3) to[bend left] (w3);
+\path[contour edge={quick={1}{2}}] (w3) to[bend left] (b2);
+\path[contour edge={quick={1}{2}}] (b2) to[bend left] (w4);
+\path[contour edge={above,quick={2}{2}}] (w3) to[out=-20,in=-180] (b1);
+\path[contour edge={above,quick={1}{1}}] (b2) to[bend left] (w2);
+\path[contour edge={quick={1}{2}}] (w2) to[bend left=90] (b1);
+\path[contour edge={quick={1}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
+\path[contour edge={above,quick={1}{1}}] (w4) to[bend right] (b4);
+\path[contour edge={above,quick={2}{2}}] (b3) to[out=60,in=-135] (w1);
+\path[contour edge={quick={2}{1}}] (b4) to[bend right=90] (w1);
+\path[contour edge={quick={2}{1}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
+\end{tikzpicture}
+}
+\end{tabular}
+\egroup
+
+
 \paragraph{Step 2.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
 \[
 \DD'=\datum{\surf{g+1}}{d+6}{\pi_1\cup[3,3],\pi_2\cup[3,3],\pi_3\setminus[\env{x}]\cup[\env{x+6}]}
