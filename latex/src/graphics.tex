@@ -1,4 +1,4 @@
-\usetikzlibrary{decorations.markings,decorations.pathreplacing,math,calc}
+\usetikzlibrary{decorations.markings,decorations.pathreplacing,math,calc,positioning}
 
 % Settings
 
@@ -144,6 +144,36 @@ contour edge/.style={
 	contour edge settings/do stuff={1}{\contouredge@left},
 	graph edge={\contouredge@layer}{\contouredge@edge},
 }}
+}
+
+\tikzset{
+bunch of nodes settings/.is family,
+bunch of nodes settings/.cd,
+defaults/.style={first edge style/.style={},last edge style/.style={},first node={},last node={},/utils/exec={\def\bunchofnodes@hasbrace{0}}},
+size/.store in=\bunchofnodes@size,
+first edge/.code={\pgfkeys{/tikz/bunch of nodes settings/first edge style/.style/.expand once={#1}}},
+last edge/.code={\pgfkeys{/tikz/bunch of nodes settings/last edge style/.style/.expand once={#1}}},
+first node/.store in=\bunchofnodes@firstnode,
+last node/.store in=\bunchofnodes@lastnode,
+brace/.code={\def\bunchofnodes@hasbrace{1}\edef\bunchofnodes@bracetext{#1}},
+}
+\tikzset{
+bunch of nodes/.pic={
+\tikzset{
+bunch of nodes settings/.cd,
+defaults,
+#1,
+/tikz/.cd,
+}
+\path[bunch of nodes settings/first edge style] (0,0) -- (-30:\bunchofnodes@size) coordinate (-firstnode);
+\path[bunch of nodes settings/last edge style] (0,0) -- (30:\bunchofnodes@size) coordinate (-lastnode);
+\bgroup
+\pic (tmppic) at (-firstnode) {code={\bunchofnodes@firstnode}};
+\pic (tmppic)  at (-lastnode) {code={\bunchofnodes@lastnode}};
+\egroup
+\foreach \i in {0.33,0.5,0.66} {\fill[black] ($(-firstnode)!\i!(-lastnode)$) circle(0.5pt);}
+\ifnumcomp{\bunchofnodes@hasbrace}{=}{1}{\draw[auto=left,decorate,decoration={raise={0.1*\bunchofnodes@size+0.4em},brace}] ([yshift=0.2em]-lastnode) -- ([yshift=-0.2em]-firstnode) node[midway,inner sep={0.1*\bunchofnodes@size+1.2em}] {\bunchofnodes@bracetext};}{}
+}
 }
 
 \ifnum\graphicfast=1

@@ -364,6 +364,13 @@ which does not contain any $3$\=/cycles. As a consequence, the product $\alpha_1
 
 For the other families of exceptional data, we will instead make use of \dessins{}.
 
+\bgroup
+\tikzset{
+quick/.style={graph edge={below}{black edge}},
+bunch of nodes settings/quick/.style={first edge={contour edge={quick={#1}{#1},begin=0.5,end=0.5,left ecap=360}},last edge={contour edge={quick={#1}{#1},left ecap=360,,begin=0.5,end=0.5}}},
+contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 boundary,edge=black edge}
+}
+\NewDocumentEnvironment{dessintext}{}{\begin{longtable}{@{}p{0.6\linewidth}@{}p{0.4\linewidth}@{}}}{\end{longtable}}
 \begin{proposition}\label{short-partition:th:exceptional-composite}
 Let $h\ge 2$, $k\ge 2$, $1\le l\le k-1$ be integers. Then the candidate datum
 \[
@@ -372,7 +379,27 @@ Let $h\ge 2$, $k\ge 2$, $1\le l\le k-1$ be integers. Then the candidate datum
 is exceptional.
 \end{proposition}
 \begin{proof}
-Assume by contradiction that there is a \dessin{} $\Gamma\subs\sphere{}$ realizing $\DD$. Let $v$ be the white vertex of degree $k+1$. Since $\Gamma$ is connected, each of the $k$ black vertices must have an edge connecting it to $v$. Therefore there are exactly $k-1$ black vertices with one edge between them and $v$, and one black vertex with two edges between it and $v$; we call this special black vertex $u$. The two edges connecting $u$ and $v$ define the two complementary disks of $\Gamma$. As shown in the picture below, there are (excluding $u$) $a$ black vertices inside $D_1$ and $k-1-a$ black vertices inside $D_2$, for some integer $0\le a\le k-1$; of the $h-2$ white vertices of degree $1$ connected to $u$, $b$ lie inside $D_1$, while $h-2-b$ lie inside $D_2$, for some $0\le b\le h-2$. It is easy to compute the perimeters:
+Assume by contradiction that there is a \dessin{} $\Gamma\subs\sphere{}$ realizing $\DD$. Let $v$ be the white vertex of degree $k+1$. Since $\Gamma$ is connected, each of the $k$ black vertices must have an edge connecting it to $v$. Therefore there are exactly $k-1$ black vertices with one edge between them and $v$, and one black vertex with two edges between it and $v$; we call this special black vertex $u$. The two edges connecting $u$ and $v$ define the two complementary disks of $\Gamma$. As shown in the picture below, there are (excluding $u$) $a$ black vertices inside $D_1$ and $k-1-a$ black vertices inside $D_2$, for some integer $0\le a\le k-1$; of the $h-2$ white vertices of degree $1$ connected to $u$, $b$ lie inside $D_1$, while $h-2-b$ lie inside $D_2$, for some $0\le b\le h-2$.
+\begin{center}
+\tikzsetnextfilename{exceptionality-composite}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path (0,0) coordinate (w) pic{white vertex} node[shift={(115:1.6em)}] {$v$};
+\path (1,0) coordinate (b) pic{black vertex} node[shift={(65:1.6em)}] {$u$};
+\path[contour edge={quick={2}{1}}] (w) to[out=90,in=90,looseness=2.5]  (b);
+\path[contour edge={quick={1}{2}}] (w) to[out=-90,in=-90,looseness=2] (b);
+\pic[rotate=180] at (w) {bunch of nodes={quick={2},size=1.4cm,first node={\pic{black vertex};
+\pic[rotate=90]{bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$h-1$}}};
+},last node={\pic{black vertex};\pic[rotate=-90]{bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};}}};},brace={$k-1-a$}}};
+
+\pic at (w) {bunch of nodes={quick={1},size=1.4cm,first node={\pic{black vertex};
+\pic[rotate=-90]{bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};}}};
+},last node={\pic{black vertex};\pic[rotate=90]{bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},brace={$h-1$},last node={\pic{white vertex};}}};},brace={$a$}}};
+
+\pic at (b) {bunch of nodes={quick={2},size=0.6cm,first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$h-2-b$}}};
+\pic[rotate=180] at (b) {bunch of nodes={quick={1},size=0.6cm,first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$b$}}};
+\end{tikzpicture}
+\end{center}
+It is easy to compute the perimeters:
 \begin{align*}
 \frac{1}{2}\card{\partial D_1}=ah+b+1,&&\frac{1}{2}\card{\partial D_2}=(k-1-a)h+(h-2-b)+1.
 \end{align*}
@@ -392,12 +419,36 @@ Let $\DD=\datum{\surf{g}}{d}{[2,\ldots,2],\pi_2,\pi_3}$ be a combinatorial datum
 \begin{proof}
 The key idea is that vertices of degree $2$ do not contribute to the topology of a graph in any meaningful way.
 
-If are given a \dessin{} $\Gamma'\subs\surf{g}$ realizing $\DD$, we can obtain a suitable graph $\Gamma$ simply by removing all the black vertices, and merging the two edges adjacent to each one of them into a single edge.
+If are given a \dessin{} $\Gamma'\subs\surf{g}$ realizing $\DD$, we can obtain a suitable graph $\Gamma$ simply by removing all the black vertices, and merging the two edges adjacent to each one of them into a single edge. This operations does not change the topology of the complementary regions; all the perimeters are halved.
 
 Conversely, if we are given a graph $\Gamma\subs\surf{g}$, we can recover a \dessin{} $\Gamma'$ by coloring the vertices of $\Gamma$ with the color white, and inserting a black vertex in the middle of every edge.
+
+\[ % very ugly hack, but it works :/
+\tikzsetnextfilename{dessin-2-2-2-2}
+\begin{tikzpicture}[graph picture]
+\foreach \i/\j in {-1/1,1/0} {
+\begin{scope}[shift={(\i*3.5,0)}]
+\path (0,0) coordinate (1) pic{white vertex};
+\path (1,1) coordinate (2) pic{white vertex};
+\path (2,-1) coordinate (3) pic{white vertex};
+\path (3,-0.3) coordinate (4) pic{white vertex};
+\path (1.5,-0.1) coordinate (5) pic{white vertex};
+\ifnumcomp{\j}{=}{1}{
+\tikzset{every path/.style={decoration={markings,mark=at position .5 with {\pic{black vertex};}}}}
+}{}
+\path[quick,postaction={decorate}] (1) arc(0:360:0.5);
+\path[quick,postaction={decorate}] (1) to[bend left] (2);
+\path[quick,postaction={decorate}] (2) to[bend left=60,looseness=1.5] (3);
+\path[quick,postaction={decorate}] (1) to[bend right] (3);
+\path[quick,postaction={decorate}] (3) to (4);
+\path[quick,postaction={decorate}] (2) to (5);
+\end{scope}
+}
+\node at (1,0) {$\Longleftrightarrow$};
+\end{tikzpicture}\qedhere\]
 \end{proof}
 
-This lemma suggests an approach by enumeration for showing the exceptionality of candidate data of the form $\datum{\surf{g}}{d}{[2,\ldots,2],\pi_2,\pi_3}$. In fact, if the number of fat graphs whose degrees are the entries of $\pi_2$ is small, we can check them one by one to see if the associated embedded graph satisfies the conditions of \cref{short-partition:th:lemma-[2 ... 2]}.
+\Cref{short-partition:th:lemma-[2 ... 2]} suggests an approach by enumeration for showing the exceptionality of candidate data of the form $\datum{\surf{g}}{d}{[2,\ldots,2],\pi_2,\pi_3}$. In fact, if the number of fat graphs whose degrees are the entries of $\pi_2$ is small, we can check them one by one to see if the associated embedded graph satisfies the conditions of \cref{short-partition:th:lemma-[2 ... 2]}.
 
 \begin{proposition}\label{short-partition:th:exceptional-sphere}
 The following families of candidate data are exceptional.
@@ -409,40 +460,137 @@ The following families of candidate data are exceptional.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-For each family listed in the statement, we follow the approach by enumeration presented above: we draw all the possible graphs embedded in $\sphere{}$ whose vertices have the entries of $\pi_2$ as degrees and whose complementary regions are two disks, and then we compute the perimeters of these disks, showing that they cannot be equal to the entries of $\pi_3$.
+For each family listed in the statement, we follow the approach by enumeration presented above: we draw all the possible graphs embedded in $\sphere{}$ whose vertices have the entries of $\pi_2$ as degrees and whose complementary regions are two disks; then we compute the perimeters of these disks, showing that they cannot be equal to the entries of $\pi_3$.
 \begin{enumerate}[(1)]
 \item There is only one graph embedded in $\sphere{}$ whose vertices have degrees $[2,\ldots,2]$.
-
+\begin{dessintext}
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-1-1}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path[contour edge={quick={1}{2}}] circle(0.3);
+\foreach \i in {0,45,...,359} {\pic at (\i:0.3) {white vertex};}
+\end{tikzpicture}
+}&$\begin{aligned}
+&\card{\partial D_1}=\card{\partial D_2}=k
+\end{aligned}$
+\end{dessintext}
 By \cref{short-partition:th:lemma-[2 ... 2]}, it follows that $\DD$ is exceptional unless $s=k$.
-\item A graph embedded in $\sphere{}$ whose vertices have degrees $[1,2,\ldots,2,3]$ can be represented by a diagram like the following, where $a$ denotes the number of blue edges.
+\item A graph embedded in $\sphere{}$ whose vertices have degrees $[1,2,\ldots,2,3]$ can be represented by a diagram like the following, where $a$ denotes the number of edges on the path connecting the vertex of degree $3$ to the vertex of degree $1$.
 
-The perimeters of the complementary disks are easily computed as
-\begin{align*}
-\card{\partial D_1}=k-a-1,&&\card{\partial D_2}=k+a+1,
-\end{align*}
-hence $\DD$ is exceptional by \cref{short-partition:th:lemma-[2 ... 2]}.
-\item There are only three kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$.\todo{Probably a table?}
-First case:
-\begin{align*}
-\card{\partial D_1}=4k-2a-2b,&&\card{\partial D_2}=2a+2b+2.
-\end{align*}
-Second case:
-\begin{align*}
-\card{\partial D_1}=2k-2b-1,&&\card{\partial D_2}=2k+2b+3.
-\end{align*}
-Third case:
-\begin{align*}
-\card{\partial D_1}=2k-2a+1,&&\card{\partial D_2}=2k+2a+1.
-\end{align*}
-\item A graph embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$ can be represented by a diagram like the following, where $a$ denotes the number of blue edges connected to the vertex of degree $k+1$, and $b$ denotes the number of blue edges connected to the vertex of degree $k+2$.
-
-The perimeters of the complementary disks are easily computed as
-\begin{align*}
-\card{\partial D_1}=k-a-1,&&\card{\partial D_2}=k+a+1,
-\end{align*}
-hence $\DD$ is exceptional by \cref{short-partition:th:lemma-[2 ... 2]}.
+\begin{dessintext}
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-2-1}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)},
+vertices along/.style={postaction={decorate,decoration={markings,mark=between positions 0.2 and 0.81 step 0.2 with {\pic{white vertex};}}}}
+]
+\path (0,0) coordinate (3) pic{white vertex};
+\path (0.5,0) coordinate (1) pic{white vertex};
+\path[contour edge={quick={1}{2},left bcap=90},vertices along] (3) arc(0:360:.2);
+\path[contour edge={quick={2}{2},right ecap=360},vertices along] (3) -- (1);
+\draw[decorate,decoration={mirror,raise=0.5em,pre=moveto,pre length=0.3em,post=moveto,post length=0.3em,brace}] (3) -- (1) node[midway,below=1em] {$a$};
+\end{tikzpicture}
+}&$\begin{aligned}
+&1\le a\le k-1\\
+&\card{\partial D_1}=k-a\neq k\\
+&\card{\partial D_2}=k+a\neq k
+\end{aligned}$
+\end{dessintext}
+It follows that $\DD$ is exceptional, once again by \cref{short-partition:th:lemma-[2 ... 2]}.
+\item There are only three kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$. We label the vertices of degrees $k+1$, $k+2$ with the letters $u$, $v$ respectively.
+\begin{dessintext}
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-3-1}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path (0,0) coordinate (u) pic{white vertex} node[shift={(-105:1.2em)}] {$u$};
+\path (0.4,0.3) coordinate (v) pic{white vertex} node[shift={(75:1.2em)}] {$v$};
+\path[contour edge={quick={2}{1}}] (u) to[bend left=90,in=80,looseness=2.2] (v);
+\path[contour edge={quick={1}{2}}] (u) to[bend right=90,out=-100,looseness=2.2] (v);
+\pic[rotate=180] at (u) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-a$}}};
+\pic at (u) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$a$}}};
+\pic[rotate=180] at (v) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$b$}}};
+\pic at (v) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-1-b$}}};
+\end{tikzpicture}
+}&$\begin{aligned}
+&0\le a\le k\\
+&0\le b\le k-1\\
+&\card{\partial D_1}=2a+2b+2\neq 2k+1\\
+&\card{\partial D_2}=4k-2a-2b\neq 2k+1
+\end{aligned}$\\
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-3-2}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path (0,0) coordinate (u) pic{white vertex} node[shift={(-65:1.2em)}] {$u$};
+\path (0.2,0.3) coordinate (v) pic{white vertex} node[shift={(100:1em)}] {$v$};
+\path[contour edge={quick={1}{2}}] (u) arc(0:360:0.2);
+\path[contour edge={quick={2}{2}}] (u) to[out=60,in=180] (v);
+\pic[rotate=180] at (u) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$a$}}};
+\pic at (u) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-1-a$}}};
+\pic at (v) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k$}}};
+\end{tikzpicture}
+}&$\begin{aligned}
+&0\le a\le k-1\\
+&\card{\partial D_1}=2a+1\neq 2k+1\\
+&\card{\partial D_2}=4k-2a+1\neq 2k+1
+\end{aligned}$\\
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-3-3}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path (0,0) coordinate (u) pic{white vertex} node[shift={(-65:1.2em)}] {$v$};
+\path (0.2,0.3) coordinate (v) pic{white vertex} node[shift={(100:1em)}] {$u$};
+\path[contour edge={quick={1}{2}}] (u) arc(0:360:0.2);
+\path[contour edge={quick={2}{2}}] (u) to[out=60,in=180] (v);
+\pic[rotate=180] at (u) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$b$}}};
+\pic at (u) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-2-b$}}};
+\pic at (v) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k+1$}}};
+\end{tikzpicture}
+}&$\begin{aligned}
+&0\le b\le k-2\\
+&\card{\partial D_1}=2b+1\neq 2k+1\\
+&\card{\partial D_2}=4k-2b+1\neq 2k+1
+\end{aligned}$
+\end{dessintext}
+In all three cases, we have that $\card{\partial D_1}\neq 2k+1$, therefore $\DD$ is exceptional.
+\item There are only three kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$. We label the vertices of degrees $k+1$, $k+2$ with the letters $u$, $v$ respectively.
+\begin{dessintext}
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-4-1}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path (0,0) coordinate (u) pic{white vertex} node[shift={(-105:1.2em)}] {$u$};
+\path (0.4,0.3) coordinate (v) pic{white vertex} node[shift={(75:1.2em)}] {$v$};
+\path[contour edge={quick={2}{1}}] (u) to[bend left=90,in=80,looseness=2.2] (v);
+\path[contour edge={quick={1}{2}}] (u) to[bend right=90,out=-100,looseness=2.2] (v);
+\pic[rotate=180] at (u) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-1-a$}}};
+\pic at (u) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$a$}}};
+\pic[rotate=180] at (v) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$b$}}};
+\pic at (v) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-1-b$}}};
+\end{tikzpicture}
+}&$\begin{aligned}
+&0\le a\le k-1\\
+&0\le b\le k-1\\
+&\card{\partial D_1}=2a+2b+2\neq 2k\pm 1\\
+&\card{\partial D_2}=4k-2a-2b-2\neq 2k\pm 1
+\end{aligned}$\\
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-sphere-4-2}
+\begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path (0,0) coordinate (u) pic{white vertex} node[shift={(-65:1.2em)}] {$u$};
+\path (0.2,0.3) coordinate (v) pic{white vertex} node[shift={(100:1em)}] {$v$};
+\path[contour edge={quick={1}{2}}] (u) arc(0:360:0.2);
+\path[contour edge={quick={2}{2}}] (u) to[out=60,in=180] (v);
+\pic[rotate=180] at (u) {bunch of nodes={size=0.6cm,quick={1},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$a$}}};
+\pic at (u) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k-2-a$}}};
+\pic at (v) {bunch of nodes={size=0.6cm,quick={2},first node={\pic{white vertex};},last node={\pic{white vertex};},brace={$k$}}};
+\end{tikzpicture}
+}&$\begin{aligned}
+&0\le a\le k-2\\
+&\card{\partial D_1}=2a+1\neq 2k\pm 1\\
+&\card{\partial D_2}=4k-2a-1\neq 2k\pm 1
+\end{aligned}$
+\end{dessintext}
+In both cases, we have that $\card{\partial D_1}\neq 2k\pm 1$, therefore $\DD$ is exceptional.\qedhere
 \end{enumerate}
 \end{proof}
+\egroup
 
 \begin{proposition}\label{short-partition:th:exceptional-torus}
 Let $k\ge 5$ be an integer. Then the candidate datum
@@ -505,7 +653,7 @@ In the pictures above, the arcs are labeled with a letter representing their len
 \tikzset{
 contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 boundary,edge=black edge}
 }
-\item There is only one embedding of this graph in $\surf{1}$ whose complementary regions are two discs.
+\item There is only one embedding of the first graph in $\surf{1}$ whose complementary regions are two discs.
 \begin{dessintext}
 \makecell[c]{
 \tikzsetnextfilename{exceptionality-torus-first-graph-1}
@@ -531,7 +679,7 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 &\card{\partial D_1}=a<k
 \end{aligned}$
 \end{dessintext}
-\item There are three topologically different embedding of this graph in $\surf{1}$ whose complementary regions are two disks.
+\item There are three topologically different embedding of the second graph in $\surf{1}$ whose complementary regions are two disks.
 \begin{dessintext}
 \makecell[c]{
 \tikzsetnextfilename{exceptionality-torus-second-graph-1}
