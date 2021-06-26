@@ -106,7 +106,7 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\
 where $\pi_1'=\pi_1\setminus[3]\cup[1,1,1]$. Then $\DD\cmove\DD'$.
 \end{combinatorialmoveb}
 \begin{proof}
-Assume that $\DD'$ is realizable; by \cref{dessins:th:dessins-realizability}, there exists a \dessin{} $\Gamma'\subs\surf{g-1}$ with $\DD(\Gamma')=\DD'$. Our aim will be to construct a new \dessin{} $\Gamma\subs{g}$ with $\DD(\Gamma)=\DD$; by \cref{dessins:th:dessins-realizability}, this will imply that $\DD$ is realizable as well.
+Assume that $\DD'$ is realizable; by \cref{dessins:th:dessins-realizability}, there exists a \dessin{} $\Gamma'\subs\surf{g-1}$ with $\DD(\Gamma')=\DD'$. Our aim will be to construct a new \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$; by \cref{dessins:th:dessins-realizability}, this will imply that $\DD$ is realizable as well.
 
 Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we can assume that $\Gamma$ has three black vertices of degree $1$ lying on the boundary of the complementary region $D_1$. Let us represent $D_1$ with its boundary unwound, and focus on the three black vertices of degree $1$. We perform the following operations on $\Gamma'$.
 \begin{enumerate}[(1)]
@@ -114,7 +114,35 @@ Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we ca
 \item Connect the three black vertices with two new edges, as shown in red in the picture; note that the orange complementary region of the new graph is still a disk.
 \item Join the three black vertices along the red edges.
 \end{enumerate}
-After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\DD(\Gamma)=\DD$, therefore $\DD$ is realizable.
+\begin{center}
+\def\picturesetupzero#1{
+\pic {cmove setting one disk=1};
+\path \surfcirclepoint{d1}{-30} coordinate (1-1) pic{black vertex};
+\path \surfcirclepoint{d1}{-150} coordinate (1-3) pic{black vertex};
+\path \surfcirclepoint{d1}{-90} coordinate (1-2) pic{black vertex};
+\ifnumcomp{#1}{=}{1}{\foreach \i in {1,2,3} {\node[below=1pt] at (1-\i) {$1$};};}{}
+}
+\def\picturesetupone#1{
+\picturesetupzero{#1}
+\pic {cmove setting one disk tube=1};
+\tubefill{disk 1};
+}
+\def\picturesetuptwo#1{
+\picturesetupone{#1}
+\draw[red] (1-3) to[out=90,in=60,out looseness=3.1,in looseness=2] (1-2);
+\path \tuberightpoint{-90} coordinate (tmp);
+\draw[red] let \p1=\tuberightpoint{-60},\p2=\tubeleftpoint{-120},\n1={(\x1-\x2)/2} in (1-1) to[bend left] (\p1) arc(0:180:\n1) to[bend right] (1-2);
+}
+\tabcolsep=0pt
+\begin{tabular}{*{3}{|p{.33\linewidth}}|}
+\makecell[c]{
+\begin{tikzpicture}[surf picture]
+\picturesetuptwo{1}
+\end{tikzpicture}
+}&&
+\end{tabular}
+\end{center}
+After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\DD(\Gamma)=\DD$, therefore $\DD$ is realizable, again by \cref{dessins:th:dessins-realizability}.
 \end{proof}
 
 In the upcoming proofs, we will often represent complementary disks with their boundaries unwound, without explicitly saying so. The pictures should be clear enough to avoid any ambiguity.
@@ -278,7 +306,7 @@ In the scope of this proof we define an \emph{augmented combinatorial datum} as 
 \[
 \DD=\datum{\surf{2}}{12}{[3,3,3,3],[3,3,3,3],\pi_3}
 \]
-is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.
+is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.\todo{Do this!}
 
 \bgroup
 

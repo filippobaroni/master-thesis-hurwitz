@@ -176,6 +176,70 @@ defaults,
 }
 }
 
+% Surface pictures
+
+\def\surfyscale{0.6}
+\newlength{\tuberadius}
+\setlength{\tuberadius}{0.3cm}
+\newlength{\tubesmallradius}
+\setlength{\tubesmallradius}{\surfyscale\tuberadius}
+\newlength{\tubelargeradius}
+
+\pgfdeclarelayer{surf base}
+\pgfdeclarelayer{surf edge behind}
+\pgfdeclarelayer{surf tube}
+\pgfdeclarelayer{surf edge front}
+
+\tikzset{
+surf picture/.style={
+/utils/exec={\pgfsetlayers{surf base,surf edge behind,surf tube,surf edge front,graph vertex,main}},
+z={(0,1)},
+y={(0,\surfyscale)},
+},
+surf boundary/.style={draw=black!70},
+surf boundary soft/.style={draw=gray},
+surf boundary dashed/.style={draw=gray,dashed},
+}
+
+\tikzset{
+pics/surf circle/.style 2 args={code={
+\edef\rad{#2}
+\expandafter\xdef\csname surfcircle@#1@radius\endcsname{\rad}
+\coordinate (#1-center) at (0,0);
+}},
+pics/surf tube/.style 2 args={code={
+\coordinate (tube-lground) at (#1);
+\coordinate (tube-rground) at (#2);
+\tikzmath{coordinate \v;\v=(tube-lground)-(tube-rground);\rad=veclen(\vx,\vy)/2;}
+\global\tubelargeradius=\rad pt
+\coordinate (tube-middle) at ($(tube-lground)+(\rad pt,\rad pt)$);
+\begin{pgfonlayer}{surf edge front}
+\path[surf boundary dashed] \tuberightpath{0}{180} \tubeleftpath{0}{180};
+\path[surf boundary] ([xshift=-\tuberadius]tube-rground) arc(0:180:{\rad pt-\tuberadius}) ([xshift=\tuberadius]tube-rground) arc(0:180:{\rad pt+\tuberadius});
+\path[surf boundary soft] \tuberightpath{0}{-180} \tubeleftpath{0}{-180};
+\end{pgfonlayer}
+}},
+}
+\NewDocumentCommand{\surfcirclepoint}{mm}{($(#1-center)+({#2}:{\csname surfcircle@#1@radius\endcsname})$) }
+\NewDocumentCommand{\surfcirclepath}{mmm}{($(#1-center)+({#2}:{\csname surfcircle@#1@radius\endcsname})$) arc({#2}:{#3}:{\csname surfcircle@#1@radius\endcsname}) }
+\NewDocumentCommand{\tuberightpoint}{m}{($(tube-rground)+({#1}:{\tuberadius} and {\tubesmallradius})$) }
+\NewDocumentCommand{\tubemiddlepoint}{m}{($(tube-middle)+({#1}:{\tuberadius} and {\tubesmallradius})$) }
+\NewDocumentCommand{\tubeleftpoint}{m}{($(tube-lground)+({#1}:{\tuberadius} and {\tubesmallradius})$) }
+\NewDocumentCommand{\tuberightpath}{mm}{($(tube-rground)+({#1}:{\tuberadius} and {\tubesmallradius})$) arc ({#1}:{#2}:{\tuberadius} and {\tubesmallradius}) }
+\NewDocumentCommand{\tubemiddlepath}{mm}{($(tube-middle)+({#1}:{\tubesmallradius} and {\tuberadius})$) arc ({#1}:{#2}:{\tubesmallradius} and {\tuberadius}) }
+\NewDocumentCommand{\tubeleftpath}{mm}{($(tube-lground)+({#1}:{\tuberadius} and {\tubesmallradius})$) arc ({#1}:{#2}:{\tuberadius} and {\tubesmallradius}) }
+\NewDocumentCommand{\tubecontour}{}{\tuberightpath{0}{-180} arc(0:180:{\tubelargeradius-\tuberadius}) \tubeleftpath{0}{-180} arc(180:0:{\tubelargeradius+\tuberadius})}
+\NewDocumentCommand{\tuberightcontour}{}{\tuberightpath{0}{-180} arc(0:90:{\tubelargeradius-\tuberadius}) arc ({270}:{90}:{\tubesmallradius} and {\tuberadius}) arc(90:0:{\tubelargeradius+\tuberadius})}
+\NewDocumentCommand{\tubeleftcontour}{}{\tubeleftpath{0}{-180} arc(180:90:{\tubelargeradius+\tuberadius}) arc ({90}:{270}:{\tubesmallradius} and {\tuberadius}) arc(90:180:{\tubelargeradius-\tuberadius}) -- cycle}
+\NewDocumentCommand{\tubefill}{m}{\begin{pgfonlayer}{surf tube}\fill[#1] \tubecontour{};\end{pgfonlayer}}
+
+\tikzset{
+cmove setting one disk/.pic={\pic {surf circle={d#1}{1.5}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
+cmove setting one disk tube/.pic={\path \surfcirclepoint{d#1}{180} coordinate (-l) \surfcirclepoint{d#1}{0} coordinate (-r);\pic {surf tube={$(-l)!.25!(-r)$}{$(-l)!.75!(-r)$}};}
+}
+
+% Fast graphics
+
 \ifnum\graphicfast=1
 \tikzset{contour edge/.style={
 	postaction={

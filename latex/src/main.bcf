@@ -2343,39 +2343,8 @@
   <bcf:bibdata section="0">
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">munkres</bcf:citekey>
-    <bcf:citekey order="2">szamuely</bcf:citekey>
-    <bcf:citekey order="3">sarti</bcf:citekey>
-    <bcf:citekey order="4">massey-covering</bcf:citekey>
-    <bcf:citekey order="5">hurwitz</bcf:citekey>
-    <bcf:citekey order="6">hurwitz-counting-1</bcf:citekey>
-    <bcf:citekey order="6">hurwitz-counting-2</bcf:citekey>
-    <bcf:citekey order="6">hurwitz-counting-3</bcf:citekey>
-    <bcf:citekey order="6">hurwitz-counting-4</bcf:citekey>
-    <bcf:citekey order="6">hurwitz-counting-5</bcf:citekey>
-    <bcf:citekey order="7">szamuely</bcf:citekey>
-    <bcf:citekey order="8">szamuely</bcf:citekey>
-    <bcf:citekey order="9">edmonds</bcf:citekey>
-    <bcf:citekey order="10">edmonds</bcf:citekey>
-    <bcf:citekey order="11">zheng</bcf:citekey>
-    <bcf:citekey order="12">grothendieck</bcf:citekey>
-    <bcf:citekey order="13">pervova-methods</bcf:citekey>
-    <bcf:citekey order="14">edmonds</bcf:citekey>
-    <bcf:citekey order="15">pervova-existence-ii</bcf:citekey>
-    <bcf:citekey order="17">pakovich</bcf:citekey>
-    <bcf:citekey order="19">pakovich</bcf:citekey>
-    <bcf:citekey order="20">pakovich</bcf:citekey>
-    <bcf:citekey order="21">zheng</bcf:citekey>
-    <bcf:citekey order="22">zheng</bcf:citekey>
-    <bcf:citekey order="23">zheng</bcf:citekey>
-    <bcf:citekey order="24">sagan</bcf:citekey>
-    <bcf:citekey order="25">zheng</bcf:citekey>
-    <bcf:citekey order="26">sagan</bcf:citekey>
-    <bcf:citekey order="27">zheng</bcf:citekey>
-    <bcf:citekey order="28">zheng</bcf:citekey>
-    <bcf:citekey order="29">zheng</bcf:citekey>
-    <bcf:citekey order="30">zheng</bcf:citekey>
-    <bcf:citekey order="31">zheng</bcf:citekey>
+    <bcf:citekey order="1">grothendieck</bcf:citekey>
+    <bcf:citekey order="2">pervova-methods</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
