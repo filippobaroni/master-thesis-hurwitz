@@ -452,7 +452,160 @@ Let $k\ge 5$ be an integer. Then the candidate datum
 is exceptional.
 \end{proposition}
 \begin{proof}
+We start by enumerating all the abstract graphs whose vertices have degrees $[2,\ldots,2,3,5]$, without considering the embedding in $\surf{1}$. Once again, we observe that vertices of degree $2$ do not contribute to the topology of the graph, so we can reduce the number of cases to two.
 
+\tikzset{external/force remake=false}
+\def\myfirstradius{1.2}
+\def\mysecondradius{1.8}
+\def\drawtwovertices{
+\path (0,0) coordinate (w1) pic{white vertex};
+\path (\myradius,0) coordinate (w2) pic{white vertex};
+}
+\begin{center}
+\setlength\tabcolsep{3em}
+\tikzset{
+quick/.style={simple edge=black edge}
+}
+\begin{tabular}{@{}cc@{}}
+(1)&(2)\\
+\tikzsetnextfilename{exceptionality-torus-first-graph}
+\begin{tikzpicture}[baseline=0pt,graph picture]
+\def\myradius{\myfirstradius}
+\drawtwovertices
+\path[quick] (w1) -- (w2);
+\path[quick,every to/.style={distance=1.5*\myradius cm}] (w1) to[out=135,in=-135] (w1) (w2) to[out=120,in=30] (w2) to[out=-120,in=-30] (w2);
+\begin{scope}[x={(\myradius,0)},y={(0,\myradius)}]
+\node at (-0.5,0.5) {$a$};
+\node at (0.4,0.2) {$b$};
+\node at (1.7,0.7) {$c$};
+\node at (1.7,-0.7) {$e$};
+\end{scope}
+\end{tikzpicture}&
+\tikzsetnextfilename{exceptionality-torus-second-graph}
+\begin{tikzpicture}[baseline=0pt,graph picture]
+\def\myradius{\mysecondradius}
+\drawtwovertices
+\path[quick] (w1) -- (w2);
+\path[quick] (w1) arc(180:0:{0.5*\myradius});
+\path[quick] (w1) arc(-180:0:{0.5*\myradius});
+\path[quick] (w2) to[out=45,in=-45,distance=\myradius cm] (w2);
+\begin{scope}[x={(\myradius,0)},y={(0,\myradius)}]
+\node at (1.5,0.3) {$a$};
+\node at (0.3,0.6) {$b$};
+\node at (0.5,0.1) {$c$};
+\node at (0.3,-0.6) {$e$};
+\end{scope}
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+
+In the pictures above, the arcs are labeled with a letter representing their length (in terms of edges) or, in other words, the number of degree-$2$ vertices that lie on them plus $1$. In particular, $a+b+c+e=k$. We now analyze the two cases separately.
+\NewDocumentEnvironment{dessintext}{}{\begin{longtable}{@{}p{0.5\linewidth}@{}p{0.5\linewidth}@{}}}{\end{longtable}}
+\begin{enumerate}[(1)]
+\tikzset{
+contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 boundary,edge=black edge}
+}
+\item There is only one embedding of this graph in $\surf{1}$ whose complementary regions are two discs.
+\begin{dessintext}
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-torus-first-graph-1}
+\begin{tikzpicture}[graph picture,every to/.style={distance=1.5*\myradius cm}]
+\def\myradius{\myfirstradius}
+\drawtwovertices
+\begin{scope}[x={(\myradius,0)},y={(0,\myradius)}]
+\node at (-0.6,0.6) {$a$};
+\node at (0.5,0.3) {$b$};
+\node at (1.6,0.7) {$c$};
+\node at (1.6,-0.7) {$e$};
+\path[use as bounding box] (-1,0) rectangle (2,0);
+\end{scope}
+\path[use as bounding box];
+\drawtwovertices
+\path[contour edge={quick={2}{2}}] (w1) -- (w2);
+\path[contour edge={quick={1}{2}}] (w1) to[out=135,in=-135] (w1);
+\path[contour edge={quick={2}{2}}] (w2) to[out=70,in=-30] (w2);
+\path[contour edge={quick={2}{2},above}] (w2) to[out=-70,in=30] (w2);
+\end{tikzpicture}}&$\begin{aligned}
+&a,b,c,e\ge 1\\
+&a+b+c+e=k\\
+&\card{\partial D_1}=a<k
+\end{aligned}$
+\end{dessintext}
+\item There are three topologically different embedding of this graph in $\surf{1}$ whose complementary regions are two disks.
+\begin{dessintext}
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-torus-second-graph-1}
+\begin{tikzpicture}[graph picture]
+\def\myradius{\mysecondradius}
+\drawtwovertices
+\begin{scope}[x={(\myradius,0)},y={(0,\myradius)}]
+\node at (1.5,0.3) {$a$};
+\node at (0.2,0.45) {$b$};
+\node at (0.8,0.45) {$c$};
+\node at (0.3,-0.6) {$e$};
+\path[use as bounding box] (-0.1,0) rectangle (1.7,0);
+\end{scope}
+\path[use as bounding box];
+\path[contour edge={above,quick={2}{2},left bcap=90}] (w1) to[out=60,in=-150,looseness=2.5] (w2);
+\path[contour edge={quick={2}{2}}] (w1) to[out=-30,in=120,looseness=2.5] (w2);
+\path[contour edge={quick={2}{2}}] (w1) arc(-180:0:{0.5*\myradius});
+\path[contour edge={quick={2}{1}}] (w2) to[out=45,in=-45,distance=\myradius cm] (w2);
+\end{tikzpicture}}&$\begin{aligned}
+&a,b,c,e\ge 1\\
+&a+b+c+e=k\\
+&\card{\partial D_1}=a<k
+\end{aligned}$\\
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-torus-second-graph-2}
+\begin{tikzpicture}[graph picture]
+\def\myradius{\mysecondradius}
+\drawtwovertices
+\begin{scope}[x={(\myradius,0)},y={(0,\myradius)}]
+\node at (1.5,0.3) {$a$};
+\node at (0.3,0.65) {$b$};
+\node at (0.5,0.15) {$c$};
+\node at (0.3,-0.6) {$e$};
+\path[use as bounding box] (-0.1,0) rectangle (1.7,0);
+\end{scope}
+\path[use as bounding box];
+\path[contour edge={above,quick={1}{2},left bcap=90}] (w1) to (w2);
+\path[contour edge={quick={2}{1}}] (w1) arc(180:0:{0.5*\myradius});
+\path[contour edge={above,quick={2}{2}}] (w1) to[out=-90,in=-30,out looseness=2,in looseness=2.5] (w2);
+\path[contour edge={quick={2}{2}}] (w2) to[out=30,in=-90,distance=1.5*\myradius cm] (w2);
+\end{tikzpicture}
+}&$\begin{aligned}
+&a,b,c,e\ge 1\\
+&a+b+c+e=k\\
+&\card{\partial D_1}=b+c<k
+\end{aligned}$\\
+\makecell[c]{
+\tikzsetnextfilename{exceptionality-torus-second-graph-3}
+\begin{tikzpicture}[graph picture]
+\def\myradius{\mysecondradius}
+\drawtwovertices
+\begin{scope}[x={(\myradius,0)},y={(0,\myradius)}]
+\node at (1.5,0.3) {$a$};
+\node at (0.2,0.45) {$b$};
+\node at (0.8,0.45) {$c$};
+\node at (0.3,-0.6) {$e$};
+\path[use as bounding box] (-0.1,0) rectangle (1.7,0);
+\end{scope}
+\path[use as bounding box];
+\path[contour edge={above,quick={2}{1},left bcap=90}] (w1) to[out=60,in=-150,looseness=2.5] (w2);
+\path[contour edge={quick={1}{2}}] (w1) to[out=-30,in=120,looseness=2.5] (w2);
+\path[contour edge={above,quick={2}{2}}] (w1) to[out=-90,in=-30,out looseness=2,in looseness=2.5] (w2);
+\path[contour edge={quick={1}{2}}] (w2) to[out=30,in=-90,distance=1.5*\myradius cm] (w2);
+\end{tikzpicture}
+}&$\begin{aligned}
+&a,b,c,e\ge 1\\
+&a+b+c+e=k\\
+&\card{\partial D_1}=a+b+c<k
+\end{aligned}$
+\end{dessintext}
+\end{enumerate}
+
+In all of the cases, we see that $\card{\partial D_1}\neq k$; if follows that there is no \dessin{} $\Gamma\subs\surf{1}$ such that $\DD(\Gamma)=\DD$.
+\tikzset{external/force remake=false}
 \end{proof}
 
 

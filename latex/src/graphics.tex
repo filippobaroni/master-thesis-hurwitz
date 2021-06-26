@@ -2,7 +2,7 @@
 
 % Settings
 
-\def\graphicfast{1}
+\def\graphicfast{0}
 %\tikzset{external/force remake=true}
 %\tikzexternaldisable
 %\let\oldtikzsetnextfilename\tikzsetnextfilename
@@ -59,6 +59,7 @@ black edge/.style={line width=\edgelinewidth,black!80},
 graph edge/.style 2 args={postaction={decorate,decoration={show path construction,
 	lineto code={\begin{pgfonlayer}{graph edge #1}\draw[tmpstyle/.style/.expand once=#2,line width=\edgelinewidth,tmpstyle] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);\end{pgfonlayer}},
 	curveto code={\begin{pgfonlayer}{graph edge #1}\draw[tmpstyle/.style/.expand once=#2,line width=\edgelinewidth,tmpstyle] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);\end{pgfonlayer}}}}},
+simple edge/.style={graph edge={below}{#1}},
 }
 
 \makeatletter
