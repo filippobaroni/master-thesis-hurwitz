@@ -10,7 +10,6 @@
 
 \makeatletter
 \def\createcontour@precision{0.1}
-\makeatother
 
 \newlength{\edgelinewidth}
 \setlength{\edgelinewidth}{0.6pt}
@@ -55,14 +54,16 @@ exec on layer/.code 2 args={\begin{pgfonlayer}{#1}#2\end{pgfonlayer}}
 \tikzset{
 black vertex/.pic={\begin{pgfonlayer}{graph vertex}\fill[black] circle(1.5pt);\end{pgfonlayer}},
 white vertex/.pic={\begin{pgfonlayer}{graph vertex}\filldraw[black,fill=white] circle(1.5pt);\end{pgfonlayer}},
-black edge/.style={line width=\edgelinewidth,black!80},
-graph edge/.style 2 args={postaction={decorate,decoration={show path construction,
-	lineto code={\begin{pgfonlayer}{graph edge #1}\draw[tmpstyle/.style/.expand once=#2,line width=\edgelinewidth,tmpstyle] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);\end{pgfonlayer}},
-	curveto code={\begin{pgfonlayer}{graph edge #1}\draw[tmpstyle/.style/.expand once=#2,line width=\edgelinewidth,tmpstyle] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);\end{pgfonlayer}}}}},
-simple edge/.style={graph edge={below}{#1}},
+black edge/.style={line width=\edgelinewidth,draw=black!80},
+black edge dashed/.style={black edge,dashed},
+red edge/.style={line width=\edgelinewidth,draw=red},
+red edge dashed/.style={red edge,dashed},
+edge on layer/.style 2 args={postaction={decorate,decoration={show path construction,
+	lineto code={\begin{pgfonlayer}{#1}\draw[tmpstyle/.style/.expand once=#2,tmpstyle] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);\end{pgfonlayer}},
+	curveto code={\begin{pgfonlayer}{#1}\draw[tmpstyle/.style/.expand once=#2,tmpstyle] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);\end{pgfonlayer}}}}},
+graph edge/.style 2 args={edge on layer={graph edge #1}{#2}},
 }
 
-\makeatletter
 \tikzset{
 create contour settings/.is family,
 create contour settings/.cd,
@@ -178,12 +179,19 @@ defaults,
 
 % Surface pictures
 
+\def\afterjoin@precision{0.1}
+\newlength{\afterjoin@width}
+\setlength{\afterjoin@width}{4pt}
+
 \def\surfyscale{0.6}
 \newlength{\tuberadius}
-\setlength{\tuberadius}{0.3cm}
+\setlength{\tuberadius}{0.45cm}
 \newlength{\tubesmallradius}
 \setlength{\tubesmallradius}{\surfyscale\tuberadius}
 \newlength{\tubelargeradius}
+\def\surfdiskradius{2.5}
+\def\surfdisksmallradius{1.2}
+\def\surfdisksmallsep{0.2}
 
 \pgfdeclarelayer{surf base}
 \pgfdeclarelayer{surf edge behind}
@@ -196,9 +204,13 @@ surf picture/.style={
 z={(0,1)},
 y={(0,\surfyscale)},
 },
-surf boundary/.style={draw=black!70},
-surf boundary soft/.style={draw=gray},
-surf boundary dashed/.style={draw=gray,dashed},
+surf boundary/.style={draw=black!60},
+surf boundary soft/.style={draw=gray!70},
+surf boundary dashed/.style={draw=gray!70,dashed},
+}
+
+\tikzset{
+surf edge/.style 2 args={edge on layer={surf edge #1}{#2}}
 }
 
 \tikzset{
@@ -228,14 +240,65 @@ pics/surf tube/.style 2 args={code={
 \NewDocumentCommand{\tuberightpath}{mm}{($(tube-rground)+({#1}:{\tuberadius} and {\tubesmallradius})$) arc ({#1}:{#2}:{\tuberadius} and {\tubesmallradius}) }
 \NewDocumentCommand{\tubemiddlepath}{mm}{($(tube-middle)+({#1}:{\tubesmallradius} and {\tuberadius})$) arc ({#1}:{#2}:{\tubesmallradius} and {\tuberadius}) }
 \NewDocumentCommand{\tubeleftpath}{mm}{($(tube-lground)+({#1}:{\tuberadius} and {\tubesmallradius})$) arc ({#1}:{#2}:{\tuberadius} and {\tubesmallradius}) }
-\NewDocumentCommand{\tubecontour}{}{\tuberightpath{0}{-180} arc(0:180:{\tubelargeradius-\tuberadius}) \tubeleftpath{0}{-180} arc(180:0:{\tubelargeradius+\tuberadius})}
+\NewDocumentCommand{\tubecontour}{}{\tuberightpath{0}{-180} arc(0:180:{\tubelargeradius-\tuberadius}) -- \tubeleftpath{0}{-180} arc(180:0:{\tubelargeradius+\tuberadius})}
 \NewDocumentCommand{\tuberightcontour}{}{\tuberightpath{0}{-180} arc(0:90:{\tubelargeradius-\tuberadius}) arc ({270}:{90}:{\tubesmallradius} and {\tuberadius}) arc(90:0:{\tubelargeradius+\tuberadius})}
 \NewDocumentCommand{\tubeleftcontour}{}{\tubeleftpath{0}{-180} arc(180:90:{\tubelargeradius+\tuberadius}) arc ({90}:{270}:{\tubesmallradius} and {\tuberadius}) arc(90:180:{\tubelargeradius-\tuberadius}) -- cycle}
 \NewDocumentCommand{\tubefill}{m}{\begin{pgfonlayer}{surf tube}\fill[#1] \tubecontour{};\end{pgfonlayer}}
+\NewDocumentCommand{\tuberightfill}{m}{\begin{pgfonlayer}{surf tube}\fill[#1] \tuberightcontour{};\end{pgfonlayer}}
+\NewDocumentCommand{\tubeleftfill}{m}{\begin{pgfonlayer}{surf tube}\fill[#1] \tubeleftcontour{};\end{pgfonlayer}}
+\NewDocumentCommand{\tubebelt}{mm}{\begin{pgfonlayer}{surf edge front}\path[#2] \tubemiddlepath{-90}{90};\path[#1] \tubemiddlepath{90}{270};\end{pgfonlayer}}
 
 \tikzset{
-cmove setting one disk/.pic={\pic {surf circle={d#1}{1.5}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
-cmove setting one disk tube/.pic={\path \surfcirclepoint{d#1}{180} coordinate (-l) \surfcirclepoint{d#1}{0} coordinate (-r);\pic {surf tube={$(-l)!.25!(-r)$}{$(-l)!.75!(-r)$}};}
+after join/.style n args={3}{
+/utils/exec={
+\xdef\afterjoin@path{}
+\xdef\afterjoin@midpath{}
+\xdef\afterjoin@pathrev{}
+\xdef\afterjoin@midpathrev{}
+},
+decorate,decoration={markings,mark=between positions 0 and .998 step \afterjoin@precision with {
+\path let \n1={int(\pgfkeysvalueof{/pgf/decoration/mark info/sequence number}-1)},\n2={\n1*\afterjoin@precision},\n3={sqrt(1-\n2)},\n4={\n2>0.2} in (0,{\n3*\afterjoin@width}) coordinate (afterjoin-\n1) (0,{-\n3*\afterjoin@width}) coordinate (afterjoin-rev-\n1) \pgfextra{
+	\xdef\afterjoin@path{\afterjoin@path (afterjoin-\n1)}
+	\xdef\afterjoin@pathrev{(afterjoin-rev-\n1) \afterjoin@pathrev}
+	\ifnum\n4=1
+		\xdef\afterjoin@midpath{\afterjoin@midpath (afterjoin-\n1)}
+		\xdef\afterjoin@midpathrev{(afterjoin-rev-\n1) \afterjoin@midpathrev}
+	\fi
+};
+},mark=at position 0.999 with {
+\coordinate (afterjoin-end);
+\xdef\afterjoin@path{\afterjoin@path (afterjoin-end)}
+\xdef\afterjoin@pathrev{(afterjoin-end) \afterjoin@pathrev}
+\xdef\afterjoin@midpath{\afterjoin@midpath (afterjoin-end)}
+\xdef\afterjoin@midpathrev{(afterjoin-end) \afterjoin@midpathrev}
+}},
+postaction={
+exec on layer={surf edge #1}{
+\fill[#3,save path=\afterjoinpath] plot[smooth] coordinates \afterjoin@path -- plot[smooth] coordinates \afterjoin@pathrev let \p1=(afterjoin-0),\p2=(afterjoin-rev-0),\p3=($(\p2)-(\p1)$),\n1={veclen(\x3,\y3)/2},\n2={atan2(\y3,\x3)} in arc(\n2:\n2-180:\n1);
+%\fill[white] ($(afterjoin-0)!.5!(afterjoin-rev-0)$) circle(\afterjoin@width);
+\begin{scope}
+\clip \surfcirclepath{#2}{0}{360};
+\path[surf boundary,use path=\afterjoinpath];
+\end{scope}
+\begin{scope}
+\begin{pgfinterruptboundingbox}
+\clip[insert path={(-10cm,-10cm) rectangle (10cm,10cm)}] \surfcirclepath{#2}{0}{360};
+\path[surf boundary] plot[smooth] coordinates \afterjoin@midpath -- plot[smooth] coordinates \afterjoin@midpathrev;
+\end{pgfinterruptboundingbox}
+\end{scope}
+}
+}
+}
+}
+
+\tikzset{
+cmove setting one disk/.pic={\pic {surf circle={d#1}{\surfdiskradius}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
+cmove setting one disk tube/.pic={\path \surfcirclepoint{d#1}{180} coordinate (-l) \surfcirclepoint{d#1}{0} coordinate (-r);\pic {surf tube={$(-l)!.25!(-r)$}{$(-l)!.75!(-r)$}};},
+cmove setting two disks/.pic={\foreach \i/\j in {1/-1,2/1} {
+\pic at ({\j*(\surfdisksmallradius+\surfdisksmallsep)},0) {surf circle={d\i}{\surfdisksmallradius}};
+\tikzset{exec on layer={surf base}{\fill[disk \i] \surfcirclepath{d\i}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d\i}{0}{360};}}
+}},
+cmove setting two disks tube/.pic={\path \surfcirclepoint{d1}{180} coordinate (-l) \surfcirclepoint{d2}{0} coordinate (-r);\pic {surf tube={{-\surfdiskradius/2},0}{{+\surfdiskradius/2},0}};}
 }
 
 % Fast graphics
