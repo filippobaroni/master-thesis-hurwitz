@@ -3,6 +3,7 @@
 % Settings
 
 \def\graphicfast{0}
+\def\forceremake{\tikzset{external/force remake=true}}
 %\tikzset{external/force remake=true}
 %\tikzexternaldisable
 %\let\oldtikzsetnextfilename\tikzsetnextfilename
@@ -58,6 +59,7 @@ black edge/.style={line width=\edgelinewidth,draw=black!80},
 black edge dashed/.style={black edge,dashed},
 red edge/.style={line width=\edgelinewidth,draw=red},
 red edge dashed/.style={red edge,dashed},
+green edge/.style={line width=\edgelinewidth,draw=green},
 edge on layer/.style 2 args={postaction={decorate,decoration={show path construction,
 	lineto code={\begin{pgfonlayer}{#1}\draw[tmpstyle/.style/.expand once=#2,tmpstyle] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);\end{pgfonlayer}},
 	curveto code={\begin{pgfonlayer}{#1}\draw[tmpstyle/.style/.expand once=#2,tmpstyle] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);\end{pgfonlayer}}}}},
@@ -192,7 +194,10 @@ defaults,
 \def\surfdiskradius{2.5}
 \def\surfdisksmallradius{1.2}
 \def\surfdisksmallsep{0.2}
+\newlength{\surroundingradius}
+\setlength{\surroundingradius}{1cm}
 
+\pgfdeclarelayer{surf surrounding}
 \pgfdeclarelayer{surf base}
 \pgfdeclarelayer{surf edge behind}
 \pgfdeclarelayer{surf tube}
@@ -200,7 +205,7 @@ defaults,
 
 \tikzset{
 surf picture/.style={
-/utils/exec={\pgfsetlayers{surf base,surf edge behind,surf tube,surf edge front,graph vertex,main}},
+/utils/exec={\pgfsetlayers{surf surrounding,surf base,surf edge behind,surf tube,surf edge front,graph vertex,main}},
 z={(0,1)},
 y={(0,\surfyscale)},
 },
@@ -235,7 +240,7 @@ pics/surf tube/.style 2 args={code={
 \NewDocumentCommand{\surfcirclepoint}{mm}{($(#1-center)+({#2}:{\csname surfcircle@#1@radius\endcsname})$) }
 \NewDocumentCommand{\surfcirclepath}{mmm}{($(#1-center)+({#2}:{\csname surfcircle@#1@radius\endcsname})$) arc({#2}:{#3}:{\csname surfcircle@#1@radius\endcsname}) }
 \NewDocumentCommand{\tuberightpoint}{m}{($(tube-rground)+({#1}:{\tuberadius} and {\tubesmallradius})$) }
-\NewDocumentCommand{\tubemiddlepoint}{m}{($(tube-middle)+({#1}:{\tuberadius} and {\tubesmallradius})$) }
+\NewDocumentCommand{\tubemiddlepoint}{m}{($(tube-middle)+({#1}:{\tubesmallradius} and {\tuberadius})$) }
 \NewDocumentCommand{\tubeleftpoint}{m}{($(tube-lground)+({#1}:{\tuberadius} and {\tubesmallradius})$) }
 \NewDocumentCommand{\tuberightpath}{mm}{($(tube-rground)+({#1}:{\tuberadius} and {\tubesmallradius})$) arc ({#1}:{#2}:{\tuberadius} and {\tubesmallradius}) }
 \NewDocumentCommand{\tubemiddlepath}{mm}{($(tube-middle)+({#1}:{\tubesmallradius} and {\tuberadius})$) arc ({#1}:{#2}:{\tubesmallradius} and {\tuberadius}) }
@@ -247,6 +252,10 @@ pics/surf tube/.style 2 args={code={
 \NewDocumentCommand{\tuberightfill}{m}{\begin{pgfonlayer}{surf tube}\fill[#1] \tuberightcontour{};\end{pgfonlayer}}
 \NewDocumentCommand{\tubeleftfill}{m}{\begin{pgfonlayer}{surf tube}\fill[#1] \tubeleftcontour{};\end{pgfonlayer}}
 \NewDocumentCommand{\tubebelt}{mm}{\begin{pgfonlayer}{surf edge front}\path[#2] \tubemiddlepath{-90}{90};\path[#1] \tubemiddlepath{90}{270};\end{pgfonlayer}}
+
+\tikzset{
+surrounding/.style={edge on layer={surf surrounding}{draw,#1,line width=\surroundingradius,line cap=round}}
+}
 
 \tikzset{
 after join/.style n args={3}{
@@ -275,7 +284,6 @@ decorate,decoration={markings,mark=between positions 0 and .998 step \afterjoin@
 postaction={
 exec on layer={surf edge #1}{
 \fill[#3,save path=\afterjoinpath] plot[smooth] coordinates \afterjoin@path -- plot[smooth] coordinates \afterjoin@pathrev let \p1=(afterjoin-0),\p2=(afterjoin-rev-0),\p3=($(\p2)-(\p1)$),\n1={veclen(\x3,\y3)/2},\n2={atan2(\y3,\x3)} in arc(\n2:\n2-180:\n1);
-%\fill[white] ($(afterjoin-0)!.5!(afterjoin-rev-0)$) circle(\afterjoin@width);
 \begin{scope}
 \clip \surfcirclepath{#2}{0}{360};
 \path[surf boundary,use path=\afterjoinpath];

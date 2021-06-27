@@ -206,14 +206,10 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \def\picturesetuptwo#1{
 \picturesetupone{#1}
 \tubebelt{black edge}{black edge dashed}
-\path \tubemiddlepoint{120} coordinate (b) pic{black vertex};
-\path \tubemiddlepoint{240} coordinate (w) pic{white vertex};
+\path \tubemiddlepoint{150} coordinate (b) pic{black vertex};
+\path \tubemiddlepoint{-150} coordinate (w) pic{white vertex};
 \tubeleftfill{disk 1}
 \tuberightfill{disk 2}
-\ifnum#1=0
-\node[above=5pt] at (b) {$2$};
-\fi
-\node[below=5pt] at (w) {$2$};
 }
 \def\picturesetupthree#1{
 \picturesetuptwo{#1}
@@ -229,21 +225,21 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 }
 \tabcolsep=0pt
 \begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
-(1)&(2)\vspace{0.5em}\\*
+(1)&(2)\\*
 \tikzsetnextfilename{cmove-2-1-1}
 \begin{tikzpicture}[surf picture]
-\picturesetupone{1}
+\picturesetupone{0}
 \end{tikzpicture}
 &
 \tikzsetnextfilename{cmove-2-1-2}
 \begin{tikzpicture}[surf picture]
-\picturesetuptwo{1}
+\picturesetuptwo{0}
 \end{tikzpicture}
 \\
 (3)&(4)\\*
 \tikzsetnextfilename{cmove-2-1-3}
 \begin{tikzpicture}[surf picture]
-\picturesetupthree{1}
+\picturesetupthree{0}
 \end{tikzpicture}
 &
 \tikzsetnextfilename{cmove-2-1-4}
@@ -260,6 +256,67 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \item Draw the two red edges shown in the picture.
 \item Perform the joining operation along the red edges.
 \end{enumerate}
+\bgroup
+\def\picturesetupone#1#2{
+\pic {cmove setting one disk=1};
+\path \surfcirclepoint{d1}{-30} coordinate (x2);
+\path \surfcirclepoint{d1}{-90} coordinate (x1) pic{black vertex};
+\ifnum#2=0
+\path \surfcirclepoint{d1}{180} node[right,green!80!black] {$e$};
+\tikzset{myedgestyle/.style={surf edge={behind}{green edge}}}\else
+\tikzset{myedgestyle/.style={}}\fi
+\path[myedgestyle,surrounding=disk 2,postaction={decorate,decoration={markings,mark=at position .25 with {\coordinate (2b);},mark=at position .75 with {\coordinate (2w);}}}] \surfcirclepath{d1}{-180}{-120};
+\path (2w) pic {white vertex};
+\ifnum#1=0
+\pic at (x2) {black vertex};
+\pic at (2b) {black vertex};
+\node[below right] at (x2) {$x_2$};
+\node[below=5pt] at (x1) {$x_1$};
+\fi
+}
+\def\picturesetuptwo#1{
+\picturesetupone{#1}{1}
+\pic {cmove setting one disk tube=1};
+\tubefill{disk 1};
+}
+\def\picturesetupthree#1{
+\picturesetuptwo{#1}
+\ifnum#1=0
+\tikzset{myedgestyle/.style 2 args={surf edge={##1}{red edge}}}\else
+\tikzset{myedgestyle/.style 2 args={after join={##1}{d1}{##2}}}\fi
+\path[myedgestyle={behind}{disk 2}] (2b) to[out=75,in=60,out looseness=2.5,in looseness=2] (x1);
+\path[myedgestyle={front}{white}] let \p1=\tuberightpoint{-60},\p2=\tubeleftpoint{-120},\n1={(\x1-\x2)/2} in (x2) to[bend left] (\p1) arc(0:180:\n1) to[bend right] (x1);
+}
+\def\picturesetupfour{
+\picturesetupthree{1}
+\node[below=5pt] at (x1) {$x$};
+}
+\tabcolsep=0pt
+\begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
+(1)&(2)\\*
+\tikzsetnextfilename{cmove-2-2-1}
+\forceremake
+\begin{tikzpicture}[surf picture]
+\picturesetupone{0}{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-2-2-2}
+\begin{tikzpicture}[surf picture]
+\picturesetuptwo{0}
+\end{tikzpicture}
+\\
+(3)&(4)\\*
+\tikzsetnextfilename{cmove-2-2-3}
+\begin{tikzpicture}[surf picture]
+\picturesetupthree{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-2-2-4}
+\begin{tikzpicture}[surf picture]
+\picturesetupfour
+\end{tikzpicture}
+\end{longtable}
+\egroup
 
 In both cases, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
 \end{proof}
@@ -286,14 +343,135 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \item Draw the red edge as shown in the picture.
 \item Perform the join operation along the red edges.
 \end{enumerate}
+\bgroup
+\def\picturesetupone#1{
+\pic{cmove setting two disks};
+\pic{cmove setting two disks tube};
+\tubefill{white};
+\path \surfcirclepoint{d1}{-90} coordinate (x-2);
+\path \surfcirclepoint{d2}{-90} coordinate (y-2);
+\ifnum#1=0
+\path (x-2) pic{black vertex} node[below=3pt] {$x-2$};
+\path (y-2) pic{black vertex} node[below=3pt] {$y-2$};
+\fi
+}
+\def\picturesetuptwo#1{
+\picturesetupone{#1}
+\tubebelt{black edge}{black edge dashed}
+\path \tubemiddlepoint{90} coordinate (w1) pic{white vertex};
+\path \tubemiddlepoint{135} coordinate (b1) pic{black vertex};
+\path \tubemiddlepoint{180} coordinate (w2) pic {white vertex};
+\path \tubemiddlepoint{225} coordinate (b2) pic {black vertex};
+\tubeleftfill{disk 1}
+\tuberightfill{disk 2}
+}
+\def\picturesetupthree#1{
+\picturesetuptwo{#1}
+\ifnum#1=0
+\tikzset{myedgestyle/.style={surf edge={front}{red edge}}}\else
+\tikzset{myedgestyle/.style={after join={front}{##1}{white}}}\fi
+\path[myedgestyle={d1}] let \p1=\tubeleftpoint{240} in (x-2) to[bend left] (\p1) to[out=90,in=-170] (b1);
+\path[myedgestyle={d2}] let \p1=\tuberightpoint{-60} in (y-2) to[bend right] (\p1) to[out=90,in=10] (b2);
+}
+\def\picturesetupfour{
+\picturesetupthree{1}
+\node[above left] at (b1) {$x$};
+\node[below=3pt] at (b2) {$y$};
+}
+\tabcolsep=0pt
+\begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
+(1)&(2)\\*
+\tikzsetnextfilename{cmove-3-1-1}
+\begin{tikzpicture}[surf picture]
+\picturesetupone{0}{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-3-1-2}
+\begin{tikzpicture}[surf picture]
+\picturesetuptwo{0}
+\end{tikzpicture}
+\\
+(3)&(4)\\*
+\tikzsetnextfilename{cmove-3-1-3}
+\begin{tikzpicture}[surf picture]
+\picturesetupthree{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-3-1-4}
+\begin{tikzpicture}[surf picture]
+\picturesetupfour
+\end{tikzpicture}
+\end{longtable}
+\egroup
 
-\paragraph{Case 2:} the two black vertices of degrees $x-2$ and $y-2$ lie (say) on $\partial D_1$. We perform the following operations on $\Gamma'$.
+\paragraph{Case 2:} the two black vertices of degrees $x-2$ and $y-2$ lie (say) on $\partial D_1$. Fix an edge $e\subs\Gamma'$ which lies on the boundaries of both disks. We perform the following operations on $\Gamma'$.
 \begin{enumerate}[(1)]
 \item Add two black vertices and two white vertices on $e$.
 \item Attach a tube to $\surf{g-1}$ with both endpoints in $D_1$.
 \item Draw the two red edges shown in the picture.
 \item Perform the joining operation along the red edges.
 \end{enumerate}
+\bgroup
+\def\picturesetupone#1#2{
+\pic {cmove setting one disk=1};
+\path \surfcirclepoint{d1}{-30} coordinate (x2) pic{black vertex};
+\path \surfcirclepoint{d1}{-90} coordinate (x1) pic{black vertex};
+\ifnum#2=0
+\path \surfcirclepoint{d1}{150} node[below right,green!80!black] {$e$};
+\tikzset{myedgestyle/.style={surf edge={behind}{green edge}}}\else
+\tikzset{myedgestyle/.style={}}\fi
+\path[myedgestyle,surrounding=disk 2,postaction={decorate,decoration={markings,mark=at position .2 with {\coordinate (2b-1);},mark=at position .4 with {\coordinate (2w-1);},,mark=at position .6 with {\coordinate (2b-2);},mark=at position .8 with {\coordinate (2w-2);}}}] \surfcirclepath{d1}{150}{240};
+\path (2w-1) pic {white vertex} (2w-2) pic {white vertex};
+\ifnum#1=0
+\pic at (2b-1) {black vertex};
+\pic at (2b-2) {black vertex};
+\node[below right] at (x2) {$y-2$};
+\node[below=5pt] at (x1) {$x-2$};
+\fi
+}
+\def\picturesetuptwo#1{
+\picturesetupone{#1}{1}
+\pic {cmove setting one disk tube=1};
+\tubefill{disk 1};
+}
+\def\picturesetupthree#1{
+\picturesetuptwo{#1}
+\ifnum#1=0
+\tikzset{myedgestyle/.style={surf edge={##1}{red edge}}}\else
+\tikzset{myedgestyle/.style={after join={##1}{d1}{disk 2}}}\fi
+\path[myedgestyle={behind}] (2b-1) to[out=30,in=80,looseness=1.8] (x1);
+\path[myedgestyle={front}] let \p1=\tubeleftpoint{-120},\p2=\tuberightpoint{-60},\n1={(\x2-\x1)/2} in (2b-2) to[bend right] (\p1) arc(180:0:\n1) to[bend right] (x2);
+}
+\def\picturesetupfour{
+\picturesetupthree{1}
+\node[below=5pt] at (x1) {$x$};
+\node[below right] at (x2) {$y$};
+}
+\tabcolsep=0pt
+\begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
+(1)&(2)\\*
+\tikzsetnextfilename{cmove-3-2-1}
+\begin{tikzpicture}[surf picture]
+\picturesetupone{0}{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-3-2-2}
+\begin{tikzpicture}[surf picture]
+\picturesetuptwo{0}
+\end{tikzpicture}
+\\
+(3)&(4)\\*
+\tikzsetnextfilename{cmove-3-2-3}
+\begin{tikzpicture}[surf picture]
+\picturesetupthree{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-3-2-4}
+\begin{tikzpicture}[surf picture]
+\picturesetupfour
+\end{tikzpicture}
+\end{longtable}
+\egroup
 
 In both cases, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
 \end{proof}
@@ -321,16 +499,136 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. Let $u$ be the b
 \item Perform the joining operation along the red edges.
 \end{enumerate}
 
-\paragraph{Case 2:} neither $u$ nor $v$ lie (say) on $\partial D_2$; analyzing this case will be more involved than usual. We will say that an edge is \emph{shared} if it is not enveloped by $D_1$ or by $D_2$; in other words, an edge is shared if it appears exactly once in $\partial D_1$; in the following pictures, shared edges will be colored green. Our goal will be to prove that we can add two vertices of degree $2$ -- one black and one white -- on a shared edge, in such a way that the vertices $\{u,2,2,v\}$ appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; since $u$ does not lie on the boundary of $D_2$, it appears exactly $x-2\ge 2$ times on $\partial D_1$; similarly, $v$ appears exactly $y-2$ times.
+\bgroup
+\def\picturesetupone#1{
+\pic{cmove setting two disks};
+\pic{cmove setting two disks tube};
+\tubefill{white};
+\path \surfcirclepoint{d1}{-90} coordinate (x1);
+\path \surfcirclepoint{d2}{-90} coordinate (x2);
+\ifnum#1=0
+\path (x1) pic{black vertex} node[below=3pt] {$x-2$};
+\path (x2) pic{white vertex} node[below=3pt] {$y-2$};
+\fi
+}
+\def\picturesetuptwo#1{
+\picturesetupone{#1}
+\tubebelt{black edge}{black edge dashed}
+\path \tubemiddlepoint{150} coordinate (b) pic{black vertex};
+\path \tubemiddlepoint{-150} coordinate (w) pic{white vertex};
+\tubeleftfill{disk 1}
+\tuberightfill{disk 2}
+}
+\def\picturesetupthree#1{
+\picturesetuptwo{#1}
+\ifnum#1=0
+\tikzset{myedgestyle/.style={surf edge={front}{red edge}}}\else
+\tikzset{myedgestyle/.style={after join={front}{##1}{white}}}\fi
+\path[myedgestyle={d1}] let \p1=\tubeleftpoint{240} in (x1) to[bend left] (\p1) to[out=90,in=180] (b);
+\path[myedgestyle={d2}] let \p1=\tuberightpoint{-60} in (x2) to[bend right] (\p1) to[out=90,in=10] (w);
+}
+\def\picturesetupfour{
+\picturesetupthree{1}
+\node[above=5pt] at (b) {$x$};
+\node[below=5pt] at (w) {$y$};
+}
+\tabcolsep=0pt
+\begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
+(1)&(2)\\*
+\tikzsetnextfilename{cmove-4-1-1}
+\begin{tikzpicture}[surf picture]
+\picturesetupone{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-4-1-2}
+\begin{tikzpicture}[surf picture]
+\picturesetuptwo{0}
+\end{tikzpicture}
+\\
+(3)&(4)\\*
+\tikzsetnextfilename{cmove-4-1-3}
+\begin{tikzpicture}[surf picture]
+\picturesetupthree{0}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{cmove-4-1-4}
+\begin{tikzpicture}[surf picture]
+\picturesetupfour
+\end{tikzpicture}
+\end{longtable}
+\egroup
+
+\paragraph{Case 2:} neither $u$ nor $v$ lie (say) on $\partial D_2$; analyzing this case will be more involved than usual. We will say that an edge is \emph{shared} if it is not enveloped by $D_1$ or by $D_2$; in other words, an edge is shared if it appears exactly once in $\partial D_1$; in the following pictures, shared edges will be colored green. Our goal will be to prove that we can add two vertices of degree $2$ -- one black and one white -- on a shared edge, in such a way that the vertices 
+\begin{center}
+\tikzsetnextfilename{cmove-4-2-boundary-order}
+\begin{tikzpicture}[graph picture]
+\path[graph edge={below}{black edge}] (0,0) -- (0.5,0) (1.5,0) -- (2,0) (4,0) -- (4.5,0) (5.5,0) -- (6,0);
+\path[graph edge={below}{black edge dashed}] (0.5,0) -- (1.5,0) (4.5,0) -- (5.5,0);
+\path[graph edge={below}{green edge}] (2,0) -- (4,0);
+\path[ab/.style={above=3pt}] (0,0) pic{black vertex} node[ab] {$u$} (2.5,0) pic{white vertex} node[ab] {$2$} (3.5,0) pic{black vertex} node[ab] {$2$} (6,0) pic{white vertex} node[ab] {$v$};
+\end{tikzpicture}
+\end{center}
+appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; since $u$ does not lie on the boundary of $D_2$, it appears exactly $x-2\ge 2$ times on $\partial D_1$; similarly, $v$ appears exactly $y-2$ times.
 \begin{itemize}
-\item Assume that $\{u,v,u,\text{shared edge}\}$ appear in this order on $\partial D_1$. Then, by adding a black and a white vertex on this shared edge, we get the desired result.
+\def\myradius{1.3cm}
+\item Assume that $\{u,v,u,e\}$ appear in this order on $\partial D_1$, where $e$ is a shared edge. Then, by adding a black and a white vertex on $e$, we get the desired result.
+\begin{center}
+\def\picturesetupbase{
+\begin{pgfonlayer}{graph edge below}
+\fill[disk 1,postaction={draw,surf boundary}] circle(1);
+\end{pgfonlayer}
+}
+\def\picturesetup{
+\picturesetupbase
+\path (0:1) pic{black vertex} node[right] {$u$};
+\path (180:1) pic {black vertex} node[left] {$u$};
+\path (-90:1) pic {white vertex} node[below] {$v$};
+\path[graph edge={below}{green edge}] (45:1) arc (45:135:1);
+}
+\tikzsetnextfilename{cmove-4-2-1}
+\begin{tikzpicture}[graph picture,x={(\myradius,0)},y={(0,\myradius)}]
+\begin{scope}[shift={(-\myradius*2.5,0)}]
+\picturesetup
+\node[above=2pt,green!80!black] at (90:1) {$e$};
+\end{scope}
+\node{$\Longrightarrow$};
+\begin{scope}[shift={(\myradius*2.5,0)}]
+\picturesetup
+\path (60:1) pic{black vertex} node[above right] {$2$};
+\path (120:1) pic{white vertex} node[above left] {$2$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
 \item Otherwise, consider the pictures below.
 \begin{enumerate}[(1)]
 \item We are in the following situation: there is a contiguous segment $A$ of $\partial D_1$ that contains all the occurrences of $u$, and does not contain any occurrence of $v$ or any shared edge. Similarly, there is a segment $B$ of $\partial D_1$ that contains all the occurrences of $v$, no occurrence of $u$ and no shared edge. Note that $u$ and $v$ are never adjacent to a shared edge, since by assumption they do not lie on $\partial D_2$.
-\item Choose an orientation of $\partial D_1$ (counterclockwise in the picture) and consider the first occurrence of $u$ in $A$; let $\alpha$ be the edge immediately afterwards in $\partial D_1$. Since $\alpha$ is not shared, it must appear once more on the combinatorial boundary of $D_1$, with the opposite orientation. Note that $\alpha$ it cannot occur immediately before the first appearance of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere else on $A$
-\item Consider the first occurrence of $v$ in $B$; let $\beta$ be the edge immediately before in $\partial D_1$. Since $\beta$ is not shared, it will also occur somewhere else on the combinatorial perimeter of $D_1$
+\item Choose an orientation of $\partial D_1$ (counterclockwise in the picture) and consider the first occurrence of $u$ in $A$; let $\alpha$ be the edge immediately afterwards in $\partial D_1$. Since $\alpha$ is not shared, it must appear once more on the combinatorial boundary of $D_1$, with the opposite orientation. Note that $\alpha$ it cannot occur immediately before the first appearance of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere else on $A$.
+\item Consider the first occurrence of $v$ in $B$; let $\beta$ be the edge immediately before in $\partial D_1$. Since $\beta$ is not shared, it will also occur somewhere else on the combinatorial perimeter of $D_1$.
 \item Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. Erase the edges $\alpha$ and $\beta$ and draw two new ones, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture.
 \item It is now easy to see that the orange region is still a complementary disk, and that its perimeter has not changed. Moreover, by traveling along its boundary, we encounter $\{u,v,u\}$ in this order, without any shared edges in between; since there must be at least one shared edge on the boundary of the new orange region, the argument of the first bullet point applies.
+\def\picturesetupbase{
+\begin{pgfonlayer}{graph edge below}
+\fill[disk 1,postaction={draw,surf boundary}] circle(1);
+\end{pgfonlayer}
+\path (120:1) pic{black vertex} node[above left] {$u$};
+\path (210:1) pic{black vertex} node[left=3pt] {$u$};
+\path (30:1) pic{white vertex} node[above right] {$v$};
+\path (-30:1) pic{white vertex} node[below right] {$v$};
+}
+\tabcolsep=0pt
+\begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
+(1)&(2)\\*
+\begin{tikzpicture}[graph picture,x={(\myradius,0)},y={(0,\myradius)},bar/.tip={Bar[width=3pt]}]
+\picturesetupbase
+\path (240:1) pic{black vertex} node[below left] {$u$};
+\draw[violet,{bar}-{bar}] (120:0.85) arc(120:240:0.85) node[midway,right] {$A$};
+\draw[teal,{bar}-{bar}] (30:0.85) arc(30:-30:0.85) node[midway,left] {$B$};
+\end{tikzpicture}
+&
+\\
+(3)&(4)\\*
+&
+\end{longtable}
 \end{enumerate}
 
 Once we have added the two vertices of degree $2$ as explained above, we can perform the following operations.
