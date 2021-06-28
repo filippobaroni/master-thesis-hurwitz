@@ -23,6 +23,7 @@
 \colorlet{disk 2 boundary}{blue!80!green}
 \colorlet{disk 1}{disk 1 boundary!30!white}
 \colorlet{disk 2}{disk 2 boundary!30!white}
+\tikzset{disk 1 boundary dashed/.style={draw=disk 1 boundary,dashed}}
 
 
 % Arc
@@ -307,6 +308,110 @@ cmove setting two disks/.pic={\foreach \i/\j in {1/-1,2/1} {
 }},
 cmove setting two disks tube/.pic={\path \surfcirclepoint{d1}{180} coordinate (-l) \surfcirclepoint{d2}{0} coordinate (-r);\pic {surf tube={{-\surfdiskradius/2},0}{{+\surfdiskradius/2},0}};}
 }
+
+
+% Torus
+\def\torus@precision{21}
+\tdplotsetmaincoords{65}{0}
+\def\radiusA{1.7}
+\def\radiusB{0.5}
+
+\def\torusprecision{\torus@precision}
+\tikzset{declare function={%
+torusx(\u,\v)=cos(\u)*(\radiusA + \radiusB*cos(\v)); 
+torusy(\u,\v)=(\radiusA + \radiusB*cos(\v))*sin(\u);
+torusz(\u,\v)=\radiusB*sin(\v);
+vcrit1(\u)=atan(tan(\tdplotmaintheta)*sin(\u));% first critical v value
+vcrit2(\u)=180+atan(tan(\tdplotmaintheta)*sin(\u));% second critical v value
+thetacritA(\asdsd)=atan(sqrt(\radiusA/\radiusB-1));
+thetacritB(\asdasd)=acos(\radiusB/\radiusA);
+ucritA(\th)=180+(90/pi)*sqrt(abs(-(\radiusA^2*pow(cot(\th),2))+4*pow(\radiusB,2)/pow(sin(2*\th),2)))/\radiusA; 
+ucritB(\th)=540-ucritA(\th);
+umaxA(\th)=asin(sqrt(abs(-pow(cot(\th),2)+4*pow(\radiusB,2)/(pow((sin(2*\th)*\radiusA),2)))));
+umaxB(\th)=180-umaxA(\th);}}
+\tikzset{3d torus/.style={/utils/exec=\pgfmathsetmacro{\DDA}{int(sign(sin(thetacritA(1))-sin(\tdplotmaintheta)))}
+  \pgfmathsetmacro{\DDB}{int(sign(sin(thetacritB(1))-sin(\tdplotmaintheta)))},
+  insert path={
+  plot[variable=\x,domain=1:359,smooth cycle,samples=\torus@precision]
+  ({torusx(\x,vcrit1(\x))},
+ {torusy(\x,vcrit1(\x))},
+ {torusz(\x,vcrit1(\x))}) 
+   \ifnum\DDA=1
+    plot[variable=\x,domain=0:360,smooth cycle,samples=\torus@precision]
+    ({torusx(\x,vcrit2(\x))},
+    {torusy(\x,vcrit2(\x))},
+    {torusz(\x,vcrit2(\x))})    
+   \else
+   \ifnum\DDB=1 
+    plot[variable=\x,domain={umaxA(\tdplotmaintheta)}:{umaxB(\tdplotmaintheta)},smooth,samples=\torus@precision]
+    ({torusx(\x,vcrit2(\x))},
+    {torusy(\x,vcrit2(\x))},
+    {torusz(\x,vcrit2(\x))})    --
+    plot[variable=\x,domain={180+umaxA(\tdplotmaintheta)}:{180+umaxB(\tdplotmaintheta)},smooth,samples=\torus@precision]
+    ({torusx(\x,vcrit2(\x))},
+    {torusy(\x,vcrit2(\x))},
+    {torusz(\x,vcrit2(\x))})  -- cycle  
+    \fi 
+   \fi
+  }},3d torus stretch/.style={/utils/exec=\pgfmathsetmacro{\DDA}{int(sign(thetacritA()-\tdplotmaintheta))},
+  insert path={\ifnum\DDA=-1
+   plot[variable=\x,domain={ucritA(\tdplotmaintheta)}:{ucritB(\tdplotmaintheta)},smooth,samples=\torus@precision]
+    ({torusx(\x,vcrit2(\x))},
+    {torusy(\x,vcrit2(\x))},
+    {torusz(\x,vcrit2(\x))}) 
+  \fi 
+}}}
+\newcommand{\ontorus}[2]{{torusx(#1,#2)},{torusy(#1,#2)},{torusz(#1,#2)}}
+\tikzset{torus straight/.style n args={4}{insert path={plot[variable=\t,domain=0:1] (\ontorus{interp(#1,#3,\t)}{interp(#2,#4,\t)})}},
+atorus straight/.style n args={4}{insert path={-- plot[variable=\t,domain=0:1] (\ontorus{interp(#1,#3,\t)}{interp(#2,#4,\t)})}},
+}
+
+\def\drawtorusgraph{
+\draw[black edge] plot[variable=\x,domain={vcrit2(240)}:{vcrit1(240)}] (\ontorus{240}{\x});
+\draw[black edge] [torus straight={240}{60}{270}{30}];
+\draw[black edge] [torus graph small region];
+\draw[black edge] [torus straight={-50}{30}{80}{150}];
+\draw[black edge] [torus straight={80}{150}{240}{60}];
+\pic at (\ontorus{240}{60}) {black vertex};
+\pic at (\ontorus{240}{0}) {white vertex};
+\pic at (\ontorus{270}{30}) {white vertex};
+\pic at (\ontorus{310}{30}) {black vertex};
+\pic at (\ontorus{80}{150}) {white vertex};
+}
+\tikzset{
+torus graph small region/.style={insert path={
+plot[variable=\t,domain=-1:1] (\ontorus{interp(270,310,.5*\t+.5)}{30+45*sqrt(1-\t*\t)}) -- plot[variable=\t,domain=1:-1] (\ontorus{interp(270,310,.5*\t+.5)}{30-45*sqrt(1-\t*\t)})
+}},
+torus graph upper contour/.style={insert path={
+	plot[variable=\x,domain={vcrit2(240+\xac):{60+\yac}}] (\ontorus{240+\xac}{\x})
+	[atorus straight={240+\xac}{60+\yac}{270-\xac}{30+\yac}]
+	-- plot[variable=\t,domain=-1:1] (\ontorus{interp(270-\xac,310+\xac,.5*\t+.5)}{30+\yac+45*sqrt(1-\t*\t)})
+	[atorus straight={-50+\xac}{30+\yac}{80}{150+\yac}]
+	[atorus straight={80}{150+\yac}{240-\xac}{60+\yac}]
+	-- plot[variable=\x,domain={60+\yac}:{vcrit2(240-\xac)}] (\ontorus{240-\xac}{\x})
+}},
+torus graph lower contour/.style={insert path={
+	plot[variable=\x,domain={vcrit1(240-\xac)}:{60-\yac)}] (\ontorus{240-\xac}{\x})
+	[atorus straight={240-\xac}{60-\yac}{80}{150-\yac}]
+	[atorus straight={80}{150-\yac}{-50+\xac}{30-\yac}]
+	-- plot[variable=\t,domain=1:-1] (\ontorus{interp(270-\xac,310+\xac,.5*\t+.5)}{30-\yac-45*sqrt(1-\t*\t)})
+	[atorus straight={270-\xac}{30-\yac}{240+\xac}{60-\yac}]
+	-- plot[variable=\x,domain={60-\yac)}:{vcrit1(240+\xac)}] (\ontorus{240+\xac}{\x})
+}},
+torus graph behind/.style={insert path={
+plot[variable=\x,domain={360+vcrit1(240)}:{vcrit2(240)}] (\ontorus{240}{\x})
+}},
+torus graph behind right/.style={insert path={
+plot[variable=\x,domain={360+vcrit1(240+\xac)}:{vcrit2(240+\xac)}] (\ontorus{240+\xac}{\x})
+}},
+torus graph behind left/.style={insert path={
+plot[variable=\x,domain={vcrit2(240-\xac)}:{360+vcrit1(240-\xac)}] (\ontorus{240-\xac}{\x})
+}},
+torus graph small contour/.style={insert path={
+plot[variable=\t,domain=-1:1] (\ontorus{interp(270+\xac,310-\xac,.5*\t+.5)}{30+(45-\yac)*sqrt(1-\t*\t)}) -- plot[variable=\t,domain=1:-1] (\ontorus{interp(270+\xac,310-\xac,.5*\t+.5)}{30-(45-\yac)*sqrt(1-\t*\t)})
+}}
+}
+
 
 % Fast graphics
 

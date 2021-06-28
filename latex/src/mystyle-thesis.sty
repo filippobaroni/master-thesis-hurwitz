@@ -63,12 +63,6 @@
 \NewCombinatorialMoveType{a}
 \NewCombinatorialMoveType{b}
 \NewCombinatorialMoveType{c}
-%\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmovea}
-%\declaretheorem[name={Combinatorial move},refname={Combinatorial move,Combinatorial moves},Refname={Combinatorial move,Combinatorial moves}]{combinatorialmoveb}
-%\makeatletter
-%\renewcommand{\thecombinatorialmovea}{A.\arabic{combinatorialmovea}}
-%\renewcommand{\thecombinatorialmoveb}{B.\arabic{combinatorialmoveb}}
-%\makeatother
 
 
 % Appendices
@@ -93,10 +87,10 @@
 
 % TikZ
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{external}
 \tikzexternalize[prefix=figures/]
-%\tikzset{external/export=false}
 \tikzset{external/only named=true}
 
 

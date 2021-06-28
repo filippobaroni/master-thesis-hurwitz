@@ -25,19 +25,67 @@ Given a graph $\Gamma$ on a surface $\Sigma$, the space $\Sigma\setminus\Gamma$ 
 Let $\Sigma$ be a surface. A \emph{\dessin{}} on $\Sigma$ is a bipartite graph $\Gamma\subs\Sigma$ whose complementary regions are topological disks.
 \end{definition}
 
-\todo{Examples of \dessins{}.}
+The picture below presents an example of a \dessin{} embedded in the torus $\surf{1}$, with $2$ black vertices, $3$ white vertices, $7$ edges and $2$ complementary regions.
 
-Let $\Gamma$ be a \dessin{}, and fix one a complementary region $D$. By traveling along its boundary, always keeping $D$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $D$, and denote by $\partial D$. Note that the same edge $e$ can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial D$, and we will say that $e$ is \emph{enveloped} by $D$. The number of edges (with multiplicity) of $\partial D$ is the \emph{perimeter} of $D$, denoted by $\card{\partial D}$.\todo{The definition is not very formal, examples incoming.} If $D_1,\ldots,D_h$ are the complementary region of $\Gamma$, a counting argument shows that
+\begin{center}
+\tikzsetnextfilename{dessin-first-example}
+\begin{tikzpicture}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision}]
+\pgfsetlayers{main,graph vertex}
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
+\fill[disk 2] [torus graph small region];
+\draw[black edge dashed] [torus graph behind];
+\drawtorusgraph
+\end{tikzpicture}
+\end{center}
+
+Let $\Gamma$ be a \dessin{}, and fix a complementary region $D$. By traveling along its boundary, always keeping $D$ to the left, we get a cyclic sequence of edges of $\Gamma$, which we call \emph{combinatorial boundary} of $D$, and denote by $\partial D$. Note that the same edge $e$ can be traveled along twice, once for each direction; in this case, it will appear twice in $\partial D$, and we will say that $e$ is \emph{enveloped} by $D$. The number of edges (with multiplicity) of $\partial D$ is the \emph{perimeter} of $D$, denoted by $\card{\partial D}$. For instance, let us consider the \dessin{} of the previous example. Let $D_1$ be the orange complementary disk, and let $D_2$ be the blue one; label the edges $e_1,\ldots,e_7$ as shown in the following picture. By traveling along the boundary of $D_1$, we get that
+\[
+\partial D_1=\{e_1,e_2,e_4,e_5,e_7,e_6,e_5,e_4,e_3,e_1,e_6,e_7\}.
+\]
+In particular, note that $\card{\partial D_1}=12$, and that $e_1,e_4,e_5,e_6$ are enveloped by $D_1$. Similarly, we see that $\partial D_2=\{e_2,e_3\}$.
+\begin{center}
+\def\xac{2}
+\def\yac{10}
+\def\radiusA{2.55}
+\def\radiusB{.75}
+\tikzsetnextfilename{dessin-boundary-example}
+\begin{tikzpicture}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision}]
+\pgfsetlayers{main,graph vertex}
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
+
+\draw[disk 1 boundary dashed] [torus graph behind right] [torus graph behind left];
+\draw[black edge dashed] [torus graph behind];
+\draw[disk 1 boundary,fill=white]
+	[torus graph upper contour]
+	[torus graph lower contour];
+\begin{scope}[/pgf/fpu/install only={reciprocal}]
+\path[decorate,decoration={markings,mark=between positions 0.015 and .99 step 1.5em with {\arrow{Stealth[disk 1 boundary,scale=.6]}}}] [torus graph upper contour] [torus graph behind left] [torus graph lower contour] [torus graph behind right];
+\draw[disk 2 boundary,fill=disk 2,postaction={decorate,decoration={markings,mark=between positions 0 and .99 step 1.5em with {\arrowreversed{Stealth[disk 2 boundary,scale=.6]}}}}] [torus graph small contour];
+\end{scope}
+\drawtorusgraph
+\node[above right,xshift=2pt] at (\ontorus{255}{45}) {$e_1$};
+\node[above=3pt] at (\ontorus{290}{75}) {$e_2$};
+\node[below=7pt] at (\ontorus{290}{-15}) {$e_3$};
+\node[below left] at (\ontorus{15}{90}) {$e_4$};
+\node[below right] at (\ontorus{160}{105}) {$e_5$};
+\node[left=2pt] at (\ontorus{240}{30}) {$e_6$};
+\node[below=3pt] at (\ontorus{240}{-90}) {$e_7$};
+\end{tikzpicture}
+\end{center}
+
+
+If $D_1,\ldots,D_h$ are the complementary regions of $\Gamma$, a counting argument shows that
 \[
 \card{\partial D_1}+\ldots+\card{\partial D_h}=2d.
 \]
-
 It is also easy to see that the perimeter of each complementary region is even: in fact, when traveling along the boundary of a region, we alternately encounter black and white vertices, so an even number of edges is required to get back to the starting color.
 
 Finally, note that every \dessin{} is necessarily connected, otherwise there would be some complementary region with two or more boundary components.
 
 \begin{definition}
-Let $\Gamma$ be a \dessin{} on a surface $\Sigma$; let $d$ be the number of edges. Let $x_1,\ldots,x_r$ be the black vertices, $y_1,\ldots,y_s$ the white ones. Denote by $D_1,\ldots,D_h$ the complementary regions of $\Gamma$. The \emph{branching datum} of $\Gamma$ is the tuple
+Let $\Gamma$ be a \dessin{} on a surface $\Sigma$; let $d$ be the number of edges. Let $x_1,\ldots,x_r$ be the black vertices, $y_1,\ldots,y_s$ the white ones. Denote by $D_1,\ldots,D_h$ the complementary disks of $\Gamma$. The \emph{branching datum} of $\Gamma$ is the tuple
 \[
 \DD(\Gamma)=\datum{\Sigma,\sphere{}}{d}{[k(x_1),\ldots,k(x_r)],[k(y_1),\ldots,k(y_s)],[\card{\partial D_1}/2,\ldots,\card{\partial D_h}/2]}.
 \]
@@ -57,9 +105,9 @@ where $\pi_1=[k(x_1),\ldots,k(x_r)]$, $\pi_2=[k(y_1),\ldots,k(y_s)]$ and $\pi_3=
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a combinatorial datum. Then $\DD$ is realizable if and only if there exists a \dessin{} $\Gamma\subs\Sigma_g$ with $\DD(\Gamma)=\DD$.
 \end{proposition}
 \begin{proof}
-Assume that $\DD$ is realized by a branched covering $\map{f}{\surf{g}}{\sphere{}}$. Let $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$, $\{\wtilde{y}_1,\ldots,\wtilde{y}_s\}=f^{-1}(y)$, $\{\wtilde{z}_1,\ldots,\wtilde{z}_h\}=f^{-1}(z)$. Fix a segment $e\subs\sphere$ connecting $x$ and $y$ (and avoiding $z$); we claim that $\Gamma=f^{-1}(e)$ is the desired \dessin{}. Let $\interior{e}$ be the interior of $e$ (that is, $\interior{e}=e\setminus\{x,y\}$). First of all, note that $f^{-1}(\interior{e})$ is the disjoint union of $d$ open segments $\interior{e}_1,\ldots,\interior{e}_d$, since the restriction of $f$ to $\sphere{}\setminus\{x,y,z\}$ is a covering map of degree $d$. Moreover, it is easy to see that the closure of each $\interior{e}_i$ is a closed segment $e_i$ connecting one point in $f^{-1}(x)$ and one point of $f^{-1}(y)$; it follows that $\Gamma$ is a bipartite graph on $\surf{g}$, with black vertices $\wtilde{x}_1,\ldots,\wtilde{x}_r$ and white vertices $\wtilde{y}_1,\ldots,\wtilde{y}_s$. Consider a vertex $\wtilde{x}_i$; recall that $f$ is locally modeled on the complex map $\xi\mapsto\xi^k$, where $k=k(\wtilde{x}_i)$ is the local degree of $\wtilde{x}_i$. As a consequence, we immediately see that there are exactly $k(\wtilde{x}_i)$ edges of $\Gamma$ with $\wtilde{x}_i$ as an endpoint; of course, the same holds for every $\wtilde{y}_j$. Finally, we turn to the complementary regions of $\Gamma$. Let $D=\sphere{}\setminus e\iso\RR^2$, $\holed{D}=D\setminus\{z\}\iso\RR^2\setminus\{0\}$. The restriction of $f$ to $f^{-1}(\holed{D})=\surf{g}\setminus(\Gamma\cup\{\wtilde{z}_1,\ldots,\wtilde{z}_h\})$ is a covering map of the punctured disk $\holed{D}$. It is then easy to see that the complementary regions of $\Gamma$ are discs $\wtilde{D}_1,\ldots,\wtilde{D}_h$, with $\wtilde{z}_i\in\wtilde{D}_i$ for each $1\le i\le h$, and that the restriction $\map{f}{\wtilde{D}_i}{D}$ is modeled the complex map $\xi\mapsto\xi^{k(\wtilde{z}_i)}$. Since the perimeter of $D$ is $2$, we have that $\card{\partial\wtilde{D}_i}=2 k(\wtilde{z}_i)$; this concludes the proof of the equality $\DD(f)=\DD(\Gamma)$.
+Assume that $\DD$ is realized by a branched covering $\map{f}{\surf{g}}{\sphere{}}$ with branching points $x,y,z\in\sphere{}$. Let $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$, $\{\wtilde{y}_1,\ldots,\wtilde{y}_s\}=f^{-1}(y)$, $\{\wtilde{z}_1,\ldots,\wtilde{z}_h\}=f^{-1}(z)$. Fix a segment $e\subs\sphere$ connecting $x$ and $y$ (and avoiding $z$); we claim that $\Gamma=f^{-1}(e)$ is the desired \dessin{}. Let $\interior{e}$ be the interior of $e$ (that is, $\interior{e}=e\setminus\{x,y\}$). First of all, note that $f^{-1}(\interior{e})$ is the disjoint union of $d$ open segments $\interior{e}_1,\ldots,\interior{e}_d$, since the restriction of $f$ to $\sphere{}\setminus\{x,y,z\}$ is a covering map of degree $d$. Moreover, it is easy to see that the closure of each $\interior{e}_i$ is a closed segment $e_i$ connecting one point in $f^{-1}(x)$ and one point of $f^{-1}(y)$; it follows that $\Gamma$ is a bipartite graph on $\surf{g}$, with black vertices $\wtilde{x}_1,\ldots,\wtilde{x}_r$ and white vertices $\wtilde{y}_1,\ldots,\wtilde{y}_s$. Consider a vertex $\wtilde{x}_i$; recall that $f$ is locally modeled on the complex map $\xi\mapsto\xi^k$, where $k=k(\wtilde{x}_i)$ is the local degree of $\wtilde{x}_i$. As a consequence, we immediately see that there are exactly $k(\wtilde{x}_i)$ edges of $\Gamma$ with $\wtilde{x}_i$ as an endpoint; of course, the same holds for every $\wtilde{y}_j$. Finally, we turn to the complementary regions of $\Gamma$. Let $D=\sphere{}\setminus e\iso\RR^2$, $\holed{D}=D\setminus\{z\}\iso\RR^2\setminus\{0\}$. The restriction of $f$ to $f^{-1}(\holed{D})=\surf{g}\setminus(\Gamma\cup\{\wtilde{z}_1,\ldots,\wtilde{z}_h\})$ is a covering map of the punctured disk $\holed{D}$. It is then easy to see that the complementary regions of $\Gamma$ are discs $\wtilde{D}_1,\ldots,\wtilde{D}_h$, with $\wtilde{z}_i\in\wtilde{D}_i$ for each $1\le i\le h$, and that the restriction $\map{f}{\wtilde{D}_i}{D}$ is modeled the complex map $\xi\mapsto\xi^{k(\wtilde{z}_i)}$. Since the perimeter of $D$ is $2$, we have that $\card{\partial\wtilde{D}_i}=2 k(\wtilde{z}_i)$; this concludes the proof of the equality $\DD(f)=\DD(\Gamma)$.
 
-Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$ (and avoiding $z$). First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map\todo{Picture much needed.} $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
+Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$ (and avoiding $z$). First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: the idea is to send each complementary region to the disk $\sphere{}\setminus e$ with the map $\xi\mapsto\xi^k$, for some $k\ge 1$ depending on the perimeter; here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map\todo{Picture much needed.} $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
 \begin{diagram}
 \partial K\dar{\phi}\ar[dr,"\psi"]\\
 \Gamma\rar{f}&e
@@ -69,15 +117,113 @@ commutes, $\psi$ is a local homeomorphism in $\interior{K}\setminus\{0\}$ and it
 
 \section{Unwinding, joining and fattening}
 
-In the next section we will introduce a new kind of combinatorial moves, which operate on \dessins{} rather than permutations. In this context, the importance of visual intuition cannot be overstated. Therefore, we will now spend some time describing in detail two operations that will play a major role in the topological explanation of the upcoming combinatorial moves.
+In the next section we will introduce a new kind of combinatorial moves, which operate on \dessins{} rather than permutations. In this context, the importance of visual intuition cannot be overstated. Therefore, we will now spend some words describing in detail three operations that will play a major role in the topological explanation of the upcoming combinatorial moves.
 
 \paragraph{Unwinding the boundary.} Let $\Gamma$ be a graph on a surface $\Sigma$. Take a complementary region $D$, and assume $D$ is a topological disk. Intuitively, when we \emph{unwind the boundary} of $D$, we represent $D$ as the standard closed disk $K$ embedded in $\RR^2$; the edges of the combinatorial boundary of $D$ are placed sequentially on the topological boundary of $K$, possibly with repetitions. For a more formal description, we can follow the strategy presented in the second part of the proof of \cref{dessins:th:dessins-realizability}: we consider a continuous map $\map{\phi}{K}{\surf{g}}$ which restricts to a homeomorphism $\map{\phi}{\interior{K}}{D}$; edges on the topological boundary of $D$ can be pulled back by $\phi$, thus unwinding the combinatorial boundary of $D$ on $\partial K$.
+\begin{center}
+\def\radiusA{2.55}
+\def\radiusB{.75}
+\tikzsetnextfilename{dessin-unwinding-example}
+\begin{tikzpicture}
+\pgfsetlayers{surf surrounding,main,graph vertex}
+\surroundingradius=.5cm
+\begin{scope}[shift={(-4,0)}]
+\draw[black edge,fill=disk 1] circle(2);
+\foreach \i[evaluate=\i as \i using int(\i),evaluate=\i as \col using {ifthenelse(mod(\i,2),"white ","black ")},evaluate=\i as \a using \i*360/12,evaluate=\i as \l using {{1,2,4,5,7,6,5,4,3,1,6,7}[\i]},evaluate=\l as \s using {or(\l==2,\l==3)}] in {0,...,11} { \pic at (\a:2) {\col vertex}; \node at ({\a+360/24}:2.25) {$e_{\l}$}; \ifnum\s=1\path[surrounding=disk 2] (\a:2) arc(\a:{\a+360/12}:2);\fi }
+\end{scope}
+\draw[->] (-1.1,0) -- (.1,0) node[above,midway] {$\phi$};
+\begin{scope}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision},shift={(4,0)}]
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
 
-\paragraph{Joining vertices along edges.} Let $\Gamma$ be a graph on a surface $\Sigma$. Consider an edge $e$, and let $x$, $y$ be its (distinct) endpoints. \emph{Joining} $x$ and $y$ along $e$ means shrinking $e$ to a single point, so that $x$ and $y$ are merged into a single vertex, say $z$; it is immediate to check that $k(z)=k(x)+k(y)-2$, while the degrees of the other vertices are left unchanged. The topology of the complementary regions does not change either. To be more precise, there is a natural one-to-one correspondence between regions of $\Sigma\setminus\Gamma$ and regions of $\Sigma\setminus\Gamma'$, where $\Gamma'$ is the graph obtained after joining $x$ and $y$ along $e$, and corresponding regions are homeomorphic. The edge $e$ disappears from the combinatorial boundaries, so the perimeters of the two regions touching $e$ decrease by $1$ (if the two regions were actually the same, then the perimeter decreases by $2$); the other perimeters do not change. Of course, the joining operation can be performed along more edges simultaneously, by joining vertices along one edge at a time.
+\draw[black edge dashed] [torus graph behind];
+\fill[disk 2] [torus graph small region];
+
+\drawtorusgraph
+\node[above right,xshift=2pt] at (\ontorus{255}{45}) {$e_1$};
+\node[above=3pt] at (\ontorus{290}{75}) {$e_2$};
+\node[below=7pt] at (\ontorus{290}{-15}) {$e_3$};
+\node[below left] at (\ontorus{15}{90}) {$e_4$};
+\node[below right] at (\ontorus{160}{105}) {$e_5$};
+\node[left=2pt] at (\ontorus{240}{30}) {$e_6$};
+\node[below=3pt] at (\ontorus{240}{-90}) {$e_7$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Joining vertices along edges.} Let $\Gamma$ be a graph on a surface $\Sigma$. Consider an edge $e$, and let $x$, $y$ be its (distinct) endpoints. \emph{Joining} $x$ and $y$ along $e$ means shrinking $e$ to a single point, so that $x$ and $y$ are merged into a single vertex, say $z$; it is immediate to check that $k(z)=k(x)+k(y)-2$, while the degrees of the other vertices are left unchanged. The topology of the complementary regions does not change either. To be more precise, there is a natural one-to-one correspondence between regions of $\Sigma\setminus\Gamma$ and regions of $\Sigma\setminus\Gamma'$, where $\Gamma'$ is the graph obtained after joining $x$ and $y$ along $e$, and corresponding regions are homeomorphic.
+\begin{center}
+\tikzsetnextfilename{dessin-join-example}
+\begin{tikzpicture}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision}]
+\pgfsetlayers{main,graph vertex}
+\begin{scope}[shift={(-3,0)}]
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
+\draw[black edge dashed] [torus graph behind];
+\draw[black edge] plot[variable=\x,domain={vcrit2(240)}:{vcrit1(240)}] (\ontorus{240}{\x});
+\draw[red edge] [torus straight={240}{60}{270}{30}];
+\draw[black edge,fill=disk 2] [torus graph small region];
+\draw[black edge] [torus straight={-50}{30}{80}{150}];
+\draw[black edge] [torus straight={80}{150}{240}{60}];
+\path (\ontorus{240}{60}) pic {white vertex} node[below left,yshift=1pt] {$x$};
+\pic at (\ontorus{240}{0}) {white vertex};
+\pic at (\ontorus{310}{30}) {white vertex};
+\path (\ontorus{270}{30}) pic {white vertex} node[right=2pt] {$y$};
+\pic at (\ontorus{80}{150}) {white vertex};
+\node[red!80!black,below left] at (\ontorus{260}{45}) {$e$};
+\end{scope}
+\node {$\Longrightarrow$};
+\begin{scope}[shift={(3,0)}]
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
+\draw[black edge dashed] [torus graph behind];
+\draw[black edge] plot[variable=\x,domain={vcrit2(240)}:{vcrit1(240)}] (\ontorus{240}{\x});
+\draw[black edge,fill=disk 2] plot[variable=\t,domain=-1:1] (\ontorus{interp(240,310,.5*\t+.5)}{interp(interp(60,30,.5*\t+.5),30+60*sqrt(1-\t*\t),.5*\t+.5)}) -- plot[variable=\t,domain=1:-1] (\ontorus{interp(240,310,.5*\t+.5)}{interp(interp(60,30,.5*\t+.5),30-60*sqrt(1-\t*\t),.5*\t+.5)});
+\draw[black edge] [torus straight={-50}{30}{80}{150}];
+\draw[black edge] [torus straight={80}{150}{240}{60}];
+\path (\ontorus{240}{60}) pic {white vertex} node[below left,yshift=1pt] {$z$};
+\pic at (\ontorus{240}{0}) {white vertex};
+\pic at (\ontorus{310}{30}) {white vertex};
+\pic at (\ontorus{80}{150}) {white vertex};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+The edge $e$ disappears from the combinatorial boundaries, so the perimeters of the two regions touching $e$ decrease by $1$ (if the two regions were actually the same, then the perimeter decreases by $2$); the other perimeters do not change. Of course, the joining operation can be performed along more edges simultaneously, by joining vertices along one edge at a time.
 
 \paragraph{Fattening graphs.} Representing \dessins{} on the sphere is easy, since graphs on $\sphere{}$ naturally embed in $\RR^2$; unfortunately, this is not the case for surfaces of genus $g\ge 1$. However, for a specific class of graphs (including \dessins{}), there is a trick we can exploit in order to represent them as diagrams on the plane. Let $\Gamma$ be a graph on a surface $\surf{g}$; assume that the complementary regions of $\Gamma$ are disks. Note that the topology of the embedding $\Gamma\subs\surf{g}$ can be completely recovered if we are given $\Gamma$ as an abstract graph, plus a tubular neighborhood of $\Gamma$ in $\surf{g}$; we call such a datum a \emph{fat graph}. A fat graph can be represented as a diagram with a finite number of transverse crossings on the plane; each crossing is equipped with the additional information of which edge goes over and which goes under.
 
 In order to reconstruct the embedding of $\Gamma$ in $\surf{g}$, we simply have to thicken the edges of the diagram, keeping in mind that the two edges involved in a crossing actually go one under the other. This operation yields a fat graph, from which $\surf{g}$ can be recovered by gluing a disk along each boundary component.
+
+\begin{center}
+\def\xac{2}
+\def\yac{10}
+\tikzsetnextfilename{dessin-fattening-example}
+\begin{tikzpicture}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision}]
+\pgfsetlayers{main,graph vertex}
+\begin{scope}[shift={(-3.5,0)}]
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
+
+\draw[disk 1 boundary dashed] [torus graph behind right] [torus graph behind left];
+\draw[black edge dashed] [torus graph behind];
+\draw[disk 1 boundary,fill=white]
+	[torus graph upper contour]
+	[torus graph lower contour];
+\draw[disk 2 boundary,fill=disk 2] [torus graph small contour];
+\drawtorusgraph
+\end{scope}
+\node at (.2,0) {$\Longrightarrow$};
+\begin{scope}[shift={(3.5,0)}]
+\draw[disk 1 boundary,fill=gray!30] plot[variable=\x,domain={vcrit2(240-\xac)}:{360+vcrit1(240-\xac)}] (\ontorus{240-\xac}{\x}) --plot[variable=\x,domain={360+vcrit1(240)+\xac)}:{vcrit2(240+\xac)}] (\ontorus{240+\xac}{\x});
+\draw[black edge] [torus graph behind];
+\draw[disk 1 boundary,fill=white]
+	[torus graph upper contour]
+	[torus graph lower contour];
+\draw[disk 2 boundary] [torus graph small contour];
+\drawtorusgraph
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 We will employ this technique in order to represent \dessins{} (and more generally, graphs whose complementary regions are disks) embedded in higher genus surfaces.
 
@@ -769,6 +915,48 @@ Note that $\DD'$ is realizable by \cref{monodromy:th:sphere-[d]}; let $\Gamma'\s
 \item Consider the black vertex of degree $x+y-4$ and split it into two vertices of degrees $x-2$ and $y-2$.
 \item Add two white vertices and four edges as shown in the picture. This creates a new complementary disk with perimeter $4$.
 \end{enumerate}
+\bgroup
+\def\myscale{1}
+\def\picturesetupbackground{
+\clip circle(1.5 and 1);
+\clip circle(1.5 and 1);
+\fill[disk 2] circle (2);
+}
+\tikzset{myleftvertex/.pic={
+\path[black edge] (0,0) to[bend right] (180:1.5) (0,0) to[bend right=10] (195:1.5) (0,0) to[bend left] (210:1.5);
+},
+myrightvertex/.pic={
+\path[black edge] (0,0) to[bend left] (15:1.5) (0,0) to[bend right] (-15:1.5);
+}
+}
+\tabcolsep=0pt
+\begin{longtable}{>{\centering\arraybackslash}p{.6\linewidth}>{\centering\arraybackslash}p{.4\linewidth}}
+(1)&(2)\\
+\tikzsetnextfilename{dessin-[2_d-2]-1}
+\begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
+\begin{pgfonlayer}{graph edge below}
+\begin{scope}[shift={(-2.2,0)}]
+\picturesetupbackground
+\path (0,0) pic{myleftvertex} pic{myrightvertex} pic{black vertex} node[above=10pt] {$x+y-4$};
+\end{scope}
+\node{$\Longrightarrow$};
+\begin{scope}[shift={(2.2,0)}]
+\picturesetupbackground
+\path (-.7,0) pic {myleftvertex} pic {black vertex} node[above right] {$x-2$} (.7,0) pic {myrightvertex} pic {black vertex} node[below left] {$y-2$};
+\end{scope}
+\end{pgfonlayer}
+\end{tikzpicture}
+&
+\tikzsetnextfilename{dessin-[2_d-2]-2}
+\begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
+\begin{pgfonlayer}{graph edge below}
+\picturesetupbackground
+\path (-.7,0) pic {myleftvertex} pic {black vertex} node[above=3pt] {$x$} (.7,0) pic {myrightvertex} pic {black vertex} node[below=3pt] {$y$};
+\path[preaction={fill=disk 1},black edge] (-.7,0) to[bend left=60] pic[pos=.5] {white vertex} node[pos=.5,above=2pt] {$2$} (.7,0) to[bend left=60] pic[pos=.5] {white vertex} node[pos=.5,below left] {$2$} (-.7,0);
+\end{pgfonlayer}
+\end{tikzpicture}
+\end{longtable}
+\egroup
 After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
 \end{proof}
 
@@ -809,10 +997,10 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \path (225:\myradius) coordinate (b3) pic{black vertex};
 \path (315:\myradius) coordinate (b4) pic{black vertex};
 }
-
-\begin{tabular}{ccc}
-\makecell[c]{
-$\pi_3=[1,\env{11}]$\\
+\tabcolsep=0pt
+\centering
+\begin{longtable}{*{3}{>{\centering\arraybackslash}p{.33\linewidth}}}
+$\pi_3=[1,\env{11}]$&$\pi_3=[2,\env{10}]$&$\pi_3=[\env{3},\env{9}]$\\*
 \tikzsetnextfilename{dessin-special-families-small-1}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -829,8 +1017,7 @@ $\pi_3=[1,\env{11}]$\\
 \path[contour edge={quick={2}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
 \path[contour edge={quick={1}{2}}] (w3) to[bend right=90,looseness=2.2] (b2);
 \end{tikzpicture}
-}&\makecell[c]{
-$\pi_3=[2,\env{10}]$\\
+&
 \tikzsetnextfilename{dessin-special-families-small-2}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -847,8 +1034,7 @@ $\pi_3=[2,\env{10}]$\\
 \path[contour edge={quick={2}{2}}] (b4) to[bend right=90] (w1);
 \path[contour edge={quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
 \end{tikzpicture}
-}&\makecell[c]{
-$\pi_3=[\env{3},\env{9}]$\\
+&
 \tikzsetnextfilename{dessin-special-families-small-3}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -865,9 +1051,10 @@ $\pi_3=[\env{3},\env{9}]$\\
 \path[contour edge={quick={1}{2}}] (b1) to[out=-90,in=-90,looseness=2.2] (w2);
 \path[contour edge={above,quick={1}{2}}] (w3) to[out=-20,in=50,looseness=3.5] (b2);
 \end{tikzpicture}
-}\\
-\makecell[c]{
-$\pi_3=[\env{4},\env{8}]$\\\tikzsetnextfilename{dessin-special-families-small-4}
+\\
+$\pi_3=[\env{4},\env{8}]$&$\pi_3=[\env{5},\env{7}]$&$\pi_3=[\env{6},\env{6}]$
+\\*
+\tikzsetnextfilename{dessin-special-families-small-4}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
 \path[contour edge={quick={1}{2}}] (w4) to[bend left] (b3);
@@ -883,8 +1070,7 @@ $\pi_3=[\env{4},\env{8}]$\\\tikzsetnextfilename{dessin-special-families-small-4}
 \path[contour edge={quick={2}{2}}] (b4) to[bend right=90] (w1);
 \path[contour edge={quick={2}{2}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
 \end{tikzpicture}
-}&\makecell[c]{
-$\pi_3=[\env{5},\env{7}]$\\
+&
 \tikzsetnextfilename{dessin-special-families-small-5}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -901,8 +1087,7 @@ $\pi_3=[\env{5},\env{7}]$\\
 \path[contour edge={above,quick={2}{2}}] (b1) to[out=170,in=10] (w3);
 \path[contour edge={quick={2}{2}}] (b3) to[bend right] (w2);
 \end{tikzpicture}
-}&\makecell[c]{
-$\pi_3=[\env{6},\env{6}]$\\
+&
 \tikzsetnextfilename{dessin-special-families-small-6}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
@@ -919,8 +1104,7 @@ $\pi_3=[\env{6},\env{6}]$\\
 \path[contour edge={quick={2}{1}}] (b4) to[bend right=90] (w1);
 \path[contour edge={quick={2}{1}}] (w1) to[out=140,in=120,looseness=2.2] (b4);
 \end{tikzpicture}
-}
-\end{tabular}
+\end{longtable}
 \egroup
 
 
@@ -996,21 +1180,97 @@ After these operations, we get a new \dessin{} $\Gamma'$ embedded in $\surf{g+1}
 \datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],\pi_3}
 \]
 is realizable for $\pi_3\in\{[1,\env{6g-1}],[2,\env{6g-2}]\}\cup\{[\env{s},\env{6g-s}]\colon 3\le s\le 6g-3\}$. This can be easily shown by induction on $g$, using step 1 as the base case and step 2 for the induction.
+
+\def\myscale{1.5}
 \paragraph{Step 4.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
 \[
 \DD'=\datum{\surf{g}}{d+2}{\pi_1\cup[2],\pi_2\cup[2],\pi_3\setminus[\env{x}]\cup[\env{x+2}]}
 \]
-is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add one black vertex and one white vertex on $e$. The new \dessin{} realizes the augmented datum $\DD'$.
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add one black vertex and one white vertex on $e$.
+\begin{center}
+\def\picturesetup{
+\begin{pgfonlayer}{graph edge below}
+\begin{scope}
+\clip (-.8,0) to[bend left=90] (.8,0) to[bend left=90] (-.8,0);
+\fill[disk 1] circle(3);
+\path[black edge] (-.5,0) pic{black vertex} to (.5,0) pic {white vertex};
+\path[black edge] (-.5,0) to (-1,0);
+\path[black edge] (.5,0) to (1,0);
+\end{scope}
+\end{pgfonlayer}
+}
+\tikzsetnextfilename{dessin-special-family-step-4}
+\begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
+\begin{scope}[shift={(-1.5,0)}]
+\picturesetup
+\node[below=2pt] at (0,0) {$e$};
+\end{scope}
+\node {$\Longrightarrow$};
+\begin{scope}[shift={(1.5,0)}]
+\picturesetup
+\path (-1/6,0) pic{white vertex} node[above=2pt] {$2$};
+\path (1/6,0) pic{black vertex} node[above=2pt] {$2$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+The new \dessin{} realizes the augmented datum $\DD'$.
+
+\def\picturesetup{
+\begin{pgfonlayer}{graph edge below}
+\begin{scope}
+\clip (-.8,0) to[bend left=90,looseness=1.5] (.8,0) to[bend left=90] (-.8,0);
+\fill[disk 1] circle(3);
+\path[black edge] (-.5,0) pic{black vertex} to (.5,0) pic {white vertex};
+\path[black edge] (-.5,0) to (-1,0);
+\path[black edge] (.5,0) to (1,0);
+\end{scope}
+\end{pgfonlayer}
+}
 \paragraph{Step 5.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
 \[
 \DD'=\datum{\surf{g}}{d+3}{\pi_1\cup[3],\pi_2\cup[1,2],\pi_3\setminus[\env{x}]\cup[\env{x+3}]}
 \]
-is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add one black vertex and two white vertices as shown in the picture. The new \dessin{} realizes the augmented datum $\DD'$.
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add one black vertex and two white vertices as shown in the picture.
+\begin{center}
+\tikzsetnextfilename{dessin-special-family-step-5}
+\begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
+\begin{scope}[shift={(-1.5,0)}]
+\picturesetup
+\node[below=2pt] at (0,0) {$e$};
+\end{scope}
+\node {$\Longrightarrow$};
+\begin{scope}[shift={(1.5,0)}]
+\picturesetup
+\path (-1/6,0) pic{white vertex} node[below=2pt] {$2$};
+\path (1/6,0) pic{black vertex} node[below=2pt] {$3$};
+\path[graph edge={below}{black edge}] (1/6,0) to (1/6,1/3) pic{white vertex} node[above right] {$1$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+The new \dessin{} realizes the augmented datum $\DD'$.
 \paragraph{Step 6.} Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3}$ be a realizable augmented datum, and let $\env{x}\in\pi_3$ be an enveloping element. Then the augmented datum
 \[
 \DD'=\datum{\surf{g}}{d+4}{\pi_1\cup[1,3],\pi_2\cup[1,3],\pi_3\setminus[\env{x}]\cup[\env{x+4}]}
 \]
-is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add two black vertices and two white vertices as shown in the picture. The new \dessin{} realizes the augmented datum $\DD'$.
+is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ realizing $\DD$, and fix an edge $e$ enveloped by the disk $D$ associated to $\env{x}$. Then, add two black vertices and two white vertices as shown in the picture.
+\begin{center}
+\tikzsetnextfilename{dessin-special-family-step-6}
+\begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
+\begin{scope}[shift={(-1.5,0)}]
+\picturesetup
+\node[below=2pt] at (0,0) {$e$};
+\end{scope}
+\node {$\Longrightarrow$};
+\begin{scope}[shift={(1.5,0)}]
+\picturesetup
+\path (-1/6,0) pic{white vertex} node[below=2pt] {$3$};
+\path (1/6,0) pic{black vertex} node[below=2pt] {$3$};
+\path[graph edge={below}{black edge}] (1/6,0) to (1/6,1/3) pic{white vertex} node[above right] {$1$};
+\path[graph edge={below}{black edge}] (-1/6,0) to (-1/6,1/3) pic{black vertex} node[above left] {$1$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+The new \dessin{} realizes the augmented datum $\DD'$.
 
 Finally, it is easy to see that the five families listed in the statement can be obtained by applying steps 4, 5 and 6 zero or more times to an augmented datum which is realizable by step 3, and then forgetting about the augmentation; here are the details.
 \begin{enumerate}[(1)]
