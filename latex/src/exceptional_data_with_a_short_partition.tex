@@ -1,4 +1,5 @@
 \chapter{Exceptional data with a short partition}\label{short-partition:ch}
+\smallvertices{}
 
 \section{Realizability on the sphere}
 
@@ -383,6 +384,7 @@ Assume by contradiction that there is a \dessin{} $\Gamma\subs\sphere{}$ realizi
 \begin{center}
 \tikzsetnextfilename{exceptionality-composite}
 \begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path[use as bounding box] (-.94,-.7) rectangle (1.7,.85);
 \path (0,0) coordinate (w) pic{white vertex} node[shift={(115:1.6em)}] {$v$};
 \path (1,0) coordinate (b) pic{black vertex} node[shift={(65:1.6em)}] {$u$};
 \path[contour edge={quick={2}{1}}] (w) to[out=90,in=90,looseness=2.5]  (b);
@@ -462,7 +464,7 @@ The following families of candidate data are exceptional.
 \begin{proof}
 For each family listed in the statement, we follow the approach by enumeration presented above: we draw all the possible graphs embedded in $\sphere{}$ whose vertices have the entries of $\pi_2$ as degrees and whose complementary regions are two disks; then we compute the perimeters of these disks, showing that they cannot be equal to the entries of $\pi_3$.
 \begin{enumerate}[(1)]
-\item There is only one graph embedded in $\sphere{}$ whose vertices have degrees $[2,\ldots,2]$.
+\item There is only one connected graph embedded in $\sphere{}$ whose vertices have degrees $[2,\ldots,2]$.
 \begin{dessintext}
 \makecell[c]{
 \tikzsetnextfilename{exceptionality-sphere-1-1}
@@ -475,7 +477,7 @@ For each family listed in the statement, we follow the approach by enumeration p
 \end{aligned}$
 \end{dessintext}
 By \cref{short-partition:th:lemma-[2 ... 2]}, it follows that $\DD$ is exceptional unless $s=k$.
-\item A graph embedded in $\sphere{}$ whose vertices have degrees $[1,2,\ldots,2,3]$ can be represented by a diagram like the following, where $a$ denotes the number of edges on the path connecting the vertex of degree $3$ to the vertex of degree $1$.
+\item A connected graph embedded in $\sphere{}$ whose vertices have degrees $[1,2,\ldots,2,3]$ can be represented by a diagram like the following, where $a$ denotes the number of edges on the path connecting the vertex of degree $3$ to the vertex of degree $1$.
 
 \begin{dessintext}
 \makecell[c]{
@@ -496,11 +498,12 @@ vertices along/.style={postaction={decorate,decoration={markings,mark=between po
 \end{aligned}$
 \end{dessintext}
 It follows that $\DD$ is exceptional, once again by \cref{short-partition:th:lemma-[2 ... 2]}.
-\item There are only three kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$. We label the vertices of degrees $k+1$, $k+2$ with the letters $u$, $v$ respectively.
+\item There are only three kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$ and whose complementary regions are two disks. We label the vertices of degrees $k+1$, $k+2$ with the letters $v$, $u$ respectively.
 \begin{dessintext}
 \makecell[c]{
 \tikzsetnextfilename{exceptionality-sphere-3-1}
 \begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path[use as bounding box] (-.48,-.25) rectangle (1.11,.56);
 \path (0,0) coordinate (u) pic{white vertex} node[shift={(-105:1.2em)}] {$u$};
 \path (0.4,0.3) coordinate (v) pic{white vertex} node[shift={(75:1.2em)}] {$v$};
 \path[contour edge={quick={2}{1}}] (u) to[bend left=90,in=80,looseness=2.2] (v);
@@ -550,11 +553,12 @@ It follows that $\DD$ is exceptional, once again by \cref{short-partition:th:lem
 \end{aligned}$
 \end{dessintext}
 In all three cases, we have that $\card{\partial D_1}\neq 2k+1$, therefore $\DD$ is exceptional.
-\item There are only three kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+2]$. We label the vertices of degrees $k+1$, $k+2$ with the letters $u$, $v$ respectively.
+\item There are only two kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+1]$ and whose complementary regions are two disks. We label the two vertices of degree $k+1$ with the letters $u$ and $v$.
 \begin{dessintext}
 \makecell[c]{
 \tikzsetnextfilename{exceptionality-sphere-4-1}
 \begin{tikzpicture}[graph picture,x={(4,0)},y={(0,4)}]
+\path[use as bounding box] (-.63,-.25) rectangle (1.11,.56);
 \path (0,0) coordinate (u) pic{white vertex} node[shift={(-105:1.2em)}] {$u$};
 \path (0.4,0.3) coordinate (v) pic{white vertex} node[shift={(75:1.2em)}] {$v$};
 \path[contour edge={quick={2}{1}}] (u) to[bend left=90,in=80,looseness=2.2] (v);
@@ -602,7 +606,6 @@ is exceptional.
 \begin{proof}
 We start by enumerating all the abstract graphs whose vertices have degrees $[2,\ldots,2,3,5]$, without considering the embedding in $\surf{1}$. Once again, we observe that vertices of degree $2$ do not contribute to the topology of the graph, so we can reduce the number of cases to two.
 
-\tikzset{external/force remake=false}
 \def\myfirstradius{1.2}
 \def\mysecondradius{1.8}
 \def\drawtwovertices{
@@ -753,7 +756,6 @@ contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 b
 \end{enumerate}
 
 In all of the cases, we see that $\card{\partial D_1}\neq k$; if follows that there is no \dessin{} $\Gamma\subs\surf{1}$ such that $\DD(\Gamma)=\DD$.
-\tikzset{external/force remake=false}
 \end{proof}
 
 

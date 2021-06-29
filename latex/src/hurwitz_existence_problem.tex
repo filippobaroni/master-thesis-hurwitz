@@ -1,5 +1,6 @@
 
 \chapter{Hurwitz existence problem}
+\largevertices
 
 \section{Branched coverings of surfaces}
 
@@ -61,7 +62,7 @@ More informally, we can say that a branched covering is a continuous function be
 }
 \ifnum\firsttime=1\xdef\firsttime{0}
 	\draw[teal] (0,0,0) -- (\tikzinputsegmentfirst);
-\fi}}] plot[smooth,samples=81,variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\t/360});
+\fi}}] plot[smooth,samples=61,variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\t/360});
 \draw[teal] (0,0,0) -- (0,-1,1);
 
 \def\a{30};

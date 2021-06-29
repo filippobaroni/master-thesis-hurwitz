@@ -7,12 +7,14 @@
 %\tikzexternaldisable
 %\let\oldtikzsetnextfilename\tikzsetnextfilename
 %\def\tikzsetnextfilename#1{\oldtikzsetnextfilename{#1-fast\graphicfast}}
+\def\tikzremake{\tikzset{external/force remake=true}}
+\def\tikznoremake{\tikzset{external/force remake=false}}
 
 \makeatletter
 \def\createcontour@precision{0.1}
 
 \newlength{\edgelinewidth}
-\setlength{\edgelinewidth}{0.6pt}
+\setlength{\edgelinewidth}{0.8pt}
 \newlength{\contourradius}
 \setlength{\contourradius}{2.5pt}
 \newlength{\edgehalo}
@@ -21,10 +23,12 @@
 % Colors
 \colorlet{disk 1 boundary}{orange}
 \colorlet{disk 2 boundary}{blue!80!green}
+\colorlet{disk 1 boundary enveloped}{disk 1 boundary!70!black}
+\colorlet{disk 2 boundary enveloped}{disk 2 boundary!60!black}
 \colorlet{disk 1}{disk 1 boundary!30!white}
 \colorlet{disk 2}{disk 2 boundary!30!white}
-\tikzset{disk 1 boundary dashed/.style={draw=disk 1 boundary,dashed}}
-\tikzset{colored label/.style={#1!80!black}}
+\tikzset{disk 1 boundary dashed/.style={draw=disk 1 boundary,densely dashed}}
+\tikzset{colored label/.style={#1!60!black}}
 
 
 % Arc
@@ -32,6 +36,11 @@
 \tikzmath{coordinate \c,\p,\d;\c=#1;\p=#2;\d=(\p)-(\c);\r=veclen(\dx,\dy);\a=atan2(\dy,\dx);}
 \path[pic actions] (\p) arc(\a:{\a+#3}:{\r pt});
 }}}
+
+
+
+% Arrow
+\tikzset{my fancy arrow/.pic={\draw[violet,line width=2pt,-{Latex[sharp,scale=.75]}] (-.33cm,0) -- (.33cm,0);}}
 
 
 % Contour graphs
@@ -53,18 +62,23 @@ graph picture/.style={
 exec on layer/.code 2 args={\begin{pgfonlayer}{#1}#2\end{pgfonlayer}}
 }
 
+\newlength{\vertex@radius}
+\setlength{\vertex@radius}{1.5pt}
+\NewDocumentCommand{\largevertices}{}{\setlength{\vertex@radius}{1.5pt}}
+\NewDocumentCommand{\smallvertices}{}{\setlength{\vertex@radius}{1.5pt}}
+
 \tikzset{
-black vertex/.pic={\begin{pgfonlayer}{graph vertex}\fill[black] circle(1.5pt);\end{pgfonlayer}},
-white vertex/.pic={\begin{pgfonlayer}{graph vertex}\filldraw[black,fill=white] circle(1.5pt);\end{pgfonlayer}},
+black vertex/.pic={\begin{pgfonlayer}{graph vertex}\fill[black] circle(\vertex@radius);\end{pgfonlayer}},
+white vertex/.pic={\begin{pgfonlayer}{graph vertex}\filldraw[black,fill=white] circle(\vertex@radius);\end{pgfonlayer}},
 black edge/.style={line width=\edgelinewidth,draw=black!80},
-black edge dashed/.style={black edge,dashed},
+black edge dashed/.style={black edge,densely dashed},
 red edge/.style={line width=\edgelinewidth,draw=red},
-red edge dashed/.style={red edge,dashed},
+red edge dashed/.style={red edge,densely dashed},
 green edge/.style={line width=\edgelinewidth,draw=green},
 edge on layer/.style 2 args={postaction={decorate,decoration={show path construction,
 	lineto code={\begin{pgfonlayer}{#1}\draw[tmpstyle/.style/.expand once=#2,tmpstyle] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);\end{pgfonlayer}},
 	curveto code={\begin{pgfonlayer}{#1}\draw[tmpstyle/.style/.expand once=#2,tmpstyle] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);\end{pgfonlayer}}}}},
-graph edge/.style 2 args={edge on layer={graph edge #1}{#2}},
+graph edge/.style 2 args={edge on layer={graph edge #1}{#2,line width=\edgelinewidth}},
 }
 
 \tikzset{
@@ -210,13 +224,13 @@ surf picture/.style={
 z={(0,1)},
 y={(0,\surfyscale)},
 },
-surf boundary/.style={draw=black!60},
-surf boundary soft/.style={draw=gray!70},
-surf boundary dashed/.style={draw=gray!70,dashed},
+surf boundary/.style={draw=black!60,line width=.6pt},
+surf boundary soft/.style={draw=gray!70,line width=.6pt},
+surf boundary dashed/.style={draw=gray!70,line width=.6pt,densely dashed},
 }
 
 \tikzset{
-surf edge/.style 2 args={edge on layer={surf edge #1}{#2}}
+surf edge/.style 2 args={edge on layer={surf edge #1}{#2,line width=\edgelinewidth}}
 }
 
 \tikzset{
@@ -301,9 +315,9 @@ exec on layer={surf edge #1}{
 }
 
 \tikzset{
-cmove setting one disk/.pic={\pic {surf circle={d#1}{\surfdiskradius}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
+cmove setting one disk/.pic={\path[use as bounding box] (-2.5,-3.4) rectangle(2.5,3.3);\pic {surf circle={d#1}{\surfdiskradius}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
 cmove setting one disk tube/.pic={\path \surfcirclepoint{d#1}{180} coordinate (-l) \surfcirclepoint{d#1}{0} coordinate (-r);\pic {surf tube={$(-l)!.25!(-r)$}{$(-l)!.75!(-r)$}};},
-cmove setting two disks/.pic={\foreach \i/\j in {1/-1,2/1} {
+cmove setting two disks/.pic={\path[use as bounding box] (-2.6,-2.3) rectangle (2.6,3.4);\foreach \i/\j in {1/-1,2/1} {
 \pic at ({\j*(\surfdisksmallradius+\surfdisksmallsep)},0) {surf circle={d\i}{\surfdisksmallradius}};
 \tikzset{exec on layer={surf base}{\fill[disk \i] \surfcirclepath{d\i}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d\i}{0}{360};}}
 }},

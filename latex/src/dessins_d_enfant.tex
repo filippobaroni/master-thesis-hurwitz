@@ -1,6 +1,7 @@
 \chapter{\texorpdfstring{\Dessins{}}{Dessins d'enfant}}
 
 \section{Child's drawings on surfaces}
+\smallvertices
 
 In \cref{monodromy:sc:combinatorial-moves}, we discussed how the Hurwitz existence problem can be reduced to the analysis of candidate data on the sphere. Moreover, thanks to \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v}, we have devised a relatively reliable technique to decrease the number $n$ of partitions; this technique was successfully employed in \cref{monodromy:sc:results-sphere} to show the realizability of a wide variety of candidate data by induction on $n$, starting from the base case $n=3$. Ignoring the cases where $n\le 2$, which were fully analyzed in \cref{monodromy:sc:combinatorial-moves}, it should come as no surprise that candidate data with $n=3$ play a very important role in the study of the existence problem.
 
@@ -45,6 +46,7 @@ Let $\Gamma$ be a \dessin{}, and fix a complementary region $D$. By traveling al
 \]
 In particular, note that $\card{\partial D_1}=12$, and that $e_1,e_4,e_5,e_6$ are enveloped by $D_1$. Similarly, we see that $\partial D_2=\{e_2,e_3\}$.
 \begin{center}
+\largevertices{}
 \def\xac{2}
 \def\yac{10}
 \def\radiusA{2.55}
@@ -121,6 +123,7 @@ In the next section we will introduce a new kind of combinatorial moves, which o
 
 \paragraph{Unwinding the boundary.} Let $\Gamma$ be a graph on a surface $\Sigma$. Take a complementary region $D$, and assume $D$ is a topological disk. Intuitively, when we \emph{unwind the boundary} of $D$, we represent $D$ as the standard closed disk $K$ embedded in $\RR^2$; the edges of the combinatorial boundary of $D$ are placed sequentially on the topological boundary of $K$, possibly with repetitions. For a more formal description, we can follow the strategy presented in the second part of the proof of \cref{dessins:th:dessins-realizability}: we consider a continuous map $\map{\phi}{K}{\surf{g}}$ which restricts to a homeomorphism $\map{\phi}{\interior{K}}{D}$; edges on the topological boundary of $D$ can be pulled back by $\phi$, thus unwinding the combinatorial boundary of $D$ on $\partial K$.
 \begin{center}
+\largevertices{}
 \def\radiusA{2.55}
 \def\radiusB{.75}
 \tikzsetnextfilename{dessin-unwinding-example}
@@ -131,7 +134,7 @@ In the next section we will introduce a new kind of combinatorial moves, which o
 \draw[black edge,fill=disk 1] circle(2);
 \foreach \i[evaluate=\i as \i using int(\i),evaluate=\i as \col using {ifthenelse(mod(\i,2),"white ","black ")},evaluate=\i as \a using \i*360/12,evaluate=\i as \l using {{1,2,4,5,7,6,5,4,3,1,6,7}[\i]},evaluate=\l as \s using {or(\l==2,\l==3)}] in {0,...,11} { \pic at (\a:2) {\col vertex}; \node at ({\a+360/24}:2.25) {$e_{\l}$}; \ifnum\s=1\path[surrounding=disk 2] (\a:2) arc(\a:{\a+360/12}:2);\fi }
 \end{scope}
-\draw[->] (-1.1,0) -- (.1,0) node[above,midway] {$\phi$};
+\draw[->,violet] (-1.1,0) -- (.1,0) node[above,midway] {$\phi$};
 \begin{scope}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision},shift={(4,0)}]
 \draw[surf boundary,fill=disk 1,even odd rule,3d torus];
 \draw[surf boundary,3d torus stretch];
@@ -156,7 +159,7 @@ In the next section we will introduce a new kind of combinatorial moves, which o
 \tikzsetnextfilename{dessin-join-example}
 \begin{tikzpicture}[tdplot_main_coords,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision}]
 \pgfsetlayers{main,graph vertex}
-\begin{scope}[shift={(-3,0)}]
+\begin{scope}[shift={(-3.5,0)}]
 \draw[surf boundary,fill=disk 1,even odd rule,3d torus];
 \draw[surf boundary,3d torus stretch];
 \draw[black edge dashed] [torus graph behind];
@@ -170,10 +173,10 @@ In the next section we will introduce a new kind of combinatorial moves, which o
 \pic at (\ontorus{310}{30}) {white vertex};
 \path (\ontorus{270}{30}) pic {white vertex} node[right=2pt] {$y$};
 \pic at (\ontorus{80}{150}) {white vertex};
-\node[red!80!black,below left] at (\ontorus{260}{45}) {$e$};
+\node[colored label=red,below left] at (\ontorus{265}{40}) {$e$};
 \end{scope}
-\node {$\Longrightarrow$};
-\begin{scope}[shift={(3,0)}]
+\pic {my fancy arrow};
+\begin{scope}[shift={(3.5,0)}]
 \draw[surf boundary,fill=disk 1,even odd rule,3d torus];
 \draw[surf boundary,3d torus stretch];
 \draw[black edge dashed] [torus graph behind];
@@ -212,7 +215,7 @@ In order to reconstruct the embedding of $\Gamma$ in $\surf{g}$, we simply have 
 \draw[disk 2 boundary,fill=disk 2] [torus graph small contour];
 \drawtorusgraph
 \end{scope}
-\node at (.2,0) {$\Longrightarrow$};
+\pic at (.2,0) {my fancy arrow};
 \begin{scope}[shift={(3.5,0)}]
 \draw[disk 1 boundary,fill=gray!30] plot[variable=\x,domain={vcrit2(240-\xac)}:{360+vcrit1(240-\xac)}] (\ontorus{240-\xac}{\x}) --plot[variable=\x,domain={360+vcrit1(240)+\xac)}:{vcrit2(240+\xac)}] (\ontorus{240+\xac}{\x});
 \draw[black edge] [torus graph behind];
@@ -228,6 +231,7 @@ In order to reconstruct the embedding of $\Gamma$ in $\surf{g}$, we simply have 
 We will employ this technique in order to represent \dessins{} (and more generally, graphs whose complementary regions are disks) embedded in higher genus surfaces.
 
 \section{Genus-reducing combinatorial moves}\label{dessins:sc:combinatorial-moves}
+\largevertices{}
 
 As we have already anticipated, the goal of this thesis is a complete classification of the exceptional data with a partition of length $2$. \Cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v} are often able to reduce the existence problem to instances with $n=3$ partitions. We will now introduce a few more combinatorial moves, which heavily exploit the machinery of \dessins{}. Unlike the aforementioned ones, these moves only work under very restrictive assumptions, namely that $n=3$ and $\len{\pi_3}=2$; on the other hand, they allow a much finer control on the partitions involved, and are often versatile enough to reduce an instance of the existence problem to the case where $\tSigma=\sphere{}$.
 
@@ -297,7 +301,7 @@ Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we ca
 \begin{tikzpicture}[surf picture]
 \picturesetupone{1}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (2)&(3)\\*
 \tikzsetnextfilename{cmove-1-2}
 \begin{tikzpicture}[surf picture]
@@ -381,7 +385,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \begin{tikzpicture}[surf picture]
 \picturesetuptwo{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (3)&(4)\\*
 \tikzsetnextfilename{cmove-2-1-3}
 \begin{tikzpicture}[surf picture]
@@ -408,7 +412,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \path \surfcirclepoint{d1}{-30} coordinate (x2);
 \path \surfcirclepoint{d1}{-90} coordinate (x1) pic{black vertex};
 \ifnum#2=0
-\path \surfcirclepoint{d1}{180} node[right,green!80!black] {$e$};
+\path \surfcirclepoint{d1}{180} node[right,colored label=green] {$e$};
 \tikzset{myedgestyle/.style={surf edge={behind}{green edge}}}\else
 \tikzset{myedgestyle/.style={}}\fi
 \path[myedgestyle,surrounding=disk 2,postaction={decorate,decoration={markings,mark=at position .25 with {\coordinate (2b);},mark=at position .75 with {\coordinate (2w);}}}] \surfcirclepath{d1}{-180}{-120};
@@ -449,7 +453,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \begin{tikzpicture}[surf picture]
 \picturesetuptwo{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (3)&(4)\\*
 \tikzsetnextfilename{cmove-2-2-3}
 \begin{tikzpicture}[surf picture]
@@ -535,7 +539,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \begin{tikzpicture}[surf picture]
 \picturesetuptwo{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (3)&(4)\\*
 \tikzsetnextfilename{cmove-3-1-3}
 \begin{tikzpicture}[surf picture]
@@ -562,7 +566,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \path \surfcirclepoint{d1}{-30} coordinate (x2) pic{black vertex};
 \path \surfcirclepoint{d1}{-90} coordinate (x1) pic{black vertex};
 \ifnum#2=0
-\path \surfcirclepoint{d1}{150} node[below right,green!80!black] {$e$};
+\path \surfcirclepoint{d1}{150} node[below right,colored label=green] {$e$};
 \tikzset{myedgestyle/.style={surf edge={behind}{green edge}}}\else
 \tikzset{myedgestyle/.style={}}\fi
 \path[myedgestyle,surrounding=disk 2,postaction={decorate,decoration={markings,mark=at position .2 with {\coordinate (2b-1);},mark=at position .4 with {\coordinate (2w-1);},,mark=at position .6 with {\coordinate (2b-2);},mark=at position .8 with {\coordinate (2w-2);}}}] \surfcirclepath{d1}{150}{240};
@@ -604,7 +608,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. There are two ca
 \begin{tikzpicture}[surf picture]
 \picturesetuptwo{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (3)&(4)\\*
 \tikzsetnextfilename{cmove-3-2-3}
 \begin{tikzpicture}[surf picture]
@@ -689,7 +693,7 @@ Consider a \dessin{} $\Gamma'\subs\surf{g-1}$ realizing $\DD'$. Let $u$ be the b
 \begin{tikzpicture}[surf picture]
 \picturesetuptwo{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (3)&(4)\\*
 \tikzsetnextfilename{cmove-4-1-3}
 \begin{tikzpicture}[surf picture]
@@ -735,9 +739,9 @@ appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; sin
 \begin{tikzpicture}[graph picture,x={(\myradius,0)},y={(0,\myradius)}]
 \begin{scope}[shift={(-\myradius*2.5,0)}]
 \picturesetup
-\node[above=2pt,green!80!black] at (90:1) {$e$};
+\node[above=2pt,colored label=green] at (90:1) {$e$};
 \end{scope}
-\node{$\Longrightarrow$};
+\pic {my fancy arrow};
 \begin{scope}[shift={(\myradius*2.5,0)}]
 \picturesetup
 \path (60:1) pic{black vertex} node[above right] {$2$};
@@ -751,7 +755,9 @@ appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; sin
 \item Choose an orientation of $\partial D_1$ (counterclockwise in the picture) and consider the first occurrence of $u$ in $A$; let $\alpha$ be the edge immediately afterwards in $\partial D_1$. Since $\alpha$ is not shared, it must appear once more on the combinatorial boundary of $D_1$, with the opposite orientation. Note that $\alpha$ it cannot occur immediately before the first appearance of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere else on $A$.
 \item Consider the first occurrence of $v$ in $B$; let $\beta$ be the edge immediately before in $\partial D_1$. Since $\beta$ is not shared, it will also occur somewhere else on the combinatorial perimeter of $D_1$.
 \item Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. Erase the edges $\alpha$ and $\beta$ and draw two new ones, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture. It is now easy to see that the orange region is still a complementary disk, and that its perimeter has not changed. Moreover, by traveling along its boundary, we encounter $\{u,v,u\}$ in this order, without any shared edges in between (recall that there are no shared edges on $B$); since there must be at least one shared edge on the boundary of the new orange region, the argument of the first bullet point applies.
+\end{enumerate}
 \def\picturesetupbase{
+\path[use as bounding box] (2,1.4) rectangle (-2,-1.4);
 \begin{pgfonlayer}{graph edge below}
 \fill[disk 1,postaction={draw,surf boundary}] circle(1);
 \end{pgfonlayer}
@@ -762,17 +768,17 @@ appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; sin
 }
 \def\picturesetupalpha{
 \tikzset{alpha/.style={graph edge={below}{violet,line width=\edgelinewidth,middle arrow}},
-middle arrow/.style={postaction={decorate,decoration={markings,mark=at position 0.6 with{\arrow{Stealth[scale=.75]}}}}}}
+middle arrow/.style={postaction={decorate,decoration={markings,mark=at position .5 with{\arrow[xshift=3.3pt]{Stealth[]}}}}}}
 \begin{pgfonlayer}{graph edge below}
-\draw[alpha] (120:1) arc (120:150:1) node[midway,auto,violet] {$\alpha$} pic{white vertex};
-\draw[alpha] (210:1) arc (210:180:1) node[midway,auto,swap,violet] {$\alpha$}  pic{white vertex};
+\draw[alpha] (120:1) arc (120:150:1) node[midway,auto,colored label=violet] {$\alpha$} pic{white vertex};
+\draw[alpha] (210:1) arc (210:180:1) node[midway,auto,swap,colored label=violet] {$\alpha$}  pic{white vertex};
 \end{pgfonlayer}
 }
 \def\picturesetupbeta{
 \tikzset{beta/.style={graph edge={below}{teal,line width=\edgelinewidth,middle arrow}}}
 \begin{pgfonlayer}{graph edge below}
-\draw[beta] (-60:1) pic{black vertex} arc (-60:-30:1) node[midway,auto,teal] {$\beta$} ;
-\draw[beta] (60:1) pic{black vertex} arc (60:30:1) node[midway,auto,swap,teal] {$\beta$};
+\draw[beta] (-60:1) pic{black vertex} arc (-60:-30:1) node[midway,auto,colored label=teal] {$\beta$} ;
+\draw[beta] (60:1) pic{black vertex} arc (60:30:1) node[midway,auto,swap,colored label=teal] {$\beta$};
 \end{pgfonlayer}
 }
 \tabcolsep=0pt
@@ -781,15 +787,15 @@ middle arrow/.style={postaction={decorate,decoration={markings,mark=at position 
 \begin{tikzpicture}[graph picture,x={(\myradius,0)},y={(0,\myradius)},bar/.tip={Bar[width=3pt]}]
 \picturesetupbase
 \path (240:1) pic{black vertex} node[below left] {$u$};
-\draw[violet,{bar}-{bar}] (120:0.85) arc(120:240:0.85) node[midway,right] {$A$};
-\draw[teal,{bar}-{bar}] (30:0.85) arc(30:-30:0.85) node[midway,left] {$B$};
+\draw[violet,{bar}-{bar}] (120:0.85) arc(120:240:0.85) node[midway,right,colored label=violet] {$A$};
+\draw[teal,{bar}-{bar}] (30:0.85) arc(30:-30:0.85) node[midway,left,colored label=teal] {$B$};
 \end{tikzpicture}
 &
 \begin{tikzpicture}[graph picture,x={(\myradius,0)},y={(0,\myradius)}]
 \picturesetupbase
 \picturesetupalpha
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (3)&(4)\\*
 \begin{tikzpicture}[graph picture,x={(\myradius,0)},y={(0,\myradius)}]
 \picturesetupbase
@@ -819,7 +825,7 @@ middle arrow/.style={postaction={decorate,decoration={markings,mark=at position 
 \node[below=3pt] at (-60:1) {$b$};
 \end{tikzpicture}
 \end{longtable}
-\end{enumerate}
+\end{itemize}
 
 Once we have added the two vertices of degree $2$ on a shared edge, we are in the situation depicted below in (0). We then perform the following operations.
 \begin{enumerate}[(1)]
@@ -874,7 +880,7 @@ Once we have added the two vertices of degree $2$ on a shared edge, we are in th
 \begin{tikzpicture}[surf picture]
 \picturesetupone{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (2)&(3)\\*
 \tikzsetnextfilename{cmove-4-2-2-2}
 \begin{tikzpicture}[surf picture]
@@ -887,7 +893,6 @@ Once we have added the two vertices of degree $2$ on a shared edge, we are in th
 \end{tikzpicture}
 \end{longtable}
 \egroup
-\end{itemize}
 Finally, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\Gamma$ realizes the candidate datum $\DD$.
 \end{proof}
 
@@ -931,7 +936,7 @@ myrightvertex/.pic={
 }
 \tabcolsep=0pt
 \begin{longtable}{>{\centering\arraybackslash}p{.6\linewidth}>{\centering\arraybackslash}p{.4\linewidth}}
-(1)&(2)\\
+(1)&(2)\\*\addlinespace[1em]
 \tikzsetnextfilename{dessin-[2_d-2]-1}
 \begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
 \begin{pgfonlayer}{graph edge below}
@@ -939,7 +944,7 @@ myrightvertex/.pic={
 \picturesetupbackground
 \path (0,0) pic{myleftvertex} pic{myrightvertex} pic{black vertex} node[above=10pt] {$x+y-4$};
 \end{scope}
-\node{$\Longrightarrow$};
+\pic{my fancy arrow};
 \begin{scope}[shift={(2.2,0)}]
 \picturesetupbackground
 \path (-.7,0) pic {myleftvertex} pic {black vertex} node[above right] {$x-2$} (.7,0) pic {myrightvertex} pic {black vertex} node[below left] {$y-2$};
@@ -978,13 +983,14 @@ In the scope of this proof we define an \emph{augmented combinatorial datum} as 
 \[
 \DD=\datum{\surf{2}}{12}{[3,3,3,3],[3,3,3,3],\pi_3}
 \]
-is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.\todo{Do this!}
+is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.
 
 \bgroup
 
-\def\myradius{1.2}
+\smallvertices{}
+\def\myradius{1.33}
 \tikzset{
-contour edge settings/quick/.style 2 args={left=disk #1 boundary,right=disk #2 boundary,edge=black edge}
+contour edge settings/quick/.style 2 args={/tikz/evaluate={\col=ifthenelse(#1==#2,"disk #1 boundary enveloped","black edge");},left=disk #1 boundary,right=disk #2 boundary,edge=\col}
 }
 \def\draweightvertices{
 \path[use as bounding box] circle(1.6*\myradius);
@@ -1121,7 +1127,7 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \bgroup
 \def\picturesetupzero#1{
 \pic {cmove setting one disk=1};
-\path[surf edge={behind}{black edge},surrounding=disk 1,postaction={decorate,decoration={markings,mark=at position .25 with {\coordinate (b1);},mark=at position .75 with {\coordinate (w1);}}}] \surfcirclepath{d1}{-120}{-60} \ifnum#1=0 node[midway,auto] {$e$ \tiny change color}\fi;
+\path[surf edge={behind}{disk 1 boundary enveloped},surrounding=disk 1,postaction={decorate,decoration={markings,mark=at position .25 with {\coordinate (b1);},mark=at position .75 with {\coordinate (w1);}}}] \surfcirclepath{d1}{-120}{-60} \ifnum#1=0 node[midway,auto,colored label=disk 1 boundary enveloped] {$e$}\fi;
 }
 \def\picturesetupone#1{
 \picturesetupzero{1}
@@ -1146,8 +1152,8 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \path[surf edge={front}{black edge}] let \p1=\tuberightpoint{-90} in (w1) to[bend left] (\p1) to[out=90,in=0] (b2);
 \node[below=3pt] at (b1) {$3$};
 \node[below=3pt] at (w1) {$3$};
-\node[above left] at (b2) {$3$};
-\node[below=3pt] at (w2) {$3$};
+\node[left] at (b2) {$3$};
+\node[right] at (w2) {$3$};
 }
 \tabcolsep=0pt
 \begin{longtable}{*{2}{>{\centering\arraybackslash}p{.5\linewidth}}}
@@ -1161,7 +1167,7 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \begin{tikzpicture}[surf picture]
 \picturesetupone{0}
 \end{tikzpicture}
-\\
+\\\addlinespace[2em]
 (2)&(3)\\*
 \tikzsetnextfilename{dessin-special-families-cmove-2}
 \begin{tikzpicture}[surf picture]
@@ -1193,7 +1199,7 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \begin{scope}
 \clip (-.8,0) to[bend left=90] (.8,0) to[bend left=90] (-.8,0);
 \fill[disk 1] circle(3);
-\path[black edge] (-.5,0) pic{black vertex} to (.5,0) pic {white vertex};
+\draw[disk 1 boundary enveloped,line width=\edgelinewidth] (-.5,0) pic{black vertex} to (.5,0) pic {white vertex};
 \path[black edge] (-.5,0) to (-1,0);
 \path[black edge] (.5,0) to (1,0);
 \end{scope}
@@ -1203,9 +1209,9 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
 \begin{scope}[shift={(-1.5,0)}]
 \picturesetup
-\node[below=2pt] at (0,0) {$e$};
+\node[below=2pt,colored label=disk 1 boundary enveloped] at (0,0) {$e$};
 \end{scope}
-\node {$\Longrightarrow$};
+\pic {my fancy arrow};
 \begin{scope}[shift={(1.5,0)}]
 \picturesetup
 \path (-1/6,0) pic{white vertex} node[above=2pt] {$2$};
@@ -1220,7 +1226,7 @@ The new \dessin{} realizes the augmented datum $\DD'$.
 \begin{scope}
 \clip (-.8,0) to[bend left=90,looseness=1.5] (.8,0) to[bend left=90] (-.8,0);
 \fill[disk 1] circle(3);
-\path[black edge] (-.5,0) pic{black vertex} to (.5,0) pic {white vertex};
+\draw[disk 1 boundary enveloped,line width=\edgelinewidth] (-.5,0) pic{black vertex} to (.5,0) pic {white vertex};
 \path[black edge] (-.5,0) to (-1,0);
 \path[black edge] (.5,0) to (1,0);
 \end{scope}
@@ -1236,9 +1242,9 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
 \begin{scope}[shift={(-1.5,0)}]
 \picturesetup
-\node[below=2pt] at (0,0) {$e$};
+\node[below=2pt,colored label=disk 1 boundary enveloped] at (0,0) {$e$};
 \end{scope}
-\node {$\Longrightarrow$};
+\pic {my fancy arrow};
 \begin{scope}[shift={(1.5,0)}]
 \picturesetup
 \path (-1/6,0) pic{white vertex} node[below=2pt] {$2$};
@@ -1258,9 +1264,9 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 \begin{tikzpicture}[graph picture,x={(\myscale,0)},y={(0,\myscale)}]
 \begin{scope}[shift={(-1.5,0)}]
 \picturesetup
-\node[below=2pt] at (0,0) {$e$};
+\node[below=2pt,colored label=disk 1 boundary enveloped] at (0,0) {$e$};
 \end{scope}
-\node {$\Longrightarrow$};
+\pic {my fancy arrow};
 \begin{scope}[shift={(1.5,0)}]
 \picturesetup
 \path (-1/6,0) pic{white vertex} node[below=2pt] {$3$};
