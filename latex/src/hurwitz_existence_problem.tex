@@ -26,7 +26,51 @@ Let $\Sigma,\tSigma$ be two surfaces. A continuous function $\map{f}{\tSigma}{\S
 \end{diagram}
 commutes ($F_k$ is the map defined above). We say that $\wtilde{U}$ is a \emph{trivializing neighborhood} of $\wtilde{x}$.
 \end{definition}
-More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $\xi\mapsto \xi^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{local degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will denote it by $k(\wtilde{x})$.
+
+More informally, we can say that a branched covering is a continuous function between surfaces which is locally modeled on the complex map $\xi\mapsto \xi^k$, where $k\ge 1$ depends on the point. Note that, for each point $\wtilde{x}\in\tSigma$, the integer $k$ is well-defined, independently of the charts $\phi$ and $\wtilde{\phi}$: using the notation from the definition, we have that $k$ is equal to the cardinality of $f^{-1}(y)\cap\wtilde{U}$, where $y$ is any point in $U\setminus\{x\}$. We call this integer the \emph{local degree} of $\wtilde{x}$; to emphasize the dependence on $\wtilde{x}$, we will denote it by $k(\wtilde{x})$. 
+
+\begin{center}
+\tikzsetnextfilename{branched-covering-local-model}
+\tdplotsetmaincoords{65}{-30}
+\begin{tikzpicture}[tdplot_main_coords,x={(2,0,0)},y={(0,2,0)},z={(0,0,2)}]
+\def\a{30};
+\foreach \i in {1,2} {
+\coordinate (y-\i) at ({sin(\a)*.7},{-cos(\a)*.7},{(\a/360+\i-2)*.7});
+}
+\coordinate (y) at ({sin(\a)*.7},{-cos(\a)*.7},-2.5);
+
+\begin{scope}[shift={(0,0,-2.5)}]
+\fill[disk 1] circle (1);
+\foreach \i in {.1,.2,...,.9} { \draw[gray!80,line width=.1] circle (\i); }
+\foreach \i in {0,...,39} {\draw[gray!80,line width=.1] (0,0) -- ({\i*360/40}:1); }
+\draw circle (1);
+\fill[black] circle (1pt) node[below left] {$x$};;
+
+\fill[black] (y) circle (1pt) node[right=2pt] {$y$};
+\end{scope}
+
+\draw[violet,-{Latex[]}] (0,0,-.1) -- (0,0,-2.4) node[midway,left=2pt] {$f$};
+\draw[violet,-{Latex[]}] ([shift={(0,0,-.1)}]y-1) -- ([shift={(0,0,.1)}]y);
+
+\xdef\firsttime{1}
+\path[decorate,decoration={show path construction,curveto code={
+\filldraw[line width=.1pt,fill=disk 1,fill opacity=.9,draw=gray!80] (0,0,0) -- (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast) -- cycle;
+\draw (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);
+\foreach \i in {.1,.2,...,.9} {
+	\draw[line width=.1,gray!80] ($\i*(\tikzinputsegmentfirst)$) .. controls ($\i*(\tikzinputsegmentsupporta)$) and ($\i*(\tikzinputsegmentsupportb)$) .. ($\i*(\tikzinputsegmentlast)$);
+}
+\ifnum\firsttime=1\xdef\firsttime{0}
+	\draw[teal] (0,0,0) -- (\tikzinputsegmentfirst);
+\fi}}] plot[smooth,samples=81,variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\t/360});
+\draw[teal] (0,0,0) -- (0,-1,1);
+
+\def\a{30};
+\foreach \i in {1,2} {
+\fill[black] (y-\i) circle (1pt) node[above] {$\wtilde{y}_\i$};
+}
+\fill[black] (0,0,0) circle (1pt) node[below] {$\wtilde{x}$};
+\end{tikzpicture}
+\end{center}
 
 A point $\wtilde{x}\in\tSigma$ is called a \emph{branching point} if $k(\wtilde{x})>1$; in other words, if $f$ is \emph{not} a local homeomorphism in a neighborhood of $\wtilde{x}$. We also say that a point $x\in\Sigma$ is a \emph{branching point} if $f^{-1}(x)$ contains at least one branching point; usually, no ambiguity will arise as to which kind of branching point we are referring to.
 
@@ -41,7 +85,7 @@ Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$. Then for ev
 \]
 \end{proposition}
 \begin{proof}
-If $x$ is not a branching point, the conclusion follows immediately, since $x$ has exactly $d$ preimages, all of which have local degree $k$ equal to $1$. Assume now that $x$ is a branching point; it is clear from the definition that the set $f^{-1}(x)\subs\tSigma$ is discrete and, hence, finite. Let $f^{-1}(x)=\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}$. Fix disjoint trivializing neighborhoods $\wtilde{U}_1,\ldots,\wtilde{U}_r$ of $\wtilde{x}_1,\ldots,\wtilde{x}_r$ respectively; a routine compactness argument shows that there exists an open neighborhood $U$ of $x$ such that $f^{-1}(U)\subs \wtilde{U}_1\cup\ldots\cup\wtilde{U}_r$. Fix a point $y\in U\setminus\{x\}$: it follows from the discussion above that $y$ is not a branching point and that $\card{f^{-1}(y)\cup\wtilde{U}_i}=k(\wtilde{x}_i)$ for every $1\le i\le r$. Since $\card{f^{-1}(y)}=d$, we immediately conclude that
+If $x$ is not a branching point, the conclusion follows immediately, since $x$ has exactly $d$ preimages, all of which have local degree $k$ equal to $1$. Assume now that $x$ is a branching point; it is clear from the definition that the set $f^{-1}(x)\subs\tSigma$ is discrete and, hence, finite. Let $f^{-1}(x)=\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}$. Fix disjoint trivializing neighborhoods $\wtilde{U}_1,\ldots,\wtilde{U}_r$ of $\wtilde{x}_1,\ldots,\wtilde{x}_r$ respectively; a routine compactness argument shows that there exists an open neighborhood $U$ of $x$ such that $f^{-1}(U)\subs \wtilde{U}_1\cup\ldots\cup\wtilde{U}_r$. Fix a point $y\in U\setminus\{x\}$: it follows from the discussion above that $y$ is not a branching point and that $\card{f^{-1}(y)\cap\wtilde{U}_i}=k(\wtilde{x}_i)$ for every $1\le i\le r$. Since $\card{f^{-1}(y)}=d$, we immediately conclude that
 \[
 \sum_{i=1}^r k(\wtilde{x}_i)=\sum_{i=1}^r\card{f^{-1}(y)\cap\wtilde{U}_i}=\card{f^{-1}(y)}=d.\qedhere
 \]
@@ -183,6 +227,16 @@ Let $X$ be a path-connected topological space, $x_0\in X$ a point. Let $d$ be a 
 \end{theorem}
 
 After introducing monodromy for general topological spaces, we turn our attention to the case of branched coverings of surfaces. Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering. As we have seen, by removing the branching points from $\Sigma$, we get an associated covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$. Fix a base-point $x_0\in\holed{\Sigma}$, and let $x\in\Sigma$ be any point. There is a path $\gamma\in\pi_1(\holed{\Sigma},x_0)$ which ``goes around $x$ once''; to be more precise, we can construct it as follows. Pick a small neighborhood $U\subs\Sigma$ of $x$ which is homeomorphic to $\RR^2$ and does not contain any other branching points; here we can define a loop $\map{\beta}{[0,1]}{U\setminus\{x\}}$ that goes around $x$ once (we do not care about the orientation). Finally, pick a path $\map{\alpha}{[0,1]}{\holed{\Sigma}}$ connecting $x_0$ to $\beta(0)=\beta(1)$, and define $\gamma=\alpha\cat\beta\cat\invpath{\alpha}$, where $(\cat)$ is the concatenation of paths and $\invpath{\alpha}$ denotes the inverse path $\invpath{\alpha}(t)=\alpha(1-t)$. Of course, the homotopy class of $\gamma\in\pi_1(\holed{\Sigma},x_0)$ depends on $\alpha$ and even $\beta$ (we could have chosen $\invpath{\beta}$ instead); we will say that any path constructed with the procedure we have described is a \emph{loop around $x$} (based at $x_0$).
+\begin{center}
+\tikzsetnextfilename{monodromy-loop-around-point}
+\begin{tikzpicture}[x={(5,0)},y={(0,5)}]
+\begin{scope}[every path/.style={line width=\edgelinewidth}]
+\draw[teal,postaction={decorate,decoration={markings,mark=between positions .02 and .98 step .5cm with {\arrowreversed{Stealth[scale=.75]}}}}] (.75,-0.02) to[out=180,in=-45,in looseness=.1] node[pos=.5,below,colored label=teal] {$\alpha$} (0,0) to[in=180,out=45,out looseness=.1] node[pos=.5,above] {$\invpath{\alpha}$} (.75,.02);
+\draw[purple,postaction={decorate,decoration={markings,mark=between positions .02 and .98 step .5cm with {\arrowreversed{Stealth[scale=.75]}}}}] (.75,.02) to[out=0,in=180] (.9,.1) to[out=0,in=90] (1,0) node[right=2pt,colored label={purple}] {$\beta$} to[out=-90,in=0] (.9,-.1) to[out=180,in=0] (.75,-0.02);
+\end{scope}
+\foreach \p/\l in {{(0,0)}/{x_0},{(.9,0)}/x} {\fill \p circle (1pt); \node[above] at \p {$\l$};}
+\end{tikzpicture}
+\end{center}
 
 We are finally ready to prove the connection between branched coverings and the monodromy of the associated covering map.
 \begin{proposition}\label{hurwitz:th:monodromy-permutation-matches-partition}
@@ -227,11 +281,16 @@ Assume conversely that we are given a group homomorphism $\map{\psi}{\pi_1(\hole
 \wtilde{V}_j\rar{\holed{f}}\dar{\wtilde{\phi}_j}&U\setminus\{x_i\}\dar{\phi_j}\\
 \CC\setminus\{0\}\rar{F_{k_j}}&\CC\setminus\{0\}
 \end{diagram}
-commutes, where $F_{k_j}(z)=z^{k_j}$. We can ``fill the hole'' in $\wtilde{V}_j$ by considering the surface $\holed{\tSigma}_1=\holed{\tSigma}\sqcup\CC/\sim$, where $y\sim \wtilde{\phi}_j(y)$ for each $y\in\wtilde{V}_j$. It is clear that $\holed{f}$ extends to a continuous function $\umap{\holed{\tSigma}_1}{\Sigma}$ by sending $0\in\CC$ to $x_i$; this map is locally modeled on $\xi\mapsto \xi^{k_j}$ near $0$. If we ``fill the hole'' in $\wtilde{V}_j$ for $1\le j\le r$, and then repeat the process for each $x_i$, we end up with a surface $\tSigma$ and a map $\map{f}{\tSigma}{\Sigma}$. It is easy to see from the construction that $\tSigma$ is compact and connected, and that $f$ is a branched covering. Since the associated covering map is exactly $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$, \cref{hurwitz:th:monodromy-permutation-matches-partition} implies that $\pi(x_i)$ matches $\Mon(\gamma_i)=\psi(\gamma_i)$, so $\pi(x_i)=\pi_i$.
+commutes, where $F_{k_j}(z)=z^{k_j}$. We can ``fill the hole'' in $\wtilde{V}_j$ by considering the surface $\holed{\tSigma}_{\text{fill}}=\holed{\tSigma}\sqcup\CC/\sim$, where $y\sim \wtilde{\phi}_j(y)$ for each $y\in\wtilde{V}_j$. It is clear that $\holed{f}$ extends to a continuous function $\umap{\holed{\tSigma}_{\text{fill}}}{\Sigma}$ by sending $0\in\CC$ to $x_i$; this map is locally modeled on $\xi\mapsto \xi^{k_j}$ near $0$. If we ``fill the hole'' in $\wtilde{V}_j$ for $1\le j\le r$, and then repeat the process for each $x_i$, we end up with a surface $\tSigma$ and a map $\map{f}{\tSigma}{\Sigma}$. It is easy to see from the construction that $\tSigma$ is compact and connected, and that $f$ is a branched covering. Since the associated covering map is exactly $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$, \cref{hurwitz:th:monodromy-permutation-matches-partition} implies that $\pi(x_i)$ matches $\Mon(\gamma_i)=\psi(\gamma_i)$, so $\pi(x_i)=\pi_i$.
 \end{proof}
 
 By combining \cref{hurwitz:th:monodromy-realizability-general} with the classification of surfaces, we obtain the following criteria for realizability.
 
+\bgroup
+\tikzset{loop around point/.pic={
+\draw[black edge] (0,0) to[in=180,out=45,out looseness=.1] (.75,.02) to[out=0,in=180] (.9,.1) to[out=0,in=90] (1,0) node[above] {$a_{#1}$} to[out=-90,in=0] (.9,-.1) to[out=180,in=0] (.75,-0.02) to[out=180,in=-45,in looseness=.1] (0,0);
+\filldraw[surf boundary,fill=white] (.9,0) circle(.05);
+}}
 \begin{corollary}\label{hurwitz:th:monodromy-realizability-orientable}
 Let $\surf{g}$ be the connected sum of $g\ge 0$ tori, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g\in\symgroup[d]$ such that:
 \begin{enumerate}
@@ -246,7 +305,35 @@ Let $\holed{\surf{g}}$ be the non-compact surface obtained by removing $n$ point
 \[
 \pi_1(\holed{\surf{g}},x_0)=\angled{a_1,\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid [b_1,c_1]\cdots[b_g,c_g]\cdot a_1\cdots a_n},
 \]
-where $a_i$ is a loop around $x_i$, the criterion follows immediately from \cref{hurwitz:th:monodromy-realizability-general}. The orientability of $\tSigma$ was already addressed in \cref{hurwitz:rm:orientability-of-tsigma}.
+where $a_i$ is a loop around $x_i$, the criterion follows immediately from \cref{hurwitz:th:monodromy-realizability-general}.
+\begin{center}
+\tikzsetnextfilename{monodromy-fundamental-group-orientable}
+\begin{tikzpicture}[x={(2.5,0)},y={(0,2.5)},pics/commutator/.style n args={3}{code={
+\tikzmath{\i0=#1;\i1=#1+1;\i2=#1+2;\i3=#1+3;\i4=#1+4;}
+\begin{scope}[every path/.style={line width=\edgelinewidth}]
+\draw[#2,postaction={decorate,decoration={markings,mark=at position.5 with {\arrow[xshift=3.3pt]{Stealth[]}}}}] (\i0) -- (\i1) node[midway,auto,colored label={#2},swap] {$b_{#3}$};
+\draw[#2,postaction={decorate,decoration={markings,mark=at position.5 with {\arrow[xshift=3.3pt]{Stealth[]}}}}] (\i3) -- (\i2) node[midway,auto,colored label={#2}] {$b_{#3}$};
+\draw[#2,postaction={decorate,decoration={markings,mark=at position.5 with {\arrow[xshift=6.6pt]{Stealth[] Stealth[]}}}}] (\i1) -- (\i2) node[midway,auto,colored label={#2},swap] {$c_{#3}$};
+\draw[#2,postaction={decorate,decoration={markings,mark=at position.5 with {\arrow[xshift=6.6pt]{Stealth[] Stealth[]}}}}] (\i4) -- (\i3) node[midway,auto,colored label={#2}] {$c_{#3}$};
+\end{scope}
+}}]
+\pgfsetlayers{main,graph vertex}
+\begin{pgfonlayer}{graph vertex}
+\foreach \i[evaluate=\i as \i using int(\i)] in {0,...,14} {
+\fill ({(\i-4)*360/14}:1) coordinate (\i) circle(1pt);
+}\end{pgfonlayer}
+\fill[disk 1] (0) \foreach \i[evaluate=\i as \i using int(\i)] in {1,...,13} { -- (\i)} -- cycle;
+%\node[below=4pt] at (0) {$x_0$};
+\foreach \i/\j in {4/5,9/10} {\draw[surf boundary dashed] (\i) -- (\j);}
+\pic{commutator={0}{red}{1}};
+\pic{commutator={5}{teal}{i}};
+\pic{commutator={10}{violet}{g}};
+\pic[rotate=100] at (0) {loop around point=1};
+\pic[rotate=50] at (0) {loop around point=n};
+\foreach \a in {65,75,85} {\filldraw[surf boundary,fill=white] ($(0)+(\a:.9)$) circle (.02);}
+\end{tikzpicture}
+\end{center}
+The orientability of $\tSigma$ was already addressed in \cref{hurwitz:rm:orientability-of-tsigma}.
 \end{proof}
 
 \begin{remark}\label{hurwitz:rm:sigma-tilde-unique-orientable}
@@ -284,9 +371,34 @@ The proof of the criterion is identical to that of \cref{hurwitz:th:monodromy-re
 \[
 \pi_1(\holed{\nosurf{g}},x_0)=\angled{a_1,\ldots,a_n,b_1,\ldots,b_g\mid b_1^2\cdots b_g^2\cdot a_1\cdots a_n},
 \]
-where $a_i$ is a loop around $x_i$. As far as the orientability of $\tSigma$ is concerned, note that $w(a_1)=\ldots=w(a_n)=0$, while $w(b_1)=\ldots=w(b_g)=1$. Let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\nosurf{g}}}$ be the covering map associated to the branched covering, and let $\map{\Mon}{\pi_1(\holed{\nosurf{g}},x_0)}{\symgroup[d]}$ be the monodromy homomorphism. Fix a base-point $\wtilde{x}_0\in f^{-1}(x_0)$; we have that $\holed{\tSigma}$ is orientable if and only if $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))\subgroup W(\holed{\nosurf{g}},x_0)$. Since $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))=\stab{\pi_1(\holed{\nosurf{g}},x_0)}{\wtilde{x}_0}$, it follows that $\holed{\tSigma}$ is non-orientable if and only if there exists a loop $c\in\pi_1(\holed{\nosurf{g}},x_0)$ such that $w(c)=1$ and $\wtilde{x}_0\mon c=\wtilde{x}_0$. By applying $\Mon$, we see that this is equivalent to the existence of a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as the product of an odd number of $\beta_j$ and an arbitrary number of $\alpha_i$; note that the exact fixed point does not matter, since the subgroup generated by the $\alpha_i$ and $\beta_j$ acts transitively on $\{1,\ldots,d\}$. Finally, observe that $\holed{\tSigma}$ is orientable if and only if $\tSigma$ is.
+where $a_i$ is a loop around $x_i$.
+\begin{center}
+\tikzsetnextfilename{monodromy-fundamental-group-non-orientable}
+\begin{tikzpicture}[x={(2.5,0)},y={(0,2.5)},pics/square/.style n args={3}{code={
+\tikzmath{\i0=#1;\i1=#1+1;\i2=#1+2;}
+\begin{scope}[every path/.style={line width=\edgelinewidth}]
+\draw[#2,postaction={decorate,decoration={markings,mark=at position.5 with {\arrow[xshift=3.3pt]{Stealth[]}}}}] (\i0) -- (\i1) node[midway,auto,colored label={#2},swap] {$b_{#3}$};
+\draw[#2,postaction={decorate,decoration={markings,mark=at position.5 with {\arrow[xshift=3.3pt]{Stealth[]}}}}] (\i1) -- (\i2) node[midway,auto,colored label={#2},swap] {$b_{#3}$};
+\end{scope}
+}}]
+\pgfsetlayers{main,graph vertex}
+\begin{pgfonlayer}{graph vertex}
+\foreach \i[evaluate=\i as \i using int(\i)] in {0,...,8} {
+\fill ({(\i-2)*360/8}:1) coordinate (\i) circle(1pt);
+}\end{pgfonlayer}
+\fill[disk 1] (0) \foreach \i[evaluate=\i as \i using int(\i)] in {1,...,7} { -- (\i)} -- cycle;
+\foreach \i/\j in {2/3,5/6} {\draw[surf boundary dashed] (\i) -- (\j);}
+\pic{square={0}{red}{1}};
+\pic{square={3}{teal}{i}};
+\pic{square={6}{violet}{g}};
+\pic[rotate=115] at (0) {loop around point=1};
+\pic[rotate=65] at (0) {loop around point=n};
+\foreach \a in {100,90,80} {\filldraw[surf boundary,fill=white] ($(0)+(\a:.9)$) circle (.02);}
+\end{tikzpicture}
+\end{center}
+As far as the orientability of $\tSigma$ is concerned, note that $w(a_1)=\ldots=w(a_n)=0$, while $w(b_1)=\ldots=w(b_g)=1$. Let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\nosurf{g}}}$ be the covering map associated to the branched covering, and let $\map{\Mon}{\pi_1(\holed{\nosurf{g}},x_0)}{\symgroup[d]}$ be the monodromy homomorphism. Fix a base-point $\wtilde{x}_0\in f^{-1}(x_0)$; we have that $\holed{\tSigma}$ is orientable if and only if $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))\subgroup W(\holed{\nosurf{g}},x_0)$. Since $f_\ast(\pi_1(\holed{\tSigma},\wtilde{x}_0))=\stab{\pi_1(\holed{\nosurf{g}},x_0)}{\wtilde{x}_0}$, it follows that $\holed{\tSigma}$ is non-orientable if and only if there exists a loop $c\in\pi_1(\holed{\nosurf{g}},x_0)$ such that $w(c)=1$ and $\wtilde{x}_0\mon c=\wtilde{x}_0$. By applying $\Mon$, we see that this is equivalent to the existence of a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as the product of an odd number of $\beta_j$ and an arbitrary number of $\alpha_i$; note that the exact fixed point does not matter, since the subgroup generated by the $\alpha_i$ and $\beta_j$ acts transitively on $\{1,\ldots,d\}$. Finally, observe that $\holed{\tSigma}$ is orientable if and only if $\tSigma$ is.
 \end{proof}
-
+\egroup
 
 \begin{remark}\label{hurwitz:rm:sigma-tilde-unique-non-orientable}
 Given $\nosurf{g}$, $d$ and $\pi_1,\ldots,\pi_n$, there are at most two surfaces $\tSigma$, one orientable and one non-orientable, such that $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ is a candidate datum: like in \cref{hurwitz:rm:sigma-tilde-unique-orientable}, the \RH{} formula fixes $\chi(\tSigma)$ which, together with orientability, uniquely determines the surface $\tSigma$.
