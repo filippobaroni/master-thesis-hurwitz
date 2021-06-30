@@ -1,14 +1,69 @@
 \ProvidesPackage{mystyle-thesis}
 
 
+\def\disablesideline{1}
+
 % Todos
 \usepackage{todonotes}
 \usepackage{comment}
 \usepackage{lipsum}
+\usepackage{layout}
 
 
 % Page layout
-\usepackage[a4paper]{geometry}
+\usepackage[a4paper,includehead,top=1.2in,bottom=1.5in,textwidth=418pt,inner=1.1in]{geometry}
+
+
+% Chapters
+\usepackage{fncychap} 
+\makeatletter
+\usecolortrue
+\ChNumVar{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont}
+\ChTitleVar{\raggedleft\huge\bfseries}
+
+\setlength{\myhi}{10pt}
+\setlength{\mylen}{\textwidth}
+\addtolength{\mylen}{-2\myhi}
+\renewcommand{\DOCH}{%
+\settowidth{\py}{\CNoV\thechapter}
+\addtolength{\py}{-10pt}%
+\fboxsep=0pt%
+\colorbox{violet!15}{\rule{0pt}{40pt}\parbox[b]{\textwidth}{\hfill}}%
+\kern-\py\raise20pt%
+\hbox{\color{violet}\CNoV\thechapter}\\%
+}
+
+\renewcommand{\DOTI}[1]{%
+\nointerlineskip\raggedright%
+\fboxsep=\myhi%
+\vskip-1ex%
+\colorbox{violet!15}{\parbox[t]{\mylen}{\CTV\FmTi{#1}}}\par\nobreak%
+\vskip 40\p@%
+}
+
+\renewcommand{\DOTIS}[1]{%
+\fboxsep=0pt
+\colorbox{violet!15}{\rule{0pt}{40pt}\parbox[b]{\textwidth}{\hfill}}\\%
+\nointerlineskip\raggedright%
+\fboxsep=\myhi%
+\colorbox{violet!15}{\parbox[t]{\mylen}{\CTV\FmTi{#1}}}\par\nobreak%
+\vskip 40\p@%
+}
+\makeatother
+
+% Header
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[LO,RE]{\nouppercase{\leftmark}}
+\fancyhead[RO,LE]{\thepage}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
 
 
 % Typography
@@ -68,7 +123,8 @@
 \makeatother
 \NewCombinatorialMoveType{a}
 \NewCombinatorialMoveType{b}
-\NewCombinatorialMoveType{c}
+
+\def\qedsymbol{\textcolor{violet}{\faCheckSquare[regular]}}
 
 
 % Appendices
@@ -88,13 +144,14 @@
 \pgfplotsset{compat=1.17}
 \usepackage{makecell}
 \usepackage{siunitx}
-\newcolumntype{Y}{S[table-format=3.0]}
 
 
 % TikZ
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
+\usepackage{tikzpagenodes}
 \usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{tikzmark}
 \usetikzlibrary{external}
 \tikzexternalize[prefix=figures/]
 \tikzset{external/only named=true}
@@ -102,13 +159,62 @@
 
 % Boxes
 \usepackage[many]{tcolorbox}
-\usepackage{varwidth}
+\tcbset{shield externalize}
 \usepackage{footnote}
-\tikzset{sideline line style/.style={violet!50,line width=.5pt,rounded corners=2.5pt}}
+\tikzset{sideline line style/.style={violet!50,line width=.5pt,rounded corners=1pt}}
+\makeatletter
+\ifnumcomp{\disablesideline}{=}{1}{
+\NewDocumentCommand{\sdl@ifpgfmarkpage}{ m m m m } {%
+	\@ifundefined{save@pt@\tikzmark@pp@name{#1}}{ #2 }{%
+		\@ifundefined{save@pg@\csname save@pt@\tikzmark@pp@name{#1}\endcsname}{ #2 }{%
+			\edef\sdl@tmp@page{\csname save@pg@\csname save@pt@\tikzmark@pp@name{#1}\endcsname\endcsname}
+			\ifnum\thepage<\sdl@tmp@page #2%
+			\else\ifnum\thepage=\sdl@tmp@page #3%
+			\else #4 \fi\fi
+		}
+	}
+}
+\NewDocumentCommand{\sdl@draw}{}{
+\edef\num{\the\value{sdl@todocounter}}
+\ifnum\num>\the\value{sdl@idcounter}\else
+\begin{tikzpicture}[overlay,remember picture,every path/.style=sideline line style]
+\sdl@ifpgfmarkpage{sdl@begin@\num}
+	{}
+	{\sdl@ifpgfmarkpage{sdl@end@\num}
+		{\draw (sdl@title@\num.west) -- (current page text area.west|-sdl@title@\num.west) -- ([yshift={-depth("y")+\csname sdl@shortfix@\num\endcsname}]current page text area.south west);}
+		{\draw (sdl@title@\num.west) -- (current page text area.west|-sdl@title@\num.west) -- ([yshift={-depth("y")-2pt}]current page text area.west|-{pic cs:sdl@end@\num}) -- +(4pt,0);}
+		{}}
+	{\sdl@ifpgfmarkpage{sdl@end@\num}
+		{\draw (current page text area.north west) -- ([yshift={-depth("y")}]current page text area.south west);}
+		{\draw (current page text area.north west) -- ([yshift={-depth("y")-2pt}]current page text area.west|-{pic cs:sdl@end@\num}) -- +(4pt,0);}
+		{}}
+\end{tikzpicture}
+\sdl@ifpgfmarkpage{sdl@end@\num}{}{\stepcounter{sdl@todocounter}\sdl@draw}{}
+\fi
+}
+\AddToHook{shipout/foreground}{\sdl@draw}
+\newcounter{sdl@idcounter}
+\newcounter{sdl@todocounter}
+\setcounter{sdl@todocounter}{1}
+\NewDocumentEnvironment{sideline}{om}{
+\xdef\sdl@ended{0}
+\def\sdlendhere{\xdef\sdl@ended{1}\pgfmark{sdl@end@\the\value{sdl@idcounter}}}
+\stepcounter{sdl@idcounter}
+\expandafter\xdef\csname sdl@shortfix@\the\value{sdl@idcounter}\endcsname{\IfValueTF{#1}{#1}{0pt}}
+\bgroup\ifhmode\vspace{.2em}\par\fi\relax\vspace{.2em}\noindent
+\advance\linewidth -6pt
+\advance\leftskip 6pt
+\tikz[baseline=0pt,remember picture] \path let \n1={\the\value{sdl@idcounter}} in node[draw=violet,line width=.8pt,rounded corners=2.5pt,fill=white,text height={height("I")},text depth={depth("y")},draw,anchor=base,font=\bfseries] (sdl@title@\n1){#2};\pgfmark{sdl@begin@\the\value{sdl@idcounter}}\vspace{.2em}
+}{
+\ifnum\sdl@ended=0\sdlendhere\fi
+\ifhmode\vspace{.2em}\par\fi\relax\vspace{.2em}
+\egroup
+}
+}{
 \newtcolorbox{sideline}[2][]{
 title={#2},
 enhanced,breakable,blanker,
-coltitle=violet,fonttitle=\bfseries,
+coltitle=black,fonttitle=\bfseries,
 detach title,
 before upper={\tikz[baseline=0pt,remember picture] \node[draw=violet,line width=.8pt,rounded corners=2.5pt,fill=white,text height={height("I")},text depth={depth("y")},draw,anchor=base] (sideline title node){\tcbtitle};\vspace{.2em}\hspace{1em}},
 left=6pt,
@@ -119,13 +225,38 @@ overlay middle={\draw[sideline line style] (frame.north west) -- (frame.south we
 overlay last={\draw[sideline line style] (frame.north west) |- ([shift={(.4em,-.2em)}]frame.south west);},
 #1
 }
+}
 \BeforeBeginEnvironment{sideline}{\savenotes}
 \AfterEndEnvironment{sideline}{\spewnotes}
+\makeatother
 
 \NewDocumentEnvironment{twoimplications}{}{%
 \def\leftimplication{\def\rightimplication{\end{sideline}\begin{sideline}{$\boldsymbol{\Rightarrow}$}}\begin{sideline}{$\boldsymbol{\Leftarrow}$}}
 \def\rightimplication{\def\leftimplication{\end{sideline}\begin{sideline}{$\boldsymbol{\Leftarrow}$}}\begin{sideline}{$\boldsymbol{\Rightarrow}$}}
 }{\end{sideline}}
+
+\tikzset{/tcb/theorem box style/.style={
+enhanced,
+breakable,
+colback=white,
+left=3pt,right=0pt,top=3pt,bottom=3pt,
+arc=1pt,colframe=violet,boxrule=.5pt,leftrule=3pt,rightrule=0pt,
+toprule at break=0pt,bottomrule at break=0pt,
+frame style={path fading=east},
+extras first={interior code app={\fill[white] ([yshift=-2pt]interior.north east) rectangle ([yshift=-2pt]interior.south west);}},
+extras last={interior code app={\fill[white] ([yshift=2pt]interior.north east) rectangle ([yshift=2pt]interior.south west);}},
+}}
+\tcolorboxenvironment{theorem}{theorem box style}
+\tcolorboxenvironment{lemma}{theorem box style}
+\tcolorboxenvironment{corollary}{theorem box style}
+\tcolorboxenvironment{proposition}{theorem box style}
+\tcolorboxenvironment{definition}{theorem box style}
+\tcolorboxenvironment{conjecture*}{theorem box style}
+\tcolorboxenvironment{hurwitz-existence-problem*}{theorem box style}
+\tcolorboxenvironment{prime-degree-conjecture*}{theorem box style}
+\tcolorboxenvironment{solution-hurwitz*}{theorem box style}
+\tcolorboxenvironment{combinatorialmovea}{theorem box style}
+\tcolorboxenvironment{combinatorialmoveb}{theorem box style}
 
 
 
@@ -153,7 +284,7 @@ labelsep=8pt,
 label=\protect\tikzenumlabel{\roman*}
 }
 \setlist[itemize]{
-label=\raisebox{0.2\height}{\scalebox{0.6}{\textcolor{violet}{\faChevronCircleRight}}},
+label=\raisebox{0.12\height}{\scalebox{0.67}{\textcolor{violet}{\faChevronCircleRight}}},
 itemsep=0.2em,
 topsep=0.5em,
 }

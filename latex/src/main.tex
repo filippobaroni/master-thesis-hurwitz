@@ -4,10 +4,11 @@
 \usepackage{mystyle-global}
 
 %\includeonly{test}
-
 \begin{document}
 
 %\include{test}
+
+\tableofcontents
 
 \include{hurwitz_existence_problem}
 \include{monodromy}
@@ -16,8 +17,8 @@
 
 \begin{appendices}
 \crefalias{chapter}{appendix}
-%\include{computational_results}
+\include{computational_results}
 \end{appendices}
 
-\printbibliography
+\printbibliography[heading=bibintoc]
 \end{document}

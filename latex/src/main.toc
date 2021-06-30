@@ -1,0 +1,69 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Hurwitz existence problem}{3}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Branched coverings of surfaces}{3}{section.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Branching data}{5}{section.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Symmetric group and partitions}{7}{section.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.4}Branched covering action of the fundamental group}{8}{section.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.5}Monodromy and realizability}{10}{section.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Realizablility by monodromy}{15}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Non-positive Euler characteristic}{15}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Products in symmetric groups}{17}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Projective plane}{19}{section.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Combinatorial moves}{20}{section.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Some results on the sphere}{22}{section.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Prime-degree conjecture}{26}{section.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}\Dessins {}}{27}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Child's drawings on surfaces}{27}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Unwinding, joining and fattening}{30}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Unwinding the boundary.}{30}{section*.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Joining vertices along edges.}{30}{section*.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Fattening graphs.}{31}{section*.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Genus-reducing combinatorial moves}{31}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Realizability by \dessins {}}{39}{section.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Exceptional data with a short partition}{45}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Realizability on the sphere}{45}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Realizability on the torus for $n=3$}{46}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Realizability on higher genus surfaces for $n=3$}{49}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Realizability for $n\ge 4$}{50}{section.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Exceptionality}{52}{section.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.6}Final result}{57}{section.4.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Computational results}{59}{appendix.1.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Zheng's formula}{59}{section.1.A.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Implementation}{60}{section.1.A.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.3}Results}{60}{section.1.A.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.4}Lists of exceptional data with a short partition}{62}{section.1.A.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{65}{appendix*.9}%
