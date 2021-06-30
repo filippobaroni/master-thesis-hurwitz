@@ -22,11 +22,11 @@
 
 % Colors
 \colorlet{disk 1 boundary}{orange}
-\colorlet{disk 2 boundary}{blue!80!green}
+\colorlet{disk 2 boundary}{blue!70!green}
 \colorlet{disk 1 boundary enveloped}{disk 1 boundary!70!black}
 \colorlet{disk 2 boundary enveloped}{disk 2 boundary!60!black}
-\colorlet{disk 1}{disk 1 boundary!30!white}
-\colorlet{disk 2}{disk 2 boundary!30!white}
+\colorlet{disk 1}{orange!70!yellow!40!white}
+\colorlet{disk 2}{disk 2 boundary!40!white}
 \tikzset{disk 1 boundary dashed/.style={draw=disk 1 boundary,densely dashed}}
 \tikzset{colored label/.style={#1!60!black}}
 
@@ -36,7 +36,6 @@
 \tikzmath{coordinate \c,\p,\d;\c=#1;\p=#2;\d=(\p)-(\c);\r=veclen(\dx,\dy);\a=atan2(\dy,\dx);}
 \path[pic actions] (\p) arc(\a:{\a+#3}:{\r pt});
 }}}
-
 
 
 % Arrow
@@ -225,8 +224,8 @@ z={(0,1)},
 y={(0,\surfyscale)},
 },
 surf boundary/.style={draw=black!60,line width=.6pt},
-surf boundary soft/.style={draw=gray!70,line width=.6pt},
-surf boundary dashed/.style={draw=gray!70,line width=.6pt,densely dashed},
+surf boundary soft/.style={surf boundary,opacity=.5},
+surf boundary dashed/.style={surf boundary soft,densely dashed},
 }
 
 \tikzset{

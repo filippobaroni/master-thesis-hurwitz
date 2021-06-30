@@ -1,0 +1,55 @@
+%\documentclass[a4paper,10pt]{book}
+
+%\usepackage{mystyle-thesis}
+%\usepackage{mystyle-global}
+
+%\begin{document}
+\chapter*{Introduction}
+\label{introduction:sc}
+\addcontentsline{toc}{chapter}{\protect\numberline{}\nameref{introduction:sc}}
+
+The goal of this thesis is twofold. One one hand, we will try to provide a complete and coherent introduction to the Hurwitz existence problem, from the definition of branched covering map to the presentation of the two main approaches which have historically been used to attack this problem -- namely monodromy and \dessins{}. On the other hand, we will develop \emph{genus-reducing combinatorial moves}, an original tool which will allow us to fully address a previously unsolved instance of the existence problem.
+
+Finally, we will briefly touch on a computational approach to this problem. By compiling the full list of exceptional data of degree $d\le 29$, we extend the results obtained by \citeauthor{zheng}, who first proposed this method. Incidentally, we also provide additional evidence supporting the mysterious prime-degree conjecture.
+
+\section*{Branched coverings}
+
+A \emph{branched covering} between two (closed connected) topological surfaces $\tSigma$, $\Sigma$ is a continuous function $\map{f}{\tSigma}{\Sigma}$ which is locally modeled on the complex map $\xi\mapsto\xi^k$, where the positive integer $k$ is called \emph{local degree} and depends on the point $\wtilde{x}\in\tSigma$. The local degree is equal to $1$ for all but a finite number of points in $\tSigma$; the images of these points under $f$ form a discrete subset of $\Sigma$, whose elements are called \emph{branching points}. Let $x_1,\ldots,x_n\in\Sigma$ be the branching points, and define $\holed{\Sigma}=\Sigma\setminus\{x_1,\ldots,x_n\}$. The restriction of $f$ to $\holed{\tSigma}=f^{-1}(\holed{\Sigma})$ gives a standard covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ of some positive degree $d$. It is not hard to see that, for every branching point $x_i\in\Sigma$, the local degrees of the preimages of $x_i$ form a \emph{partition} of $d$, which we denote by $\pi_i$. If we abstract away the topology of $f$, we are left with the \emph{branching datum}
+\[
+\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}.
+\]
+The Hurwitz existence problem can be formulated as follows: given a \emph{combinatorial datum} $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$, is there any branched covering $\map{f}{\tSigma}{\Sigma}$ whose branching datum is equal to $\DD$?
+
+There are a few easy necessary conditions for a combinatorial datum to be realized by some branched covering; one of them is called the \emph{Riemann-Hurwitz formula}, and states that, if $\DD$ is realizable, then
+\[
+d\chi(\tSigma)-\chi(\Sigma)=dn-\len{\pi_1}-\ldots-\len{\pi_n},
+\]
+where $\len{\pi_i}$ is the length of the partition $\pi_i$. A combinatorial datum which satisfies the Riemann-Hurwitz formula and the other conditions is called a \emph{candidate datum}. It turns out that there exist \emph{exceptional} (that is, non-realizable) candidate data, but finding other necessary conditions is remarkably hard. The difficulty of solving the Hurwitz existence problem lies in figuring out some kind of regularity in the apparently chaotic plethora of exceptional candidate data.
+
+\section*{Monodromy}
+
+Historically, the first fruitful approach to the existence problem was based on the monodromy action associated to the covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$. For instance, in the case of an orientable surface of genus $g$, elementary properties of covering spaces imply that a candidate datum $\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ is realizable if and only if there exist permutations \let\ab\allowbreak $\alpha_1,\ldots,\ab\alpha_n,\ab\beta_1,\ldots,\ab\beta_g,\ab\gamma_1,\ldots,\ab\gamma_g\in\symgroup[d]$ such that:
+\begin{enumroman}
+\item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
+\item $[\beta_1,\gamma_1]\cdots[\beta_g,\gamma_g]\cdot\alpha_1\cdots\alpha_n=1$;
+\item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
+\end{enumroman}
+Here, $[\alpha]$ denotes the partition of $d$ given by the lengths of the (possibly trivial) cycles in the cycle-decomposition of the permutation $\alpha$. A similar criterion exists for non-orientable surfaces.
+
+We see that the monodromy approach turns a topological problem into a group-theoretic one, which can be attacked by means of more algebraic tools. By using the criteria we have just mentioned, it is almost immediate to show that $\DD$ is realizable whenever $\chi(\Sigma)\le 0$. With the aid of a few more technical results about products in symmetric groups, we can also address the instances where $\Sigma=\RP[2]$, thereby reducing the Hurwitz existence problem to the setting $\Sigma=\sphere$. The monodromy approach also leads to some partial results for this case; however, a more promising tool is provided by \dessins{}, which were specifically designed to work on the sphere.
+
+\section*{\texorpdfstring{\Dessins{}}{Dessins d'enfant}}
+
+Assume for simplicity that $n=3$, and consider a branched covering $\map{f}{\surf{g}}{\sphere{}}$ with branching datum $\DD(f)=\datum{\surf{g},\sphere{}}{d}{\pi_1,\pi_2,\pi_3}$. Let $x$, $y$ and $z$ be the branching points corresponding, respectively, to $\pi_1$, $\pi_2$ and $\pi_3$. Consider a segment $e\subs\sphere{}$ connecting $x$ to $y$. It turns out that $\Gamma=f^{-1}(e)$ is a bipartite graph embedded in $\surf{g}$, having $f^{-1}(x)$ and $f^{-1}(y)$ as the sets of (say) black and white vertices respectively. The graph $\Gamma$ satisfies the following properties:
+\begin{enumroman}
+\item the degrees of the black vertices are the elements of $\pi_1$;
+\item the degrees of the white vertices are the elements of $\pi_2$;
+\item $\surf{g}\setminus\Gamma$ is a disjoint union of topological disks, and the perimeters of these disks are twice the elements of $\pi_3$.
+\end{enumroman}
+
+We say that a graph with these properties is a \emph{\dessin{}} realizing $\DD(f)$.
+Perhaps unsurprisingly, a candidate datum $\DD$ is realizable if and only if there exists a \dessin{} realizing it. This gives yet another perspective on the Hurwitz existence problem, paving the way for an approach based on the combinatorial properties of graphs on surfaces. Together with some classical applications of \dessins{}, we present a novel set of ``combinatorial moves'', which operate on branching data with a short partition (that is, $\len{\pi_3}=2$). More specifically, these moves allows us to inductively reduce the existence problem to surfaces with lower genus. Building on results by \citeauthor{pakovich}, who classified the exceptional data of this form with $\tSigma=\sphere{}$, we are able to provide a complete list also for $g\ge 1$. Using another reduction technique, already well known and based on the monodromy approach, we also extend our result to the cases where $n\ge 4$, thereby fully solving the Hurwitz existence problem for candidate data with a short partition.
+
+
+
+%\end{document}
