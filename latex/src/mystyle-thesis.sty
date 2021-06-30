@@ -1,6 +1,12 @@
 \ProvidesPackage{mystyle-thesis}
 
 
+% Todos
+\usepackage{todonotes}
+\usepackage{comment}
+\usepackage{lipsum}
+
+
 % Page layout
 \usepackage[a4paper]{geometry}
 
@@ -96,6 +102,31 @@
 
 % Boxes
 \usepackage[many]{tcolorbox}
+\usepackage{varwidth}
+\usepackage{footnote}
+\tikzset{sideline line style/.style={violet!50,line width=.5pt,rounded corners=2.5pt}}
+\newtcolorbox{sideline}[2][]{
+title={#2},
+enhanced,breakable,blanker,
+coltitle=violet,fonttitle=\bfseries,
+detach title,
+before upper={\tikz[baseline=0pt,remember picture] \node[draw=violet,line width=.8pt,rounded corners=2.5pt,fill=white,text height={height("I")},text depth={depth("y")},draw,anchor=base] (sideline title node){\tcbtitle};\vspace{.2em}\hspace{1em}},
+left=6pt,
+remember,
+overlay unbroken={\draw[sideline line style] (sideline title node.west) -| ([yshift=-.2em]frame.south west) -- ++ (.4em,0);},
+overlay first={\draw[sideline line style] (sideline title node.west) -| (frame.south west);},
+overlay middle={\draw[sideline line style] (frame.north west) -- (frame.south west);},
+overlay last={\draw[sideline line style] (frame.north west) |- ([shift={(.4em,-.2em)}]frame.south west);},
+#1
+}
+\BeforeBeginEnvironment{sideline}{\savenotes}
+\AfterEndEnvironment{sideline}{\spewnotes}
+
+\NewDocumentEnvironment{twoimplications}{}{%
+\def\leftimplication{\def\rightimplication{\end{sideline}\begin{sideline}{$\boldsymbol{\Rightarrow}$}}\begin{sideline}{$\boldsymbol{\Leftarrow}$}}
+\def\rightimplication{\def\leftimplication{\end{sideline}\begin{sideline}{$\boldsymbol{\Leftarrow}$}}\begin{sideline}{$\boldsymbol{\Rightarrow}$}}
+}{\end{sideline}}
+
 
 
 % Diagrams
@@ -106,8 +137,26 @@
 
 % Lists
 \usepackage[short labels]{enumitem}
-\setenumerate{label=(\roman*)}
-\setlist[itemize]{label=\raisebox{0.2\height}{\scalebox{0.6}{\faFire}}}
+\NewDocumentCommand{\tikzenumlabel}{m}{\tikz[baseline=0pt]\node[anchor=base,fill=violet,text=white,text height={height("1")},font={\scriptsize\normalfont},minimum width={height("1")+depth("1")+3pt},rounded corners=3pt,inner sep=1.5pt] {\textbf{#1}};}
+\newlist{enumarabic}{enumerate}{2}
+\setlist[enumarabic]{
+itemsep=0.2em,
+topsep=0.5em,
+labelsep=8pt,
+label=\protect\tikzenumlabel{\arabic*}
+}
+\newlist{enumroman}{enumerate}{2}
+\setlist[enumroman]{
+itemsep=0.2em,
+topsep=0.5em,
+labelsep=8pt,
+label=\protect\tikzenumlabel{\roman*}
+}
+\setlist[itemize]{
+label=\raisebox{0.2\height}{\scalebox{0.6}{\textcolor{violet}{\faChevronCircleRight}}},
+itemsep=0.2em,
+topsep=0.5em,
+}
 \NewDocumentEnvironment{assumptions}{}{\begin{itemize}}{\end{itemize}}
 
 
@@ -115,8 +164,3 @@
 \usepackage[doi=false,isbn=false,url=false]{biblatex}
 \addbibresource{bibliography.bib}
 \NewDocumentCommand{\resultcite}{mmm}{\cite[\MakeUppercase #1~#2]{#3}}
-
-
-% Todos
-\usepackage{todonotes}
-\usepackage{comment}

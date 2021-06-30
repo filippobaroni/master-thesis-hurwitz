@@ -1,13 +1,28 @@
-Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text 
-\begin{tcolorbox}[title={$\boldsymbol{\Rightarrow}$},enhanced,breakable,blanker,coltitle=violet,fonttitle=\bfseries,detach title,before upper={\tikz[baseline=0pt,remember picture]\node[violet!50,line width=1pt,rounded corners,fill=white,text height={height("I")},text depth={depth("y")},draw,anchor=base] (mynode){\tcbtitle};\vspace{.2em}\hspace{.5em}},
+
+\begin{tcolorbox}[
+title={lolol},
+enhanced,breakable,
+colframe=violet!50,
+colback=white,
+boxrule=1pt,
+fonttitle=\bfseries,
+detach title,
+arc=1pt,
+boxsep=0pt,
 left=5pt,
-remember,
-overlay unbroken={\draw[overlay] (mynode.west) -| (frame.south west);},
+right=5pt,
+top=5pt,
+bottom=5pt,
+%before upper={\tikz[baseline=0pt]\node[anchor=base,fill=violet,rounded corners=2.5pt,text=white,text height={height("I")},text depth={depth("y")}] {\tcbtitle};\vspace{.2em}\hspace{1em}}
+attach boxed title to top left={yshift={-\tcboxedtitleheight}},
+boxed title style={size=small,top={6pt-1mm},arc=1pt,colback=violet,boxrule=0pt,sharp corners=northeast,sharp corners=southwest,before upper={\vphantom{Iy}}},
+before upper={\phantom{\tcbtitle}\vspace{.2em}\hspace{1.3em}},
 ]
-Assume that:
-\begin{assumptions}
-\item first
-\item second
-\end{assumptions}
+This is a very true theorem. This is a very true theorem. This is a very true theorem. This is a very true theorem. This is a very true theorem.
 \end{tcolorbox}
-Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text Some very very long text text 
+\chapter{My}
+\begin{theorem}{}{}
+\label{hei}
+A theorem.
+\end{theorem}
+\Cref{hei}

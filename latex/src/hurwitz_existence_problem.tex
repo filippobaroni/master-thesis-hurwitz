@@ -151,12 +151,12 @@ There are three more conditions that every branching datum must satisfy: two of 
 
 \begin{definition}\label{hurwitz:df:candidate-datum}
 A combinatorial datum $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ is a \emph{candidate datum} if it satisfies the following conditions:
-\begin{enumerate}
+\begin{enumroman}
 \item\label{hurwitz:it:candidate-datum-def:1} $d\chi(\Sigma)-\chi(\tSigma)=v(\pi_1)+\ldots+v(\pi_n)$;
 \item\label{hurwitz:it:candidate-datum-def:2} $v(\pi_1)+\ldots+v(\pi_n)$ is even;
 \item\label{hurwitz:it:candidate-datum-def:3} if $\Sigma$ is orientable, then $\tSigma$ is orientable as well;
 \item\label{hurwitz:it:candidate-datum-def:4} if $\Sigma$ is non-orientable and $\tSigma$ is orientable, then $d$ is even, and each $\pi_i$ can be written as $\pi'_i\cup\pi''_i$, where $\pi'_i$ and $\pi''_i$ are partitions of $d/2$.
-\end{enumerate}
+\end{enumroman}
 \end{definition}
 
 \begin{remark}\label{hurwitz:rm:orientability-of-tsigma}
@@ -245,7 +245,8 @@ Let $\map{f}{\tSigma}{\Sigma}$ be a branched covering of degree $d$, and let $\m
 \end{proposition}
 \begin{proof}
 Let the preimages $\wtilde{y}_1,\ldots,\wtilde{y}_r$ of $y$ have local degrees $k_1,\ldots,k_r$. Fix disjoint trivializing neighborhoods $\wtilde{U}_1,\ldots,\wtilde{U}_r$ of $\wtilde{y}_1,\ldots,\wtilde{y}_r$ respectively. Let $U\subs\Sigma$ be an open neighborhood of $x$ which is homeomorphic to $\RR^2$ and such that $f^{-1}(U)\subs \wtilde{U}_1\cup\ldots\cup\wtilde{U}_r$. Since $\gamma$ is a loop around $y$, we can write $\gamma=\alpha\cat\beta\cat\invpath{\alpha}$ as described above. Up to homotopy, we can assume that $\beta(t)\in U$ for every $t\in[0,1]$. Let $z=\alpha(1)=\beta(0)=\beta(1)\in U$; note that every preimage of $z$ lies exactly in one $\wtilde{U}_l$. Finally, let $\wtilde{x}_1,\ldots,\wtilde{x}_d$ be the preimages of $x_0$. We will show that $\wtilde{x}_i$ and $\wtilde{x}_j$ belong to the same orbit of $\Mon(\gamma)$ if and only if $\lift{\alpha}{\wtilde{x}_i}(1)$ and $\lift{\alpha}{\wtilde{x}_j}(1)$ lie in the same $\wtilde{U}_l$. Since $f^{-1}(z)\cap \wtilde{U}_l$ has cardinality $k_l$ and $\pi(y)=[k_1,\ldots,k_r]$, this would complete the proof.
-
+\begin{twoimplications}
+\rightimplication
 Let $\wtilde{x}_i\in f^{-1}(x_0)$, $\wtilde{z}_1=\lift{\alpha}{\wtilde{x}_i}(1)$. Let $l$ be the unique index such that $\wtilde{z}_1\in\wtilde{U}_l$. For each $m\ge 1$, inductively define $\wtilde{z}_{m+1}=\lift{\beta}{\wtilde{z}_m}(1)$. Since the support of $\beta$ lies entirely in $U$, we have that the support of $\lift{\beta}{\wtilde{z}_m}$ lies entirely in $\wtilde{U}_l$ and, therefore, $\wtilde{z}_{m+1}\in\wtilde{U}_l$ as well. Since $\wtilde{U}_l$ is a trivializing neighborhood of $\wtilde{y}_l$, which has local degree $k_l$, it is easy to see that the sequence $\wtilde{z}_1,\wtilde{z}_2,\ldots$ is periodic of period $k_l$, and that $f^{-1}(z)\cap\wtilde{U}_l=\{\wtilde{z}_1,\ldots\wtilde{z}_{k_l}\}$. It is also clear that
 \[
 \Mon(\gamma)(\wtilde{x}_i)=\lift{\invpath{\alpha}}{\wtilde{z}_2}(1)
@@ -255,12 +256,13 @@ and, by induction, that
 \Mon(\gamma)^s(\wtilde{x}_i)=\lift{\invpath{\alpha}}{\wtilde{z}_{s+1}}(1)&&\text{for every $s\ge 1$.}
 \end{align*}
 This shows that, if $\wtilde{x}_j=\Mon(\gamma)^s(\wtilde{x}_i)$, then $\lift{\alpha}{\wtilde{x}_j}(1)=\wtilde{z}_{s+1}\in\wtilde{U}_l$.
-
+\leftimplication
 Conversely, assume that $\lift{\alpha}{\wtilde{x}_j}(1)\in\wtilde{U}_l$. This implies that $\lift{\alpha}{\wtilde{x}_j}(1)=\wtilde{z}_s$ for some $s\ge 1$. But then
 \[
 \wtilde{x}_j=\lift{\invpath{\alpha}}{\wtilde{z}_s}(1)=\Mon(\gamma)^{s-1}(\wtilde{x}_i),
 \]
-so $\wtilde{x}_i$ and $\wtilde{x}_j$ belong to the same orbit of $\Mon(\gamma)$.
+so $\wtilde{x}_i$ and $\wtilde{x}_j$ belong to the same orbit of $\Mon(\gamma)$.\qedhere
+\end{twoimplications}
 \end{proof}
 
 \section{Monodromy and realizability}
@@ -269,20 +271,24 @@ From \Cref{hurwitz:th:monodromy-permutation-matches-partition}, we can derive a 
 
 \begin{proposition}\label{hurwitz:th:monodromy-realizability-general}
 Let $\Sigma$ be a surface, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Let $ x_1,\ldots x_n\in\Sigma$ be distinct points; define $\holed{\Sigma}=\Sigma\setminus\{x_1,\ldots,x_n\}$. Fix a base-point $x_0\in\holed{\Sigma}$ and loops $\gamma_1,\ldots,\gamma_n\in\pi_1(\holed{\Sigma},x_0)$ around $x_1,\ldots,x_n$ respectively. Then the following are equivalent.
-\begin{enumerate}
+\begin{enumroman}
 \item There exist a surface $\tSigma$ and a branched covering $\map{f}{\tSigma}{\Sigma}$ with branching datum $\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$.
 \item There exists a group homomorphism $\map{\psi}{\pi_1(\holed{\Sigma},x_0)}{\op{\symgroup[d]}}$ such that $\psi(\pi_1(\holed{\Sigma},x_0))\subgroup\op{\symgroup[d]}$ acts transitively on $\{1,\ldots,d\}$ and $[\psi(\gamma_i)]=\pi_i$ for every $1\le i\le n$.
-\end{enumerate}
+\end{enumroman}
 \end{proposition}
 \begin{proof}
+We show the two implications.
+\begin{twoimplications}
+\rightimplication
 Assume we are given a branched covering $\map{f}{\tSigma}{\Sigma}$ with $\DD(f)=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$. Since surfaces are homogeneous, we can assume that the branching points are exactly $x_1,\ldots,x_n$, with associated partitions $\pi_1,\ldots,\pi_n$ respectively. Let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ be the induced covering map, and let $\map{\Mon}{\pi_1(\holed{\Sigma},x_0)}{\op{\symgroup[d]}}$ be the monodromy homomorphism. By \cref{hurwitz:th:monodromy-permutation-matches-partition} we have $[\Mon(\gamma_i)]=\pi_i$ for every $1\le i\le n$, and the action of $\Mon(\pi_1(\holed{\Sigma},x_0))$ on $\{1,\ldots,d\}$ is transitive since $\holed{\tSigma}$ is connected. Therefore setting $\psi=\Mon$ gives the desired homomorphism.
-
+\leftimplication
 Assume conversely that we are given a group homomorphism $\map{\psi}{\pi_1(\holed{\Sigma},x_0)}{\op{\symgroup[d]}}$. \Cref{hurwitz:th:covering-with-given-monodromy} gives a covering map $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ of degree $d$ with monodromy $\Mon=\psi$. The non-compact surface $\holed{\tSigma}$ is connected by the transitivity hypothesis. We can ``fill the holes'' in $\holed{\Sigma}$ and $\holed{\tSigma}$ to get a branched covering between compact surfaces; here are the details. Consider one of the points $x_i$, and fix an open neighborhood $U\subs\Sigma$ of $x_i$ homeomorphic to $\RR^2$. Now $(\holed{f})^{-1}(U\setminus\{x_i\})$ is a covering space of $U\setminus\{x_i\}\iso\RR^2\setminus\{0\}$. By the classification of covering spaces, we get that $(\holed{f})^{-1}(U\setminus\{x_i\})$ is a disjoint union of punctured disks $\wtilde{V}_1\sqcup\ldots\sqcup\wtilde{V}_r$; moreover, for each $1\le j\le r$ we have charts $\map{\phi_j}{U\setminus\{x_i\}}{\CC\setminus\{0\}}$, $\map{\wtilde{\phi}_j}{\wtilde{V}_j}{\CC\setminus\{0\}}$ and a positive integer $k_j$ such that the diagram
 \begin{diagram}
 \wtilde{V}_j\rar{\holed{f}}\dar{\wtilde{\phi}_j}&U\setminus\{x_i\}\dar{\phi_j}\\
 \CC\setminus\{0\}\rar{F_{k_j}}&\CC\setminus\{0\}
 \end{diagram}
-commutes, where $F_{k_j}(z)=z^{k_j}$. We can ``fill the hole'' in $\wtilde{V}_j$ by considering the surface $\holed{\tSigma}_{\text{fill}}=\holed{\tSigma}\sqcup\CC/\sim$, where $y\sim \wtilde{\phi}_j(y)$ for each $y\in\wtilde{V}_j$. It is clear that $\holed{f}$ extends to a continuous function $\umap{\holed{\tSigma}_{\text{fill}}}{\Sigma}$ by sending $0\in\CC$ to $x_i$; this map is locally modeled on $\xi\mapsto \xi^{k_j}$ near $0$. If we ``fill the hole'' in $\wtilde{V}_j$ for $1\le j\le r$, and then repeat the process for each $x_i$, we end up with a surface $\tSigma$ and a map $\map{f}{\tSigma}{\Sigma}$. It is easy to see from the construction that $\tSigma$ is compact and connected, and that $f$ is a branched covering. Since the associated covering map is exactly $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$, \cref{hurwitz:th:monodromy-permutation-matches-partition} implies that $\pi(x_i)$ matches $\Mon(\gamma_i)=\psi(\gamma_i)$, so $\pi(x_i)=\pi_i$.
+commutes, where $F_{k_j}(z)=z^{k_j}$. We can ``fill the hole'' in $\wtilde{V}_j$ by considering the surface $\holed{\tSigma}_{\text{fill}}=\holed{\tSigma}\sqcup\CC/\sim$, where $y\sim \wtilde{\phi}_j(y)$ for each $y\in\wtilde{V}_j$. It is clear that $\holed{f}$ extends to a continuous function $\umap{\holed{\tSigma}_{\text{fill}}}{\Sigma}$ by sending $0\in\CC$ to $x_i$; this map is locally modeled on $\xi\mapsto \xi^{k_j}$ near $0$. If we ``fill the hole'' in $\wtilde{V}_j$ for $1\le j\le r$, and then repeat the process for each $x_i$, we end up with a surface $\tSigma$ and a map $\map{f}{\tSigma}{\Sigma}$. It is easy to see from the construction that $\tSigma$ is compact and connected, and that $f$ is a branched covering. Since the associated covering map is exactly $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$, \cref{hurwitz:th:monodromy-permutation-matches-partition} implies that $\pi(x_i)$ matches $\Mon(\gamma_i)=\psi(\gamma_i)$, so $\pi(x_i)=\pi_i$.\qedhere
+\end{twoimplications}
 \end{proof}
 
 By combining \cref{hurwitz:th:monodromy-realizability-general} with the classification of surfaces, we obtain the following criteria for realizability.
@@ -294,11 +300,11 @@ By combining \cref{hurwitz:th:monodromy-realizability-general} with the classifi
 }}
 \begin{corollary}\label{hurwitz:th:monodromy-realizability-orientable}
 Let $\surf{g}$ be the connected sum of $g\ge 0$ tori, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g\in\symgroup[d]$ such that:
-\begin{enumerate}
+\begin{enumroman}
 \item\label{hurwitz:it:monodomy-realizability-orientable-first} $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
 \item $[\beta_1,\gamma_1]\cdots[\beta_g,\gamma_g]\cdot\alpha_1\cdots\alpha_n=1$;
 \item\label{hurwitz:it:monodomy-realizability-orientable-last} the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
-\end{enumerate}
+\end{enumroman}
 In this case, $\tSigma$ is necessarily orientable.
 \end{corollary}
 \begin{proof}
@@ -352,19 +358,19 @@ Given a non-orientable topological manifold $M$, let $\map{\omega}{\what{M}}{M}$
 \map{w}{\pi_1(M,x_0)}{\symgroup(\omega^{-1}(x_0))\iso\ZZ/2}.
 \]
 We denote the kernel of $w$ (which is a subgroup of $\pi_1(M,x_0)$ of index $2$) by $W(M,x_0)$. Note that $W=\omega_\ast(\pi_1(\what{M},\what{x}_0))$ for every base-point $\what{x}_0\in\omega^{-1}(x_0)$, where $\map{\omega_\ast}{\pi_1(\what{M},\what{x}_0}{\pi_1(M,x_0)}$ denotes the map induced by $\omega$ on the fundamental groups. Given a connected topological manifold $N$ and a covering map $\map{f}{N}{M}$, elementary properties of covering spaces imply that the following are equivalent:
-\begin{enumerate}
+\begin{enumroman}
 \item $N$ is orientable;
 \item $f_\ast(\pi_1(N,y_0))\subgroup W(M,x_0)$ for every base-point $y_0\in f^{-1}(x_0)$;
 \item there exists a covering map $\map{\what{f}}{N}{\what{M}}$ such that $f$ factors as $f=\omega\circ\what{f}$.
-\end{enumerate}
+\end{enumroman}
 
 \begin{corollary}\label{hurwitz:th:monodromy-realizability-non-orientable}
 Let $\nosurf{g}$ be the connected sum of $g\ge 1$ projective planes, $d\ge 1$ an integer, $\pi_1,\ldots,\pi_n\in\Partitions{d}$ partitions of $d$. Then there exists a realizable combinatorial datum $\DD=\datum{\tSigma,\nosurf{g}}{d}{\pi_1,\ldots,\pi_n}$ if and only if there exist permutations $\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g\in\symgroup[d]$ such that:
-\begin{enumerate}
+\begin{enumroman}
 \item $[\alpha_i]=\pi_i$ for each $1\le i\le n$;
 \item $\beta_1^2\cdots\beta_g^2\cdot\alpha_1\cdots\alpha_n=1$;
 \item the subgroup $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g}\subgroup\symgroup[d]$ acts transitively on $\{1,\ldots,d\}$.
-\end{enumerate}
+\end{enumroman}
 In this case, $\tSigma$ is non-orientable if and only if there exists a permutation $\gamma\in\symgroup[d]$ which has a fixed point and can be written as the product of an odd number of $\beta_j$ and any number of $\alpha_i$.
 \end{corollary}
 \begin{proof}
@@ -415,13 +421,16 @@ Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots\pi_n}$ be a combinatorial datum,
 is realizable, where $\hSigma$ is the orientable double covering of $\Sigma$.\todo{However, not every splitting leads to a realizable datum.}
 \end{proposition}
 \begin{proof}
+We show the two implications.
+\begin{twoimplications}
+\rightimplication
 Assume that $\DD$ is realized by a branched covering $\map{f}{\tSigma}{\Sigma}$. Let $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ be the associated covering map, and let $\map{\omega}{\hSigma}{\Sigma}$ be the orientable double covering. Define $\holed{\hSigma}=\omega^{-1}(\holed{\Sigma})$, and denote by $\holed{\omega}$ the restriction of $\omega$ to $\holed{\tSigma}$; clearly, $\map{\holed{\omega}}{\holed{\hSigma}}{\holed{\Sigma}}$ is the orientable double covering of $\holed{\Sigma}$. Since $\holed{\tSigma}$ is orientable while $\holed{\Sigma}$ is not, $\holed{f}$ factors as $\holed{f}=\holed{\what{f}}\circ\holed{\omega}$ for some covering map $\map{\holed{\what{f}}}{\holed{\tSigma}}{\holed{\hSigma}}$; in particular, $d$ is even and $\holed{\what{f}}$ has degree $d/2$. The conclusion follows from a routine topological argument; for the sake of completeness, we will now report the details. Fix a branching point $x\in\Sigma\setminus\holed{\Sigma}$; let $f^{-1}(x)=\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}$ and $\omega^{-1}(x)=\{\what{x}_1,\what{x}_2\}$. There exists a small open neighborhood $U\subs\Sigma$ of $x$ homeomorphic to $\RR^2$ such that:
 \begin{itemize}
 \item $f^{-1}(U)=\wtilde{U}_1\sqcup\ldots\sqcup\wtilde{U}_r$, where $\wtilde{U}_i$ is a trivializing neighborhood of $\wtilde{x}_i$;
 \item $\omega^{-1}(U)=\what{U}_1\sqcup\what{U}_2$, where $\what{U}_i$ is a trivializing neighborhood of $\what{x}_i$.
 \end{itemize}
 It is now clear that $\map{\holed{\what{f}}}{\holed{\tSigma}}{\holed{\hSigma}}$ extends to a branched covering $\map{\what{f}}{\tSigma}{\hSigma}$: for each $1\le i\le r$, we simply set $\what{f}(\wtilde{x}_i)=\what{x}_1$ if $\holed{\what{f}}(\wtilde{U}_i\setminus\{\wtilde{x}_i\})=\what{U}_1\setminus\{\what{x}_1\}$, and $\what{f}(\wtilde{x}_i)=\what{x}_2$ otherwise; obviously, we must repeat this process for every branching point $x$. The branched covering $\what{f}$ has degree $d/2$; moreover, it is easy to see from the construction that $\pi_{f}(x)=\pi_{\what{f}}(\what{x}_1)\cup\pi_{\what{f}}(\what{x}_2)$ (we use the subscript in order to clarify which branched covering we are referring to). Therefore the realizable combinatorial datum $\DD(\what{f})$ has the required form.
-
+\leftimplication
 Conversely, assume that $d$ is even and we are given a branched covering $\map{\what{f}}{\tSigma}{\hSigma}$ with branching datum
 \[
 \DD(\what{f})=\datum{\tSigma,\hSigma}{d/2}{\pi_1',\ldots,\pi_n',\pi_1'',\ldots,\pi_n''},
@@ -430,6 +439,7 @@ where $\pi_i=\pi_i'\cup\pi_i''$ for every $1\le i\le n$. Let $x_1',\ldots,x_n',x
 \[
 \DD(\omega\circ\what{f})=\datum{\tSigma,\Sigma}{d}{\pi_1'\cup\pi_1'',\ldots,\pi_n'\cup\pi_n''}.\qedhere
 \]
+\end{twoimplications}
 \end{proof}
 
 We conclude this introductory chapter by showing that the four conditions described in \cref{hurwitz:df:candidate-datum} are actually necessary for a combinatorial datum to be realizable.

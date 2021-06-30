@@ -35,14 +35,14 @@ Writing $\alpha=\beta^{-1}(\beta\alpha)$ gives the desired decomposition.
 
 \begin{corollary}\label{monodromy:th:even-permutation-commutator-or-squares}
 Let $\alpha\in\altgroup[d]$ be an even permutation. Then $\alpha$ can be written as:
-\begin{enumerate}
+\begin{enumroman}
 \item a commutator $[\beta,\gamma]$, where $\gamma$ is a $d$\=/cycle;
 \item a product of two squares $\delta^2\epsilon^2$, where $\delta\epsilon$ is a $d$\=/cycle.
-\end{enumerate}
+\end{enumroman}
 \end{corollary}
 \begin{proof}
 Since $\alpha$ is an even permutation, its branching number $v(\alpha)$ is even. By \cref{monodromy:th:product-of-two-cycles}, there exist two $d$\=/cycles $\tau,\sigma\in\symgroup[d]$ such that $\alpha=\tau\sigma$.
-\begin{enumerate}
+\begin{enumroman}
 \item Since $\tau$ and $\sigma^{-1}$ are conjugated, there exists a permutation $\beta\in\symgroup[d]$ such that $\tau=\beta\sigma^{-1}\beta^{-1}$. Setting $\gamma=\sigma^{-1}$, we immediately get that
 \[
 \alpha=\tau\sigma=\beta\sigma^{-1}\beta^{-1}\sigma=\beta\gamma\beta^{-1}\gamma^{-1}=[\beta,\gamma].
@@ -51,26 +51,31 @@ Since $\alpha$ is an even permutation, its branching number $v(\alpha)$ is even.
 \[
 \alpha=\tau\sigma=\delta\sigma\delta^{-1}\sigma=\delta^2(\delta^{-1}\sigma)^2=\delta^2\epsilon^2.\qedhere
 \]
-\end{enumerate}
+\end{enumroman}
 \end{proof}
 
 \begin{theorem}\label{monodromy:th:realizability-nonpositive-chi}
 Let $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ be a candidate datum. If $\chi(\Sigma)\le 0$, then $\DD$ is realizable.
 \end{theorem}
 \begin{proof}
+There are three cases.
+\begin{sideline}{Case 1.}
 Let us first assume that $\Sigma$ is orientable; this means that $\Sigma=\surf{g}$ is the connected sum of $g\ge 1$ tori, and that $\tSigma$ is orientable as well. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Since $\DD$ is a candidate datum, we have that
 \[
 v(\alpha)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
 \]
 By \cref{monodromy:th:even-permutation-commutator-or-squares}, we can find permutations $\beta_1,\gamma_1\in\symgroup[d]$ such that $\alpha=[\gamma_1,\beta_1]$ and $\beta_1$ is a $d$\=/cycle. Set $\beta_2=\ldots=\beta_g=\gamma_2=\ldots=\gamma_g=\id\in\symgroup[d]$. All the conditions of \cref{hurwitz:th:monodromy-realizability-orientable} are satisfied; since $\tSigma$ is orientable, this implies that $\DD$ is realizable (see \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
-
+\end{sideline}
+\begin{sideline}{Case 2.}
 Assume now that $\Sigma$ and $\tSigma$ are both non-orientable; this means that $\Sigma=\nosurf{g}$ is the connected sum of $g\ge 2$ projective planes. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Similarly to what we did for the previous case, we can find $\beta_1,\beta_2\in\symgroup[d]$ such that $\alpha=\beta_2^{-2}\beta_1^{-2}$ and $\beta_1\beta_2$ is a $d$\=/cycle. Note that, since $\beta_1\beta_2$ is a $d$\=/cycle, there exists an integer $m\ge 0$ such that $\beta_1(\beta_1\beta_2)^m$ has a fixed point. By setting $\beta_3=\ldots=\beta_g=\id\in\symgroup[d]$, \cref{hurwitz:th:monodromy-realizability-non-orientable} (together with \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}) implies the realizability of $\DD$.
-
-Finally, consider the case where $\Sigma$ is non-orientable and $\tSigma$ is orientable. Since $\DD$ is a candidate datum, $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_1\cup\pi''_i$ for each $1\le i\le n$. Let $\hSigma$ be the double orientable covering of $\Sigma$; by the first case we analyzed, the candidate datum
+\end{sideline}
+\begin{sideline}{Case 3.}
+Finally, consider the case where $\Sigma$ is non-orientable and $\tSigma$ is orientable. Since $\DD$ is a candidate datum, $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_1\cup\pi''_i$ for each $1\le i\le n$. Let $\hSigma$ be the double orientable covering of $\Sigma$; by Case 1, the candidate datum
 \[
 \DD'=\datum{\tSigma,\hSigma}{d/2}{\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n}
 \]
-is realizable. By \cref{hurwitz:th:monodromy-realizability-double-covering}, $\DD$ is realizable as well.
+is realizable. By \cref{hurwitz:th:monodromy-realizability-double-covering}, $\DD$ is realizable as well.\qedhere
+\end{sideline}
 \end{proof}
 
 \section{Products in symmetric groups}
@@ -353,29 +358,31 @@ v(\pi_1)+v(\pi_2)=2d-2+2g-(d-1)\ge d-1.
 Moreover, the total branching number $v(\pi_1)+v(\pi_2)+d-1$ is even. \Cref{monodromy:th:product-reduction-odd} then gives permutations $\alpha_1,\alpha_2\in\symgroup[d]$ with $[\alpha_1]=\pi_1$ and $[\alpha_2]=\pi_2$ such that $[\alpha_1\alpha_2]=[d]$. By \cref{hurwitz:th:monodromy-realizability-orientable}, $\DD$ is realizable (see \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
 
 We now turn to the case $n\ge 4$. Fix a candidate datum $\DD=\datum{\surf{g},\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[d]}$; there are two cases.
-\begin{itemize}
-\item Assume that $v(\pi_1)+v(\pi_2)\le d-1$. \Cref{combinatorial-move:a:small-v} gives
+\begin{sideline}{Case 1.}
+Assume that $v(\pi_1)+v(\pi_2)\le d-1$. \Cref{combinatorial-move:a:small-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_{n-1},[d]}
 \]
 for a suitable candidate datum $\DD'$. By induction, $\DD'$ is realizable, therefore the same holds for $\DD$.
-\item Otherwise, we have that $v(\pi_1)+v(\pi_2)\ge d$. Note that $v([d])=d-1$, so \cref{combinatorial-move:a:large-v} gives
+\end{sideline}
+\begin{sideline}{Case 2.}
+Otherwise, we have that $v(\pi_1)+v(\pi_2)\ge d$. Note that $v([d])=d-1$, so \cref{combinatorial-move:a:large-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_{n-1},[d]}
 \]
 for a suitable candidate datum $\DD'$. Similarly to the previous case, this implies that $\DD$ is realizable.
 \qedhere
-\end{itemize}
+\end{sideline}
 \end{proof}
 
 We now turn to candidate data containing the partition $[1,d-1]$. This is the first step towards the goal of this thesis, which will be further developed in \cref{short-partition:ch}: the full classification of exceptional data containing a partition of length $2$.
 
 \begin{proposition}\label{monodromy:th:sphere-[1 d-1]}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}$ be a candidate datum. Then $\DD$ is exceptional if and only if it satisfies one of the following.
-\begin{enumerate}[(1)]
+\begin{enumarabic}
 \item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[1,2k-1]}$ with $k\ge 2$.
 \item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
-\end{enumerate}
+\end{enumarabic}
 \end{proposition}
 \begin{proof}
 The exceptionality of the listed candidate data is addressed in \cref{short-partition:th:exceptional-sphere,short-partition:th:exceptional-d-4} respectively. In order to prove that every other candidate datum is realizable, we proceed by induction on $n$, starting from the base case $n=3$. Let
@@ -393,8 +400,8 @@ We now turn to the case $n\ge 4$; we will employ a reduction technique, similar 
 \DD=\datum{\surf{n-3}}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}\neq\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}.
 \]
 There are two cases.
-\begin{itemize}
-\item Assume that the inequality $v(\pi_i)+v(\pi_j)\le d-1$ holds for a pair of indices $1\le i<j\le n-1$; up to reindexing, we can assume that $i=1$ and $j=2$. \Cref{combinatorial-move:a:small-v} gives
+\begin{sideline}{Case 1.}
+Assume that the inequality $v(\pi_i)+v(\pi_j)\le d-1$ holds for a pair of indices $1\le i<j\le n-1$; up to reindexing, we can assume that $i=1$ and $j=2$. \Cref{combinatorial-move:a:small-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,\ldots,\pi_{n-1},[1,d-1]}
 \]
@@ -408,7 +415,9 @@ Repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \item $\DD'=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$. This implies that $\pi_1=\pi_2=[1,1,2]$ and $\pi_3=\ldots=\pi_{n-1}=[2,2]$. Repeating the construction with $i=1$ and $j=3$ will yield a realizable $\DD'$.
 \end{itemize}
 Therefore we can assume that $\DD'$ is realizable. Since $\DD\cmove\DD'$, we have that $\DD$ is realizable as well.
-\item Otherwise, the inequality $v(\pi_1)+v(\pi_j)\ge d$ holds for every $1\le i<j\le n-1$. In particular, $v(\pi_1)+v(\pi_2)\ge d$ and $v(\pi_3)+v([1,d-1])\ge d-1$. \Cref{combinatorial-move:a:large-v} gives
+\end{sideline}
+\begin{sideline}{Case 2.}
+Otherwise, the inequality $v(\pi_1)+v(\pi_j)\ge d$ holds for every $1\le i<j\le n-1$. In particular, $v(\pi_1)+v(\pi_2)\ge d$ and $v(\pi_3)+v([1,d-1])\ge d-1$. \Cref{combinatorial-move:a:large-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g'}}{d}{\pi_1',\pi_3,\ldots,\pi_{n-1},[1,d-1]}
 \]
@@ -417,7 +426,7 @@ for a suitable candidate datum $\DD'$ with $v(\pi_1')\ge d-2$. Note that, if $d=
 v(\pi_1')\ge d-2>\frac{d}{2}=v([2,\ldots,2]).
 \]
 Since $\DD\cmove\DD'$, this implies that $\DD$ is realizable as well.\qedhere
-\end{itemize}
+\end{sideline}
 \end{proof}
 
 The next result we are going to prove does not have immediate applications to the study of candidate data with a short partition, but the theoretical consequences it provides are definitely interesting.
@@ -435,9 +444,11 @@ by the \RH{} formula. Moreover, the cases where $d=2$ are trivial because of \cr
 We proceed by induction, starting from the base case $n=3$. If $n=3$, the inequality $v(\pi_1)+v(\pi_2)+v(\pi_3)\ge 3d-3$ implies that $\pi_1=\pi_2=\pi_3=[d]$; by \cref{monodromy:th:sphere-[d]}, $\DD$ is then realizable.
 
 We now turn to the case $n\ge 4$; we will once again employ a reduction technique. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_n}$. We can assume that $\pi_i\neq[d]$ for every $1\le i\le n$, otherwise $\DD$ is immediately realizable by \cref{monodromy:th:sphere-[d]}. There are two cases.
-\begin{itemize}
-\item Assume that the inequality $v(\pi_i)+v(\pi_j)\le d-1$ holds for a pair of indices $1\le i<j\le n$. It is now routine to employ \cref{combinatorial-move:a:small-v} to show that $\DD$ is realizable by induction.
-\item Otherwise, we have $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. We consider two sub-cases.
+\begin{sideline}{Case 1.}
+Assume that the inequality $v(\pi_i)+v(\pi_j)\le d-1$ holds for a pair of indices $1\le i<j\le n$. It is now routine to employ \cref{combinatorial-move:a:small-v} to show that $\DD$ is realizable by induction.
+\end{sideline}
+\begin{sideline}{Case 2.}
+Otherwise, we have $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. We consider two sub-cases.
 \begin{itemize}
 \item Assume first that there is a partition, say $\pi_1$, which is different from $[2,\ldots,2]$. \Cref{combinatorial-move:a:small-v} gives
 \[
@@ -462,7 +473,7 @@ for a suitable candidate datum $\DD'$. Now, $v([k,k])+v(\pi_3)=2k-2+k\ge 2k$ and
 \]
 for a suitable candidate datum $\DD''$, where $\pi_1''\in\{[2k],[1,2k-1]\}$. Since $n-2\ge 4$ and $2k\ge 6$, \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]} imply that $\DD''$ is realizable. As a consequence, $\DD$ is realizable as well.\qedhere
 \end{itemize} 
-\end{itemize}
+\end{sideline}
 \end{proof}
 
 \begin{corollary}
@@ -488,11 +499,15 @@ The exceptionality of the mentioned candidate datum is addressed in \cref{short-
 and applying \cref{hurwitz:th:monodromy-realizability-orientable}.
 
 We now turn to the case $n\ge 4$; once again, we can assume that all the partitions are either $[1,1,2]$ or $[2,2]$. There are three cases.
-\begin{itemize}
-\item If all the partitions are equal to $[2,2]$, then we can apply \cref{combinatorial-move:a:large-v} to combine two partitions into a single $[2,2]$, and conclude by a reduction argument.
-\item If all the partitions are equal to $[1,1,2]$, then by the \RH{} formula we have $n\ge 6$. We can apply \cref{combinatorial-move:a:small-v} twice to combine three partitions into a single $[4]$, and conclude by reduction.
-\item Otherwise, there is at least one $[2,2]$ and one $[1,1,2]$; using \cref{combinatorial-move:a:small-v}, we can combine them into a single $[4]$ and conclude by reduction.\qedhere
-\end{itemize}
+\begin{sideline}{Case 1.}
+If all the partitions are equal to $[2,2]$, then we can apply \cref{combinatorial-move:a:large-v} to combine two partitions into a single $[2,2]$, and conclude by a reduction argument.
+\end{sideline}
+\begin{sideline}{Case 2.}
+If all the partitions are equal to $[1,1,2]$, then by the \RH{} formula we have $n\ge 6$. We can apply \cref{combinatorial-move:a:small-v} twice to combine three partitions into a single $[4]$, and conclude by reduction.
+\end{sideline}
+\begin{sideline}{Case 3.}
+Otherwise, there is at least one $[2,2]$ and one $[1,1,2]$; using \cref{combinatorial-move:a:small-v}, we can combine them into a single $[4]$ and conclude by reduction.\qedhere
+\end{sideline}
 \end{proof}
 
 
@@ -518,8 +533,10 @@ Let $d$ be a positive integer. Assume that every candidate datum $\datum{\surf{g
 \end{proposition}
 \begin{proof}
 We proceed by induction on $n\ge 4$, using the standard reduction technique. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n}}$; there are two cases.
-\begin{itemize}
-\item If there are two indices $1\le i<j\le n$ such that $v(\pi_i)+v(\pi_j)\le d-1$, then a routine application of \cref{combinatorial-move:a:small-v} shows that $\DD$ is realizable.
-\item Otherwise, $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. In particular, $v(\pi_1)+v(\pi_2)\ge d$ and $v(\pi_3)+\ldots+v(\pi_n)\ge d$. By applying \cref{combinatorial-move:a:large-v}, it is easy to see that $\DD$ is realizable.\qedhere
-\end{itemize}
+\begin{sideline}{Case 1.}
+If there are two indices $1\le i<j\le n$ such that $v(\pi_i)+v(\pi_j)\le d-1$, then a routine application of \cref{combinatorial-move:a:small-v} shows that $\DD$ is realizable.
+\end{sideline}
+\begin{sideline}{Case 2.}
+Otherwise, $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. In particular, $v(\pi_1)+v(\pi_2)\ge d$ and $v(\pi_3)+\ldots+v(\pi_n)\ge d$. By applying \cref{combinatorial-move:a:large-v}, it is easy to see that $\DD$ is realizable.\qedhere
+\end{sideline}
 \end{proof}
