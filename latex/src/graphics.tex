@@ -11,7 +11,7 @@
 \def\tikznoremake{\tikzset{external/force remake=false}}
 
 \makeatletter
-\def\createcontour@precision{0.1}
+\def\createcontour@precision{0.01}
 
 \newlength{\edgelinewidth}
 \setlength{\edgelinewidth}{0.8pt}
@@ -195,7 +195,7 @@ defaults,
 
 % Surface pictures
 
-\def\afterjoin@precision{0.1}
+\def\afterjoin@precision{0.01}
 \newlength{\afterjoin@width}
 \setlength{\afterjoin@width}{4pt}
 
@@ -325,7 +325,7 @@ cmove setting two disks tube/.pic={\path \surfcirclepoint{d1}{180} coordinate (-
 
 
 % Torus
-\def\torus@precision{21}
+\def\torus@precision{81}
 \tdplotsetmaincoords{65}{0}
 \def\radiusA{1.7}
 \def\radiusB{0.5}
