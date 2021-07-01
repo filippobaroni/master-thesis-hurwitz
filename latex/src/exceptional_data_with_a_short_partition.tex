@@ -44,7 +44,7 @@ Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\
 \end{enumarabic}
 \end{theorem}
 \begin{proof}
-Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional cases are:
+Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional data	 are:
 \begin{enumarabic}
 \item $\DD=\datum{\surf{1}}{6}{[3, 3],[3, 3],[2, 4]}$;
 \item $\DD=\datum{\surf{1}}{8}{[2, 2, 2, 2],[4, 4],[3, 5]}$;
@@ -67,7 +67,7 @@ This is in agreement with the theorem statement, so we can assume that $d\ge 17$
 \[
 \DD\cmove\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[1,x-3],\pi_2\setminus[2],[s-1,d-s-1]},
 \]
-which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless one of the following holds\footnote{Since this proof is long enough as it is, we will refrain from explaining in detail why candidate data of a certain form are realizable by \cref{short-partition:th:realizability-on-sphere-n-3}; we leave the tedious yet elementary casework required to the motivated reader. In this situation, for instance, one could simply note that $\pi_1\setminus[x]\cup[1,x-3]$ and $\pi_2\setminus[2]$ are both different from $[2,\ldots,2]$, therefore the only exceptional data to consider among those listed in \cref{short-partition:th:realizability-on-sphere-n-3} are those belonging to family \ref{short-partition:th:realizability-on-sphere-n-3:it:6}.}.
+which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless one of the following holds\footnote{Since this proof is long enough as it is, we will refrain from explaining in detail why candidate data of a certain form are realizable by \cref{short-partition:th:realizability-on-sphere-n-3}; we leave the tedious yet elementary casework required to the motivated reader. In this situation, for instance, one could simply note that $\pi_1\setminus[x]\cup[1,x-3]$ and $\pi_2\setminus[2]$ are both different from $[2,\ldots,2]$, therefore the only exceptional data to consider among those listed in \cref{short-partition:th:realizability-on-sphere-n-3} are the ones belonging to family \ref{short-partition:th:realizability-on-sphere-n-3:it:6}.}.
 \begin{itemize}
 \item $\DD=\datum{\surf{1}}{kh+2}{[1,\ldots,1,k+4],[2,h,\ldots,h],[lh+1,(k-l)h+1]}$ with $k\ge 2$, $h\ge 3$, $1\le l\le k-1$. By applying \cref{combinatorial-move:b:4 2} we get
 \[
@@ -109,7 +109,7 @@ which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
 \end{assumptions}
 \Cref{combinatorial-move:b:4 3} gives
 \[
-\DD\cmove=\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[3]\cup[1],[s-1,d-s-1]},
+\DD\cmove\datum{\sphere{}}{d-2}{\pi_1\setminus[x]\cup[x-2],\pi_2\setminus[3]\cup[1],[s-1,d-s-1]},
 \]
 which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless
 \[
@@ -144,7 +144,7 @@ which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
 d\ge 3\len{\pi_1}-3,&&d\ge 3\len{\pi_2}-3,
 \end{align*}
 which contradict the \RH{} formula if $d\ge 13$.
-\item \textbf{Case 4.4:} $[3,3]\not\subs\pi_1$. From the \RH{} formula it follows that $[3,3]\subs\pi_2$, but then $\DD$ is realizable by Case 4.1.\sdlendhere
+\item \textbf{Case 4.4:} $[3,3]\not\subs\pi_1$. From the \RH{} formula it follows that $[3,3]\subs\pi_2$, but then $\DD$ is realizable by Cases 4.2 and 4.3.\sdlendhere
 \end{itemize}
 \end{sideline}
 \begin{sideline}{Case 5.} Assume that:
@@ -158,18 +158,18 @@ Let $x=\max(\pi_1)$; \cref{combinatorial-move:b:4 2} gives
 \]
 which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3} unless one of the following holds.
 \begin{itemize}
-\item $\DD=\datum{\surf{1}}{2k+2}{[2,\ldots,2,3,5],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 7$. This is in fact one of the exceptional data listed in the statement.
-\item $\DD=\datum{\surf{1}}{2k+2}{[2,\ldots,2,6],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 7$. By applying \cref{combinatorial-move:b:4 2} we get
+\item $\DD=\datum{\surf{1}}{2k+2}{[2,\ldots,2,3,5],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 8$. This is in fact one of the exceptional data listed in the statement.
+\item $\DD=\datum{\surf{1}}{2k+2}{[2,\ldots,2,6],[2,\ldots,2],[k+1,k+1]}$ with $k\ge 8$. By applying \cref{combinatorial-move:b:4 2} we get
 \[
 \DD\cmove\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[k,k]},
 \]
 which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
-\item $\DD=\datum{\surf{1}}{4k+4}{[1,\ldots,1,k+2,k+4],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 3$. By applying \cref{combinatorial-move:b:4 2} we get
+\item $\DD=\datum{\surf{1}}{4k+4}{[1,\ldots,1,k+2,k+4],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 4$. By applying \cref{combinatorial-move:b:4 2} we get
 \[
 \DD\cmove\datum{\sphere{}}{4k+2}{[1,\ldots,1,2,k,k+2],[2,\ldots,2],[2k+1,2k+1]},
 \]
 which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
-\item $\DD=\datum{\surf{1}}{4k+4}{[1,\ldots,1,k+1,k+5],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 3$. By applying \cref{combinatorial-move:b:4 2} we get
+\item $\DD=\datum{\surf{1}}{4k+4}{[1,\ldots,1,k+1,k+5],[2,\ldots,2],[2k+2,2k+2]}$ with $k\ge 4$. By applying \cref{combinatorial-move:b:4 2} we get
 \[
 \DD\cmove\datum{\sphere{}}{4k+2}{[1,\ldots,1,2,k+1,k+1],[2,\ldots,2],[2k+1,2k+1]},
 \]
@@ -179,7 +179,7 @@ which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
 \DD\cmove\datum{\sphere{}}{4k}{[1,\ldots,1,2,k,k+1],[2,\ldots,2],[2k-1,2k+1]},
 \]
 which is realizable by \cref{short-partition:th:realizability-on-sphere-n-3}.
-\item $\DD=\datum{\surf{1}}{2k+2}{[1,\ldots,1,k+4],[2,\ldots,2],[2l+1,2(k-l)+1]}$ with $k\ge 7$, $1\le l\le k-1$. By applying \cref{combinatorial-move:b:4 2} we get
+\item $\DD=\datum{\surf{1}}{2k+2}{[1,\ldots,1,k+4],[2,\ldots,2],[2l+1,2(k-l)+1]}$ with $k\ge 8$, $1\le l\le k-1$. By applying \cref{combinatorial-move:b:4 2} we get
 \[
 \DD\cmove\datum{\sphere{}}{2k}{[1,\ldots,1,2,k],[2,\ldots,2],[2l,2(k-l)]},
 \]
@@ -208,7 +208,7 @@ It turns out that, for $n=3$ and $\len{\pi_3}=2$, there are no exceptional data 
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 2$. Then $\DD$ is realizable.
 \end{theorem}
 \begin{proof}
-Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. For $d\le 18$, a computer-aided search shows that there are no exceptional data (see the results in \cref{computational-results:sc:lists}). Therefore, we can further assume that $d\ge 19$. We proceed by induction on $g\ge 2$, analyzing several cases.
+Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$. For $d\le 20$, a computer-aided search shows that there are no exceptional data (see the results in \cref{computational-results:sc:lists}). Therefore, we can further assume that $d\ge 21$. We proceed by induction on $g\ge 2$, analyzing several cases.
 \begin{sideline}{Case 1.} Assume that:
 \begin{assumptions}
 \item $x\in\pi_1$ for some $x\ge 4$;
@@ -268,7 +268,7 @@ Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate dat
 \end{enumarabic}
 \end{theorem}
 \begin{proof}
-If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional cases are:
+If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional data are:
 \begin{enumarabic}
 \item $\DD=\datum{\surf{1}}{4}{[2, 2],[2, 2],[2, 2],[1, 3]}$;
 \item $\DD=\datum{\surf{2}}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$.
@@ -284,7 +284,7 @@ for a suitable candidate datum $\DD'$, where $v(\pi_1')=v(\pi_1)+v(\pi_2)$. If $
 \[
 \text{$\DD'=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $2k=d$.}
 \]
-If this is the case, then $\pi_4=[k,k]$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
+If this is the case, then $s=d-s=k$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
 \begin{itemize}
 \item If $\pi_1'=[2,\ldots,2]$, then $v(\pi_1')=k$ and $v(\pi_3)=k+2$. Assume without loss of generality that $v(\pi_1)\le k/2$. We have that
 \[
@@ -361,7 +361,7 @@ In order to show the exceptionality of $\DD$, we will employ the monodromy appro
 which does not contain any $3$\=/cycles. As a consequence, the product $\alpha_1\cdots\alpha_{n-1}$ cannot match $[1,3]$; by \cref{hurwitz:th:monodromy-realizability-orientable}, this implies that $\DD$ is exceptional.
 \end{proof}
 
-For the other families of exceptional data, we will instead make use of \dessins{}.
+For the other families of exceptional data, we will instead make use of \dessins{}. We adopt the usual graphical conventions; in particular, the complementary disk $D_1$ is colored orange and $D_2$ is colored blue.
 
 \bgroup
 \tikzset{
@@ -420,7 +420,7 @@ Let $\DD=\datum{\surf{g}}{d}{[2,\ldots,2],\pi_2,\pi_3}$ be a combinatorial datum
 The key idea is that vertices of degree $2$ do not contribute to the topology of a graph in any meaningful way.
 \begin{twoimplications}
 \rightimplication
-If are given a \dessin{} $\Gamma'\subs\surf{g}$ realizing $\DD$, we can obtain a suitable graph $\Gamma$ simply by removing all the black vertices, and merging the two edges adjacent to each one of them into a single edge. This operations does not change the topology of the complementary regions; all the perimeters are halved.
+If we are given a \dessin{} $\Gamma'\subs\surf{g}$ realizing $\DD$, we can obtain a suitable graph $\Gamma$ simply by removing all the black vertices, and merging the two edges adjacent to each one of them into a single edge. This operations does not change the topology of the complementary regions; all the perimeters are halved.
 \leftimplication
 Conversely, if we are given a graph $\Gamma\subs\surf{g}$, we can recover a \dessin{} $\Gamma'$ by coloring the vertices of $\Gamma$ with the color white, and inserting a black vertex in the middle of every edge.
 \end{twoimplications}
@@ -445,7 +445,7 @@ Conversely, if we are given a graph $\Gamma\subs\surf{g}$, we can recover a \des
 \path[quick,postaction={decorate}] (2) to (5);
 \end{scope}
 }
-\node at (1,0) {$\Longleftrightarrow$};
+\pic at (1,0) {my fancy double arrow};
 \end{tikzpicture}\qedhere\]
 \end{proof}
 
@@ -552,7 +552,7 @@ It follows that $\DD$ is exceptional, once again by \cref{short-partition:th:lem
 \end{aligned}$
 \end{dessintext}
 In all three cases, we have that $\card{\partial D_1}\neq 2k+1$, therefore $\DD$ is exceptional.
-\item There are only two kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+1]$ and whose complementary regions are two disks. We label the two vertices of degree $k+1$ with the letters $u$ and $v$.
+\item There are only two kinds of graphs embedded in $\sphere$ whose vertices have degrees $[1,\ldots,1,k+1,k+1]$ and whose complementary regions are two disks. We label the two vertices of degree $k+1$ with the letters $v$ and $u$.
 \begin{dessintext}
 \makecell[c]{
 \tikzsetnextfilename{exceptionality-sphere-4-1}

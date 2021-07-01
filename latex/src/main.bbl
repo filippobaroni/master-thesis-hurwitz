@@ -314,7 +314,7 @@
       \verb https://doi.org/10.1142/S0218216509006896
       \endverb
     \endentry
-    \entry{pervova-existence-ii}{article}{}
+    \entry{pervova-existence-i}{article}{}
       \name{author}{2}{}{%
         {{hash=6ef7a1f52057b5277ad3ada86e654f4c}{%
            family={Pervova},
@@ -338,6 +338,47 @@
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{issn}{1472-2747}
+      \field{journaltitle}{Algebr. Geom. Topol.}
+      \field{title}{On the existence of branched coverings between surfaces with prescribed branch data. {I}}
+      \field{volume}{6}
+      \field{year}{2006}
+      \field{pages}{1957\bibrangedash 1985}
+      \range{pages}{29}
+      \verb{doi}
+      \verb 10.2140/agt.2006.6.1957
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.2140/agt.2006.6.1957
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.2140/agt.2006.6.1957
+      \endverb
+    \endentry
+    \entry{pervova-existence-ii}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6ef7a1f52057b5277ad3ada86e654f4c}{%
+           family={Pervova},
+           familyi={P\bibinitperiod},
+           given={Ekaterina},
+           giveni={E\bibinitperiod}}}%
+        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
+           family={Petronio},
+           familyi={P\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{fullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{bibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authorbibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authornamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \strng{authorfullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
       \field{issn}{0218-2165}
       \field{journaltitle}{J. Knot Theory Ramifications}
       \field{number}{7}
@@ -355,39 +396,6 @@
       \verb{url}
       \verb https://doi.org/10.1142/S0218216508006397
       \endverb
-    \endentry
-    \entry{pervova-methods}{incollection}{}
-      \name{author}{2}{}{%
-        {{hash=6ef7a1f52057b5277ad3ada86e654f4c}{%
-           family={Pervova},
-           familyi={P\bibinitperiod},
-           given={Ekaterina},
-           giveni={E\bibinitperiod}}}%
-        {{hash=940ea63e12521e79e9ef35fd6c31004f}{%
-           family={Petronio},
-           familyi={P\bibinitperiod},
-           given={Carlo},
-           giveni={C\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Univ. Stud. Bologna, Bologna}%
-      }
-      \strng{namehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
-      \strng{fullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
-      \strng{bibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
-      \strng{authorbibnamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
-      \strng{authornamehash}{22ea2060354cc3ff3cc76ef960fcc4fc}
-      \strng{authorfullhash}{22ea2060354cc3ff3cc76ef960fcc4fc}
-      \field{extraname}{2}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Geometry {S}eminars. 2005--2009 ({I}talian)}
-      \field{title}{Realizability and exceptionality of candidate surface branched covers: methods and results}
-      \field{year}{2010}
-      \field{pages}{105\bibrangedash 120}
-      \range{pages}{16}
     \endentry
     \entry{hurwitz-counting-3}{article}{}
       \name{author}{1}{}{%

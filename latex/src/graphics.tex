@@ -24,7 +24,7 @@
 \colorlet{disk 1 boundary}{orange}
 \colorlet{disk 2 boundary}{blue!70!green}
 \colorlet{disk 1 boundary enveloped}{disk 1 boundary!70!black}
-\colorlet{disk 2 boundary enveloped}{disk 2 boundary!60!black}
+\colorlet{disk 2 boundary enveloped}{disk 2 boundary!70!black}
 \colorlet{disk 1}{orange!70!yellow!40!white}
 \colorlet{disk 2}{disk 2 boundary!40!white}
 \tikzset{disk 1 boundary dashed/.style={draw=disk 1 boundary,densely dashed}}
@@ -38,8 +38,11 @@
 }}}
 
 
-% Arrow
-\tikzset{my fancy arrow/.pic={\draw[violet,line width=2pt,-{Latex[sharp,scale=.75]}] (-.33cm,0) -- (.33cm,0);}}
+% Arrows
+\tikzset{
+my fancy arrow/.pic={\draw[violet,line width=2pt,-{Latex[sharp,scale=.75]}] (-.33cm,0) -- (.33cm,0);},
+my fancy double arrow/.pic={\draw[violet,line width=2pt,{Latex[sharp,scale=.75]}-{Latex[sharp,scale=.75]}] (-.5cm,0) -- (.5cm,0);}
+}
 
 
 % Contour graphs
@@ -139,9 +142,9 @@ contour edge settings/do stuff/.style 2 args={
 	\ifnum\contouredge@isabove=1\tikzset{postaction={
 	create contour={direction=#1,radius={\contourradius+\edgehalo},begin=\contouredge@begin,end=\contouredge@end},
 	postaction={exec on layer={graph edge \contouredge@layer}{\fill[white] plot[smooth] coordinates \contour -- plot[smooth] coordinates \contourrev -- cycle;}}}}\fi},
-	postaction={create contour={direction=#1,radius={\contourradius-.5\edgelinewidth},begin=0,end=\contouredge@begin},
+	postaction={create contour={direction=#1,radius={\contourradius-.25pt},begin=0,end=\contouredge@begin},
 	postaction={exec on layer={graph near vertex mask}{\fill[white] plot[smooth] coordinates \contour -- plot[smooth] coordinates \contourrev -- cycle;}}},
-	postaction={create contour={direction=#1,radius={\contourradius-.5\edgelinewidth},begin=\contouredge@end,end=0.998},
+	postaction={create contour={direction=#1,radius={\contourradius-.25pt},begin=\contouredge@end,end=0.998},
 	postaction={exec on layer={graph near vertex mask}{\fill[white] plot[smooth] coordinates \contour -- plot[smooth] coordinates \contourrev -- cycle;}}},
 	postaction={
 	create contour={direction=#1,radius=\contourradius,begin=\contouredge@begin,end=\contouredge@end},
@@ -224,7 +227,7 @@ z={(0,1)},
 y={(0,\surfyscale)},
 },
 surf boundary/.style={draw=black!60,line width=.6pt},
-surf boundary soft/.style={surf boundary,opacity=.5},
+surf boundary soft/.style={surf boundary,opacity=.4},
 surf boundary dashed/.style={surf boundary soft,densely dashed},
 }
 

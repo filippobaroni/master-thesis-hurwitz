@@ -5,7 +5,7 @@
 
 In \cref{monodromy:sc:combinatorial-moves}, we discussed how the Hurwitz existence problem can be reduced to the analysis of candidate data on the sphere. Moreover, thanks to \cref{combinatorial-move:a:small-v,combinatorial-move:a:large-v}, we have devised a relatively reliable technique to decrease the number $n$ of partitions; this technique was successfully employed in \cref{monodromy:sc:results-sphere} to show the realizability of a wide variety of candidate data by induction on $n$, starting from the base case $n=3$. Ignoring the cases where $n\le 2$, which were fully analyzed in \cref{monodromy:sc:combinatorial-moves}, it should come as no surprise that candidate data with $n=3$ play a very important role in the study of the existence problem.
 
-Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\emph{\Dessin{}}'' is French for ``child's drawing'', hence the title of this section.} was popularized by Grothendieck in \cite{grothendieck}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \resultcite{section}{3}{pervova-methods}.
+Up to this point, we have only approached the Hurwitz existence problem from a group-theoretic point of view, showing realizability by looking for elements of $\symgroup[d]$ with certain properties. In this section, we will present a totally different tool, of a more topological and combinatorial nature, for attacking the same problem. The concept of \emph{\dessins{}}\footnote{``\emph{\Dessin{}}'' is French for ``child's drawing'', hence the title of this section.} was popularized by Grothendieck in \cite{grothendieck}, in a setting related to, but different from, the Hurwitz existence problem. \Dessins{} provide a strikingly elementary tool for showing the realizability of candidate data with $n=3$ partitions, although they generalize quite nicely to the case $n\ge 4$. However, we will not deal with said generalization, since the reduction technique will prove to be sufficient for our purposes; we refer the interested reader to \resultcite{section}{4}{pervova-existence-i}.
 
 We start by introducing some basic terminology about graphs. Given a surface $\Sigma$, a \emph{graph} embedded in $\Sigma$ (or, simply, a graph on $\Sigma$) is a closed subspace $\Gamma\subs\Sigma$ consisting of:
 \begin{itemize}
@@ -44,7 +44,7 @@ Let $\Gamma$ be a \dessin{}, and fix a complementary region $D$. By traveling al
 \[
 \partial D_1=\{e_1,e_2,e_4,e_5,e_7,e_6,e_5,e_4,e_3,e_1,e_6,e_7\}.
 \]
-In particular, note that $\card{\partial D_1}=12$, and that $e_1,e_4,e_5,e_6$ are enveloped by $D_1$. Similarly, we see that $\partial D_2=\{e_2,e_3\}$.
+In particular, note that $\card{\partial D_1}=12$, and that $e_1$, $e_4$, $e_5$, $e_6$ and $e_7$ are enveloped by $D_1$. Similarly, we see that $\partial D_2=\{e_2,e_3\}$.
 \begin{center}
 \largevertices{}
 \def\xac{2}
@@ -112,7 +112,7 @@ We show the two implications.
 \rightimplication
 Assume that $\DD$ is realized by a branched covering $\map{f}{\surf{g}}{\sphere{}}$ with branching points $x,y,z\in\sphere{}$. Let $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$, $\{\wtilde{y}_1,\ldots,\wtilde{y}_s\}=f^{-1}(y)$, $\{\wtilde{z}_1,\ldots,\wtilde{z}_h\}=f^{-1}(z)$. Fix a segment $e\subs\sphere$ connecting $x$ and $y$ (and avoiding $z$); we claim that $\Gamma=f^{-1}(e)$ is the desired \dessin{}. Let $\interior{e}$ be the interior of $e$ (that is, $\interior{e}=e\setminus\{x,y\}$). First of all, note that $f^{-1}(\interior{e})$ is the disjoint union of $d$ open segments $\interior{e}_1,\ldots,\interior{e}_d$, since the restriction of $f$ to $\sphere{}\setminus\{x,y,z\}$ is a covering map of degree $d$. Moreover, it is easy to see that the closure of each $\interior{e}_i$ is a closed segment $e_i$ connecting one point in $f^{-1}(x)$ and one point of $f^{-1}(y)$; it follows that $\Gamma$ is a bipartite graph on $\surf{g}$, with black vertices $\wtilde{x}_1,\ldots,\wtilde{x}_r$ and white vertices $\wtilde{y}_1,\ldots,\wtilde{y}_s$. Consider a vertex $\wtilde{x}_i$; recall that $f$ is locally modeled on the complex map $\xi\mapsto\xi^k$, where $k=k(\wtilde{x}_i)$ is the local degree of $\wtilde{x}_i$. As a consequence, we immediately see that there are exactly $k(\wtilde{x}_i)$ edges of $\Gamma$ with $\wtilde{x}_i$ as an endpoint; of course, the same holds for every $\wtilde{y}_j$. Finally, we turn to the complementary regions of $\Gamma$. Let $D=\sphere{}\setminus e\iso\RR^2$, $\holed{D}=D\setminus\{z\}\iso\RR^2\setminus\{0\}$. The restriction of $f$ to $f^{-1}(\holed{D})=\surf{g}\setminus(\Gamma\cup\{\wtilde{z}_1,\ldots,\wtilde{z}_h\})$ is a covering map of the punctured disk $\holed{D}$. It is then easy to see that the complementary regions of $\Gamma$ are discs $\wtilde{D}_1,\ldots,\wtilde{D}_h$, with $\wtilde{z}_i\in\wtilde{D}_i$ for each $1\le i\le h$, and that the restriction $\map{f}{\wtilde{D}_i}{D}$ is modeled the complex map $\xi\mapsto\xi^{k(\wtilde{z}_i)}$. Since the perimeter of $D$ is $2$, we have that $\card{\partial\wtilde{D}_i}=2 k(\wtilde{z}_i)$; this concludes the proof of the equality $\DD(f)=\DD(\Gamma)$.
 \leftimplication
-Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$ (and avoiding $z$). First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: the idea is to send each complementary region to the disk $\sphere{}\setminus e$ with the map $\xi\mapsto\xi^k$, for some $k\ge 1$ depending on the perimeter; here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
+Conversely, assume that we are given a \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$. Fix three arbitrary points $x,y,z\in\sphere{}$, and let $e\subs\sphere{}$ be a segment connecting $x$ and $y$ (and avoiding $z$). First of all, we define $f$ on $\Gamma$, sending black vertices to $x$ and white vertices to $y$, and mapping edges homeomorphically to $e$. Extending $f$ to all of $\surf{g}$ is a relatively easy task: the idea is to send each complementary region to the disk $\sphere{}\setminus e$ with the map $\xi\mapsto\xi^k$, for some $k\ge 1$ depending on the perimeter; here are the details. Consider the standard closed disk $K=\{a\in\RR^2:\lVert a\rVert\le 1\}$, and take a complementary region $\wtilde{D}\subs\surf{g}\setminus\Gamma$; let $\map{\phi}{K}{\surf{g}}$ be a continuous map which restricts to a homeomorphism $\map{\phi}{\interior{K}}{\wtilde{D}}$, where $\interior{K}$ denotes the interior of $K$. There exists a map $\map{\psi}{K}{\sphere{}}$ such that $\psi(0)=z$, the diagram
 \begin{diagram}
 \partial K\dar{\phi}\ar[dr,"\psi"]\\
 \Gamma\rar{f}&e
@@ -121,7 +121,7 @@ commutes, $\psi$ is a local homeomorphism in $\interior{K}\setminus\{0\}$ and it
 \end{twoimplications}
 \end{proof}
 
-\section{Unwinding, joining and fattening}
+\section{Unwinding, joining and fattening}\label{dessins:sc:unwind-join-fatten}
 
 In the next section we will introduce a new kind of combinatorial moves, which operate on \dessins{} rather than permutations. In this context, the importance of visual intuition cannot be overstated. Therefore, we will now spend some words describing in detail three operations that will play a major role in the topological explanation of the upcoming combinatorial moves.
 
@@ -219,7 +219,7 @@ In order to reconstruct the embedding of $\Gamma$ in $\surf{g}$, we simply have 
 \draw[disk 2 boundary,fill=disk 2] [torus graph small contour];
 \drawtorusgraph
 \end{scope}
-\pic at (.2,0) {my fancy arrow};
+\pic at (.2,0) {my fancy double arrow};
 \begin{scope}[shift={(3.5,0)}]
 \draw[disk 1 boundary,fill=gray!30] plot[variable=\x,domain={vcrit2(240-\xac)}:{360+vcrit1(240-\xac)}] (\ontorus{240-\xac}{\x}) --plot[variable=\x,domain={360+vcrit1(240)+\xac)}:{vcrit2(240+\xac)}] (\ontorus{240+\xac}{\x});
 \draw[black edge] [torus graph behind];
@@ -232,7 +232,7 @@ In order to reconstruct the embedding of $\Gamma$ in $\surf{g}$, we simply have 
 \end{tikzpicture}
 \end{center}
 
-We will employ this technique in order to represent \dessins{} (and more generally, graphs whose complementary regions are disks) embedded in higher genus surfaces.
+We will employ this technique in order to represent \dessins{} (and, more generally, graphs whose complementary regions are disks) embedded in higher genus surfaces.
 
 \section{Genus-reducing combinatorial moves}\label{dessins:sc:combinatorial-moves}
 \largevertices{}
@@ -262,10 +262,10 @@ where $\pi_1'=\pi_1\setminus[3]\cup[1,1,1]$. Then $\DD\cmove\DD'$.
 \begin{proof}
 Assume that $\DD'$ is realizable; by \cref{dessins:th:dessins-realizability}, there exists a \dessin{} $\Gamma'\subs\surf{g-1}$ with $\DD(\Gamma')=\DD'$. Our aim will be to construct a new \dessin{} $\Gamma\subs\surf{g}$ with $\DD(\Gamma)=\DD$; by \cref{dessins:th:dessins-realizability}, this will imply that $\DD$ is realizable as well.
 
-Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we can assume that $\Gamma$ has three black vertices of degree $1$ lying on the boundary of the complementary region $D_1$. Let us represent $D_1$ with its boundary unwound , and focus on the three black vertices of degree $1$ (see the picture labeled \tikzenumlabel{0} below). We perform the following operations on $\Gamma'$.
+Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we can assume that $\Gamma$ has three black vertices of degree $1$ lying on the boundary of the complementary region $D_1$. Let us represent $D_1$ with its boundary unwound, and focus on the three black vertices of degree $1$ (see the picture labeled \tikzenumlabel{0} below). We perform the following operations on $\Gamma'$.
 \begin{enumarabic}
 \item Attach a tube to $\surf{g-1}$ with both endpoints in $D_1$; to be more precise, remove two disjoint open disks contained in the interior of $D_1$, and glue a tube $S^1\times[0,1]$ along the two new boundary components. This effectively increases the genus by $1$.
-\item Connect the three black vertices with two new edges, as shown in red in the picture; note that the orange complementary region of the new graph is still a disk.
+\item Connect the three black vertices with two new edges, colored red in the picture; note that the orange complementary region of the new graph is still a disk.
 \item Join the three black vertices along the red edges.
 \end{enumarabic}
 \bgroup
@@ -318,7 +318,7 @@ Note that $[1,1,1,1,1]\subs\pi_1'$; therefore, without loss of generality, we ca
 \end{tikzpicture}
 \end{longtable}
 \egroup
-After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\DD(\Gamma)=\DD$, therefore $\DD$ is realizable, again by \cref{dessins:th:dessins-realizability}.
+After these operations, we get a new \dessin{} $\Gamma$ embedded in $\surf{g}$. It is easy to check that $\DD(\Gamma)=\DD$, therefore $\DD$ is realizable.
 \end{proof}
 
 In the upcoming proofs, we will often represent complementary disks with their boundaries unwound, without explicitly saying so. The pictures should be clear enough to avoid any ambiguity.
@@ -326,7 +326,7 @@ In the upcoming proofs, we will often represent complementary disks with their b
 \begin{combinatorialmoveb}\label{combinatorial-move:b:4 2}
 Let $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum with $g\ge 1$. Assume that:
 \begin{assumptions}
-\item $2\le s\le d-s$;
+\item $2\le s\le d-2$;
 \item $x\in\pi_1$ for some $x\ge 4$;
 \item $2\in\pi_2$.
 \end{assumptions}
@@ -497,7 +497,7 @@ the black vertex of degree $x-2$ lies on $\partial D_1$ and the one with degree 
 \begin{enumarabic}
 \item Attach a tube to $\surf{g-1}$ with one endpoint in $D_1$ and the other one in $D_2$.
 \item Add two black vertices, two white vertices and four edges as shown in the picture.
-\item Draw the red edge as shown in the picture.
+\item Draw the two red edges shown in the picture.
 \item Perform the join operation along the red edges.
 \end{enumarabic}
 \bgroup
@@ -730,7 +730,7 @@ neither $u$ nor $v$ lie (say) on $\partial D_2$; analyzing this case will be mor
 \path[ab/.style={above=3pt}] (0,0) pic{black vertex} node[ab] {$u$} (2.5,0) pic{white vertex} node[ab] {$2$} (3.5,0) pic{black vertex} node[ab] {$2$} (6,0) pic{white vertex} node[ab] {$v$};
 \end{tikzpicture}
 \end{center}
-appear in this order on $\partial D_1$. Let us unwind the boundary of $D_1$; since $u$ does not lie on the boundary of $D_2$, it appears exactly $x-2\ge 2$ times on $\partial D_1$; similarly, $v$ appears exactly $y-2$ times.
+appear in this order (either clockwise or counterclockwise) on $\partial D_1$. Let us unwind the boundary of $D_1$; since $u$ does not lie on the boundary of $D_2$, it appears exactly $x-2\ge 2$ times on $\partial D_1$; similarly, $v$ appears exactly $y-2$ times.
 \def\myradius{1.3cm}
 If there is a shared edge $e$ such that $\{u,v,u,e\}$ appear in this order on $\partial D_1$, then, by adding a black vertex and a white vertex on $e$, we immediately get the desired result.
 \begin{center}
@@ -764,7 +764,7 @@ If there is a shared edge $e$ such that $\{u,v,u,e\}$ appear in this order on $\
 Otherwise, we have to modify the \dessin{} $\Gamma'$; consider the pictures below.
 \begin{enumarabic}
 \item We are in the following situation: there is a contiguous segment $A$ of $\partial D_1$ that contains all the occurrences of $u$, and does not contain any occurrence of $v$ or any shared edge. Similarly, there is a segment $B$ of $\partial D_1$ that contains all the occurrences of $v$, no occurrence of $u$ and no shared edge. Note that $u$ and $v$ are never adjacent to a shared edge, since by assumption they do not lie on $\partial D_2$.
-\item Choose an orientation of $\partial D_1$ (counterclockwise in the picture) and consider the first occurrence of $u$ in $A$; let $\alpha$ be the edge immediately afterwards in $\partial D_1$. Since $\alpha$ is not shared, it must appear once more on the combinatorial boundary of $D_1$, with the opposite orientation. Note that $\alpha$ it cannot occur immediately before the first appearance of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere else on $A$.
+\item Choose an orientation of $\partial D_1$ (counterclockwise in the picture) and consider the first occurrence of $u$ in $A$; let $\alpha$ be the edge immediately afterwards in $\partial D_1$. Since $\alpha$ is not shared, it must appear once more on the combinatorial boundary of $D_1$, with the opposite orientation. Note that $\alpha$ cannot occur immediately before the first appearance of $u$, otherwise $u$ would have degree $1$, therefore it will occur somewhere else on $A$.
 \item Consider the first occurrence of $v$ in $B$; let $\beta$ be the edge immediately before in $\partial D_1$. Since $\beta$ is not shared, it will also occur somewhere else on the combinatorial perimeter of $D_1$.
 \item Let $a$ be the other endpoint of $\alpha$, and let $b$ be the other endpoint of $\beta$. Erase the edges $\alpha$ and $\beta$ and draw two new ones, connecting $u$ to $v$ and $a$ to $b$ as shown in the picture. It is now easy to see that the orange region is still a complementary disk, and that its perimeter has not changed. Moreover, by traveling along its boundary, we encounter $\{u,v,u\}$ in this order, without any shared edges in between (recall that there are no shared edges on $B$); since there must be at least one shared edge $e$ on the boundary of the new orange region, we find $\{u,v,u,e\}$ in this order; as explained above, adding one black vertex and one white vertex on $e$ gives the desired result.
 \end{enumarabic}
@@ -997,7 +997,7 @@ The augmented datum
 \[
 \DD=\datum{\surf{2}}{12}{[3,3,3,3],[3,3,3,3],\pi_3}
 \]
-is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk.
+is realizable for $\pi_3\in\{[1,\env{11}],[2,\env{10}],[\env{3},\env{9}],[\env{4},\env{8}],[\env{5},\env{7}],[\env{6},\env{6}]\}$. The following pictures display \dessins{} realizing each of these augmented data; as usual, the disk associated to the first element of $\pi_3$ is colored orange and the other one is colored blue; enveloped edges are drawn in the same color as the corresponding disk. In order to represent these graphs embedded in $\surf{2}$, we employ the ``fat graph'' trick described in \cref{dessins:sc:unwind-join-fatten}.
 
 \bgroup
 
@@ -1026,7 +1026,7 @@ $\pi_3=[1,\env{11}]$&$\pi_3=[2,\env{10}]$&$\pi_3=[\env{3},\env{9}]$
 \tikzsetnextfilename{dessin-special-families-small-1}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
-\path[contour edge={quick={2}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={2}{2},left bcap=90}] (w4) to[bend left] (b3);
 \path[contour edge={quick={2}{2}}] (b3) to[bend left] (w3);
 \path[contour edge={quick={2}{1}}] (w3) to[bend left] (b2);
 \path[contour edge={quick={2}{2}}] (b2) to[bend left] (w2);
@@ -1060,7 +1060,7 @@ $\pi_3=[1,\env{11}]$&$\pi_3=[2,\env{10}]$&$\pi_3=[\env{3},\env{9}]$
 \tikzsetnextfilename{dessin-special-families-small-3}
 \begin{tikzpicture}[graph picture]
 \draweightvertices
-\path[contour edge={quick={2}{2}}] (w4) to[bend left] (b3);
+\path[contour edge={quick={2}{2},left bcap=90}] (w4) to[bend left] (b3);
 \path[contour edge={quick={2}{2}}] (b3) to[bend left] (w3);
 \path[contour edge={quick={2}{1}}] (w3) to[bend left] (b2);
 \path[contour edge={quick={1}{1},left ecap=90}] (b2) to[out=-40,out looseness=2,in=-170] (w2);
@@ -1203,7 +1203,7 @@ For every $g\ge 2$, the augmented datum
 \[
 \datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],\pi_3}
 \]
-is realizable for $\pi_3\in\{[1,\env{6g-1}],[2,\env{6g-2}]\}\cup\{[\env{s},\env{6g-s}]\colon 3\le s\le 6g-3\}$. This can be easily shown by induction on $g$, using step 1 as the base case and step 2 for the induction.
+is realizable for $\pi_3\in\{[1,\env{6g-1}],[2,\env{6g-2}]\}\cup\{[\env{s},\env{6g-s}]\colon 3\le s\le 6g-3\}$. This can be easily shown by induction on $g$, using Step 1 as the base case and Step 2 for the induction.
 \end{sideline}
 \def\myscale{1.5}
 \begin{sideline}{Step 4.}
@@ -1302,28 +1302,28 @@ is realizable as well. In fact, consider a \dessin{} $\Gamma\subs\surf{g}$ reali
 The new \dessin{} realizes the augmented datum $\DD'$.
 \end{sideline}
 
-Finally, it is easy to see that the five families listed in the statement can be obtained by applying steps 4, 5 and 6 zero or more times to an augmented datum which is realizable by step 3, and then forgetting about the augmentation; here are the details.
+Finally, it is easy to see that the five families listed in the statement can be obtained by applying Steps 4, 5 and 6 zero or more times to an augmented datum which is realizable by Step 3, and then forgetting about the augmentation; here are the details.
 \begin{enumarabic}
-\item $\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,6g-s]}$ is already realizable by step 3.
-\item If we assume that $s\le 3g+1$, step 4 gives
+\item $\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,6g-s]}$ is already realizable by Step 3.
+\item If we assume that $s\le 3g+1$, Step 4 gives
 \begin{multline*}
 \datum{\surf{g}}{6g+2}{[2,3,\ldots,3],[2,3\ldots,3],[s,\env{6g+2-s}]}\\
 \cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
 \end{multline*}
-which is realizable by step 3.
-\item If we assume that $s\le 3g+1$, step 5 gives 
+which is realizable by Step 3.
+\item If we assume that $s\le 3g+1$, Step 5 gives 
 \begin{multline*}
 \datum{\surf{g}}{6g+3}{[3,\ldots,3],[1,2,3,\ldots,3],[s,\env{6g+3-s}]}\\
 \cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
 \end{multline*}
-which is realizable by step 3.
-\item If we assume that $s\le 3g+2$, step 6 gives
+which is realizable by Step 3.
+\item If we assume that $s\le 3g+2$, Step 6 gives
 \begin{multline*}
 \datum{\surf{g}}{6g+4}{[1,3,\ldots,3],[1,3,\ldots,3],[s,\env{6g+4-s}]}\\
 \cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
 \end{multline*}
-which is realizable by step 3.
-\item If we assume that $s\le 3g+3$, step 4 and 6 give
+which is realizable by Step 3.
+\item If we assume that $s\le 3g+3$, Steps 4 and 6 give
 \begin{multline*}
 \datum{\surf{g}}{6g+6}{[1,2,3,\ldots,3],[1,2,3,\ldots,3],[s,\env{6g+6-s}]}\\
 \begin{aligned}
@@ -1331,6 +1331,6 @@ which is realizable by step 3.
 &\cmove\datum{\surf{g}}{6g}{[3,\ldots,3],[3,\ldots,3],[s,\env{6g-s}]},
 \end{aligned}
 \end{multline*}
-which is realizable by step 3.\qedhere
+which is realizable by Step 3.\qedhere
 \end{enumarabic}
 \end{proof}

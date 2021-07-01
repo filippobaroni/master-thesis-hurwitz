@@ -4,7 +4,7 @@
 
 \section{Non-positive Euler characteristic}
 
-The monodromy approach developed in the previous chapter will allow us to completely solve the Hurwitz existence problem for a large class of candidate data. For the majority of this chapter, we will closely follow \cite{edmonds}, with a slight rewording of the exposition. Perhaps, the most notable deviation will occur in \cref{monodromy:sc:combinatorial-moves,monodromy:sc:results-sphere}, where we will introduce \emph{combinatorial moves} and apply them extensively in our proofs. It should be noted, however, that combinatorial moves can make some arguments easier to follow and less repetitive, but they do not provide any conceptual innovations; the core ideas of the proofs are the same as those presented in aforementioned article.
+The monodromy approach developed in the previous chapter will allow us to completely solve the Hurwitz existence problem for a large class of candidate data. For the majority of this chapter, we will closely follow \cite{edmonds}, with a slight rewording of the exposition. Perhaps, the most notable deviation will occur in \cref{monodromy:sc:combinatorial-moves,monodromy:sc:results-sphere}, where we will introduce \emph{combinatorial moves} and apply them extensively in our proofs. It should be noted, however, that these combinatorial moves can make some arguments easier to follow and less repetitive, but they do not provide any conceptual innovations; the core ideas of the proofs are the same as those presented in aforementioned article.
 
 With the following elementary result about symmetric groups, we will already be able to fully address the cases where $\chi(\Sigma)\le 0$.
 
@@ -20,7 +20,7 @@ where $d_r=d$. Fix
 \begin{align*}
 \beta_0=\cycle{1,b_1,b_2,\ldots,b_{2t}},&&\beta_1=\cycle{1,d_1+1,d_2+1,\ldots,d_{r-1}+1},
 \end{align*}
-where $b_1<b_2<\ldots<b_{2t}$ are elements of $\{1,\ldots,d\}\setminus\{d_1+1,\ldots,d_{r-1}+1\}$. Set
+where $b_1<b_2<\ldots<b_{2t}$ are elements of $\{1,\ldots,d\}\setminus\{1,d_1+1,\ldots,d_{r-1}+1\}$. Set
 \[
 \beta=\beta_0\beta_1=\cycle{1,d_1+1,d_2+1,\ldots,d_{r-1}+1,b_1,b_2,\ldots,b_{2t}}.
 \]
@@ -64,10 +64,10 @@ Let us first assume that $\Sigma$ is orientable; this means that $\Sigma=\surf{g
 \[
 v(\alpha)\equiv v(\alpha_1)+\ldots+v(\alpha_n)\equiv 0\pmod{2}.
 \]
-By \cref{monodromy:th:even-permutation-commutator-or-squares}, we can find permutations $\beta_1,\gamma_1\in\symgroup[d]$ such that $\alpha=[\gamma_1,\beta_1]$ and $\beta_1$ is a $d$\=/cycle. Set $\beta_2=\ldots=\beta_g=\gamma_2=\ldots=\gamma_g=\id\in\symgroup[d]$. All the conditions of \cref{hurwitz:th:monodromy-realizability-orientable} are satisfied; since $\tSigma$ is orientable, this implies that $\DD$ is realizable (see \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
+By \cref{monodromy:th:even-permutation-commutator-or-squares}, we can find permutations $\beta_1,\gamma_1\in\symgroup[d]$ such that $\alpha^{-1}=[\beta_1,\gamma_1]$ and $\gamma_1$ is a $d$\=/cycle. Set $\beta_2=\ldots=\beta_g=\gamma_2=\ldots=\gamma_g=\id\in\symgroup[d]$. All the conditions of \cref{hurwitz:th:monodromy-realizability-orientable} are satisfied; since $\tSigma$ is orientable, this implies that $\DD$ is realizable (see \cref{hurwitz:rm:sigma-tilde-unique-orientable}).
 \end{sideline}
 \begin{sideline}{Case 2.}
-Assume now that $\Sigma$ and $\tSigma$ are both non-orientable; this means that $\Sigma=\nosurf{g}$ is the connected sum of $g\ge 2$ projective planes. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Similarly to what we did for the previous case, we can find $\beta_1,\beta_2\in\symgroup[d]$ such that $\alpha=\beta_2^{-2}\beta_1^{-2}$ and $\beta_1\beta_2$ is a $d$\=/cycle. Note that, since $\beta_1\beta_2$ is a $d$\=/cycle, there exists an integer $m\ge 0$ such that $\beta_1(\beta_1\beta_2)^m$ has a fixed point. By setting $\beta_3=\ldots=\beta_g=\id\in\symgroup[d]$, \cref{hurwitz:th:monodromy-realizability-non-orientable} (together with \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}) implies the realizability of $\DD$.
+Assume now that $\Sigma$ and $\tSigma$ are both non-orientable; this means that $\Sigma=\nosurf{g}$ is the connected sum of $g\ge 2$ projective planes. Choose permutations $\alpha_1,\ldots,\alpha_n\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ for each $1\le i\le n$. Let $\alpha=\alpha_1\cdots\alpha_n$. Similarly to what we did for the previous case, we can find $\beta_1,\beta_2\in\symgroup[d]$ such that $\alpha^{-1}=\beta_1^2\beta_2^2$ and $\beta_1\beta_2$ is a $d$\=/cycle. Note that, since $\beta_1\beta_2$ is a $d$\=/cycle, there exists an integer $m\ge 0$ such that $\beta_1(\beta_1\beta_2)^m$ has a fixed point. By setting $\beta_3=\ldots=\beta_g=\id\in\symgroup[d]$, \cref{hurwitz:th:monodromy-realizability-non-orientable} (together with \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}) implies the realizability of $\DD$.
 \end{sideline}
 \begin{sideline}{Case 3.}
 Finally, consider the case where $\Sigma$ is non-orientable and $\tSigma$ is orientable. Since $\DD$ is a candidate datum, $d$ is even and there exist partitions $\pi'_1,\ldots,\pi'_n,\pi''_1,\ldots,\pi''_n\in\Partitions{d/2}$ with $\pi_i=\pi'_1\cup\pi''_i$ for each $1\le i\le n$. Let $\hSigma$ be the double orientable covering of $\Sigma$; by Case 1, the candidate datum
@@ -80,13 +80,13 @@ is realizable. By \cref{hurwitz:th:monodromy-realizability-double-covering}, $\D
 
 \section{Products in symmetric groups}
 
-The monodromy approach can prove to be quite fruitful also in the cases where $\chi(\Sigma)>0$ (namely, when $\Sigma$ is either the sphere $\sphere$ or the projective plane $\RP[2]$). In order to deal with this instances of the Hurwitz existence problem, however, we will need a few more technical results about products of permutations.
+The monodromy approach can prove to be quite effective also in the cases where $\chi(\Sigma)>0$ (namely, when $\Sigma$ is either the sphere $\sphere$ or the projective plane $\RP[2]$). In order to deal with these instances of the Hurwitz existence problem, however, we will need a few more technical results about products of permutations.
 
 \begin{lemma}\label{monodromy:th:same-number-of-cycles}
-Let $X,Y$ be finite sets; denote by $h$ the cardinality of $Y$, and by $k$ the cardinality of $X\cap Y$. Let $\alpha\in\symgroup(X)$, $\beta\in\symgroup(Y)$, $\gamma\in\symgroup(X\cap Y)$. Assume that $\beta=\cycle{b_1,\ldots,b_h}$ is a $h$\=/cycle, and that $\gamma$ is a $k$\=/cycle of the form $\gamma=\cycle{b_{i_1},\ldots,b_{i_k}}$ with $1\le i_1\le\ldots\le i_k\le h$. Then $\alpha\in\symgroup(X)$ and $\alpha\gamma^{-1}\beta\in\symgroup(X\cup Y)$ have the same number of cycles.
+Let $X,Y$ be finite sets; denote by $h$ the cardinality of $Y$, and by $k$ the cardinality of $X\cap Y$. Let $\alpha\in\symgroup(X)$, $\beta\in\symgroup(Y)$, $\gamma\in\symgroup(X\cap Y)$. Assume that $\beta=\cycle{b_1,\ldots,b_h}$ is a $h$\=/cycle, and that $\gamma$ is a $k$\=/cycle of the form $\gamma=\cycle{b_{i_1},\ldots,b_{i_k}}$ with $1\le i_1<\ldots<i_k\le h$. Then $\alpha\in\symgroup(X)$ and $\alpha\gamma^{-1}\beta\in\symgroup(X\cup Y)$ have the same number of cycles.
 \end{lemma}
 \begin{proof}
-Write $\gamma=\cycle{u_1,\ldots,u_k}$, where $u_j=b_{i_j}$. Without loss of generality, assume that $i_1=1$. Then we can write
+Write $\gamma=\cycle{u_1,u_2,\ldots,u_k}$, where $u_j=b_{i_j}$. Without loss of generality, assume that $i_1=1$. Then we can write
 \[
 \beta=\cycle{u_1,\ldots,w_1,u_2,\ldots,w_2,u_3,\ldots,w_{k-1},u_k,\ldots,w_k},
 \]
@@ -129,7 +129,7 @@ where $b_1=d_1\ge 2$, $b_i=d_i-d_{i-1}$ for $2\le i\le s$ (in particular, $d_s=d
 \[
 d-1\ge v(\pi)+v(\rho)=(a_1-1)+\ldots+(a_r-1)+d-s\ge a_1-1+d-s,
 \]
-hence $a_1\le s$. Fix $\alpha_1=\cycle{1,d_1+1,\ldots,d_{a_1-1}+1}$, and let $A=\{1,d_1+1,\ldots,d_{a_1-1}+1\}$ be the support of $\alpha_1$. Define $Q=\{1,\ldots,d_{a_1}\}\setminus A$; note that $Q$ is non-empty, since $d_1+1\ge 3$ implies that $2\in Q_1$. Consider the partitions
+hence $a_1\le s$. Fix $\alpha_1=\cycle{1,d_1+1,\ldots,d_{a_1-1}+1}$, and let $A=\{1,d_1+1,\ldots,d_{a_1-1}+1\}$ be the support of $\alpha_1$. Define $Q=\{1,\ldots,d_{a_1}\}\setminus A$; note that $Q$ is non-empty, since $d_1+1\ge 3$ implies that $2\in Q$. Consider the partitions
 \begin{align*}
 \pi'=[a_2,a_3,\ldots,a_r],&&\rho'=[\card{Q},b_{a_1+1},\ldots,b_s].
 \end{align*}
@@ -147,7 +147,7 @@ where $\beta_1$ is the $\card{Q}$\=/cycle whose entries are the elements of $Q$ 
 \]
 Therefore, setting $\alpha=\alpha'\alpha_1$, we have that
 \begin{align*}
-\alpha\beta&=\alpha_1\alpha'\beta\\
+\alpha\beta&=\alpha'\alpha_1\beta\\
 &=\alpha'\cycle{1,\ldots,d_{a_1}}\cycle{d_{a_1}+1,\ldots,d_{a_1+1}}\cdots\cycle{d_{s-1}+1,\ldots,d_s}\\
 &=\alpha'\beta'\beta_1^{-1}\cycle{1,\ldots,d_{a_1}}
 \end{align*}
@@ -171,7 +171,7 @@ Write $\pi=[a_1,\ldots,a_r]$. Since $v(\rho)\le d-1$ and $v(\pi)+v(\rho)\ge d$, 
 \[
 z=d-v(\rho)-(a_1-1)-\ldots-(a_i-1).
 \]
-Consider the partition $\pi'=[a_1,\ldots,a_i,z,1,\ldots,1]\in\Partitions{d}$. Since by construction $v(\pi')+v(\rho)=d-1$, thanks to \cref{monodromy:th:product-reduction-small-v} we can find permutations $\alpha',\beta\in\symgroup[d]$ with $[\alpha']=\pi'$ and $[\beta]=\rho$ such that $v(\alpha'\beta)=d-1$; in other words, $\alpha'\beta$ is a $d$\=/cycle. Consider now the partition $\pi''=[a_{i+1}-z+1,a_{i+2},\ldots,a_r]$, whose branching number is $v(\pi'')=v(\pi)+v(\rho)-d+1$. Let $n=\sum\pi''$; fix an element $u_1$ of the $z$\=/cycle of $\alpha'$, and let $u_2,\ldots,u_n$ be the fixed points of $\alpha'$ corresponding to the last ones of $\pi'$ (it is easy to see that there are exactly $n-1$ such ones). Since $v(\pi'')$ is even, \cref{monodromy:th:product-of-two-cycles} gives permutations $\alpha'',\gamma\in\symgroup(\{u_1,\ldots,u_n\})$ such that $[\alpha'']=\pi''$ and $\gamma$ and $\alpha''\gamma$ are $n$\=/cycles. Up to conjugation, we can assume that $\gamma=\cycle{u_1,\ldots,u_n}$. Moreover, it is not restrictive to assume that $u_1,\ldots,u_n$ appear in this order in the $d$\=/cycle $\alpha'\beta$. Therefore, setting $\alpha=\alpha''\alpha'$, we have that
+Consider the partition $\pi'=[a_1,\ldots,a_i,z,1,\ldots,1]\in\Partitions{d}$. Since by construction $v(\pi')+v(\rho)=d-1$, thanks to \cref{monodromy:th:product-reduction-small-v} we can find permutations $\alpha',\beta\in\symgroup[d]$ with $[\alpha']=\pi'$ and $[\beta]=\rho$ such that $v(\alpha'\beta)=d-1$; in other words, $\alpha'\beta$ is a $d$\=/cycle. Consider now the partition $\pi''=[a_{i+1}-z+1,a_{i+2},\ldots,a_r]$, whose branching number is $v(\pi'')=v(\pi)+v(\rho)-d+1$. Let $n=\sum\pi''=v(\rho)+1-i$; fix an element $u_1$ of the $z$\=/cycle of $\alpha'$, and let $u_2,\ldots,u_n$ be the fixed points of $\alpha'$ corresponding to the last ones of $\pi'$ (it is easy to see that there are exactly $n-1$ such ones). Since $v(\pi'')$ is even, \cref{monodromy:th:product-of-two-cycles} gives permutations $\alpha'',\gamma\in\symgroup(\{u_1,\ldots,u_n\})$ such that $[\alpha'']=\pi''$ and $\gamma$ and $\alpha''\gamma$ are $n$\=/cycles. Up to conjugation, we can assume that $\gamma=\cycle{u_1,\ldots,u_n}$. Moreover, it is not restrictive to assume that $u_1$ belongs to the $(a_{i+1}-z+1)$\=/cycle of $\alpha''$ and that $u_1,\ldots,u_n$ appear in this order in the $d$\=/cycle $\alpha'\beta$. Therefore, setting $\alpha=\alpha''\alpha'$, we have that
 \[
 \alpha\beta=(\alpha''\gamma)\gamma^{-1}(\alpha'\beta);
 \]
@@ -192,13 +192,13 @@ Let $\pi,\rho\in\Partitions{d}$ be partitions of $d$. Assume that $v(\pi)+v(\rho
 \]
 \end{proposition}
 \begin{proof}
-Assume first that $\pi=\rho=[2,\ldots,d]$. We can choose
+Assume first that $\pi=\rho=[2,\ldots,2]$. We can choose
 \begin{align*}
 \alpha=\cycle{2,3}\cycle{4,5}\cdots\cycle{d,1},&&\beta=\cycle{1,2}\cycle{3,4}\cdots\cycle{d-1,d}.
 \end{align*}
 The action of $\angled{\alpha,\beta}$ is obviously transitive, and
 \[
-\alpha\beta=\cycle{1,3,\ldots,d-1}\cycle{2,4,\ldots,2}.
+\alpha\beta=\cycle{1,3,\ldots,d-1}\cycle{2,4,\ldots,d}.
 \]
 Otherwise, since $v(\pi)+v(\rho)\ge d$, at least one of $\pi$ and $\rho$ has an entry which is greater than $2$; without loss of generality, we can assume it is $\rho$. Write $\pi=[a_1,\ldots,a_r]$, $\rho=[b_1,\ldots,b_s]$ with $a_1\ge 2$ (since $v(\pi)\ge 1$) and $b_1\ge 3$. Fix
 \[
@@ -208,7 +208,7 @@ where $b_1=d_1\ge 3$, $b_i=d_i-d_{i-1}$ for $2\le i\le s$ (in particular, $d_s=d
 \begin{align*}
 \pi'=[a_1-1,\ldots,a_r],&&\rho'=[b_1-1,\ldots,b_s].
 \end{align*}
-Since $\sum\pi'=\sum\rho'=d-1$ and $v(\pi')+v(\rho')=v(\pi)+v(\rho)-2$, by \cref{monodromy:th:product-reduction-odd} we can find permutations $\alpha',\beta'\in\symgroup(\{2,\ldots,d\})$ with $[\alpha']=\pi'$ and $[\beta']=\rho'$ such that $\alpha'\beta'$ is a $(d-1)$\=/cycle. Up to conjugation, we can assume that
+Since $\sum\pi'=\sum\rho'=d-1$ and $v(\pi')+v(\rho')=v(\pi)+v(\rho)-2\ge d-2$, by \cref{monodromy:th:product-reduction-odd} we can find permutations $\alpha',\beta'\in\symgroup(\{2,\ldots,d\})$ with $[\alpha']=\pi'$ and $[\beta']=\rho'$ such that $\alpha'\beta'$ is a $(d-1)$\=/cycle. Up to conjugation, we can assume that
 \[
 \beta'=\cycle{2,\ldots,d_1}\cycle{d_1+1,\ldots,d_2}\cdots\cycle{d_{s-1}+1,\ldots,d_s}
 \]
@@ -239,15 +239,15 @@ First of all, since $\DD$ is a candidate datum, the \RH{} formula implies that
 \[
 v(\pi_1)+\ldots+v(\pi_n)=d\chi(\RP[2])-\chi(\tSigma)\ge d-1
 \]
-(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to apply \cref{hurwitz:th:monodromy-realizability-non-orientable}, we will now inductively define permutations $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
+(recall that $\tSigma$ is non-orientable, so $\chi(\tSigma)\le 1$). Moreover, the total branching number $v(\pi_1)+\ldots+v(\pi_n)$ is even. In order to apply \cref{hurwitz:th:monodromy-realizability-non-orientable}, we will now inductively define permutations $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$, satisfying the following invariant: for every $0\le i\le n$, either
 \[
 v(\alpha_1\cdots\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)
 \]
 or
 \[
-\text{$[\alpha_1\cdots\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$ and $\angled{\alpha_1,\ldots,\alpha_i}$ acts transitively.}
+\text{$[\alpha_1\cdots\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$ and $\angled{\alpha_1,\ldots,\alpha_i}$ acts transitively on $\{1,\ldots,d\}$.}
 \]
-Assume we have already defined $\alpha_1,\ldots,\alpha_{i-1}$; we want to suitably choose $\alpha_i$. Let $\alpha=\alpha_1\cdots\alpha_{i-1}$; there are two cases.
+Assume that we have already defined $\alpha_1,\ldots,\alpha_{i-1}$; we want to suitably choose $\alpha_i$. Let $\alpha=\alpha_1\cdots\alpha_{i-1}$; there are two cases.
 \begin{itemize}
 \item If $v(\alpha)+v(\pi_i)<d$, by \cref{monodromy:th:product-reduction-small-v} we can find $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $v(\alpha\alpha_i)=v(\alpha)+v(\alpha_i)$. The invariant is still satisfied: if $v(\alpha)=v(\pi_1)+\ldots+v(\pi_{i-1})$ then obviously $v(\alpha\alpha_i)=v(\pi_1)+\ldots+v(\pi_i)$. If instead $[\alpha]\in\{[d],[1,d-1],[d/2,d/2]\}$, then either $\alpha_i$ is the identity, or $\alpha\alpha_i$ is a $d$\=/cycle; either way, $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$. Note that if the action of $\angled{\alpha_1,\ldots,\alpha_{i-1}}$ is transitive, then the action of $\angled{\alpha_1,\ldots,\alpha_i}$ is transitive as well.
 \item If $v(\alpha)+v(\alpha_i)\ge d$, \cref{monodromy:th:product-reduction-large-v} gives a permutation $\alpha_i\in\symgroup[d]$ with $[\alpha_i]=\pi_i$ such that $[\alpha\alpha_i]\in\{[d],[1,d-1],[d/2,d/2]\}$ and the action of $\angled{\alpha,\alpha_i}$ is transitive. The invariant is obviously satisfied.
@@ -266,8 +266,7 @@ We now prove that $\alpha=\alpha_1\cdots\alpha_n$ is a square.
 \item If $[\alpha]=[1,d-1]$, then $d$ is even, so $\alpha$ is the square of $\alpha^{d/2}$.
 \item If $[\alpha]=[d/2,d/2]$, then $d$ is even, and it is easy to see that $\alpha$ is the square of a $d$-cycle.
 \end{itemize}
-In any case, we obtain a permutations $\beta_1\in\symgroup[d]$ such that $\alpha=\beta_1^{-2}$
-By \cref{hurwitz:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}), simply note that there exists a permutation $\gamma\in\angled{\alpha_1,\ldots,\alpha_n}$ such that $\gamma\beta_1$ has a fixed point, since $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$.
+In any case, we obtain a permutation $\beta_1\in\symgroup[d]$ such that $\alpha=\beta_1^{-2}$. By \cref{hurwitz:th:monodromy-realizability-non-orientable}, this implies that there exists a realizable candidate datum $\DD'=\datum{\tSigma',\RP[2]}{d}{\pi_1,\ldots,\pi_n}$. To see that $\tSigma'$ is non-orientable (and, therefore, equal to $\tSigma$, as shown in \cref{hurwitz:rm:sigma-tilde-unique-non-orientable}), simply note that there exists a permutation $\gamma\in\angled{\alpha_1,\ldots,\alpha_n}$ such that $\gamma\beta_1$ has a fixed point, since $\angled{\alpha_1,\ldots,\alpha_n}$ acts transitively on $\{1,\ldots,d\}$.
 \end{proof}
 
 \section{Combinatorial moves}\label{monodromy:sc:combinatorial-moves}
@@ -449,11 +448,11 @@ Assume that the inequality $v(\pi_i)+v(\pi_j)\le d-1$ holds for a pair of indice
 \begin{sideline}{Case 2.}
 Otherwise, we have $v(\pi_i)+v(\pi_j)\ge d$ for every $1\le i<j\le n$. We consider two sub-cases.
 \begin{itemize}
-\item Assume first that there is a partition, say $\pi_1$, which is different from $[2,\ldots,2]$. \Cref{combinatorial-move:a:small-v} gives
+\item Assume first that there is a partition, say $\pi_1$, which is different from $[2,\ldots,2]$. \Cref{combinatorial-move:a:large-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g'}}{d}{\pi_1',\pi_3,\ldots,\pi_n}
 \]
-for a suitable candidate datum $\DD'$ with $\pi_1'\in\{[d],[1,d-1]\}$. By \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]}, $\DD'$ is realizable unless $\DD'=\datum{\sphere{}}{d}{[2,\ldots,2],[2,\ldots,2],[1,d-1]}$. If this were the case, we would have $n=4$ and
+for a suitable candidate datum $\DD'$ with $\pi_1'\in\{[d],[1,d-1]\}$. By \cref{monodromy:th:sphere-[d],monodromy:th:sphere-[1 d-1]}, $\DD'$ is realizable unless $\DD'=\datum{\sphere{}}{d}{[1,d-1],[2,\ldots,2],[2,\ldots,2]}$. If this were the case, we would have $n=4$ and
 \[
 v(\pi_1)+v(\pi_2)+v(\pi_3)+v(\pi_4)\le d-2+d-2+\frac{d}{2}+\frac{d}{2}=3d-4,
 \]

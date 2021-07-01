@@ -105,7 +105,7 @@
 \NewDocumentCommand{\wtilde}{m}{\mathpalette\wtildehelper{#1}}
 \NewDocumentCommand{\wtildehelper}{mm}{%
     \hbox{\dimen@\accentfontxheight#1%
-        \accentfontxheight#11.1\dimen@
+        \accentfontxheight#1 1.15\dimen@
         $\m@th#1\widetilde{#2}$%
         \accentfontxheight#1\dimen@
     }%
@@ -113,7 +113,7 @@
 \NewDocumentCommand{\what}{m}{\mathpalette\whathelper{#1}}
 \NewDocumentCommand{\whathelper}{mm}{%
     \hbox{\dimen@\accentfontxheight#1%
-        \accentfontxheight#11.1\dimen@
+        \accentfontxheight#1 1.15\dimen@
         $\m@th#1\widehat{#2}$%
         \accentfontxheight#1\dimen@
     }%
