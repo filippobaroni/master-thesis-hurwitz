@@ -33,6 +33,7 @@ More informally, we can say that a branched covering is a continuous function be
 \begin{center}
 \tikzsetnextfilename{branched-covering-local-model}
 \tdplotsetmaincoords{65}{-30}
+\tikzremake
 \begin{tikzpicture}[tdplot_main_coords,x={(2,0,0)},y={(0,2,0)},z={(0,0,2)}]
 \def\a{30};
 \foreach \i in {1,2} {
@@ -50,26 +51,31 @@ More informally, we can say that a branched covering is a continuous function be
 \fill[black] (y) circle (1pt) node[right=2pt] {$y$};
 \end{scope}
 
-\draw[violet,-{Latex[]}] (0,0,-.1) -- (0,0,-2.4) node[midway,left=2pt] {$f$};
-\draw[violet,-{Latex[]}] ([shift={(0,0,-.1)}]y-1) -- ([shift={(0,0,.1)}]y);
+\draw[violet,-{Latex[]}] (0,0,0) -- (0,0,-2.4) node[midway,left=2pt] {$f$};
+\draw[violet,-{Latex[]}] (y-1) -- ([shift={(0,0,.1)}]y);
 
-\xdef\firsttime{1}
+\newcounter{branchedcoveringcounter}
 \path[decorate,decoration={show path construction,curveto code={
 \filldraw[line width=.1pt,fill=disk 1,fill opacity=.9,draw=gray!80] (0,0,0) -- (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast) -- cycle;
 \draw (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);
 \foreach \i in {.1,.2,...,.9} {
 	\draw[line width=.2,gray,opacity=.7] ($\i*(\tikzinputsegmentfirst)$) .. controls ($\i*(\tikzinputsegmentsupporta)$) and ($\i*(\tikzinputsegmentsupportb)$) .. ($\i*(\tikzinputsegmentlast)$);
 }
-\ifnum\firsttime=1\xdef\firsttime{0}
+\ifnumcomp{\the\value{branchedcoveringcounter}}{=}{0}{
 	\draw[teal,line width=\edgelinewidth] (0,0,0) -- (\tikzinputsegmentfirst);
-\fi}}] plot[smooth,samples=61,variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\t/360});
+}{}
+\ifnumcomp{\the\value{branchedcoveringcounter}}{=}{15}{
+	\draw[violet] (y-2) -- (y-1);
+}{}
+\stepcounter{branchedcoveringcounter}
+}}] plot[smooth,samples=61,variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\t/360});
 \draw[teal,line width=\edgelinewidth] (0,0,0) -- (0,-1,1);
 
 \def\a{30};
 \foreach \i in {1,2} {
-\fill[black] (y-\i) circle (1pt) node[above] {$\wtilde{y}_\i$};
+\fill[black] (y-\i) circle (1pt) node[above right] {$\wtilde{y}_\i$};
 }
-\fill[black] (0,0,0) circle (1pt) node[below] {$\wtilde{x}$};
+\fill[black] (0,0,0) circle (1pt) node[below left] {$\wtilde{x}$};
 \end{tikzpicture}
 \end{center}
 

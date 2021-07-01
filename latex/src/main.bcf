@@ -543,6 +543,7 @@
     <bcf:option datatype="string">datelabel</bcf:option>
     <bcf:option datatype="string">backrefstyle</bcf:option>
     <bcf:option datatype="string">arxiv</bcf:option>
+    <bcf:option datatype="string">introcite</bcf:option>
     <bcf:option datatype="boolean">familyinits</bcf:option>
     <bcf:option datatype="boolean">giveninits</bcf:option>
     <bcf:option datatype="boolean">prefixinits</bcf:option>
@@ -625,6 +626,12 @@
     <bcf:option datatype="boolean">doi</bcf:option>
     <bcf:option datatype="boolean">eprint</bcf:option>
     <bcf:option datatype="boolean">related</bcf:option>
+    <bcf:option datatype="boolean">citexref</bcf:option>
+    <bcf:option datatype="boolean">citeinxref</bcf:option>
+    <bcf:option datatype="boolean">innamebeforetitle</bcf:option>
+    <bcf:option datatype="boolean">innameidem</bcf:option>
+    <bcf:option datatype="boolean">articlein</bcf:option>
+    <bcf:option datatype="boolean">maintitleaftertitle</bcf:option>
     <bcf:option datatype="boolean">subentry</bcf:option>
     <bcf:option datatype="boolean">bibtexcaseprotection</bcf:option>
     <bcf:option datatype="integer">mincrossrefs</bcf:option>
@@ -656,6 +663,7 @@
     <bcf:option datatype="string">loccittracker</bcf:option>
     <bcf:option datatype="string">uniquelist</bcf:option>
     <bcf:option datatype="string">uniquename</bcf:option>
+    <bcf:option datatype="string">introcite</bcf:option>
     <bcf:option datatype="boolean">familyinits</bcf:option>
     <bcf:option datatype="boolean">giveninits</bcf:option>
     <bcf:option datatype="boolean">prefixinits</bcf:option>
@@ -707,6 +715,12 @@
     <bcf:option datatype="boolean">doi</bcf:option>
     <bcf:option datatype="boolean">eprint</bcf:option>
     <bcf:option datatype="boolean">related</bcf:option>
+    <bcf:option datatype="boolean">citexref</bcf:option>
+    <bcf:option datatype="boolean">citeinxref</bcf:option>
+    <bcf:option datatype="boolean">innamebeforetitle</bcf:option>
+    <bcf:option datatype="boolean">innameidem</bcf:option>
+    <bcf:option datatype="boolean">articlein</bcf:option>
+    <bcf:option datatype="boolean">maintitleaftertitle</bcf:option>
     <bcf:option datatype="boolean">subentry</bcf:option>
     <bcf:option datatype="boolean">bibtexcaseprotection</bcf:option>
     <bcf:option datatype="xml">labelalphatemplate</bcf:option>
@@ -744,6 +758,7 @@
     <bcf:option datatype="string" backendout="1">loccittracker</bcf:option>
     <bcf:option datatype="string">uniquelist</bcf:option>
     <bcf:option datatype="string">uniquename</bcf:option>
+    <bcf:option datatype="string" backendout="1">introcite</bcf:option>
     <bcf:option datatype="boolean" backendout="1">familyinits</bcf:option>
     <bcf:option datatype="boolean" backendout="1">giveninits</bcf:option>
     <bcf:option datatype="boolean" backendout="1">prefixinits</bcf:option>
@@ -794,6 +809,12 @@
     <bcf:option datatype="boolean" backendout="1">doi</bcf:option>
     <bcf:option datatype="boolean" backendout="1">eprint</bcf:option>
     <bcf:option datatype="boolean" backendout="1">related</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">citexref</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">citeinxref</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">innamebeforetitle</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">innameidem</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">articlein</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">maintitleaftertitle</bcf:option>
     <bcf:option datatype="boolean" backendout="1">subentry</bcf:option>
     <bcf:option datatype="boolean" backendout="1">bibtexcaseprotection</bcf:option>
     <bcf:option datatype="integer" backendin="maxcitenames,maxbibnames,maxsortnames">maxnames</bcf:option>

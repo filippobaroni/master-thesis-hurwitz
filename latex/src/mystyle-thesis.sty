@@ -13,10 +13,62 @@
 % Page layout
 \usepackage[a4paper,includehead,top=1.2in,bottom=1.5in,textwidth=418pt,inner=1.1in]{geometry}
 \usepackage{emptypage}
+\usepackage{frontespizio}
 
 
 % Chapters
-\usepackage{fncychap} 
+\usepackage{fncychap}
+\makeatletter
+  \ChNameVar{\Large\bfseries}
+  \ChNumVar{\fontsize{60}{62}\usefont{OT1}{ptm}{m}{n}\selectfont}
+  \ChTitleVar{\Huge\bfseries\color{black}}
+  \ChRuleWidth{1pt}
+  \renewcommand{\DOCH}{%
+    \settowidth{\px}{\CNV\FmN{\@chapapp}}
+    \addtolength{\px}{2pt}
+    \settoheight{\py}{\CNV\FmN{\@chapapp}}
+    \addtolength{\py}{1pt}
+
+    \settowidth{\mylen}{\CNV\FmN{\@chapapp}\space\CNoV\thechapter}
+    \addtolength{\mylen}{1pt}
+    \settowidth{\pxx}{\CNoV\thechapter}
+    \addtolength{\pxx}{-1pt}
+
+    \settoheight{\pyy}{\CNoV\thechapter}
+    \addtolength{\pyy}{-2pt}
+    \setlength{\myhi}{\pyy}
+    \addtolength{\myhi}{-1\py}
+    \par
+    \color{black!30}
+    \parbox[b]{\textwidth}{%
+    \rule[\py]{\RW}{\myhi}%
+    \hskip -\RW%
+    \rule[\pyy]{\px}{\RW}%
+    \hskip -\px%
+    \raggedright%
+    {\color{black!70}\CNV\FmN{\@chapapp}\space\color{violet}\CNoV\thechapter}%
+    \hskip1pt%
+    \mghrulefill{\RW}%
+    \rule{\RW}{\pyy}\par\nobreak%
+    \vskip -\baselineskip%
+    \vskip -\pyy%
+    \hskip \mylen%
+    \mghrulefill{\RW}\par\nobreak%
+    \vskip \pyy}%
+    \vskip 20\p@}
+ 
+
+  \renewcommand{\DOTI}[1]{%
+    \raggedright
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip 40\p@}
+
+  \renewcommand{\DOTIS}[1]{%
+    \raggedright
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip 40\p@}
+\makeatother
+\begin{comment}
 \makeatletter
 \usecolortrue
 \ChNumVar{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont}
@@ -51,6 +103,7 @@
 \vskip 40\p@%
 }
 \makeatother
+\end{comment}
 
 % Header
 \usepackage{fancyhdr}
@@ -294,6 +347,17 @@ topsep=0.5em,
 
 
 % Bibliography
-\usepackage[doi=false,isbn=false,url=false]{biblatex}
+\usepackage[doi=false,isbn=false,url=false,style=ext-numeric]{biblatex}
+\usepackage{stmaryrd}
 \addbibresource{bibliography.bib}
 \NewDocumentCommand{\resultcite}{mmm}{\cite[\MakeUppercase #1~#2]{#3}}
+\NewDocumentCommand{\biblbracket}{}{\ensuremath{\llbracket}}
+\NewDocumentCommand{\bibrbracket}{}{\ensuremath{\rrbracket}}
+
+\DeclareOuterCiteDelims{parencite}{\biblbracket}{\bibrbracket}
+\DeclareOuterCiteDelimsAlias{cite}{parencite}
+\DeclareInnerCiteDelims{textcite}{\biblbracket}{\bibrbracket}
+
+\DeclareFieldFormat{labelnumberwidth}{\biblbracket#1\bibrbracket}
+\DeclareFieldFormat{shorthandwidth}{\biblbracket#1\bibrbracket}
+

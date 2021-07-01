@@ -34,11 +34,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Unwinding, joining and fattening}{34}{section.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Unwinding the boundary.}{34}{section*.8}%
+\contentsline {paragraph}{Unwinding the boundary.}{34}{section*.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Joining vertices along edges.}{34}{section*.9}%
+\contentsline {paragraph}{Joining vertices along edges.}{34}{section*.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Fattening graphs.}{35}{section*.10}%
+\contentsline {paragraph}{Fattening graphs.}{35}{section*.8}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.3}Genus-reducing combinatorial moves}{35}{section.3.3}%
 \defcounter {refsection}{0}\relax 
@@ -68,4 +68,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.4}Lists of exceptional data with a short partition}{66}{section.1.A.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{69}{appendix*.11}%
+\contentsline {chapter}{Bibliography}{69}{appendix*.9}%

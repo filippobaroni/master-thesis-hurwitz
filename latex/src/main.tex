@@ -3,12 +3,32 @@
 \usepackage{mystyle-thesis}
 \usepackage{mystyle-global}
 
+
+\def\usefrontespizio{1}
+
 %\tikzremake
 
 %\includeonly{test}
 \begin{document}
 
 %\include{test}
+
+\ifnum\usefrontespizio=1
+\begin{frontespizio}
+\Margini{1.25in}{1.5in}{1.25in}{1.2in}
+\Istituzione{Università di Pisa}
+\Logo[4cm]{img/unipi-logo}
+\Facolta{Scienze matematiche, fisiche e naturali}
+\Corso[Laurea]{Matematica}
+\Annoaccademico{2020--2021}
+\Titoletto{Tesi di Laurea Magistrale}
+\Titolo{Realizability of branching data \\ with a short partition}
+\Candidato{Filippo Gianni Baroni}
+\Relatore{Prof.~Carlo Petronio}
+\end{frontespizio}
+\cleardoublepage
+\setcounter{page}{1}
+\fi
 
 \tableofcontents
 
