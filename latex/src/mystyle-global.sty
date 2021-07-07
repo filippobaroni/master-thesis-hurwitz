@@ -71,7 +71,7 @@
 
 
 % Relations
-\NewDocumentCommand{\iso}{}{\simeq}
+\NewDocumentCommand{\iso}{}{\cong}
 
 
 % Functions
@@ -83,6 +83,12 @@
 \begin{alignedat}{2}
 #1\colon&&#2&\longrightarrow#3\\
 &&#4&\longmapsto#5
+\end{alignedat}
+}
+\NewDocumentCommand{\uMap}{mmmm}{%
+\begin{alignedat}{1}
+#1&\longrightarrow#2\\
+#3&\longmapsto#4
 \end{alignedat}
 }
 

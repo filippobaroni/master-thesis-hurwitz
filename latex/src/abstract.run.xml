@@ -53,9 +53,13 @@
       <file>blx-dm.def</file>
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
+      <file>ext-biblatex-aux.def</file>
       <file>standard.bbx</file>
+      <file>ext-standard.bbx</file>
       <file>numeric.bbx</file>
+      <file>ext-numeric.bbx</file>
       <file>numeric.cbx</file>
+      <file>ext-numeric.cbx</file>
       <file>biblatex.cfg</file>
       <file>english.lbx</file>
     </requires>

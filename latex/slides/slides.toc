@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{Rivestimenti ramificati}{1}{0}{1}
+\beamer@subsectionintoc {1}{1}{Definizione}{1}{0}{1}
+\beamer@subsectionintoc {1}{2}{Grado del rivestimento}{2}{0}{1}
+\beamer@subsectionintoc {1}{3}{Dati di ramificazione}{3}{0}{1}
+\beamer@subsectionintoc {1}{4}{Problema di esistenza di Hurwitz}{4}{0}{1}
+\beamer@sectionintoc {2}{Monodromia}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Gruppo fondamentale e monodromia del rivestimento}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Criterio di realizzabilità}{6}{0}{2}

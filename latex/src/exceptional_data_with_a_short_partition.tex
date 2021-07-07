@@ -9,16 +9,16 @@ In this final chapter, we will give a full solution of the Hurwitz existence pro
 \item \textcite{pervova-existence-ii} dealt with the cases where $n=3$ and $\pi_3=[2,d-2]$.
 \item \textcite{pakovich} solved the existence problem for $\len{\pi_n}=2$ and $\tSigma=\sphere{}$.
 \end{itemize}
-In particular, we will consistently exploit the results by \citeauthor{pakovich} as a base case for genus-reducing combinatorial moves. We will now state the relevant theorems, but we decide to omit the proofs: while the core ideas are very ingenious, filling in the details is quite tedious and time-consuming\footnote{The same could probably be said about the other proofs in this chapter, which cannot be omitted for obvious reasons.}. We refer the interested reader to \cite{pakovich}.
+We now state the results by \citeauthor{pakovich}, but we decide to omit the proofs: while the core ideas are very ingenious, filling in the details is quite tedious and time-consuming. We refer the interested reader to \cite{pakovich}.
 
 \begin{theorem}\label{short-partition:th:realizability-on-sphere-n-3}
-Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it satisfies one of the following.
+Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it is one of the following:
 \begin{enumarabic}
-\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
-\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$.
-\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
-\item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
-\item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
+\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$;
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$;
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$;
+\item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$;
+\item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$;
 \item\label{short-partition:th:realizability-on-sphere-n-3:it:6} $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lh,(k-l)h]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le k-1$.
 \end{enumarabic}
 \end{theorem}
@@ -26,20 +26,21 @@ Let $\DD=\datum{\sphere{}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $
 \begin{theorem}\label{short-partition:th:realizability-on-sphere-n-ge-4}
 Let $\DD=\datum{\sphere{}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate datum with $n\ge 4$. Then $\DD$ is realizable.
 \end{theorem}
+In the upcoming proofs, we will consistently exploit the results by \citeauthor{pakovich} as a base case for genus-reducing combinatorial moves. We will also make extensive use of the computational results from \cref{computational-results:ch}; although delegating work to the computer is never necessary (and in theory we could prove the same results by hand), doing so will save us a lot of effort in dealing with tricky corner-cases, and will allow us to focus more on the reduction-oriented part of the proofs.
 
-In the upcoming proofs, we will also make extensive use of the computational results from \cref{computational-results:ch}; although delegating work to the computer is never necessary (and in theory we could prove the same results by hand), doing so will save us a lot of effort in dealing with tricky corner-cases, and allow us to focus more on the reduction-oriented part of the proofs.
+Note that the results by \citeauthor{pakovich} do not address the exceptionality of the listed candidate data. We will do the same in the upcoming sections, showing that all but a few candidate data with $\len{\pi_n}=2$ are realizable. The proof of the exceptionality of the remaining data will be delayed until \cref{short-partition:sc:exceptionality}.
 
 \section{Realizability on the torus for \texorpdfstring{$n=3$}{n=3}}
 
 As anticipated in the title, this section deals with the cases where $n=3$ and $\tSigma=\surf{1}$. Due to the relatively large number of families of exceptional data listed in \cref{short-partition:th:realizability-on-sphere-n-3}, this is the instance of the problem which will require the heaviest casework.
 
 \begin{theorem} \label{short-partition:th:realizability-on-torus-n-3}
-Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless it satisfies one of the following.
+Let $\DD=\datum{\surf{1}}{d}{\pi_1,\pi_2,[s,d-s]}$ be a candidate datum. Then $\DD$ is realizable unless itis one of the following:
 \begin{enumarabic}
-\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
-\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$.
-\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$.
-\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$.
+\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$;
+\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$;
+\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$;
+\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$;
 \item $\DD=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $k\ge 5$.
 \end{enumarabic}
 \end{theorem}
@@ -56,7 +57,7 @@ Thanks to \cref{monodromy:th:sphere-[1 d-1]} we can assume that $2\le s\le d-2$.
 \item $\DD=\datum{\surf{1}}{16}{[2, 2, 2, 2, 2, 2, 2, 2],[2, 2, 2, 2, 3, 5],[8, 8]}$.
 
 \end{enumarabic}
-This is in agreement with the theorem statement, so we can assume that $d\ge 17$. We now analyze several cases.
+This is in agreement with the statement, so we can assume that $d\ge 17$. We now analyze several cases.
 \begin{sideline}{Case 1.} Assume that:
 \begin{assumptions}
 \item $x\in\pi_1$ for some $x\ge 4$;
@@ -261,21 +262,20 @@ The cases we have analyzed, up to swapping $\pi_1$ and $\pi_2$, cover all the ca
 After solving the existence problem for $n=3$ and $\len{\pi_3}=2$, we turn to candidate data with $n\ge 4$ partitions. As we are about to see, exceptional data in this setting are very rare: there is an infinite family with $d=4$, which we already encountered in \cref{monodromy:th:sphere-d-equals-4}, and a single datum with $n=4$ and $d=8$.
 
 \begin{theorem}\label{short-partition:th:realizability-on-higher-genus-n-ge-4}
-Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate datum with $n\ge 4$. Then $\DD$ is realizable unless it satisfies one of the following.
+Let $\DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}$ be a candidate datum with $n\ge 4$. Then $\DD$ is realizable unless it is one of the following:
 \begin{enumarabic}
-\item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$.
+\item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$;
 \item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
 \end{enumarabic}
 \end{theorem}
 \begin{proof}
-If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional data are:
+We will proceed by induction on $n$. We start with the base case $n=4$, which requires the heaviest casework. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3,[s,d-s]}$. If $d\le 16$, a computer-aided search (see the results in \cref{computational-results:sc:lists}) shows that the only exceptional data are:
 \begin{enumarabic}
 \item $\DD=\datum{\surf{1}}{4}{[2, 2],[2, 2],[2, 2],[1, 3]}$;
 \item $\DD=\datum{\surf{2}}{8}{[2, 2, 2, 2],[2, 2, 2, 2],[2, 2, 2, 2],[3, 5]}$.
 \end{enumarabic}
 This is in agreement with the statement, so we can assume that $d\ge 17$. Moreover, every candidate datum with $g=0$ is realizable by \cref{short-partition:th:realizability-on-sphere-n-ge-4}; as a consequence, we only have to consider the cases where $g\ge 1$.
 
-We will proceed by induction on $n$. We start with the base case $n=4$, which requires the heaviest casework. Fix a candidate datum $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,\pi_3,[s,d-s]}$.
 \begin{sideline}{Case 1.} Assume that the inequality $v(\pi_i)+v(\pi_j)<d$ holds for a pair of indices $1\le i<j\le 3$; up to reindexing, we can assume that $v(\pi_1)+v(\pi_2)<d$. \Cref{combinatorial-move:a:small-v} gives
 \[
 \DD\cmove\DD'=\datum{\surf{g}}{d}{\pi_1',\pi_3,[s,d-s]}
@@ -284,7 +284,7 @@ for a suitable candidate datum $\DD'$, where $v(\pi_1')=v(\pi_1)+v(\pi_2)$. If $
 \[
 \text{$\DD'=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $2k=d$.}
 \]
-If this is the case, then $s=d-s=k$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. Some more casework is required to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
+If this is the case, then $s=d-s=k$ and $\{\pi_1',\pi_3\}=\{[2,\ldots,2],[2,\ldots,2,3,5]\}$. We will now carry out some more casework to show that $\DD'$ can actually be chosen to be realizable; since $\DD\cmove\DD'$, this will imply that $\DD$ is realizable as well.
 \begin{itemize}
 \item If $\pi_1'=[2,\ldots,2]$, then $v(\pi_1')=k$ and $v(\pi_3)=k+2$. Assume without loss of generality that $v(\pi_1)\le k/2$. We have that
 \[
@@ -333,15 +333,15 @@ We now turn to the case $n\ge 5$; we show by induction that every candidate datu
 \end{proof}
 
 
-\section{Exceptionality}
+\section{Exceptionality}\label{short-partition:sc:exceptionality}
 
-This section is devoted to showing that the candidate data listed in the statements of \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-ge-4} are in fact exceptional. First of all, we address the special cases with small degree ($d\le 16$). The computational results in \cref{computational-results:sc:lists} show that the following candidate data are exceptional.
+This section is devoted to showing that the candidate data listed in the statements of \cref{short-partition:th:realizability-on-sphere-n-3,short-partition:th:realizability-on-torus-n-3,short-partition:th:realizability-on-higher-genus-n-ge-4} are in fact exceptional. First of all, we address the special cases with small degree ($d\le 16$). The computational results in \cref{computational-results:sc:lists} show that the following candidate data are exceptional:
 \begin{enumarabic}
-\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
-\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
-\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$.
-\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$.
-\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$.
+\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$;
+\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$;
+\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$;
+\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$;
+\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$;
 \item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$.
 \end{enumarabic}
 We now turn to infinite families of exceptional data.
@@ -354,7 +354,7 @@ Let $n\ge 3$ be a positive integer. Then the candidate datum
 is exceptional.
 \end{proposition}
 \begin{proof}
-In order to show the exceptionality of $\DD$, we will employ the monodromy approach. Let $\alpha_1,\ldots,\alpha_{n-1}\in\symgroup[4]$ be permutations matching $[2,2]$. It is easy to see that the three permutations matching $[2,2]$, together with the identity, form a subgroup
+In order to show the exceptionality of $\DD$, we will employ the monodromy approach, following \resultcite{proposition}{5.3}{edmonds}. Let $\alpha_1,\ldots,\alpha_{n-1}\in\symgroup[4]$ be permutations matching $[2,2]$. It is easy to see that the three permutations matching $[2,2]$, together with the identity, form a subgroup
 \[
 \{\id,\cycle{1,2}\cycle{3,4},\cycle{1,3}\cycle{2,4},\cycle{1,4}\cycle{2,3}\}\subgroup\symgroup[4],
 \]
@@ -603,7 +603,7 @@ Let $k\ge 5$ be an integer. Then the candidate datum
 is exceptional.
 \end{proposition}
 \begin{proof}
-We start by enumerating all the abstract graphs whose vertices have degrees $[2,\ldots,2,3,5]$, without considering the embedding in $\surf{1}$. Once again, we observe that vertices of degree $2$ do not contribute to the topology of the graph, so we can reduce the number of cases to two.
+We report the proof of \resultcite{proposition}{1.2}{pervova-existence-i}. We start by enumerating all the abstract graphs whose vertices have degrees $[2,\ldots,2,3,5]$, without considering the embedding in $\surf{1}$. Once again, we observe that vertices of degree $2$ do not contribute to the topology of the graph, so we can reduce the number of cases to two.
 
 \def\myfirstradius{1.2}
 \def\mysecondradius{1.8}
@@ -767,20 +767,20 @@ Let
 \[
 \DD=\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}
 \]
-be a candidate datum with $n\ge 3$. Then $\DD$ is exceptional if and only if one of the following holds.
+be a candidate datum with $n\ge 3$. Then $\DD$ is exceptional if and only if it is one of the following:
 \begin{enumarabic}
-\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$.
-\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$.
-\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$.
-\item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$.
-\item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$.
-\item $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lh,(k-l)h]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le k-1$.
-\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$.
-\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$.
-\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$.
-\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$.
-\item $\DD=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $k\ge 5$.
-\item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$.
+\item $\DD=\datum{\sphere{}}{12}{[2,2,2,2,2,2],[1,1,1,3,3,3],[6,6]}$l
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[s,2k-s]}$ with $k\ge 2$, $s\neq k$l
+\item $\DD=\datum{\sphere{}}{2k}{[2,\ldots,2],[1,2,\ldots,2,3],[k,k]}$ with $k\ge2$;
+\item $\DD=\datum{\sphere{}}{4k+2}{[2,\ldots,2],[1,\ldots,1,k+1,k+2],[2k+1,2k+1]}$ with $k\ge 1$;
+\item $\DD=\datum{\sphere{}}{4k}{[2,\ldots,2],[1,\ldots,1,k+1,k+1],[2k-1,2k+1]}$ with $k\ge2$;
+\item $\DD=\datum{\sphere{}}{kh}{[h,\ldots,h],[1,\ldots,1,k+1],[lh,(k-l)h]}$ with $h\ge 2$, $k\ge 2$, $1\le l\le k-1$;
+\item $\DD=\datum{\surf{1}}{6}{[3,3],[3,3],[2,4]}$;
+\item $\DD=\datum{\surf{1}}{8}{[2,2,2,2],[4,4],[3,5]}$;
+\item $\DD=\datum{\surf{1}}{12}{[2,2,2,2,2,2],[3,3,3,3],[5,7]}$;
+\item $\DD=\datum{\surf{1}}{16}{[2,2,2,2,2,2,2,2],[1,3,3,3,3,3],[8,8]}$;
+\item $\DD=\datum{\surf{1}}{2k}{[2,\ldots,2],[2,\ldots,2,3,5],[k,k]}$ with $k\ge 5$;
+\item $\DD=\datum{\surf{2}}{8}{[2,2,2,2],[2,2,2,2],[2,2,2,2],[3,5]}$;
 \item $\DD=\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
 \end{enumarabic}
 \end{solution-hurwitz*}

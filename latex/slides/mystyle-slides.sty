@@ -1,0 +1,66 @@
+\ProvidesPackage{mystyle-slides}
+
+
+% LaTeX programming
+\usepackage{etoolbox}
+
+
+% Cool symbols
+\usepackage[fixed]{fontawesome5}
+
+
+% TikZ
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{matrix,backgrounds,fadings}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=figures/]
+\tikzset{external/only named=true}
+\tikzset{
+  beamer externalizing/.style={%
+    execute at end picture={%
+      \tikzifexternalizing{%
+        \ifbeamer@anotherslide
+        \pgfexternalstorecommand{\string\global\string\beamer@anotherslidetrue}%
+        \fi
+      }{}%
+    }%
+  },
+  external/optimize=false
+}
+
+
+% Title
+\addtobeamertemplate{frametitle}{\let\insertframetitle\insertsectionhead}{}
+\addtobeamertemplate{frametitle}{\let\insertframesubtitle\insertsubsectionhead}{}
+\makeatletter
+  \CheckCommand*\beamer@checkframetitle{\@ifnextchar\bgroup\beamer@inlineframetitle{}}
+  \renewcommand*\beamer@checkframetitle{\global\let\beamer@frametitle\relax\@ifnextchar\bgroup\beamer@inlineframetitle{}}
+\makeatother
+\setbeamercolor{frametitle}{bg=violet!80,fg=white}
+
+
+% Navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+
+% AMS packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+% Lists
+\usepackage{enumitem}
+%\setbeamercolor{item}{fg=violet}
+%\setbeamertemplate{itemize items}{\raisebox{0.12\height}{\scalebox{0.67}{\faChevronCircleRight}}}
+\setlist[itemize]{label={\color{violet}\raisebox{0.12\height}{\scalebox{0.67}{\faChevronCircleRight}}}}
+\NewDocumentCommand{\tikzenumlabel}{m}{\tikz[baseline=0pt]\node[scale=.8,anchor=base,fill=violet,text=white,text height={height("1")},font={\scriptsize\normalfont},minimum width={height("1")+depth("1")+3pt},rounded corners=3pt,inner sep=1.5pt] {\textbf{#1}};}
+\setbeamertemplate{enumerate items}{\tikzenumlabel{\insertenumlabel}}
+\NewDocumentEnvironment{enumroman}{}{\begin{enumerate}[label=\protect\tikzenumlabel{\roman*}]}{\end{enumerate}}
+
+
+% Boxes
+\usepackage[many]{tcolorbox}
+\newtcolorbox{mybox}[1][]{title={\emph{}},enhanced,arc=1pt,left=6pt,colback=white,colframe=violet,frame style={path fading=east},#1}

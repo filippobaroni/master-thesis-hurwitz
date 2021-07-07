@@ -68,42 +68,6 @@
     \CTV\FmTi{#1}\par\nobreak
     \vskip 40\p@}
 \makeatother
-\begin{comment}
-\makeatletter
-\usecolortrue
-\ChNumVar{\fontsize{76}{80}\usefont{OT1}{pzc}{m}{n}\selectfont}
-\ChTitleVar{\raggedleft\huge\bfseries}
-
-\setlength{\myhi}{10pt}
-\setlength{\mylen}{\textwidth}
-\addtolength{\mylen}{-2\myhi}
-\renewcommand{\DOCH}{%
-\settowidth{\py}{\CNoV\thechapter}
-\addtolength{\py}{-10pt}%
-\fboxsep=0pt%
-\colorbox{violet!15}{\rule{0pt}{40pt}\parbox[b]{\textwidth}{\hfill}}%
-\kern-\py\raise20pt%
-\hbox{\color{violet}\CNoV\thechapter}\\%
-}
-
-\renewcommand{\DOTI}[1]{%
-\nointerlineskip\raggedright%
-\fboxsep=\myhi%
-\vskip-1ex%
-\colorbox{violet!15}{\parbox[t]{\mylen}{\CTV\FmTi{#1}}}\par\nobreak%
-\vskip 40\p@%
-}
-
-\renewcommand{\DOTIS}[1]{%
-\fboxsep=0pt
-\colorbox{violet!15}{\rule{0pt}{40pt}\parbox[b]{\textwidth}{\hfill}}\\%
-\nointerlineskip\raggedright%
-\fboxsep=\myhi%
-\colorbox{violet!15}{\parbox[t]{\mylen}{\CTV\FmTi{#1}}}\par\nobreak%
-\vskip 40\p@%
-}
-\makeatother
-\end{comment}
 
 % Header
 \usepackage{fancyhdr}
@@ -178,7 +142,6 @@
 \NewCombinatorialMoveType{a}
 \NewCombinatorialMoveType{b}
 
-%\def\qedsymbol{\textcolor{violet}{\ensuremath{\square}}}
 \def\qedsymbol{\textcolor{violet}{\faCheckSquare[regular]}}
 
 

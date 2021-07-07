@@ -21,18 +21,18 @@
   \datalist[entry]{nty/global//global/global}
     \entry{pakovich}{article}{}
       \name{author}{1}{}{%
-        {{hash=b26ab589eb6b7883cb75396893bd42a0}{%
+        {{hash=294320898ee010b84cc6af320e9a0b42}{%
            family={Pakovich},
            familyi={P\bibinitperiod},
-           given={F.},
+           given={Fedor},
            giveni={F\bibinitperiod}}}%
       }
-      \strng{namehash}{b26ab589eb6b7883cb75396893bd42a0}
-      \strng{fullhash}{b26ab589eb6b7883cb75396893bd42a0}
-      \strng{bibnamehash}{b26ab589eb6b7883cb75396893bd42a0}
-      \strng{authorbibnamehash}{b26ab589eb6b7883cb75396893bd42a0}
-      \strng{authornamehash}{b26ab589eb6b7883cb75396893bd42a0}
-      \strng{authorfullhash}{b26ab589eb6b7883cb75396893bd42a0}
+      \strng{namehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{fullhash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{bibnamehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{authorbibnamehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{authornamehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{authorfullhash}{294320898ee010b84cc6af320e9a0b42}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}
