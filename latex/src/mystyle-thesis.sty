@@ -310,7 +310,7 @@ topsep=0.5em,
 
 
 % Bibliography
-\usepackage[doi=false,isbn=false,url=false,style=ext-numeric]{biblatex}
+\usepackage[doi=false,isbn=false,url=false,articlein=false,style=ext-numeric]{biblatex}
 \usepackage{stmaryrd}
 \addbibresource{bibliography.bib}
 \NewDocumentCommand{\resultcite}{mmm}{\cite[\MakeUppercase #1~#2]{#3}}
@@ -323,4 +323,8 @@ topsep=0.5em,
 
 \DeclareFieldFormat{labelnumberwidth}{\biblbracket#1\bibrbracket}
 \DeclareFieldFormat{shorthandwidth}{\biblbracket#1\bibrbracket}
+
+\DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat[article,incollection,unpublished]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[article,incollection]{journaltitle}{#1\isdot}
 
