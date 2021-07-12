@@ -4,7 +4,7 @@
 \begin{frame}
 \begin{columns}[onlytextwidth]
 \column{.65\textwidth}
-Un \emph{rivestimento ramificato} fra due superfici (chiuse, connesse e orientabili) $\tSigma$ e $\Sigma$ è una funzione continua
+Un \emph{rivestimento ramificato} fra due \sidenotehighlight<1>{superfici}{\draw (mymark) to[out=90,in=180] (.5,.7) node[anchor=west] {chiuse, connesse, orientabili};} $\tSigma$ e $\Sigma$ è una funzione continua
 \[
 \map{f}{\tSigma}{\Sigma}
 \]
@@ -17,8 +17,8 @@ che localmente si comporta come
 \item Il \emph{grado locale} $k=k(\wtilde{x})$ dipende da $\wtilde{x}\in\tSigma$, ed è uguale a $1$ per quasi tutti i punti.
 \item Un punto $x\in\Sigma$ è \emph{di ramificazione} se $k(\wtilde{x})>1$ per un qualche $\wtilde{x}\in f^{-1}(x)$.
 \end{itemize}
-\column{.3\textwidth}
-\begin{center}
+\column{.35\textwidth}
+\begin{flushright}
 \tdplotsetmaincoords{65}{-30}
 \tikzsetnextfilename{slides-branched-covering-local-model}
 \begin{tikzpicture}[tdplot_main_coords,x={(1.4,0,0)},y={(0,1.4,0)},z={(0,0,1.4)}]
@@ -63,7 +63,7 @@ che localmente si comporta come
 }
 \fill[black] (0,0,0) circle (1pt) node[below left] {$\wtilde{x}$};
 \end{tikzpicture}
-\end{center}
+\end{flushright}
 \end{columns}
 \end{frame}
 
@@ -91,14 +91,14 @@ dove $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$.
 \pi(x)=[k(\wtilde{x}_1),\ldots,k(\wtilde{x}_r)].
 \]
 \end{itemize}
-\column{.3\textwidth}
+\column{.35\textwidth}
 Picture
 \end{columns}
 \end{frame}
 
 \subsection{Dati di ramificazione}
 \begin{frame}
-Le informazioni combinatorie di $f$ sono contenute nel \emph{dato di ramificazione}
+Le proprietà combinatorie di $\map{f}{\tSigma}{\Sigma}$ sono contenute nel \emph{dato di ramificazione}
 \[
 \DD(f)=\datum{\tSigma,\Sigma}{d}{\pi(x_1),\ldots,\pi(x_n)},
 \]
@@ -111,6 +111,7 @@ d\cdot\chi(\Sigma)-\chi(\tSigma)=d\cdot n-\len{\pi_1}-\ldots-\len{\pi_n}.
 \end{mybox}
 \begin{itemize}
 \item Una tupla $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ che soddisfa la formula di Riemann-Hurwitz si dice \emph{dato compatibile}.
+\item Per comodità, richiediamo anche che $n\ge 3$ e $\pi_i\neq[1,\ldots,1]$.
 \end{itemize}
 \end{frame}
 

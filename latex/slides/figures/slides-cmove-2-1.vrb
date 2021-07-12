@@ -28,7 +28,7 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \begin{onlyenv}<2>
 \begin{enumarabic}
 \item Aggiungiamo vertici su $e$.
-\item Attacchiamo un tubo a $\surf{g-1}$ con entrambi gli estremi in in $D_1$.
+\item Attacchiamo un tubo a $\surf{g-1}$ con entrambi gli estremi in in $D_2$.
 \item Tracciamo gli archi rossi.
 \item Collassiamo gli archi rossi.
 \end{enumarabic}
@@ -122,10 +122,11 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \node[below right] at (x2) {$y$};
 }
 \begin{flushright}
-\tikzsetnextfilename{slides-cmove-2-0}
+\tikzsetnextfilename{slides-cmove-2-1}
+\tikzremake
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
-\picturesetupzero{0}{0}
+\picturesetupone{0}{0}
 \end{tikzpicture}}
 \end{flushright}
 \end{onlyenv}

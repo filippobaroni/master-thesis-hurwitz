@@ -20,15 +20,15 @@ pics/commutator/.style n args={3}{code={
 \column{.65\textwidth}
 Sia $\surf{g}$ la somma connessa di $g\ge 0$ tori. Se
 \[
-\holed{\surf{g}}=\surf{g}\setminus\{x_1,\ldots,x_n\},
+\holed{\surf{g}}=\surf{g}\setminus\{x_1,\ldots,x_n\},%punti di ramificazione
 \]
 il gruppo fondamentale di $\holed{\surf{g}}$ ammette la presentazione
 \begin{multline*}
-\pi_1(\holed{\surf{g}})=\langle a_1,\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid\\
+\pi_1(\holed{\surf{g}})=\langle \sidenotehighlight<1>{a_1}{\draw (mymark) to[out=60,in=180] (.6,.6) node[anchor=west] {cammino chiuso intorno a $x_1$};},\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid\\
 [b_1,c_1]\cdots[b_g,c_g]\cdot a_1\cdots a_n\rangle.
 \end{multline*}
-\column{.3\textwidth}
-\begin{center}
+\column{.35\textwidth}
+\begin{flushright}
 \tikzsetnextfilename{slides-monodromy-fundamental-group}
 \begin{tikzpicture}[x={(1.25,0)},y={(0,1.25)},every node/.style={scale=.7}]
 \pgfsetlayers{main,graph vertex}
@@ -46,34 +46,63 @@ il gruppo fondamentale di $\holed{\surf{g}}$ ammette la presentazione
 \pic[rotate=50,scale={1/.7}] at (0) {loop around point=n};
 \foreach \a in {65,75,85} {\filldraw[surf boundary,fill=white] ($(0)+(\a:.9)$) circle (.02);}
 \end{tikzpicture}
-\end{center}
+\end{flushright}
 \end{columns}
 \vspace{0.5em}
 \begin{itemize}
-\item Se $\map{f}{\tSigma}{\surf{g}}$ è un rivestimento ramificato, $\pi_1(\holed{\surf{g}},x_0)$ agisce sulla fibra $f^{-1}(x_0)$ (monodromia del rivestimento $\map{\holed{f}}{\holed{\tSigma}}{\holed{\surf{g}}}$).
+\item Se $\map{f}{\tSigma}{\surf{g}}$ è un rivestimento ramificato, $\pi_1(\holed{\surf{g}},x_0)$ agisce sulla fibra $f^{-1}(x_0)$ \textcolor{black!80}{(monodromia del rivestimento $\map{\holed{f}}{\holed{\tSigma}}{\holed{\surf{g}}}$)}.
 \item Questa azione induce un morfismo di gruppi
 \[
 \map{\Mon}{\pi_1(\holed{\surf{g}})}{\op{\symgroup(f^{-1}(x_0))}\iso\symgroup[d]}.
 \]
-\item Le lunghezze dei cicli di $\Mon(a_i)$ corrispondono agli elementi di $\pi(x_i)$.
+\item Le lunghezze dei cicli di $\Mon(a_i)$ corrispondono agli elementi di \sidenote<1>{$\pi(x_i)$.}{\draw[shorten <=3pt] (mymark) to[out=30,out looseness=2,in=-30] (.6,1.2) node[anchor=east,align=right] {scriviamo\\$[\Mon(a_i)]=\pi(x_i)$};} %Scriviamo []=
 \end{itemize}
 \end{frame}
 
 \subsection{Criterio di realizzabilità}
 \begin{frame}
-\begin{mybox}[]
+\begin{mybox}
 Un dato $\DD=\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ è realizzabile se e solo se esistono permutazioni $\alpha_1,\ldots,\alpha_n,\allowbreak\beta_1,\ldots,\beta_g,\allowbreak\gamma_1,\ldots,\gamma_g\in\symgroup[d]$ tali che:
 \begin{enumroman}
 \item $[\alpha_i]=\pi_i$ per ogni $1\le i\le n$;
 \item $[\beta_1,\gamma_1]\cdots[\beta_g,\gamma_g]\cdot\alpha_1\cdots\alpha_n=1$;
-\item $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g}$ agisce transitivamente su $\{1,\ldots,d\}$.
+\item $\angled{\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_g,\gamma_1,\ldots,\gamma_g}$ agisca \sidenote<1>{transitivamente}{\draw (mymark) to[out=-120,in=30] (-.7,-.5) node[anchor=east] {$\tSigma$ connessa};} su $\{1,\ldots,d\}$.
 \end{enumroman}
 \end{mybox}
 \vspace{.5em}
-\emph{Esempio.} Il dato $\DD=\datum{\sphere{},\sphere{}}{4}{[2,2],[2,2],[1,3]}$ è eccezionale. Se non lo fosse, avremmo $\alpha_1,\alpha_2,\alpha_3\in\symgroup[4]$ tali che:
+\emph{Esempio.} Il dato $\DD=\datum{\sphere{},\sphere{}}{4}{[2,2],[2,2],[1,3]}$ è eccezionale. Se non lo fosse, esisterebbero $\alpha_1,\alpha_2,\alpha_3\in\symgroup[4]$ tali che:
 \begin{enumroman}
-\item $[\alpha_1]=[\alpha_2]=[2,2]$ e $[\alpha_3]=[1,3]$;
-\item $\alpha_1\alpha_2\alpha_3=1$.
+\item $[\alpha_1]=[\alpha_2]=[2,2]$ e $[\alpha_3]=[1,3]$\sidenote{;}{\draw[shorten <=3pt] (mymark) to[out=0,in=180] (2,.2) node[anchor=west,align=left] {$\alpha_1=\cycle{\bullet,\bullet}\cycle{\bullet,\bullet}$\\$\alpha_2=\cycle{\bullet,\bullet}\cycle{\bullet,\bullet}$\\$\alpha_3=\cycle{\bullet,\bullet,\bullet}$};}
+\item $\alpha_1\alpha_2\alpha_3=1$\sidenote{.}{\draw[shorten <=3pt] (mymark) to (1,0) node[anchor=west] {$\alpha_3=\alpha_2^{-1}\alpha_1^{-1}$};}
 \end{enumroman}
-Ma le permutazioni di tipo $[2,2]$ generano un sottogruppo di ordine $4$, che non contiene $\alpha_3$.
+Ma le permutazioni di tipo $[2,2]$ generano un sottogruppo di ordine $4$, che non contiene $\alpha_3$. %scrivere esplicitamente il sottogruppo
+\end{frame}
+
+\subsection{Conseguenze}
+\begin{frame}<1-2>
+\begin{mybox}
+Ogni dato compatibile $\datum{\tSigma,\surf{g}}{d}{\pi_1,\ldots,\pi_n}$ con $g\ge 1$ è realizzabile.
+\end{mybox}
+\begin{itemize}
+\item D'ora in poi considereremo solo dati della forma
+\[
+\datum{\tSigma,\alt<1>{\sphere}{
+\begin{tikzpicture}[baseline=0pt]
+\node[inner sep=0,anchor=base] (s) {$\sphere$};
+\pgfinterruptboundingbox
+\node[fit=(s),draw=violet,line width=.8pt,opacity=.75,cross out,inner sep=1pt]{};
+\endpgfinterruptboundingbox
+\end{tikzpicture}}}{d}{\pi_1,\ldots,\pi_n}. %omettiamo \sphere{}
+\]
+\end{itemize}
+\begin{mybox}
+Ogni dato compatibile $\datum{\tSigma}{d}{\pi_1,\ldots,\pi_{n-1},[d]}$ è realizzabile.
+\end{mybox}
+\begin{mybox}
+Ogni dato compatibile $\datum{\tSigma}{d}{\pi_1,\ldots,\pi_{n-1},[1,d-1]}$ è realizzabile, eccezion fatta per:
+\begin{enumarabic}
+\item $\datum{\sphere{}}{2k}{[2,\ldots,2],[2,\ldots,2],[1,2k-1]}$ con $k\ge 2$;
+\item $\datum{\surf{n-3}}{4}{[2,2],\ldots,[2,2],[1,3]}$.
+\end{enumarabic}
+\end{mybox}
 \end{frame}

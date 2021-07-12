@@ -3,6 +3,12 @@
 
 % LaTeX programming
 \usepackage{etoolbox}
+\usepackage{comment}
+
+
+% Language
+\usepackage[italian]{babel}
+\usepackage{csquotes}
 
 
 % Cool symbols
@@ -12,7 +18,7 @@
 % TikZ
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
-\usetikzlibrary{matrix,backgrounds,fadings}
+\usetikzlibrary{matrix,backgrounds,fadings,decorations.pathmorphing,tikzmark,fit,shapes.misc}
 \usetikzlibrary{external}
 \tikzexternalize[prefix=figures/]
 \tikzset{external/only named=true}
@@ -27,6 +33,11 @@
     }%
   },
   external/optimize=false
+}
+\pgfkeys{
+alt/.code args={<#1>#2#3}{\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}},
+only/.code args={<#1>#2}{\only<#1>{\pgfkeysalso{#2}}},
+visible on/.style args={<#1>}{/alt=<#1>{}{opacity=0}},
 }
 
 
@@ -51,16 +62,44 @@
 \usepackage{amssymb}
 
 
+% Minipage patch
+%https://tex.stackexchange.com/questions/257809/list-spacing-is-different-inside-and-outside-of-minipage
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\@iiiminipage}{%
+  \let\@listdepth\@mplistdepth \@mplistdepth\z@
+}{%
+  \let\@listdepth\@mplistdepth
+  \@mplistdepth\@enumdepth  % use the current depth (stored in \@enumdepth
+}{\typeout{Patching minipage succeeded}}{\typeout{Patching failed}}% End of patching
+\makeatother
+
+
 % Lists
 \usepackage{enumitem}
-%\setbeamercolor{item}{fg=violet}
-%\setbeamertemplate{itemize items}{\raisebox{0.12\height}{\scalebox{0.67}{\faChevronCircleRight}}}
 \setlist[itemize]{label={\color{violet}\raisebox{0.12\height}{\scalebox{0.67}{\faChevronCircleRight}}}}
 \NewDocumentCommand{\tikzenumlabel}{m}{\tikz[baseline=0pt]\node[scale=.8,anchor=base,fill=violet,text=white,text height={height("1")},font={\scriptsize\normalfont},minimum width={height("1")+depth("1")+3pt},rounded corners=3pt,inner sep=1.5pt] {\textbf{#1}};}
 \setbeamertemplate{enumerate items}{\tikzenumlabel{\insertenumlabel}}
 \NewDocumentEnvironment{enumroman}{}{\begin{enumerate}[label=\protect\tikzenumlabel{\roman*}]}{\end{enumerate}}
+\NewDocumentEnvironment{enumarabic}{}{\begin{enumerate}[label=\protect\tikzenumlabel{\arabic*}]}{\end{enumerate}}
 
 
 % Boxes
 \usepackage[many]{tcolorbox}
-\newtcolorbox{mybox}[1][]{title={\emph{}},enhanced,arc=1pt,left=6pt,colback=white,colframe=violet,frame style={path fading=east},#1}
+\newtcolorbox{mybox}[1][]{title={\emph{}},enhanced,arc=1pt,left=4pt,top=4pt,bottom=4pt,colback=white,colframe=violet,frame style={path fading=east},#1}
+
+
+% Sidenotes
+\colorlet{sidenote color}{violet!70!black!70}
+\newcommand{\setsidenotecolor}[1][violet!70!black!70]{\colorlet{sidenote color}{#1}}
+\newcommand<>*{\sidenote}[3][]{\tikzexternaldisable\tikzmarknode[text height=height("I"),text depth=depth("g"),#1]{mymark}{#2}\only#4{\begin{tikzpicture}[overlay,remember picture,shift=(mymark),sidenote color,-latex,font=\footnotesize]#3\end{tikzpicture}}\tikzexternalenable}
+\newcommand<>*{\sidenotehighlight}[2]{\sidenote#3[/visible on=#3,text opacity=1,fill=violet!20,inner ysep=1]{#1}{#2}}
+
+
+% Bibliography
+\usepackage[doi=false,isbn=false,url=false,articlein=false,style=ext-numeric]{biblatex}
+\addbibresource{bibliography.bib}
+
+\DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat[article,incollection,unpublished]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[article,incollection]{journaltitle}{#1\isdot}

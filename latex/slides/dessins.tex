@@ -1,0 +1,58 @@
+\section{\texorpdfstring{\Dessins{}}{Dessins d'enfant}}
+
+\subsection{Costruzione}
+\begin{frame}
+\begin{columns}[onlytextwidth]
+\column{.65\textwidth}
+Sia $\map{f}{\tSigma}{\sphere}$ un rivestimento ramificato con punti di ramificazione $x,y,z\in\sphere$.
+\begin{itemize}
+\item Tracciamo un arco $e$ fra $x$ e $y$.
+\item $\Gamma= f^{-1}(e)$ è un grafo su $\tSigma$.
+\item Se coloriamo $f^{-1}(x)$ di nero e $f^{-1}(y)$ di bianco, $\Gamma$ è bipartito.
+\item Ogni componente \sidenote<1>{connessa}{\draw (mymark) to[out=110,in=180] (.2,.5) node[right] {regione complementare};} $\wtilde{D}_i$ di $\tSigma\setminus\Gamma$ contiene esattamente un punto $\wtilde{z}_i\in f^{-1}(z)$. %regioni complementari
+\item La restrizione $\map{f}{\wtilde{D}_i}{\sidenotehighlight<1>{\sphere{}\setminus e}{\draw (mymark) to[out=90,in=180] (.5,.5) node[right] {disco};}}$\; è un rivestimento ramificato con un solo punto di ramificazione.%è un disco
+\item $\wtilde{D}_i$ è un disco, e ci sono $2k(\wtilde{z}_i)$ archi lungo il suo perimetro.%con molteplicità
+\end{itemize}
+\column{.35\textwidth}
+\begin{flushright}
+Picture\\
+Picture
+\end{flushright}
+\end{columns}
+\end{frame}
+
+\subsection{Criterio di realizzabilità}
+\begin{frame}
+Un \emph{\dessin{}} su $\tSigma$ è un grafo bipartito $\Gamma\subs\tSigma$ le cui regioni complementari sono dischi.
+\begin{center}
+\tikzsetnextfilename{slides-dessin-first-example}
+\begin{tikzpicture}[tdplot_main_coords,baseline=0pt,declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},every plot/.style={smooth,samples=\torusprecision}]
+\pgfsetlayers{main,graph vertex}
+\draw[surf boundary,fill=disk 1,even odd rule,3d torus];
+\draw[surf boundary,3d torus stretch];
+\fill[disk 2] [torus graph small region];
+\draw[black edge dashed] [torus graph behind];
+\drawtorusgraph
+\end{tikzpicture}\hspace{2em}
+$\sidenote<1>{\DD}{\draw (mymark) to[out=-120,in=0] (-.9,-.5);}=\datum{\surf{1}}{7}{[3,4],[2,2,3],[1,6]}$
+\end{center}
+\begin{mybox}
+Un dato $\DD=\datum{\tSigma}{d}{\pi_1,\pi_2,\pi_3}$ è realizzabile se e solo se esiste un \dessin{} $\Gamma\subs\tSigma$ tale che:
+\begin{enumroman}\def\myarrow{\tikz[baseline=-.25em]\draw[violet,line width=1pt,tip/.tip={Latex[sharp,scale=.75]},tip-tip] (0,0) -- (.6cm,0);\;}
+\item $\pi_1$ \myarrow gradi dei vertici neri;
+\item $\pi_2$ \myarrow gradi dei vertici bianchi;
+\item $\pi_3$ \myarrow semiperimetri dei dischi complementari.
+\end{enumroman}
+\end{mybox}
+\end{frame}
+
+\subsection{Un esempio di dato eccezionale}
+\begin{frame}
+\emph{Esempio}. Il dato $\DD=\datum{\sphere}{4}{[2,2],[2,2],[1,3]}$ è eccezionale. Se non lo fosse, esisterebbe un \dessin{} $\Gamma\subs\sphere$ tale che:
+\begin{enumroman}
+\item i due vertici neri abbiano gradi $[2,2]$;
+\item i due vertici bianchi abbiano gradi $[2,2]$;
+\item i due dischi complementari abbiano semiperimetri $[1,3]$.
+\end{enumroman}
+Tuttavia esiste un unico \dessin{} su $\sphere$ che soddisfa le condizioni \tikzenumlabel{i} e \tikzenumlabel{ii}, e i suoi dischi complementari hanno semiperimetri $[2,2]$.
+\end{frame}

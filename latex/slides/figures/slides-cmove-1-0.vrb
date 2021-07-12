@@ -28,7 +28,7 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \begin{onlyenv}<2>
 \begin{enumarabic}
 \item Aggiungiamo vertici su $e$.
-\item Attacchiamo un tubo a $\surf{g-1}$ con entrambi gli estremi in in $D_1$.
+\item Attacchiamo un tubo a $\surf{g-1}$ con entrambi gli estremi in in $D_2$.
 \item Tracciamo gli archi rossi.
 \item Collassiamo gli archi rossi.
 \end{enumarabic}
@@ -81,7 +81,7 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \end{flushright}
 \end{onlyenv}
 \begin{onlyenv}<2>
-\def\picturesetupzero#1#2{
+\def\picturesetupone#1#2{
 \pic {cmove setting one disk=1};
 \path \surfcirclepoint{d1}{-30} coordinate (x2) pic{black vertex};
 \path \surfcirclepoint{d1}{-90} coordinate (x1) pic{black vertex};
@@ -90,17 +90,12 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \tikzset{myedgestyle/.style={surf edge={behind}{green edge}}}\else
 \tikzset{myedgestyle/.style={}}\fi
 \path[myedgestyle,surrounding=disk 2,postaction={decorate,decoration={markings,mark=at position .2 with {\coordinate (2b-1);},mark=at position .4 with {\coordinate (2w-1);},,mark=at position .6 with {\coordinate (2b-2);},mark=at position .8 with {\coordinate (2w-2);}}}] \surfcirclepath{d1}{150}{240};
-\ifnum#1=0
-\node[below right] at (x2) {$y-2$};
-\node[below=5pt] at (x1) {$x-2$};
-\fi
-}
-\def\picturesetupone#1#2{
-\picturesetupzero{#1}{#2}
 \path (2w-1) pic {white vertex} (2w-2) pic {white vertex};
 \ifnum#1=0
 \pic at (2b-1) {black vertex};
 \pic at (2b-2) {black vertex};
+\node[below right] at (x2) {$y-2$};
+\node[below=5pt] at (x1) {$x-2$};
 \fi
 }
 \def\picturesetuptwo#1{
@@ -122,10 +117,10 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \node[below right] at (x2) {$y$};
 }
 \begin{flushright}
-\tikzsetnextfilename{slides-cmove-2-0}
+\tikzsetnextfilename{slides-cmove-2-1}
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
-\picturesetupzero{0}{0}
+\picturesetupone{0}{0}
 \end{tikzpicture}}
 \end{flushright}
 \end{onlyenv}

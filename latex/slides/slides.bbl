@@ -1,0 +1,97 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{pakovich}{article}{}
+      \name{author}{1}{}{%
+        {{hash=294320898ee010b84cc6af320e9a0b42}{%
+           family={Pakovich},
+           familyi={P\bibinitperiod},
+           given={Fedor},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{fullhash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{bibnamehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{authorbibnamehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{authornamehash}{294320898ee010b84cc6af320e9a0b42}
+      \strng{authorfullhash}{294320898ee010b84cc6af320e9a0b42}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0218-2165}
+      \field{journaltitle}{J. Knot Theory Ramifications}
+      \field{number}{2}
+      \field{title}{Solution of the {H}urwitz problem for {L}aurent polynomials}
+      \field{volume}{18}
+      \field{year}{2009}
+      \field{pages}{271\bibrangedash 302}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1142/S0218216509006896
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1142/S0218216509006896
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1142/S0218216509006896
+      \endverb
+    \endentry
+    \entry{zheng}{article}{}
+      \name{author}{1}{}{%
+        {{hash=34d448899769c04cec124cb68f2bb014}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{fullhash}{34d448899769c04cec124cb68f2bb014}
+      \strng{bibnamehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{authorbibnamehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{authornamehash}{34d448899769c04cec124cb68f2bb014}
+      \strng{authorfullhash}{34d448899769c04cec124cb68f2bb014}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0166-8641}
+      \field{journaltitle}{Topology Appl.}
+      \field{number}{12}
+      \field{title}{Realizability of branched coverings of {$S^2$}}
+      \field{volume}{153}
+      \field{year}{2006}
+      \field{pages}{2124\bibrangedash 2134}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.topol.2005.08.007
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.topol.2005.08.007
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.topol.2005.08.007
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,3 +1,63 @@
+\section{Dati con una partizione di lunghezza \texorpdfstring{$2$}{2}}
+
+\subsection{Roadmap}
+\begin{frame}
+\begin{mybox}[title=Obiettivo]
+Classificazione completa dei dati eccezionali della forma
+\[
+\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}.
+\]
+\end{mybox}
+\begin{itemize}
+\item Approccio computazionale\footfullcite{zheng} per trattare i casi con $d$ piccolo.
+\item Strategia basata sulla monodromia per ridurre il numero di partizioni a $n=3$.
+\item Strategia basata sui \dessins{} per ridurre il genere a $g=0$.
+\item Risultati già noti \footfullcite{pakovich} classificano i dati eccezionali della forma
+\[
+\datum{\sphere}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}.
+\]
+\end{itemize}
+\end{frame}
+
+\subsection{Mosse combinatorie}
+\begin{frame}
+Una \emph{mossa combinatoria} è un'implicazione del tipo
+\[
+\text{$\DD'$ è realizzabile \textcolor{violet}{$\implies$} $\DD$ è realizzabile,}
+\]
+dove $\DD$ e $\DD'$ sono dati compatibili. Si indica con $\DD\cmove\DD'$.
+\begin{itemize}
+\item $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$.
+\item Siamo interessati a mosse $\DD\cmove\DD'$ in cui $g'<g$.
+\end{itemize}
+\begin{mybox}[title=Schema dimostrativo]
+Per dimostrare che $\DD\cmove\DD'$:
+\begin{enumarabic}
+\item consideriamo un \dessin{} $\Gamma'\subs\surf{g'}$ che realizza $\DD'$;
+\item apportiamo alcune modifiche a $\Gamma'$ per ottenere un nuovo \dessin{} $\Gamma\subs\surf{g}$;
+\item verifichiamo che $\Gamma$ realizza $\DD$.
+\end{enumarabic}
+\end{mybox}
+\end{frame}
+
+\subsection{Un esempio di mossa combinatoria}
+\begin{frame}
+\begin{mybox}
+Sia $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ un dato compatibile con $g\ge 1$. Supponiamo che
+\begin{itemize}
+\item $3\le s\le d-3$;
+\item $[x,y]\subs\pi_1$ con $x\ge 3$, $y\ge 3$;
+\item $[2,2]\subs\pi_2$.
+\end{itemize}
+Consideriamo il dato compatibile
+\[
+\DD'=\datum{\surf{g-1}}{d-4}{\pi_1',\pi_2',[s-2,d-s-2]},
+\]
+dove $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ e $\pi_2'=\pi_2\setminus[2,2]$. Allora $\DD\cmove\DD'$.
+\end{mybox}
+\end{frame}
+
+\begin{frame}[fragile]
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{.2em}
 \begin{gather*}
@@ -131,3 +191,4 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \end{onlyenv}
 \end{columns}
 \end{overprint}
+\end{frame}
