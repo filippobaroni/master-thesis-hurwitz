@@ -41,13 +41,13 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="0">
+  <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>slides.bcf</file>
+      <file>figures/slides-branched-covering-local-model.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>slides.bbl</file>
+      <file>figures/slides-branched-covering-local-model.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -64,23 +64,23 @@
       <file>italian.lbx</file>
     </requires>
   </internal>
-  <external package="biblatex" priority="5" active="0">
+  <external package="biblatex" priority="5" active="1">
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>slides</infile>
+      <infile>figures/slides-branched-covering-local-model</infile>
     </cmdline>
     <input>
-      <file>slides.bcf</file>
+      <file>figures/slides-branched-covering-local-model.bcf</file>
     </input>
     <output>
-      <file>slides.bbl</file>
+      <file>figures/slides-branched-covering-local-model.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>slides.bbl</file>
+      <file>figures/slides-branched-covering-local-model.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>slides.bcf</file>
+      <file>figures/slides-branched-covering-local-model.bcf</file>
     </requires>
     <requires type="editable">
       <file>bibliography.bib</file>

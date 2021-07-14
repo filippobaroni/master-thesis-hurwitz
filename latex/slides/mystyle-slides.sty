@@ -4,6 +4,7 @@
 % LaTeX programming
 \usepackage{etoolbox}
 \usepackage{comment}
+\def\renewcounter#1{\expandafter\ifcsname c@#1\endcsname\else\newcounter{#1}\fi\setcounter{#1}{0}}
 
 
 % Language
@@ -41,6 +42,7 @@ visible on/.style args={<#1>}{/alt=<#1>{}{opacity=0}},
 }
 
 
+
 % Title
 \addtobeamertemplate{frametitle}{\let\insertframetitle\insertsectionhead}{}
 \addtobeamertemplate{frametitle}{\let\insertframesubtitle\insertsubsectionhead}{}
@@ -53,7 +55,6 @@ visible on/.style args={<#1>}{/alt=<#1>{}{opacity=0}},
 
 % Navigation symbols
 \setbeamertemplate{navigation symbols}{}
-
 
 
 % AMS packages
@@ -99,6 +100,9 @@ visible on/.style args={<#1>}{/alt=<#1>{}{opacity=0}},
 % Bibliography
 \usepackage[doi=false,isbn=false,url=false,articlein=false,style=ext-numeric]{biblatex}
 \addbibresource{bibliography.bib}
+
+\setbeamercolor{bibliography entry author}{fg=violet}
+\setbeamercolor{bibliography entry note}{fg=violet!60}
 
 \DeclareFieldFormat{pages}{#1}
 \DeclareFieldFormat[article,incollection,unpublished]{title}{\mkbibemph{#1}}

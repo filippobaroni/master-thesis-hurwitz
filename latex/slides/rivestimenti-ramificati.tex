@@ -31,7 +31,7 @@ che localmente si comporta come
 \begin{scope}[shift={(0,0,-2.5)}]
 \fill[disk 1] circle (1);
 \foreach \i in {.1,.2,...,.9} { \draw[gray!80,line width=.1] circle (\i); }
-\foreach \i in {0,...,39} {\draw[gray!80,line width=.1] (0,0) -- ({\i*360/40}:1); }
+\foreach \i in {0,...,29} {\draw[gray!80,line width=.1] (0,0) -- ({sin(\i*360/30)},{-cos(\i*360/30)},0); }
 \draw circle (1);
 \fill[black] circle (1pt) node[below left] {$x$};
 \fill[black] (y) circle (1pt);
@@ -40,7 +40,7 @@ che localmente si comporta come
 \draw[violet,-{Latex[]}] (0,0,0) -- (0,0,-2.4) node[midway,left=2pt] {$f$};
 \draw[violet,-{Latex[]}] (y-1) -- ([shift={(0,0,.1)}]y);
 
-\newcounter{branchedcoveringcounter}
+\renewcounter{branchedcoveringcounter}
 \path[decorate,decoration={show path construction,curveto code={
 \filldraw[line width=.1pt,fill=disk 1,fill opacity=.9,draw=gray!80] (0,0,0) -- (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast) -- cycle;
 \draw (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);
@@ -68,7 +68,7 @@ che localmente si comporta come
 \end{frame}
 
 \subsection{Grado del rivestimento}
-\begin{frame}
+\begin{frame}[fragile]
 \begin{columns}[onlytextwidth]
 \column{.65\textwidth}
 Posto
@@ -76,7 +76,7 @@ Posto
 \item $\holed{\Sigma}=\Sigma\setminus\{\text{punti di ramificazione}\}$,
 \item $\holed{\tSigma}=f^{-1}(\holed{\Sigma})$,
 \end{itemize}
-la restrizione $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ è un rivestimento di grado $d\ge 1$.
+la restrizione $\map{\holed{f}}{\holed{\tSigma}}{\holed{\Sigma}}$ è un rivestimento di grado $\sidenotehighlight<1>{d}{\draw (mymark) to[out=-45,in=180] (2,-.1) node[right] {grado di $f$};}\ge 1$.
 
 \begin{mybox}
 Per ogni $x\in\Sigma$ vale
@@ -86,13 +86,60 @@ k(\wtilde{x}_1)+\ldots+k(\wtilde{x}_r)=d,
 dove $\{\wtilde{x}_1,\ldots,\wtilde{x}_r\}=f^{-1}(x)$.
 \end{mybox}
 \begin{itemize}
-\item Possiamo associare a $x$ la partizione di $d$
+\item Possiamo associare a $x$ la \sidenotehighlight<1>{partizione}{\draw (mymark) to[out=-30,in=120] (1,-1) node[below] {non ordinata};} di $d$
 \[
 \pi(x)=[k(\wtilde{x}_1),\ldots,k(\wtilde{x}_r)].
 \]
 \end{itemize}
 \column{.35\textwidth}
-Picture
+\begin{flushright}
+\tdplotsetmaincoords{65}{-30}
+\renewcounter{branchedcoveringcounter}
+\tikzsetnextfilename{slides-branched-covering-local-partition}
+\scalebox{.75}{
+\begin{tikzpicture}[tdplot_main_coords,x={(1.2,0,0)},y={(0,1.2,0)},z={(0,0,1.2)}]
+\def\a{30};
+\def\yy{{sin(\a)*.7},{-cos(\a)*.7}}
+
+\begin{scope}[shift={(0,0,-2.5)}]
+\filldraw[disk 1,draw=black] circle (1);
+\fill[black] circle (1pt) node[below left] {$x$};
+\end{scope}
+
+\draw[violet,-{Latex[]},shorten >=.1cm] (0,0,0) -- (0,0,-2.5) node[midway,left=2pt] {$f$};
+\draw[violet,-{Latex[]},shorten >=.1cm,opacity=.6] (\yy,{\a/360-1}) -- (\yy,-2.5) pic {code={\fill[violet,opacity=1] circle (1pt);}};
+
+\foreach \zshift/\col in {0/teal,4/purple} {
+\setcounter{branchedcoveringcounter}{0}
+\path[decorate,decoration={show path construction,curveto code={
+\filldraw[line width=.1pt,disk 1] (0,0,\zshift) -- (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast) -- cycle;
+\draw (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);
+\ifnumcomp{\the\value{branchedcoveringcounter}}{=}{0}{
+	\draw[line width=\edgelinewidth,\col] (0,0,\zshift) -- (\tikzinputsegmentfirst);
+}{}
+\ifnumcomp{\the\value{branchedcoveringcounter}}{=}{15}{
+	\draw[violet,opacity=.6] ++(\yy,{\a/360+\zshift}) -- +(0,0,-.7) pic {code={\fill[violet,opacity=1] circle (1pt);}};
+}{}
+\ifnumcomp{\the\value{branchedcoveringcounter}}{=}{45}{
+\ifnum\zshift=0\draw[violet] (0,0,0) -- (0,0,2) ;\fi
+}{}
+\stepcounter{branchedcoveringcounter}
+}}] plot[smooth,samples={61},variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\zshift+\t/360});
+\draw[line width=\edgelinewidth,\col] (0,0,\zshift) -- (0,-1,\zshift+1);
+\fill[violet] (\yy,{\a/360+\zshift}) circle (1pt);
+\ifnumcomp{\zshift}{=}{0}{
+\draw[violet,opacity=.6] (\yy,{\a/360}) -- (\yy,2);
+\filldraw[disk 1,draw=black] (0,0,2) circle(1);
+\draw[violet,opacity=.6] (\yy,2) pic {code={\fill[violet,opacity=1] circle (1pt);}} -- (\yy,{\a/360+4}) (0,0,2) -- (0,0,4);
+}{}
+}
+
+\foreach \z/\k[count=\i] in {0/2,2/1,4/2} {
+\fill[black] (0,0,\z) circle (1pt) node[below left] {$\wtilde{x}_{\i}$};
+\node[right] at ($(-30:1.4)+(0,0,\z)$) {$k(\wtilde{x}_{\i})=\k$};
+}
+\end{tikzpicture}}
+\end{flushright}
 \end{columns}
 \end{frame}
 
@@ -120,7 +167,7 @@ d\cdot\chi(\Sigma)-\chi(\tSigma)=d\cdot n-\len{\pi_1}-\ldots-\len{\pi_n}.
 \begin{itemize}
 \item Un dato compatibile $\DD=\datum{\tSigma,\Sigma}{d}{\pi_1,\ldots,\pi_n}$ si dice \emph{realizzabile} se è il dato di ramificazione di un qualche rivestimento ramificato $\map{f}{\tSigma}{\Sigma}$, \emph{eccezionale} altrimenti.
 \item La formula di Riemann-Hurwitz è condizione necessaria, ma non sufficiente per la realizzabilità.\\
-Ad esempio, il dato $\DD=\datum{\sphere{},\sphere{}}{4}{[2,2],[2,2],[3,1]}$ soddisfa
+Ad esempio, il dato $\DD=\datum{\sphere{},\sphere{}}{4}{[2,2],[2,2],[1,3]}$ soddisfa
 \begin{equation}\tag{\textcolor{black!70}{RH}}
 \begin{tikzpicture}[baseline=(m-2-1.base)]
 \matrix[ampersand replacement=\&,matrix of math nodes,nodes={inner sep=0pt,text height={height("I")},text depth={depth("y")}},row sep=1.2em,row 2/.style={text opacity=.7}] (m) {

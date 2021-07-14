@@ -28,7 +28,7 @@ Una \emph{mossa combinatoria} è un'implicazione del tipo
 dove $\DD$ e $\DD'$ sono dati compatibili. Si indica con $\DD\cmove\DD'$.
 \begin{itemize}
 \item $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$.
-\item Siamo interessati a mosse $\DD\cmove\DD'$ in cui $g'<g$.
+\item Siamo interessati a mosse $\DD\cmove\DD'$ in cui $\sidenotehighlight<1>{g'}{\draw (mymark) to[out=135,in=-170,in looseness=2] (-.7,.6) node[right] {$\DD'=\datum{\surf{g'}}{d'}{\pi_1',\pi_2',[s',d'-s']}$};} {<}g$.
 \end{itemize}
 \begin{mybox}[title=Schema dimostrativo]
 Per dimostrare che $\DD\cmove\DD'$:
@@ -58,20 +58,24 @@ dove $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ e $\pi_2'=\pi_2\setminus[2,2]$. A
 \end{frame}
 
 \begin{frame}[fragile]
-\setlength{\abovedisplayskip}{0pt}
+\colorlet{disk 1 text}{disk 1 boundary!70!black}
+\colorlet{disk 2 text}{disk 2 boundary!80!black}
+\def\DOne{\textcolor{disk 1 text}{\ensuremath{D_1}}}
+\def\DTwo{\textcolor{disk 2 text}{\ensuremath{D_2}}}
+\setlength{\abovedisplayskip}{-.5em}
 \setlength{\belowdisplayskip}{.2em}
 \begin{gather*}
 \datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}\cmove\datum{\surf{g-1}}{d-4}{\pi_1',\pi_2',[s-2,d-s-2]}\\[.5em]
 \textcolor{black!80}{\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2],\qquad\pi_2'=\pi_2\setminus[2,2]}
 \end{gather*}
 {\centering\tikz\draw[violet,tip/.tip={Hooks[arc=225,scale=1.25]},tip-tip] (0.5pt,0)--(\textwidth,0);\vspace{.5em}}
-Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_1$ il disco complementare di perimetro $s-2$, con $D_2$ l'altro.\vspace{.2em}
+Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DOne{} il disco complementare di perimetro $s-2$, con \DTwo{} l'altro.\vspace{.2em}
 
 \begin{overprint}
 \only<1>{
-\textbf{Caso 1:} il vertice nero di grado $x-2$ giace sul bordo di $D_1$, quello di grado $y-2$ sul bordo di $D_2$.}
+\textbf{Caso 1:} il vertice nero di grado $x-2$ giace sul bordo di \DOne{}, quello di grado $y-2$ sul bordo di \DTwo{}.}
 \only<2>{
-\textbf{Caso 2:} i vertici neri di gradi $x-2$ e $y-2$ giacciono entrambi sul bordo di $D_1$. Sia $e$ un arco che giace sui bordi di entrambi i dischi.}
+\textbf{Caso 2:} i vertici neri di gradi $x-2$ e $y-2$ giacciono entrambi sul bordo di \DOne{}. Sia $\color{green!60!black}e$ un arco che giace sui bordi di entrambi i dischi.}
 \vspace{-1.5em}
 \end{overprint}
 \begin{overprint}
@@ -79,7 +83,7 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \column[t]{.55\textwidth}
 \begin{onlyenv}<1>
 \begin{enumarabic}
-\item Attacchiamo un tubo a $\surf{g-1}$ con un estremo in $D_1$ e l'altro in $D_2$.
+\item Attacchiamo un tubo a $\surf{g-1}$ con un estremo in \DOne{} e l'altro in \DTwo{}.
 \item Aggiungiamo vertici e archi.
 \item Tracciamo gli archi rossi.
 \item Collassiamo gli archi rossi.
@@ -87,8 +91,8 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con $D_
 \end{onlyenv}
 \begin{onlyenv}<2>
 \begin{enumarabic}
-\item Aggiungiamo vertici su $e$.
-\item Attacchiamo un tubo a $\surf{g-1}$ con entrambi gli estremi in in $D_1$.
+\item Aggiungiamo vertici su $\color{green!60!black}e$.
+\item Attacchiamo un tubo a $\surf{g-1}$ con entrambi gli estremi in in \DOne{}.
 \item Tracciamo gli archi rossi.
 \item Collassiamo gli archi rossi.
 \end{enumarabic}

@@ -15,8 +15,53 @@ Sia $\map{f}{\tSigma}{\sphere}$ un rivestimento ramificato con punti di ramifica
 \end{itemize}
 \column{.35\textwidth}
 \begin{flushright}
+\tikzset{
+black vertex/.pic={\fill[black] circle(1.5pt);},
+white vertex/.pic={\filldraw[line width=.5pt,white,draw=black] circle(1.5pt);},
+third vertex/.pic={\draw[scale=1.5,black!70,thick] (45:1pt) -- (-135:1pt) (-45:1pt) -- (135:1pt);}
+}
 Picture\\
-Picture
+\tikzsetnextfilename{slides-dessin-disk-perimeter}
+\tdplotsetmaincoords{65}{-30}
+\renewcounter{branchedcoveringcounter}
+\scalebox{.75}{
+\begin{tikzpicture}[tdplot_main_coords,x={(1.2,0,0)},y={(0,1.2,0)},z={(0,0,1.2)}]
+\def\a{30};
+\def\yy{{sin(\a)*.7},{-cos(\a)*.7}}
+
+\begin{scope}[shift={(0,0,-2.5)}]
+\fill[disk 1] circle (1);
+\draw[line width=\edgelinewidth,teal] (-30:1) arc(-30:150:1);
+\draw[line width=\edgelinewidth,purple] (150:1) pic{black vertex} node[black,below left] {$x$} arc(150:330:1) pic{white vertex} node[black,below right] {$y$};
+\pic{third vertex} node[below left] {$z$};
+\end{scope}
+
+\draw[violet,-{Latex[]},shorten >=.1cm] (0,0,0) -- (0,0,-2.5) node[midway,left=2pt] {$f$};
+
+\setcounter{branchedcoveringcounter}{0}
+\path[decorate,decoration={show path construction,curveto code={
+\filldraw[line width=.1pt,disk 1] (0,0,0) -- (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast) -- cycle;
+\tikzmath{
+\v=mod(\value{branchedcoveringcounter},30);
+\col=ifthenelse(\v>=5&&\v<20,"teal","purple");
+}
+\draw[\col,line width=\edgelinewidth] (\tikzinputsegmentfirst) .. controls (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) .. (\tikzinputsegmentlast);
+\ifnumcomp{\the\value{branchedcoveringcounter}}{=}{0}{
+	\draw[black] (0,0,0) -- (\tikzinputsegmentfirst);
+}{}
+\tikzmath{
+if \v==5 then{
+{\pic at (\tikzinputsegmentfirst) {white vertex};};
+};
+if \v==20 then{
+{\pic at (\tikzinputsegmentfirst) {black vertex};};
+};
+}
+\stepcounter{branchedcoveringcounter}
+}}] plot[smooth,samples={61},variable=\t,domain=-360:360] ({sin(\t)},{-cos(\t)},{\t/360});
+\draw[black] (0,0,0) -- (0,-1,1);
+\pic{third vertex} node[below left] {$\wtilde{z}_i$};
+\end{tikzpicture}}
 \end{flushright}
 \end{columns}
 \end{frame}

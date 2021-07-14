@@ -22,9 +22,9 @@ Sia $\surf{g}$ la somma connessa di $g\ge 0$ tori. Se
 \[
 \holed{\surf{g}}=\surf{g}\setminus\{x_1,\ldots,x_n\},%punti di ramificazione
 \]
-il gruppo fondamentale di $\holed{\surf{g}}$ ammette la presentazione
+il gruppo fondamentale $\pi_1(\holed{\surf{g}},x_0)$ ammette la presentazione
 \begin{multline*}
-\pi_1(\holed{\surf{g}})=\langle \sidenotehighlight<1>{a_1}{\draw (mymark) to[out=60,in=180] (.6,.6) node[anchor=west] {cammino chiuso intorno a $x_1$};},\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid\\
+\langle \sidenotehighlight<1>{a_1}{\draw (mymark) to[out=60,in=180] (1,.55) node[anchor=west] {cammino chiuso intorno a $x_1$};},\ldots,a_n,b_1,\ldots,b_g,c_1,\ldots,c_g\mid\\
 [b_1,c_1]\cdots[b_g,c_g]\cdot a_1\cdots a_n\rangle.
 \end{multline*}
 \column{.35\textwidth}
@@ -50,10 +50,10 @@ il gruppo fondamentale di $\holed{\surf{g}}$ ammette la presentazione
 \end{columns}
 \vspace{0.5em}
 \begin{itemize}
-\item Se $\map{f}{\tSigma}{\surf{g}}$ è un rivestimento ramificato, $\pi_1(\holed{\surf{g}},x_0)$ agisce sulla fibra $f^{-1}(x_0)$ \textcolor{black!80}{(monodromia del rivestimento $\map{\holed{f}}{\holed{\tSigma}}{\holed{\surf{g}}}$)}.
+\item Se $\map{f}{\tSigma}{\surf{g}}$ è un rivestimento \sidenote<1>{ramificato}{\draw (mymark) to[out=45,in=180] (1,.45) node[right] {in $\{x_1,\ldots,x_n\}$};}, $\pi_1(\holed{\surf{g}},x_0)$ agisce sulla fibra $f^{-1}(x_0)$ \textcolor{black!80}{(monodromia del rivestimento $\map{\holed{f}}{\holed{\tSigma}}{\holed{\surf{g}}}$)}.
 \item Questa azione induce un morfismo di gruppi
 \[
-\map{\Mon}{\pi_1(\holed{\surf{g}})}{\op{\symgroup(f^{-1}(x_0))}\iso\symgroup[d]}.
+\map{\Mon}{\pi_1(\holed{\surf{g}},x_0)}{\op{\symgroup(f^{-1}(x_0))}\iso\symgroup[d]}.
 \]
 \item Le lunghezze dei cicli di $\Mon(a_i)$ corrispondono agli elementi di \sidenote<1>{$\pi(x_i)$.}{\draw[shorten <=3pt] (mymark) to[out=30,out looseness=2,in=-30] (.6,1.2) node[anchor=east,align=right] {scriviamo\\$[\Mon(a_i)]=\pi(x_i)$};} %Scriviamo []=
 \end{itemize}

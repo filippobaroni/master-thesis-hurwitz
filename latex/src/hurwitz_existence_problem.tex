@@ -43,7 +43,7 @@ More informally, we can say that a branched covering is a continuous function be
 \begin{scope}[shift={(0,0,-2.5)}]
 \fill[disk 1] circle (1);
 \foreach \i in {.1,.2,...,.9} { \draw[gray!80,line width=.1] circle (\i); }
-\foreach \i in {0,...,39} {\draw[gray!80,line width=.1] (0,0) -- ({\i*360/40}:1); }
+\foreach \i in {0,...,29} {\draw[gray!80,line width=.1] (0,0) -- ({sin(\i*360/30)},{-cos(\i*360/30)},0); }
 \draw circle (1);
 \fill[black] circle (1pt) node[below left] {$x$};;
 
