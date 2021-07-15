@@ -1,26 +1,55 @@
 \section{\texorpdfstring{\Dessins{}}{Dessins d'enfant}}
 
 \subsection{Costruzione}
-\begin{frame}
+\begin{frame}[fragile]
 \begin{columns}[onlytextwidth]
 \column{.65\textwidth}
 Sia $\map{f}{\tSigma}{\sphere}$ un rivestimento ramificato con punti di ramificazione $x,y,z\in\sphere$.
 \begin{itemize}
-\item Tracciamo un arco $e$ fra $x$ e $y$.
-\item $\Gamma= f^{-1}(e)$ è un grafo su $\tSigma$.
+\def\ee{\textcolor{green!60!black}{e}}
+\item Tracciamo un arco $\ee$ fra $x$ e $y$.
+\item $\Gamma= f^{-1}(\ee)$ è un grafo su $\tSigma$.
 \item Se coloriamo $f^{-1}(x)$ di nero e $f^{-1}(y)$ di bianco, $\Gamma$ è bipartito.
-\item Ogni componente \sidenote<1>{connessa}{\draw (mymark) to[out=110,in=180] (.2,.5) node[right] {regione complementare};} $\wtilde{D}_i$ di $\tSigma\setminus\Gamma$ contiene esattamente un punto $\wtilde{z}_i\in f^{-1}(z)$. %regioni complementari
-\item La restrizione $\map{f}{\wtilde{D}_i}{\sidenotehighlight<1>{\sphere{}\setminus e}{\draw (mymark) to[out=90,in=180] (.5,.5) node[right] {disco};}}$\; è un rivestimento ramificato con un solo punto di ramificazione.%è un disco
-\item $\wtilde{D}_i$ è un disco, e ci sono $2k(\wtilde{z}_i)$ archi lungo il suo perimetro.%con molteplicità
+\item Il grado di $\wtilde{x_i}\in f^{-1}(x)$ è $k(\wtilde{x}_i)$.
+\item Ogni componente \sidenote<1>{connessa}{\draw (mymark) to[out=-110,in=180] (.2,-.9) node[right] {regione complementare};} $\wtilde{D}_i$ di $\tSigma\setminus\Gamma$ contiene esattamente un punto $\wtilde{z}_i\in f^{-1}(z)$.
+%\item La restrizione $\map{f}{\wtilde{D}_i}{\sidenotehighlight<1>{\sphere{}\setminus \ee}{\draw (mymark) to[out=90,in=180] (.5,.5) node[right] {disco};}}$\; è un rivestimento ramificato con un solo punto di ramificazione.
+\item $\wtilde{D}_i$ è un disco, e ci sono $2k(\wtilde{z}_i)$ \sidenotehighlight<1>{archi}{\draw (mymark) to[out=-90,in=0] (-.6,-.8) node[left] {contati con molteplicità};} lungo il suo perimetro.
 \end{itemize}
 \column{.35\textwidth}
-\begin{flushright}
+\begin{center}
 \tikzset{
 black vertex/.pic={\fill[black] circle(1.5pt);},
 white vertex/.pic={\filldraw[line width=.5pt,white,draw=black] circle(1.5pt);},
 third vertex/.pic={\draw[scale=1.5,black!70,thick] (45:1pt) -- (-135:1pt) (-45:1pt) -- (135:1pt);}
 }
-Picture\\
+\tikzsetnextfilename{slides-dessin-graph-preimage}
+\scalebox{.75}{
+\begin{tikzpicture}[x={(1.5,0,0)},y={(0,1.5,0)},z={(.6,.4)},
+arc/.style={draw=green,preaction={draw=white,line width=2pt}},
+declare function={interp(\a,\b,\t)=\a+\t*(\b-\a);},
+pics/draw arc/.style 2 args={code={
+\draw[arc] let \p1=(#1),\p2=(#2) in plot[smooth,variable=\t,domain=0:1] ({interp(\x1,\x2,\t)/1.5cm},{interp(\y1,\y2,\t)/1.5cm},{.1*sin(360*\t)});
+}},
+]
+\foreach \i in {1,2,3} {
+\coordinate (x-\i) at (0,{1+.5*(\i-1)});
+}
+\foreach \i in {1,2} {
+\coordinate (y-\i) at (1,{1+1/6+2/3*(\i-1)});
+}
+
+\pic{draw arc={0,0}{1,0}};
+\node[teal!60!black,below] at (.5,0) {$e$};
+\foreach \i/\j in {1/1,1/2,2/1,3/1} {\pic{draw arc={x-\i}{y-\j}};}
+\draw[violet,-latex,shorten >=.1cm] (x-3) -- (0,0);
+\draw[violet,-latex,shorten >=.1cm] (y-2) -- (1,0) node[right,pos=.66] {$f$};
+\path (0,0) pic{black vertex} node[below left] {$x$};
+\path (1,0) pic{white vertex} node[below right] {$y$};
+\foreach \i in {1,2,3} {\path (x-\i) pic {black vertex} node[left] {$\wtilde{x}_{\i}$};}
+\foreach \i in {1,2} {\path (y-\i) pic {white vertex} node[right] {$\wtilde{y}_{\i}$};}
+\end{tikzpicture}
+}\\
+\tikz\draw[gray!50] (0,0) -- (2,0);\\[1.5em]
 \tikzsetnextfilename{slides-dessin-disk-perimeter}
 \tdplotsetmaincoords{65}{-30}
 \renewcounter{branchedcoveringcounter}
@@ -62,7 +91,7 @@ if \v==20 then{
 \draw[black] (0,0,0) -- (0,-1,1);
 \pic{third vertex} node[below left] {$\wtilde{z}_i$};
 \end{tikzpicture}}
-\end{flushright}
+\end{center}
 \end{columns}
 \end{frame}
 
@@ -100,4 +129,13 @@ Un dato $\DD=\datum{\tSigma}{d}{\pi_1,\pi_2,\pi_3}$ è realizzabile se e solo se
 \item i due dischi complementari abbiano semiperimetri $[1,3]$.
 \end{enumroman}
 Tuttavia esiste un unico \dessin{} su $\sphere$ che soddisfa le condizioni \tikzenumlabel{i} e \tikzenumlabel{ii}, e i suoi dischi complementari hanno semiperimetri $[2,2]$.
+\begin{center}
+\tikzsetnextfilename{slides-dessin-example-sphere}
+\begin{tikzpicture}[x={(.8,0)},y={(0,.8)}]
+\pgfsetlayers{main,surf edge behind,graph vertex}
+\filldraw[disk 1,surf boundary] circle (2);
+\fill[scale=1.2,shift={(0,.1)},disk 2,postaction={surf edge={behind}{black edge}}] (45:1) pic{black vertex} to[bend right] (135:1) pic{white vertex} to[bend right] (-135:1) pic{black vertex} to[bend right] (-45:1) pic{white vertex} to[bend right] cycle;
+\draw[surf boundary dashed,opacity=.4] (2,0) arc (0:-180:2 and {2*cos(70)});
+\end{tikzpicture}
+\end{center}
 \end{frame}
