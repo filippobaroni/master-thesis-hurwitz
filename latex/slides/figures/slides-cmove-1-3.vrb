@@ -1,66 +1,3 @@
-\section{Dati con una partizione di lunghezza \texorpdfstring{$2$}{2}}
-
-\subsection{Roadmap}
-\begin{frame}
-\begin{mybox}[title=Obiettivo]
-Classificazione completa dei dati eccezionali della forma
-\[
-\datum{\surf{g}}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}.
-\]
-\end{mybox}\pause
-\begin{itemize}
-\item<+-> Approccio computazionale\footfullcite{zheng} per trattare i casi con $d$ piccolo.
-\item<+-> Strategia basata sulla monodromia per ridurre il numero di partizioni a $n=3$.
-\item<+-> Strategia basata sui \dessins{} per ridurre il genere a $g=0$.
-\item<+-> Risultati già noti\footfullcite{pakovich} classificano i dati eccezionali della forma
-\[
-\datum{\sphere}{d}{\pi_1,\ldots,\pi_{n-1},[s,d-s]}.
-\]
-\end{itemize}
-\end{frame}
-
-\subsection{Mosse combinatorie}
-\begin{frame}
-Una \emph{mossa combinatoria} è un'implicazione del tipo
-\[
-\text{$\DD'$ è realizzabile \textcolor{violet}{$\implies$} $\DD$ è realizzabile,}
-\]
-dove $\DD$ e $\DD'$ sono dati compatibili. Si indica con $\DD\cmove\DD'$.
-\pause
-\begin{itemize}
-\item<+-> $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$.
-\item<+-> Siamo interessati a mosse $\DD\cmove\sidenotehighlight<3->{\DD'}{\draw (mymark) to[out=60,in=-170] (.7,.6) node[right] {$\datum{\surf{g'}}{d'}{\pi_1',\pi_2',[s',d'-s']}$};}$ in cui $g'<g$.
-\end{itemize}
-\visible<4->{
-\begin{mybox}[title=Schema dimostrativo]
-Per dimostrare che $\DD\cmove\DD'$:
-\begin{enumarabic}
-\item<5-> consideriamo un \dessin{} $\Gamma'\subs\surf{g'}$ che realizza $\DD'$;
-\item<6-> apportiamo alcune modifiche a $\Gamma'$ per ottenere un nuovo \dessin{} $\Gamma\subs\surf{g}$;
-\item<7-> verifichiamo che $\Gamma$ realizza $\DD$.
-\end{enumarabic}
-\end{mybox}}
-\end{frame}
-
-\subsection{Un esempio di mossa combinatoria}
-\begin{frame}
-\begin{mybox}
-Sia $\DD=\datum{\surf{g}}{d}{\pi_1,\pi_2,[s,d-s]}$ un dato compatibile con $g\ge 1$. Supponiamo che:
-\begin{itemize}
-\item $3\le s\le d-3$;
-\item $[x,y]\subs\pi_1$ con $x\ge 3$, $y\ge 3$;
-\item $[2,2]\subs\pi_2$.
-\end{itemize}
-\pause
-Consideriamo il dato compatibile
-\[
-\DD'=\datum{\surf{g-1}}{d-4}{\pi_1',\pi_2',[s-2,d-s-2]},
-\]
-dove $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ e $\pi_2'=\pi_2\setminus[2,2]$. Allora $\DD\cmove\DD'$.
-\end{mybox}
-\end{frame}
-
-\begin{frame}[fragile]
 \colorlet{disk 1 text}{disk 1 boundary!70!black}
 \colorlet{disk 2 text}{disk 2 boundary!80!black}
 \def\DOne{\textcolor{disk 1 text}{\ensuremath{D_1}}}
@@ -73,11 +10,11 @@ dove $\pi_1'=\pi_1\setminus[x,y]\cup[x-2,y-2]$ e $\pi_2'=\pi_2\setminus[2,2]$. A
 \end{gather*}
 {\centering\tikz\draw[violet,tip/.tip={Hooks[arc=225,scale=1.25]},tip-tip] (0.5pt,0)--(\textwidth,0);\vspace{.5em}}
 \pause
-Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DOne{} il disco complementare di semiperimetro $s-2$, con \DTwo{} l'altro.\vspace{.2em}
+Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DOne{} il disco complementare di perimetro $s-2$, con \DTwo{} l'altro.\vspace{.2em}
 
 \begin{overprint}
-\only<-7>{\visible<3-7>{
-\textbf{Caso 1:} il vertice nero di grado $x-2$ giace sul bordo di \DOne{}, quello di grado $y-2$ sul bordo di \DTwo{}.}}
+\only<3-7>{
+\textbf{Caso 1:} il vertice nero di grado $x-2$ giace sul bordo di \DOne{}, quello di grado $y-2$ sul bordo di \DTwo{}.}
 \only<8->{
 \textbf{Caso 2:} i vertici neri di gradi $x-2$ e $y-2$ giacciono entrambi sul bordo di \DOne{}. Sia $\color{green!60!black}e$ un arco che giace sui bordi di entrambi i dischi.}
 \vspace{-1.5em}
@@ -102,7 +39,7 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DO
 \end{enumarabic}
 \end{onlyenv}
 \column[t]{.45\textwidth}
-\begin{onlyenv}<3-7>
+\begin{onlyenv}<1>
 \def\picturesetupzero#1{
 \pic{cmove setting two disks};
 \path \surfcirclepoint{d1}{-90} coordinate (x-2);
@@ -140,51 +77,44 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DO
 \node[above left] at (b1) {$x$};
 \node[below=3pt] at (b2) {$y$};
 }
-\only<3>{
 \begin{flushright}
+\only<3>{
 \tikzsetnextfilename{slides-cmove-1-0}
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
 \picturesetupzero{0}
-\end{tikzpicture}}
-\end{flushright}
-}
+\end{tikzpicture}}}
+\only<3>{
+\tikzsetnextfilename{slides-cmove-1-0}
+\scalebox{.7}{
+\begin{tikzpicture}[surf picture]
+\picturesetupzero{0}
+\end{tikzpicture}}}
 \only<4>{
-\begin{flushright}
 \tikzsetnextfilename{slides-cmove-1-1}
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
 \picturesetupone{0}
-\end{tikzpicture}}
-\end{flushright}
-}
+\end{tikzpicture}}}
 \only<5>{
-\begin{flushright}
 \tikzsetnextfilename{slides-cmove-1-2}
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
 \picturesetuptwo{0}
-\end{tikzpicture}}
-\end{flushright}
-}
+\end{tikzpicture}}}
 \only<6>{
-\begin{flushright}
 \tikzsetnextfilename{slides-cmove-1-3}
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
 \picturesetupthree{0}
-\end{tikzpicture}}
-\end{flushright}
-}
+\end{tikzpicture}}}
 \only<7>{
-\begin{flushright}
 \tikzsetnextfilename{slides-cmove-1-4}
 \scalebox{.7}{
 \begin{tikzpicture}[surf picture]
 \picturesetupfour
-\end{tikzpicture}}
+\end{tikzpicture}}}
 \end{flushright}
-}
 \end{onlyenv}
 \begin{onlyenv}<8->
 \def\picturesetupzero#1#2{
@@ -227,7 +157,6 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DO
 \node[below=5pt] at (x1) {$x$};
 \node[below right] at (x2) {$y$};
 }
-\only<8>{
 \begin{flushright}
 \tikzsetnextfilename{slides-cmove-2-0}
 \scalebox{.7}{
@@ -235,44 +164,6 @@ Sia $\Gamma'\subs\surf{g-1}$ un \dessin{} che realizza $\DD'$. Denotiamo con \DO
 \picturesetupzero{0}{0}
 \end{tikzpicture}}
 \end{flushright}
-}
-\only<9>{
-\begin{flushright}
-\tikzsetnextfilename{slides-cmove-2-1}
-\scalebox{.7}{
-\begin{tikzpicture}[surf picture]
-\picturesetupone{0}{0}
-\end{tikzpicture}}
-\end{flushright}
-}
-\only<10>{
-\begin{flushright}
-\tikzsetnextfilename{slides-cmove-2-2}
-\scalebox{.7}{
-\begin{tikzpicture}[surf picture]
-\picturesetuptwo{0}
-\end{tikzpicture}}
-\end{flushright}
-}
-\only<11>{
-\begin{flushright}
-\tikzsetnextfilename{slides-cmove-2-3}
-\scalebox{.7}{
-\begin{tikzpicture}[surf picture]
-\picturesetupthree{0}
-\end{tikzpicture}}
-\end{flushright}
-}
-\only<12>{
-\begin{flushright}
-\tikzsetnextfilename{slides-cmove-2-4}
-\scalebox{.7}{
-\begin{tikzpicture}[surf picture]
-\picturesetupfour
-\end{tikzpicture}}
-\end{flushright}
-}
 \end{onlyenv}
 \end{columns}
 \end{overlayarea}
-\end{frame}

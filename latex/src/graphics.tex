@@ -317,7 +317,7 @@ exec on layer={surf edge #1}{
 }
 
 \tikzset{
-cmove setting one disk/.pic={\path[use as bounding box] (-2.5,-3.4) rectangle(2.5,3.3);\pic {surf circle={d#1}{\surfdiskradius}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
+cmove setting one disk/.pic={\path[use as bounding box] (-3.25,-3.4) rectangle(3.25,3.3);\pic {surf circle={d#1}{\surfdiskradius}};\tikzset{exec on layer={surf base}{\fill[disk #1] \surfcirclepath{d#1}{0}{360};},exec on layer={surf edge behind}{\path[surf boundary] \surfcirclepath{d#1}{0}{360};}}},
 cmove setting one disk tube/.pic={\path \surfcirclepoint{d#1}{180} coordinate (-l) \surfcirclepoint{d#1}{0} coordinate (-r);\pic {surf tube={$(-l)!.25!(-r)$}{$(-l)!.75!(-r)$}};},
 cmove setting two disks/.pic={\path[use as bounding box] (-2.6,-2.3) rectangle (2.6,3.4);\foreach \i/\j in {1/-1,2/1} {
 \pic at ({\j*(\surfdisksmallradius+\surfdisksmallsep)},0) {surf circle={d\i}{\surfdisksmallradius}};
