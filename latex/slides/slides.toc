@@ -1,37 +1,39 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {1}{Rivestimenti ramificati}{1}{0}{1}
-\defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {1}{1}{Definizione}{1}{0}{1}
-\defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {1}{2}{Grado del rivestimento}{4}{0}{1}
-\defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {1}{3}{Dati di ramificazione}{7}{0}{1}
-\defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {1}{4}{Problema di esistenza di Hurwitz}{11}{0}{1}
 \babel@toc {italian}{}
 \babel@toc {italian}{}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Monodromia}{17}{0}{2}
+\beamer@sectionintoc {1}{Rivestimenti ramificati}{2}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {2}{1}{Gruppo fondamentale e monodromia del rivestimento}{17}{0}{2}
+\beamer@subsectionintoc {1}{1}{Definizione}{2}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {2}{2}{Criterio di realizzabilità}{22}{0}{2}
+\beamer@subsectionintoc {1}{2}{Grado del rivestimento}{5}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {2}{3}{Conseguenze}{33}{0}{2}
+\beamer@subsectionintoc {1}{3}{Dati di ramificazione}{8}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{\Dessins {}}{38}{0}{3}
+\beamer@subsectionintoc {1}{4}{Problema di esistenza di Hurwitz}{12}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {3}{1}{Costruzione}{38}{0}{3}
+\beamer@sectionintoc {2}{Monodromia}{18}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {3}{2}{Criterio di realizzabilità}{45}{0}{3}
+\beamer@subsectionintoc {2}{1}{Gruppo fondamentale e monodromia del rivestimento}{18}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {3}{3}{Un esempio di dato eccezionale}{51}{0}{3}
+\beamer@subsectionintoc {2}{2}{Criterio di realizzabilità}{23}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {4}{Dati con una partizione di lunghezza $2$}{53}{0}{4}
+\beamer@subsectionintoc {2}{3}{Conseguenze}{34}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {4}{1}{Roadmap}{53}{0}{4}
+\beamer@sectionintoc {3}{\Dessins {}}{39}{0}{3}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {4}{2}{Mosse combinatorie}{58}{0}{4}
+\beamer@subsectionintoc {3}{1}{Costruzione}{39}{0}{3}
 \defcounter {refsection}{0}\relax 
-\beamer@subsectionintoc {4}{3}{Un esempio di mossa combinatoria}{65}{0}{4}
+\beamer@subsectionintoc {3}{2}{Criterio di realizzabilità}{46}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{3}{Un esempio di dato eccezionale}{52}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {4}{Dati con una partizione di lunghezza $2$}{54}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{1}{Roadmap}{54}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{2}{Mosse combinatorie}{59}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{3}{Un esempio di mossa combinatoria}{66}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{4}{Lista completa}{80}{0}{4}

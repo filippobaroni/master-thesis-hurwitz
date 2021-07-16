@@ -3,9 +3,27 @@
 \usepackage{mystyle-slides}
 \usepackage{mystyle-global}
 \usepackage{tikz}
-\usetikzlibrary{tikzmark}
+
+\title{Realizzabilità di dati di ramificazione\\con una partizione corta}
+\newsavebox{\authorbox}
+\sbox{\authorbox}{%
+\begin{minipage}{0.45\linewidth}
+\centering
+{\footnotesize Candidato}\\
+Filippo Gianni Baroni
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\centering
+{\footnotesize Relatore}\\
+Prof. Carlo Petronio
+\end{minipage}
+}
+\author[Filippo Gianni Baroni]{\usebox{\authorbox}}
+\institute[UniPi]{\includegraphics[width=1.2cm]{img/unipi-logo}\\Università di Pisa}
+\date{16 Luglio 2021}
 
 \begin{document}
+\frame{\titlepage}
 \include{rivestimenti-ramificati}
 \include{monodromia}
 \include{dessins}
